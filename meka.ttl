@@ -314,7 +314,7 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
                   rdfs:subClassOf d3f:IPAddress ;
                   rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                   rdfs:label "Private IP Address"@en ;
-                  skos:example "192.168.0.1" .
+                  skos:example "192.168.0.1", "10.0.0.1" .
 
 
 ###  https://schema.mekanoid.io/Procedure
@@ -384,6 +384,12 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 #    Individuals
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001
+d3f:T1003.001 rdf:type d3f:T1003.001 ,
+                       :SubTechnique ;
+              d3f:uses :Direct_Access_and_Read .
+
+
 ###  https://schema.mekanoid.io/Direct_Access_and_Read
 :Direct_Access_and_Read rdf:type owl:NamedIndividual ,
                                  :Procedure ;
@@ -397,6 +403,12 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 :Handle_Copy rdf:type owl:NamedIndividual ,
                       :Operation ;
              rdfs:label "Handle Copy"@en .
+
+
+###  https://schema.mekanoid.io/LSASS_Handle_Duplication
+:LSASS_Handle_Duplication rdf:type owl:NamedIndividual ,
+                                   :Procedure ;
+                          rdfs:label "LSASS Handle Duplication"@en .
 
 
 ###  https://schema.mekanoid.io/On_Detection_Tactical_to_Function_Part_6_What_is_a_Procedure

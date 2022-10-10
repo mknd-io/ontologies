@@ -4,7 +4,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix d3: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 
 #################################################################
 #    Individuals
@@ -15,9 +15,7 @@
 
 
 ###  https://mekanoid.io/schema/meka.owl#Tit_marina_gmail_com
-:Tit_marina_gmail_com rdf:type owl:NamedIndividual ,
-                               <http://purl.org/cyber/stix#EmailAddr> ;
-                      <http://purl.org/dc/elements/1.1/date> "1651872788342"^^xsd:long ;
+:Tit_marina_gmail_com rdf:type d3f:Email ;
                       rdfs:label "Tit.marina@gmail.com"^^xsd:string ;
                       :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
 
