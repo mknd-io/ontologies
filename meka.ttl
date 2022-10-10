@@ -15,6 +15,7 @@
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
                                owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                dc:creator "Anton Goncharov (anton.goncharov@mekanoid.io)"@en ;
+                               dcterms:license "MIT"^^xsd:string ;
                                dcterms:title "MEKA: Cybersecurity Automation Ontology"^^xsd:string .
 
 #################################################################
@@ -167,17 +168,23 @@ stix:value rdf:type owl:DatatypeProperty .
 #    Classes
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+d3f:IPAddress owl:equivalentClass :IPAddress .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
+d3f:Identifier owl:equivalentClass :Identifier .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
+d3f:Software owl:equivalentClass :Software .
+
+
 ###  https://schema.mekanoid.io/ActionableItem
 :ActionableItem rdf:type owl:Class ;
                 rdfs:subClassOf :MekaThing ;
                 rdfs:comment "A foundational element for analyst workflows."@en ;
                 rdfs:label "Actionable Item"@en .
-
-
-###  https://schema.mekanoid.io/DomainName
-:DomainName rdf:type owl:Class ;
-            rdfs:subClassOf :Identifier ;
-            rdfs:label "Domain Name"@en .
 
 
 ###  https://schema.mekanoid.io/EmailAddress
@@ -189,7 +196,7 @@ stix:value rdf:type owl:DatatypeProperty .
 
 ###  https://schema.mekanoid.io/EmailMessage
 :EmailMessage rdf:type owl:Class ;
-              rdfs:subClassOf :Identifier ;
+              rdfs:subClassOf :MekaThing ;
               rdfs:label "Email Message"@en .
 
 
@@ -215,7 +222,8 @@ stix:value rdf:type owl:DatatypeProperty .
 
 ###  https://schema.mekanoid.io/File
 :File rdf:type owl:Class ;
-      rdfs:subClassOf :MekaThing .
+      rdfs:subClassOf :MekaThing ;
+      rdfs:label "File"@en .
 
 
 ###  https://schema.mekanoid.io/HashValue
@@ -295,7 +303,8 @@ stix:value rdf:type owl:DatatypeProperty .
 
 ###  https://schema.mekanoid.io/Software
 :Software rdf:type owl:Class ;
-          rdfs:subClassOf :MekaThing .
+          rdfs:subClassOf :MekaThing ;
+          rdfs:label "Software"@en .
 
 
 ###  https://schema.mekanoid.io/Ticket
