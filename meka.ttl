@@ -1,0 +1,562 @@
+@prefix : <https://mekanoid.io/schema/meka.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://mekanoid.io/schema/meka.owl> .
+
+<https://mekanoid.io/schema/meka.owl> rdf:type owl:Ontology ;
+                                       owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
+                                       <http://purl.org/dc/elements/1.1/creator> "Anton Goncharov (anton@neonlane.co)"@en ;
+                                       <http://purl.org/dc/terms/license> "MIT"^^xsd:string ;
+                                       <http://purl.org/dc/terms/title> "MEKA: a set of knowledge graph objects for Cyber Defense Automation."^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+<http://www.w3.org/2004/02/skos/core#example> rdf:type owl:AnnotationProperty .
+
+
+###  https://mekanoid.io/schema/meka.owl#context
+:context rdf:type owl:AnnotationProperty ;
+         <http://purl.org/dc/elements/1.1/date> "1651869434643"^^xsd:long ;
+         rdfs:subPropertyOf rdfs:comment ;
+         rdfs:range xsd:longString .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/cyber/stix#indicatedBy
+<http://purl.org/cyber/stix#indicatedBy> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/cyber/stix#indicates
+<http://purl.org/cyber/stix#indicates> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/cyber/stix#URL
+<http://purl.org/cyber/stix#URL> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#description
+<http://purl.org/cyber/stix#description> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#id
+<http://purl.org/cyber/stix#id> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#md5
+<http://purl.org/cyber/stix#md5> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#platform
+<http://purl.org/cyber/stix#platform> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#sha-1
+<http://purl.org/cyber/stix#sha-1> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#sha-256
+<http://purl.org/cyber/stix#sha-256> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#sha-512
+<http://purl.org/cyber/stix#sha-512> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#size
+<http://purl.org/cyber/stix#size> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#subject
+<http://purl.org/cyber/stix#subject> rdf:type owl:DatatypeProperty .
+
+
+###  http://purl.org/cyber/stix#value
+<http://purl.org/cyber/stix#value> rdf:type owl:DatatypeProperty .
+
+
+###  https://mekanoid.io/schema/meka.owl#date-time
+:date-time rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :meka-data-property ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "A date and timestamp associated with the entity" ;
+           rdfs:label "datetime"@en ;
+           <http://www.w3.org/2004/02/skos/core#example> "2002-10-10T12:00:00-05:00" .
+
+
+###  https://mekanoid.io/schema/meka.owl#meka-data-property
+:meka-data-property rdf:type owl:DatatypeProperty ;
+                    rdfs:label "Meka Data Property"@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#time-created
+:time-created rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :date-time ;
+              rdfs:comment "Time when the entity had been created at the point of origin."@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#time-first-seen
+:time-first-seen rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :time-seen ;
+                 rdfs:comment "The first time the enity had been observed by the application."@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#time-last-seen
+:time-last-seen rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :time-seen ;
+                rdfs:comment "The last time the entity had been observed by the application."@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#time-seen
+:time-seen rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :date-time ;
+           rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
+<http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> owl:equivalentClass <http://purl.org/cyber/stix#DomainName> .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Email
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Email> owl:equivalentClass <http://purl.org/cyber/stix#EmailMessage> .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
+<http://d3fend.mitre.org/ontologies/d3fend.owl#File> owl:equivalentClass <http://purl.org/cyber/stix#File> .
+
+
+###  http://purl.org/cyber/stix#DomainName
+<http://purl.org/cyber/stix#DomainName> rdf:type owl:Class .
+
+
+###  http://purl.org/cyber/stix#EmailAddr
+<http://purl.org/cyber/stix#EmailAddr> rdf:type owl:Class ;
+                                       owl:equivalentClass :EmailAddress .
+
+
+###  http://purl.org/cyber/stix#EmailMessage
+<http://purl.org/cyber/stix#EmailMessage> rdf:type owl:Class .
+
+
+###  http://purl.org/cyber/stix#File
+<http://purl.org/cyber/stix#File> rdf:type owl:Class .
+
+
+###  http://purl.org/cyber/stix#Ipv4Addr
+<http://purl.org/cyber/stix#Ipv4Addr> rdf:type owl:Class .
+
+
+###  http://purl.org/cyber/stix#Malware
+<http://purl.org/cyber/stix#Malware> rdf:type owl:Class .
+
+
+###  https://mekanoid.io/schema/meka.owl#ActionableItem
+:ActionableItem rdf:type owl:Class ;
+                rdfs:subClassOf :MekaThing ;
+                rdfs:comment "A foundational element for analyst workflows."@en ;
+                rdfs:label "Actionable Item"@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#EmailAddress
+:EmailAddress rdf:type owl:Class ;
+              rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ;
+              rdfs:comment "An email address identifies an email box to which messages are delivered." ;
+              rdfs:label "Email Address" .
+
+
+###  https://mekanoid.io/schema/meka.owl#EmailSenderString
+:EmailSenderString rdf:type owl:Class ;
+                   rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ;
+                   rdfs:label "Email Sender"@en ;
+                   <http://www.w3.org/2004/02/skos/core#example> "From: Anton Goncharov <anton.goncharov@gmail.com>"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#EmailSubjectString
+:EmailSubjectString rdf:type owl:Class ;
+                    rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ;
+                    rdfs:label "Email Subject"@en ;
+                    <http://www.w3.org/2004/02/skos/core#example> "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#Incident
+:Incident rdf:type owl:Class ;
+          rdfs:subClassOf :ActionableItem ;
+          rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence." ;
+          rdfs:label "Incident"@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#MekaThing
+:MekaThing rdf:type owl:Class ;
+           rdfs:subClassOf owl:Thing ;
+           rdfs:label "Meka Thing"^^xsd:string ;
+           <http://www.w3.org/2004/02/skos/core#altLabel> "Meka Ontology Item"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#Payload
+:Payload rdf:type owl:Class ;
+         rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Software> ,
+                         :MekaThing ;
+         rdfs:label "Payload" .
+
+
+###  https://mekanoid.io/schema/meka.owl#PrivateIPAddress
+:PrivateIPAddress rdf:type owl:Class ;
+                  rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> ;
+                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
+                  rdfs:label "Private IP Address"@en ;
+                  <http://www.w3.org/2004/02/skos/core#example> "192.168.0.1" .
+
+
+###  https://mekanoid.io/schema/meka.owl#PublicIPAddress
+:PublicIPAddress rdf:type owl:Class ;
+                 rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> ;
+                 rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en ;
+                 rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
+                 rdfs:label "Public IP Address"@en ;
+                 <http://www.w3.org/2004/02/skos/core#example> "4.2.2.1" ,
+                                                               "8.8.8.8" .
+
+
+###  https://mekanoid.io/schema/meka.owl#Socket
+:Socket rdf:type owl:Class ;
+        rdfs:subClassOf :MekaThing ;
+        rdfs:label "Network Socket"@en .
+
+
+###  https://mekanoid.io/schema/meka.owl#Task
+:Task rdf:type owl:Class ;
+      rdfs:subClassOf :ActionableItem ;
+      rdfs:label "Task" .
+
+
+###  https://mekanoid.io/schema/meka.owl#Ticket
+:Ticket rdf:type owl:Class ;
+        rdfs:subClassOf :ActionableItem ;
+        rdfs:label "Ticket" .
+
+
+###  https://mekanoid.io/schema/meka.owl#Trojan
+:Trojan rdf:type owl:Class ;
+        rdfs:subClassOf <http://purl.org/cyber/stix#Malware> ,
+                        :MekaThing ;
+        rdfs:label "Trojan"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002
+<http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :trickbot .
+
+
+###  https://mekanoid.io/schema/meka.owl#Tit_marina_gmail_com
+:Tit_marina_gmail_com rdf:type owl:NamedIndividual ,
+                               <http://purl.org/cyber/stix#EmailAddr> ;
+                      <http://purl.org/dc/elements/1.1/date> "1651872788342"^^xsd:long ;
+                      rdfs:label "Tit.marina@gmail.com"^^xsd:string ;
+                      :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#alzholn_gmail_com
+:alzholn_gmail_com rdf:type owl:NamedIndividual ,
+                            <http://purl.org/cyber/stix#EmailAddr> ;
+                   <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                   rdfs:label "alzholn@gmail.com"^^xsd:string ;
+                   :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#antongoncharov_gmail_com
+:antongoncharov_gmail_com rdf:type owl:NamedIndividual ,
+                                   <http://purl.org/cyber/stix#EmailAddr> ;
+                          <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                          rdfs:label "antongoncharov@gmail.com"^^xsd:string ;
+                          :context "Delivered-To: antongoncharov@gmail.com"^^xsd:string ,
+                                   "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"@gmail.com .
+
+
+###  https://mekanoid.io/schema/meka.owl#cavadova_nastena_1991_gmail_com
+:cavadova_nastena_1991_gmail_com rdf:type owl:NamedIndividual ,
+                                          <http://purl.org/cyber/stix#EmailAddr> ;
+                                 <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                                 <http://purl.org/cyber/stix#id> "cavadova.nastena.1991@gmail.com"^^xsd:string ;
+                                 rdfs:label "cavadova.nastena.1991@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#domain_mail_sor_f41_google_com
+:domain_mail_sor_f41_google_com rdf:type owl:NamedIndividual ,
+                                         <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> ,
+                                         <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> ;
+                                <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> :email_2_ONPZ_TZ0_H_CU46_WJ_B ;
+                                <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> :ip_209_85_220_41 ;
+                                <http://purl.org/dc/elements/1.1/date> "1651871641903"^^xsd:long ;
+                                rdfs:label "mail-sor-f41.google.com" ;
+                                :context """Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
+
+
+###  https://mekanoid.io/schema/meka.owl#email_2_ONPZ_TZ0_H_CU46_WJ_B
+:email_2_ONPZ_TZ0_H_CU46_WJ_B rdf:type owl:NamedIndividual ,
+                                       <http://d3fend.mitre.org/ontologies/d3fend.owl#Email> ,
+                                       <http://purl.org/cyber/stix#EmailMessage> ;
+                              <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :file_0TKpbITb_851532_pdf ;
+                              <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> :Tit_marina_gmail_com ,
+                                                                                            :alzholn_gmail_com ,
+                                                                                            :antongoncharov_gmail_com ,
+                                                                                            :cavadova_nastena_1991_gmail_com ,
+                                                                                            :kalinin_p_gmail_com ,
+                                                                                            :mett911_gmail_com ,
+                                                                                            :s_game_00_gmail_com ;
+                              <http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender> :mexragasu_gmail_com ;
+                              <http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from> :mailserver_mail_sor_f41_google_com__209_85_220_41 ;
+                              <http://purl.org/cyber/stix#id> "CADH-WYBxVjvHkqT9-MXtSRCCh_jtA6TiUqjoZ8GwboKUg46Q5w@mail.gmail.com"^^xsd:string ;
+                              <http://purl.org/cyber/stix#subject> "2 ONPZ TZ0 H CU46 WJ B"^^xsd:string ;
+                              <http://purl.org/dc/elements/1.1/date> "1651869201379"^^xsd:long ;
+                              rdfs:label "Email: '2 ONPZ TZ0 H CU46 WJ B'" .
+
+
+###  https://mekanoid.io/schema/meka.owl#extracted_trickbot_payload_3
+:extracted_trickbot_payload_3 rdf:type owl:NamedIndividual ,
+                                       <http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment> ;
+                              <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> :file_131_doc ;
+                              <http://purl.org/cyber/stix#indicates> :trickbot ;
+                              <http://purl.org/cyber/stix#platform> "Windows" ;
+                              rdfs:label "trickbot.payload-3" ;
+                              :context """\"      \"\"dumped_file\"\": \"\"extracted/trickbot.payload-3\"\",
+      \"\"resource\"\": \"\"behavioral1/memory/3212-19-0x0000000000A20000-0x0000000000A56000-memory.dmp\"\",
+      \"\"config\"\": {
+        \"\"family\"\": \"\"trickbot\"\",
+        \"\"rule\"\": \"\"Trickbot2019\"\",
+        \"\"c2\"\": [
+          \"\"51.89.163.40:443\"\",
+          \"\"89.223.126.186:443\"\",
+          \"\"45.67.231.68:443\"\",
+          \"\"148.251.185.165:443\"\",\"""" .
+
+
+###  https://mekanoid.io/schema/meka.owl#file_0TKpbITb_851532_pdf
+:file_0TKpbITb_851532_pdf rdf:type owl:NamedIndividual ,
+                                   <http://d3fend.mitre.org/ontologies/d3fend.owl#File> ,
+                                   <http://purl.org/cyber/stix#File> ;
+                          <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> :email_2_ONPZ_TZ0_H_CU46_WJ_B ;
+                          <http://purl.org/cyber/stix#URL> "https://ftp.com/ne-otkryvat/0TKpbITb\\ 851532.pdf" ;
+                          <http://purl.org/dc/elements/1.1/date> "1651869980282"^^xsd:long ;
+                          rdfs:label "0TKpbITb 851532.pdf"^^xsd:string ;
+                          :context """Content-Type: application/pdf; name=\"0TKpbITb 851532.pdf\"
+Content-Disposition: attachment; filename=\"0TKpbITb 851532.pdf\"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: file0"""^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#file_131_doc
+:file_131_doc rdf:type owl:NamedIndividual ,
+                       <http://d3fend.mitre.org/ontologies/d3fend.owl#File> ,
+                       <http://d3fend.mitre.org/ontologies/d3fend.owl#OfficeApplicationFile> ;
+              <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> :trickbot ;
+              <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :extracted_trickbot_payload_3 ;
+              <http://purl.org/cyber/stix#id> "200916-w52vg1yl1a" ;
+              <http://purl.org/cyber/stix#md5> "3e241f5a1e7be77f25078560c8660351"^^xsd:hexBinary ;
+              <http://purl.org/cyber/stix#sha-1> "ba25c371e75d1a52c1f41c163dc8840626423948"^^xsd:hexBinary ;
+              <http://purl.org/cyber/stix#sha-256> "22d653dab4765e13c5fce0bf46a28a098d05582148fdf3101093f3687b42a5f1"^^xsd:hexBinary ;
+              <http://purl.org/cyber/stix#sha-512> "4f031f6a3e44687ca65ceec847aacf3053feec0882bd5c07febef85ba1a7570ec1f4357446dfc84226448e1d8eb342066eeb3e6e7394d53caadd66223a2ff345"^^xsd:hexBinary ;
+              <http://purl.org/cyber/stix#size> "547328"^^xsd:byte ;
+              rdfs:label "0TKpbITb_851532.pdf" ;
+              :context """\"sample\": {
+    \"id\": \"200916-w52vg1yl1a\",
+    \"target\": \"0TKpbITb_851532.pdf\",
+    \"size\": 547328,
+    \"md5\": \"3e241f5a1e7be77f25078560c8660351\",
+    \"sha1\": \"ba25c371e75d1a52c1f41c163dc8840626423948\",
+    \"sha256\": \"22d653dab4765e13c5fce0bf46a28a098d05582148fdf3101093f3687b42a5f1\",
+    \"sha512\": \"4f031f6a3e44687ca65ceec847aacf3053feec0882bd5c07febef85ba1a7570ec1f4357446dfc84226448e1d8eb342066eeb3e6e7394d53caadd66223a2ff345\"
+  }""" .
+
+
+###  https://mekanoid.io/schema/meka.owl#gmail_com
+:gmail_com rdf:type owl:NamedIndividual ,
+                    <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> ,
+                    <http://purl.org/cyber/stix#DomainName> ;
+           <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :mexragasu_gmail_com ;
+           rdfs:label "gmail.com" .
+
+
+###  https://mekanoid.io/schema/meka.owl#google_com
+:google_com rdf:type owl:NamedIndividual ,
+                     <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> ,
+                     <http://purl.org/cyber/stix#DomainName> ;
+            <http://purl.org/dc/elements/1.1/date> "1651875647774"^^xsd:long ;
+            rdfs:label "google.com" .
+
+
+###  https://mekanoid.io/schema/meka.owl#ip_209_85_220_41
+:ip_209_85_220_41 rdf:type owl:NamedIndividual ,
+                           <http://purl.org/cyber/stix#Ipv4Addr> ;
+                  <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> :email_2_ONPZ_TZ0_H_CU46_WJ_B ;
+                  <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :domain_mail_sor_f41_google_com ;
+                  <http://purl.org/dc/elements/1.1/date> "1651871342751"^^xsd:long ;
+                  rdfs:label "209.85.220.41" ;
+                  :context """ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu"""@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+                           """Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu"""@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+                           """Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
+
+
+###  https://mekanoid.io/schema/meka.owl#ip_51_89_163_40
+:ip_51_89_163_40 rdf:type owl:NamedIndividual ,
+                          <http://purl.org/cyber/stix#Ipv4Addr> ;
+                 <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :trickbot ;
+                 rdfs:label "51.89.163.40" .
+
+
+###  https://mekanoid.io/schema/meka.owl#ip_89_223_126_186
+:ip_89_223_126_186 rdf:type owl:NamedIndividual ,
+                            <http://purl.org/cyber/stix#Ipv4Addr> ;
+                   <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :trickbot ;
+                   rdfs:label "89.223.126.186" .
+
+
+###  https://mekanoid.io/schema/meka.owl#kalinin_p_gmail_com
+:kalinin_p_gmail_com rdf:type owl:NamedIndividual ,
+                              <http://purl.org/cyber/stix#EmailAddr> ;
+                     <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                     <http://purl.org/dc/elements/1.1/date> "1651872886439"^^xsd:long ;
+                     rdfs:label "kalinin.p@gmail.com"^^xsd:string ;
+                     :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#localhost
+:localhost rdf:type owl:NamedIndividual ,
+                    <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> ;
+           <http://d3fend.mitre.org/ontologies/d3fend.owl#name> "localhost" ;
+           rdfs:label "localhost" .
+
+
+###  https://mekanoid.io/schema/meka.owl#mailserver_mail_sor_f41_google_com__209_85_220_41
+:mailserver_mail_sor_f41_google_com__209_85_220_41 rdf:type owl:NamedIndividual ,
+                                                            <http://d3fend.mitre.org/ontologies/d3fend.owl#MailServer> ;
+                                                   <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> :domain_mail_sor_f41_google_com ,
+                                                                                                        :ip_209_85_220_41 ;
+                                                   <http://purl.org/dc/elements/1.1/date> "1651874057950"^^xsd:long ;
+                                                   rdfs:label "mail-sor-f41.google.com. [209.85.220.41]" ;
+                                                   :context """Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
+
+
+###  https://mekanoid.io/schema/meka.owl#mett911_gmail_com
+:mett911_gmail_com rdf:type owl:NamedIndividual ,
+                            <http://purl.org/cyber/stix#EmailAddr> ;
+                   <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                   <http://purl.org/dc/elements/1.1/date> "1651872550694"^^xsd:long ;
+                   rdfs:label "mett911@gmail.com"^^xsd:string ;
+                   :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#mexragasu_gmail_com
+:mexragasu_gmail_com rdf:type owl:NamedIndividual ,
+                              <http://purl.org/cyber/stix#EmailAddr> ;
+                     <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> :gmail_com ;
+                     <http://purl.org/dc/elements/1.1/date> "1651872922823"^^xsd:long ;
+                     rdfs:label "mexragasu"@gmail.com ;
+                     :context """ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu"""@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+                              """Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu"""@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com  ,
+                              "Return-Path: mexragasu"@gmail.com .
+
+
+###  https://mekanoid.io/schema/meka.owl#mx_google_com
+:mx_google_com rdf:type owl:NamedIndividual ,
+                        <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> ,
+                        <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> ;
+               <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :google_com ;
+               <http://purl.org/dc/elements/1.1/date> "1651873369851"^^xsd:long ;
+               rdfs:label "mx.google.com" .
+
+
+###  https://mekanoid.io/schema/meka.owl#port_443
+:port_443 rdf:type owl:NamedIndividual ;
+          <http://purl.org/cyber/stix#value> "443"^^xsd:int ;
+          rdfs:label "Port 443" .
+
+
+###  https://mekanoid.io/schema/meka.owl#s_game_00_gmail_com
+:s_game_00_gmail_com rdf:type owl:NamedIndividual ,
+                              <http://purl.org/cyber/stix#EmailAddr> ;
+                     <http://purl.org/dc/elements/1.1/date> "1651872818641"^^xsd:long ;
+                     rdfs:label "s.game.00@gmail.com"^^xsd:string ;
+                     :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"^^xsd:string .
+
+
+###  https://mekanoid.io/schema/meka.owl#tcpip_51_89_163_40_443
+:tcpip_51_89_163_40_443 rdf:type owl:NamedIndividual ,
+                                 :Socket ;
+                        <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :trickbot ;
+                        <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> :ip_51_89_163_40 ,
+                                                                             :port_443 ;
+                        rdfs:label "51.89.163.40:443" .
+
+
+###  https://mekanoid.io/schema/meka.owl#tcpip_89_223_126_186_443
+:tcpip_89_223_126_186_443 rdf:type owl:NamedIndividual ,
+                                   :Socket ;
+                          <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> :trickbot ;
+                          <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> :ip_89_223_126_186 ,
+                                                                               :port_443 ;
+                          rdfs:label "89.223.126.186:443" .
+
+
+###  https://mekanoid.io/schema/meka.owl#trickbot
+:trickbot rdf:type owl:NamedIndividual ,
+                   :Trojan ;
+          <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002> ,
+                                                               :ip_51_89_163_40 ,
+                                                               :ip_89_223_126_186 ,
+                                                               :tcpip_51_89_163_40_443 ,
+                                                               :tcpip_89_223_126_186_443 ;
+          <http://purl.org/cyber/stix#indicatedBy> :extracted_trickbot_payload_3 ;
+          <http://purl.org/cyber/stix#URL> "https://attack.mitre.org/software/S0266/"^^xsd:anyURI ;
+          <http://purl.org/cyber/stix#description> "Developed in 2016, TrickBot is one of the more recent banking Trojans."@en ;
+          rdfs:label "Trickbot" .
+
+
+###  Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi
