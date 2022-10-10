@@ -188,11 +188,25 @@ stix:value rdf:type owl:DatatypeProperty .
 #    Classes
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTactic
+d3f:OffensiveTactic owl:equivalentClass :Tactic .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTechnique
+d3f:OffensiveTechnique owl:equivalentClass :Technique .
+
+
 ###  https://schema.mekanoid.io/ActionableItem
 :ActionableItem rdf:type owl:Class ;
                 rdfs:subClassOf :MekaThing ;
                 rdfs:comment "A foundational element for analyst workflows."@en ;
                 rdfs:label "Actionable Item"@en .
+
+
+###  https://schema.mekanoid.io/Attack
+:Attack rdf:type owl:Class ;
+        rdfs:subClassOf :MekaThing ;
+        rdfs:label "Attack"@en .
 
 
 ###  https://schema.mekanoid.io/EmailAddress
@@ -231,6 +245,13 @@ stix:value rdf:type owl:DatatypeProperty .
                            :MekaThing ;
            rdfs:label "Event Data"@en ;
            skos:altLabel "Log record"@en .
+
+
+###  https://schema.mekanoid.io/Function
+:Function rdf:type owl:Class ;
+          rdfs:subClassOf :MekaThing ;
+          rdfs:label "Function"@en ;
+          :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/HashValue
@@ -274,6 +295,13 @@ stix:value rdf:type owl:DatatypeProperty .
            skos:altLabel "Meka Ontology Item"^^xsd:string .
 
 
+###  https://schema.mekanoid.io/Operation
+:Operation rdf:type owl:Class ;
+           rdfs:subClassOf :MekaThing ;
+           rdfs:label "Operation"@en ;
+           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+
+
 ###  https://schema.mekanoid.io/Payload
 :Payload rdf:type owl:Class ;
          rdfs:subClassOf d3f:Software ,
@@ -287,6 +315,13 @@ stix:value rdf:type owl:DatatypeProperty .
                   rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                   rdfs:label "Private IP Address"@en ;
                   skos:example "192.168.0.1" .
+
+
+###  https://schema.mekanoid.io/Procedure
+:Procedure rdf:type owl:Class ;
+           rdfs:subClassOf :MekaThing ;
+           rdfs:label "Procedure"@en ;
+           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/PublicIPAddress
@@ -304,6 +339,24 @@ stix:value rdf:type owl:DatatypeProperty .
         rdfs:subClassOf :MekaThing ;
         rdfs:label "Network Socket"@en ;
         skos:example "51.89.163.40:443"^^xsd:string .
+
+
+###  https://schema.mekanoid.io/SubTechnique
+:SubTechnique rdf:type owl:Class ;
+              rdfs:subClassOf :MekaThing ;
+              rdfs:label "Sub Technique"@en .
+
+
+###  https://schema.mekanoid.io/Tactic
+:Tactic rdf:type owl:Class ;
+        rdfs:subClassOf :MekaThing ;
+        rdfs:label "Tactic"@en .
+
+
+###  https://schema.mekanoid.io/Technique
+:Technique rdf:type owl:Class ;
+           rdfs:subClassOf :MekaThing ;
+           rdfs:label "Technique"@en .
 
 
 ###  https://schema.mekanoid.io/Ticket
@@ -325,6 +378,69 @@ stix:value rdf:type owl:DatatypeProperty .
 :Username rdf:type owl:Class ;
           rdfs:subClassOf d3f:Identifier ,
                           :MekaThing .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://schema.mekanoid.io/Direct_Access_and_Read
+:Direct_Access_and_Read rdf:type owl:NamedIndividual ,
+                                 :Procedure ;
+                        d3f:uses :Process_Access ,
+                                 :Process_Enumeration ,
+                                 :Process_Read ;
+                        rdfs:label "Direct Access and Read"@en .
+
+
+###  https://schema.mekanoid.io/Handle_Copy
+:Handle_Copy rdf:type owl:NamedIndividual ,
+                      :Operation ;
+             rdfs:label "Handle Copy"@en .
+
+
+###  https://schema.mekanoid.io/On_Detection_Tactical_to_Function_Part_6_What_is_a_Procedure
+:On_Detection_Tactical_to_Function_Part_6_What_is_a_Procedure rdf:type owl:NamedIndividual ,
+                                                                       d3f:Reference ;
+                                                              stix:URL "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI ;
+                                                              rdfs:label """On Detection: Tactical to Function
+Part 6: What is a Procedure?"""^^xsd:string .
+
+
+###  https://schema.mekanoid.io/Process_Access
+:Process_Access rdf:type owl:NamedIndividual ,
+                         :Operation ;
+                rdfs:label "Process Access"@en .
+
+
+###  https://schema.mekanoid.io/Process_Create
+:Process_Create rdf:type owl:NamedIndividual ,
+                         :Operation ;
+                rdfs:label "Process Create"@en .
+
+
+###  https://schema.mekanoid.io/Process_Enumerate
+:Process_Enumerate rdf:type owl:NamedIndividual ,
+                            :Operation ;
+                   rdfs:label "Process Enumerate"@en .
+
+
+###  https://schema.mekanoid.io/Process_Enumeration
+:Process_Enumeration rdf:type owl:NamedIndividual ,
+                              :Operation ;
+                     rdfs:label "Process Enumeration"@en .
+
+
+###  https://schema.mekanoid.io/Process_Read
+:Process_Read rdf:type owl:NamedIndividual ,
+                       :Operation ;
+              rdfs:label "Process Read"@en .
+
+
+###  https://schema.mekanoid.io/Snapshot_Create
+:Snapshot_Create rdf:type owl:NamedIndividual ,
+                          :Operation ;
+                 rdfs:label "Snapshot Create"@en .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
