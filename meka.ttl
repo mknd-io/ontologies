@@ -196,6 +196,10 @@ d3f:OffensiveTactic owl:equivalentClass :Tactic .
 d3f:OffensiveTechnique owl:equivalentClass :Technique .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Procedure
+d3f:Procedure owl:equivalentClass :Procedure .
+
+
 ###  https://schema.mekanoid.io/ActionableItem
 :ActionableItem rdf:type owl:Class ;
                 rdfs:subClassOf :MekaThing ;
@@ -236,7 +240,8 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 
 ###  https://schema.mekanoid.io/Event
 :Event rdf:type owl:Class ;
-       rdfs:subClassOf :MekaThing .
+       rdfs:subClassOf :MekaThing ;
+       rdfs:label "Event"@en .
 
 
 ###  https://schema.mekanoid.io/EventData
@@ -291,8 +296,8 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 ###  https://schema.mekanoid.io/MekaThing
 :MekaThing rdf:type owl:Class ;
            rdfs:subClassOf owl:Thing ;
-           rdfs:label "Meka Thing"^^xsd:string ;
-           skos:altLabel "Meka Ontology Item"^^xsd:string .
+           rdfs:label "Mekanoid Thing"@en ;
+           skos:altLabel "Mekanoid Ontology Item"^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/Operation
@@ -314,7 +319,8 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
                   rdfs:subClassOf d3f:IPAddress ;
                   rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                   rdfs:label "Private IP Address"@en ;
-                  skos:example "192.168.0.1", "10.0.0.1" .
+                  skos:example "10.0.0.1" ,
+                               "192.168.0.1" .
 
 
 ###  https://schema.mekanoid.io/Procedure
@@ -350,12 +356,14 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 ###  https://schema.mekanoid.io/Tactic
 :Tactic rdf:type owl:Class ;
         rdfs:subClassOf :MekaThing ;
+        rdfs:comment "MITRE ATT&CK Tactic"@en ;
         rdfs:label "Tactic"@en .
 
 
 ###  https://schema.mekanoid.io/Technique
 :Technique rdf:type owl:Class ;
            rdfs:subClassOf :MekaThing ;
+           rdfs:comment "MITRE ATT&CK Technique"@en ;
            rdfs:label "Technique"@en .
 
 
@@ -377,7 +385,8 @@ d3f:OffensiveTechnique owl:equivalentClass :Technique .
 ###  https://schema.mekanoid.io/Username
 :Username rdf:type owl:Class ;
           rdfs:subClassOf d3f:Identifier ,
-                          :MekaThing .
+                          :MekaThing ;
+          rdfs:label "Username"@en .
 
 
 #################################################################
