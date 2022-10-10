@@ -1,5 +1,6 @@
 @prefix : <https://schema.mekanoid.io/> .
-@prefix dc: <http://purl.org/dc/terms#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -8,23 +9,23 @@
 @base <https://schema.mekanoid.io/> .
 
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
-                               <http://purl.org/dc/elements/1.1/creator> "Anton Goncharov (anton.goncharov@mekanoid.io)"@en ;
-                               <http://purl.org/dc/terms/title> "MEKA: Cybersecurity Automation Ontology"^^xsd:string .
+                               dce:creator "Anton Goncharov (anton.goncharov@mekanoid.io)"@en ;
+                               dc:title "MEKA: Cybersecurity Automation Ontology"^^xsd:string .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
 ###  http://purl.org/dc/elements/1.1/creator
-<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+dce:creator rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/date
-<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+dce:date rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/title
-<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
@@ -37,8 +38,8 @@
 
 ###  https://schema.mekanoid.io/context
 :context rdf:type owl:AnnotationProperty ;
-         <http://purl.org/dc/elements/1.1/date> "1651869434643"^^xsd:long ;
-         rdfs:label "Context"@en ;
+         dce:date "1651869434643"^^xsd:long ;
+         rdfs:label "context"@en ;
          rdfs:subPropertyOf rdfs:comment ;
          rdfs:range xsd:longString .
 
