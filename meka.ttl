@@ -1,14 +1,14 @@
-@prefix : <https://mekanoid.io/schema/meka.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://mekanoid.io/schema/meka.owl> .
+@prefix dc: <http://purl.org/dc/terms#> .
+@prefix dce: <http://purl.org/dc/elements/1.1#> .
+@base <https://schema.mekanoid.io/meka.ttl> .
 
 <https://schema.mekanoid.io/meka.ttl> rdf:type owl:Ontology ;
                                        <http://purl.org/dc/elements/1.1/creator> "Anton Goncharov (anton.goncharov@mekanoid.io)"@en ;
-                                       <http://purl.org/dc/terms/license> "MIT"^^xsd:string ;
                                        <http://purl.org/dc/terms/title> "MEKA: Cybersecurity Automation Ontology"^^xsd:string .
 
 #################################################################
@@ -21,6 +21,14 @@
 
 ###  http://purl.org/dc/elements/1.1/date
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+<http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#example
@@ -137,24 +145,34 @@
 #################################################################
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
-<http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> owl:equivalentClass <http://purl.org/cyber/stix#DomainName> .
+<http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> rdf:type owl:Class ;
+                                                           owl:equivalentClass <http://purl.org/cyber/stix#DomainName> .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Email
-<http://d3fend.mitre.org/ontologies/d3fend.owl#Email> owl:equivalentClass <http://purl.org/cyber/stix#EmailMessage> .
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Email> rdf:type owl:Class ;
+                                                      owl:equivalentClass <http://purl.org/cyber/stix#EmailMessage> .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
-<http://d3fend.mitre.org/ontologies/d3fend.owl#File> owl:equivalentClass <http://purl.org/cyber/stix#File> .
+<http://d3fend.mitre.org/ontologies/d3fend.owl#File> rdf:type owl:Class ;
+                                                     owl:equivalentClass <http://purl.org/cyber/stix#File> .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+<http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Software> rdf:type owl:Class .
 
 
 ###  http://purl.org/cyber/stix#DomainName
 <http://purl.org/cyber/stix#DomainName> rdf:type owl:Class .
-
-
-###  http://purl.org/cyber/stix#EmailAddr
-<http://purl.org/cyber/stix#EmailAddr> rdf:type owl:Class ;
-                                       owl:equivalentClass :EmailAddress .
 
 
 ###  http://purl.org/cyber/stix#EmailMessage
@@ -169,10 +187,6 @@
 <http://purl.org/cyber/stix#Ipv4Addr> rdf:type owl:Class .
 
 
-###  http://purl.org/cyber/stix#Malware
-<http://purl.org/cyber/stix#Malware> rdf:type owl:Class .
-
-
 ###  https://mekanoid.io/schema/meka.owl#ActionableItem
 :ActionableItem rdf:type owl:Class ;
                 rdfs:subClassOf :MekaThing ;
@@ -182,14 +196,15 @@
 
 ###  https://mekanoid.io/schema/meka.owl#EmailAddress
 :EmailAddress rdf:type owl:Class ;
-              rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ;
+              rdfs:subClassOf <https://schema.mekanoid.io/Identifier> ;
               rdfs:comment "An email address identifies an email box to which messages are delivered." ;
               rdfs:label "Email Address" .
 
 
 ###  https://mekanoid.io/schema/meka.owl#EmailSenderString
 :EmailSenderString rdf:type owl:Class ;
-                   rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ;
+                   rdfs:subClassOf <https://schema.mekanoid.io/Identifier> ;
+                   rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
                    <http://www.w3.org/2004/02/skos/core#example> "From: Anton Goncharov <anton.goncharov@gmail.com>"^^xsd:string .
 
@@ -260,8 +275,18 @@
 
 ###  https://mekanoid.io/schema/meka.owl#Trojan
 :Trojan rdf:type owl:Class ;
-        rdfs:subClassOf <http://purl.org/cyber/stix#Malware> ,
-                        :MekaThing ;
+        rdfs:subClassOf :MekaThing ,
+                        <https://schema.mekanoid.io/Malware> ;
         rdfs:label "Trojan"@en .
 
-###  Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi
+
+###  https://schema.mekanoid.io/Identifier
+<https://schema.mekanoid.io/Identifier> rdf:type owl:Class ;
+                                        rdfs:subClassOf :MekaThing .
+
+
+###  https://schema.mekanoid.io/Malware
+<https://schema.mekanoid.io/Malware> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
