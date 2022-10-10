@@ -6,6 +6,9 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix stix: <http://purl.org/cyber/stix#> .
+@prefix time: <http://www.w3.org/2006/time#> .
 @base <https://schema.mekanoid.io/> .
 
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
@@ -29,11 +32,11 @@ dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
-<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+skos:altLabel rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#example
-<http://www.w3.org/2004/02/skos/core#example> rdf:type owl:AnnotationProperty .
+skos:example rdf:type owl:AnnotationProperty .
 
 
 ###  https://schema.mekanoid.io/context
@@ -49,11 +52,11 @@ dc:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/cyber/stix#indicatedBy
-<http://purl.org/cyber/stix#indicatedBy> rdf:type owl:ObjectProperty .
+stix:indicatedBy rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.org/cyber/stix#indicates
-<http://purl.org/cyber/stix#indicates> rdf:type owl:ObjectProperty .
+stix:indicates rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -61,82 +64,102 @@ dc:title rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/cyber/stix#URL
-<http://purl.org/cyber/stix#URL> rdf:type owl:DatatypeProperty .
+stix:URL rdf:type owl:DatatypeProperty ;
+         owl:equivalentProperty :url .
 
 
 ###  http://purl.org/cyber/stix#id
-<http://purl.org/cyber/stix#id> rdf:type owl:DatatypeProperty .
+stix:id rdf:type owl:DatatypeProperty ;
+        owl:equivalentProperty :id .
 
 
 ###  http://purl.org/cyber/stix#md5
-<http://purl.org/cyber/stix#md5> rdf:type owl:DatatypeProperty .
+stix:md5 rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#platform
-<http://purl.org/cyber/stix#platform> rdf:type owl:DatatypeProperty .
+stix:platform rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#sha-1
-<http://purl.org/cyber/stix#sha-1> rdf:type owl:DatatypeProperty .
+stix:sha-1 rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#sha-256
-<http://purl.org/cyber/stix#sha-256> rdf:type owl:DatatypeProperty .
+stix:sha-256 rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#sha-512
-<http://purl.org/cyber/stix#sha-512> rdf:type owl:DatatypeProperty .
+stix:sha-512 rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#size
-<http://purl.org/cyber/stix#size> rdf:type owl:DatatypeProperty .
+stix:size rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#subject
-<http://purl.org/cyber/stix#subject> rdf:type owl:DatatypeProperty .
+stix:subject rdf:type owl:DatatypeProperty .
 
 
 ###  http://purl.org/cyber/stix#value
-<http://purl.org/cyber/stix#value> rdf:type owl:DatatypeProperty .
+stix:value rdf:type owl:DatatypeProperty .
 
 
-###  https://schema.mekanoid.io/data-property
-:data-property rdf:type owl:DatatypeProperty ;
+###  https://schema.mekanoid.io/data_property
+:data_property rdf:type owl:DatatypeProperty ;
+               rdfs:comment "Mekanoid Data Property"@en ;
                rdfs:label "data property"@en .
 
 
-###  https://schema.mekanoid.io/date-time
-:date-time rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :data-property ;
-           rdfs:range xsd:dateTime ;
-           rdfs:comment "A date and timestamp associated with the entity" ;
-           rdfs:label "timestamp"@en ;
-           <http://www.w3.org/2004/02/skos/core#example> "2002-10-10T12:00:00-05:00" .
+###  https://schema.mekanoid.io/date_time
+:date_time rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :data_property ;
+           rdfs:domain :MekaThing ;
+           rdfs:range xsd:dateTimeStamp ;
+           rdfs:comment "A date and time associated with the entity"@en ;
+           rdfs:label "has timestamp"@en ;
+           skos:example "2002-10-10T12:00:00-05:00" .
 
 
-###  https://schema.mekanoid.io/time-created
-:time-created rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :date-time ;
+###  https://schema.mekanoid.io/id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :data_property ;
+    rdfs:label "has id"@en .
+
+
+###  https://schema.mekanoid.io/time_created
+:time_created rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :date_time ;
               rdfs:comment "Time when the entity had been created at the point of origin."@en ;
               rdfs:label "created at"@en .
 
 
-###  https://schema.mekanoid.io/time-first-seen
-:time-first-seen rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :time-seen ;
-                 rdfs:comment "The first time the enity had been observed by the application."@en .
+###  https://schema.mekanoid.io/time_first_seen
+:time_first_seen rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :time_seen ;
+                 rdfs:comment "The first time the enity had been observed by the application."@en ;
+                 rdfs:label "first seen"@en .
 
 
-###  https://schema.mekanoid.io/time-last-seen
-:time-last-seen rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :time-seen ;
-                rdfs:comment "The last time the entity had been observed by the application."@en .
+###  https://schema.mekanoid.io/time_last_seen
+:time_last_seen rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :time_seen ;
+                rdfs:comment "The last time the entity had been observed by the application."@en ;
+                rdfs:label "last seen"@en .
 
 
-###  https://schema.mekanoid.io/time-seen
-:time-seen rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :date-time ;
-           rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en .
+###  https://schema.mekanoid.io/time_seen
+:time_seen rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :date_time ;
+           rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
+           rdfs:label "seen at"@en .
+
+
+###  https://schema.mekanoid.io/url
+:url rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :data_property ;
+     rdfs:range xsd:anyURI ;
+     rdfs:label "has URL"@en .
 
 
 #################################################################
@@ -150,10 +173,10 @@ dc:title rdf:type owl:AnnotationProperty .
                 rdfs:label "Actionable Item"@en .
 
 
-###  https://schema.mekanoid.io/Domain_Name
-:Domain_Name rdf:type owl:Class ;
-             rdfs:subClassOf :Identifier ;
-             rdfs:label "Domain Name"@en .
+###  https://schema.mekanoid.io/DomainName
+:DomainName rdf:type owl:Class ;
+            rdfs:subClassOf :Identifier ;
+            rdfs:label "Domain Name"@en .
 
 
 ###  https://schema.mekanoid.io/EmailAddress
@@ -163,25 +186,30 @@ dc:title rdf:type owl:AnnotationProperty .
               rdfs:label "Email Address" .
 
 
+###  https://schema.mekanoid.io/EmailMessage
+:EmailMessage rdf:type owl:Class ;
+              rdfs:subClassOf :Identifier ;
+              rdfs:label "Email Message"@en .
+
+
 ###  https://schema.mekanoid.io/EmailSenderString
 :EmailSenderString rdf:type owl:Class ;
                    rdfs:subClassOf :Identifier ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
-                   <http://www.w3.org/2004/02/skos/core#example> "Anton Goncharov <anton.goncharov@mekanoid.io>"^^xsd:string .
+                   skos:example "Anton Goncharov <anton.goncharov@mekanoid.io>"^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/EmailSubjectString
 :EmailSubjectString rdf:type owl:Class ;
                     rdfs:subClassOf :Identifier ;
                     rdfs:label "Email Subject"@en ;
-                    <http://www.w3.org/2004/02/skos/core#example> "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
+                    skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
 
 
-###  https://schema.mekanoid.io/Email_Message
-:Email_Message rdf:type owl:Class ;
-               rdfs:subClassOf :Identifier ;
-               rdfs:label "Email Message"@en .
+###  https://schema.mekanoid.io/Event
+:Event rdf:type owl:Class ;
+       rdfs:subClassOf :MekaThing .
 
 
 ###  https://schema.mekanoid.io/File
@@ -189,76 +217,73 @@ dc:title rdf:type owl:AnnotationProperty .
       rdfs:subClassOf :MekaThing .
 
 
-###  https://schema.mekanoid.io/Hash_Value
-:Hash_Value rdf:type owl:Class ;
-            rdfs:subClassOf :Identifier ;
-            rdfs:label "Hash Value"@en .
+###  https://schema.mekanoid.io/HashValue
+:HashValue rdf:type owl:Class ;
+           rdfs:subClassOf :Identifier ;
+           rdfs:label "Hash Value"@en .
 
 
-###  https://schema.mekanoid.io/IP_Address
-:IP_Address rdf:type owl:Class ;
-            rdfs:subClassOf :Identifier ;
-            rdfs:label "IP Address"@en .
+###  https://schema.mekanoid.io/IPAddress
+:IPAddress rdf:type owl:Class ;
+           rdfs:subClassOf :Identifier ;
+           rdfs:label "IP Address"@en .
 
 
-###  https://schema.mekanoid.io/IPv4_Address
-:IPv4_Address rdf:type owl:Class ;
-              rdfs:subClassOf :IP_Address ;
-              rdfs:label "IP V4 Address"@en .
+###  https://schema.mekanoid.io/IPv4
+:IPv4 rdf:type owl:Class ;
+      rdfs:subClassOf :IPAddress ;
+      rdfs:label "IP Address v4"@en .
 
 
-###  https://schema.mekanoid.io/IPv6_Address
-:IPv6_Address rdf:type owl:Class ;
-              rdfs:subClassOf :IP_Address ;
-              rdfs:label "IP V6 Address"@en .
+###  https://schema.mekanoid.io/IPv6
+:IPv6 rdf:type owl:Class ;
+      rdfs:subClassOf :IPAddress ;
+      rdfs:label "IP Address v6"@en .
 
 
 ###  https://schema.mekanoid.io/Identifier
 :Identifier rdf:type owl:Class ;
-            rdfs:subClassOf :MekaThing .
+            rdfs:subClassOf :MekaThing ;
+            rdfs:label "Identifier"@en .
 
 
 ###  https://schema.mekanoid.io/Incident
 :Incident rdf:type owl:Class ;
-          rdfs:subClassOf :ActionableItem ;
+          rdfs:subClassOf :Event ;
           rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence." ;
           rdfs:label "Incident"@en .
 
 
-###  https://schema.mekanoid.io/Issue
-:Issue rdf:type owl:Class ;
-       rdfs:subClassOf :ActionableItem ;
-       rdfs:label "Issue" .
-
-
 ###  https://schema.mekanoid.io/Malware
 :Malware rdf:type owl:Class ;
-         rdfs:subClassOf :Software .
+         rdfs:subClassOf :Software ;
+         rdfs:label "Malware"@en ;
+         skos:altLabel "Malicious software"@en .
 
 
 ###  https://schema.mekanoid.io/MekaThing
 :MekaThing rdf:type owl:Class ;
            rdfs:subClassOf owl:Thing ;
            rdfs:label "Meka Thing"^^xsd:string ;
-           <http://www.w3.org/2004/02/skos/core#altLabel> "Meka Ontology Item"^^xsd:string .
+           skos:altLabel "Meka Ontology Item"^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/PrivateIPAddress
 :PrivateIPAddress rdf:type owl:Class ;
-                  rdfs:subClassOf :IP_Address ;
+                  rdfs:subClassOf :IPAddress ;
                   rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                   rdfs:label "Private IP Address"@en ;
-                  <http://www.w3.org/2004/02/skos/core#example> "192.168.0.1" .
+                  skos:example "192.168.0.1" .
 
 
 ###  https://schema.mekanoid.io/PublicIPAddress
 :PublicIPAddress rdf:type owl:Class ;
-                 rdfs:subClassOf :IP_Address ;
+                 rdfs:subClassOf :IPAddress ;
                  rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en ;
                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
                  rdfs:label "Public IP Address"@en ;
-                 <http://www.w3.org/2004/02/skos/core#example> "4.2.2.1" ,
-                                                               "8.8.8.8" .
+                 skos:example "4.2.2.1" ,
+                              "8.8.8.8" .
 
 
 ###  https://schema.mekanoid.io/Socket
@@ -275,7 +300,9 @@ dc:title rdf:type owl:AnnotationProperty .
 ###  https://schema.mekanoid.io/Ticket
 :Ticket rdf:type owl:Class ;
         rdfs:subClassOf :ActionableItem ;
-        rdfs:label "Ticket" .
+        rdfs:label "Ticket"@en ;
+        skos:altLabel "Issue"@en ,
+                      "Task"@en .
 
 
 ###  https://schema.mekanoid.io/Trojan
