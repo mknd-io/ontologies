@@ -324,6 +324,10 @@ time:years rdfs:subPropertyOf :timeProperty .
 #    Classes
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
+d3f:File owl:equivalentClass :File .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTactic
 d3f:OffensiveTactic owl:equivalentClass :Tactic .
 
@@ -398,6 +402,11 @@ d3f:Procedure owl:equivalentClass :Procedure .
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :indicatedBy ;
                         owl:allValuesFrom :FileName
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :size ;
+                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:long
                       ] ;
       rdfs:label "File"@en .
 
