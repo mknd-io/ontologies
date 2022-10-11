@@ -58,17 +58,45 @@ stix:indicates rdf:type owl:ObjectProperty ;
                owl:equivalentProperty :indicates .
 
 
+###  https://schema.mekanoid.io/identifiedBy
+:identifiedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :objectProperty ;
+              owl:inverseOf :identifies ;
+              rdfs:range d3f:Identifier ;
+              rdfs:label "is identified by"@en .
+
+
+###  https://schema.mekanoid.io/identifies
+:identifies rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :objectProperty ;
+            rdfs:domain d3f:Identifier ;
+            rdfs:label "identifies"@en .
+
+
 ###  https://schema.mekanoid.io/indicatedBy
 :indicatedBy rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :objectProperty ;
+             rdfs:subPropertyOf :mayBeIndicatedBy ;
              owl:inverseOf :indicates ;
              rdfs:label "indicated by"@en .
 
 
 ###  https://schema.mekanoid.io/indicates
 :indicates rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :objectProperty ;
+           rdfs:subPropertyOf :mayIndicate ;
            rdfs:label "indicates"@en .
+
+
+###  https://schema.mekanoid.io/mayBeIndicatedBy
+:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :objectProperty ;
+                  owl:inverseOf :mayIndicate ;
+                  rdfs:label "may be indicated by"@en .
+
+
+###  https://schema.mekanoid.io/mayIndicate
+:mayIndicate rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :objectProperty ;
+             rdfs:label "may indicate"@en .
 
 
 ###  https://schema.mekanoid.io/objectProperty
@@ -360,6 +388,30 @@ d3f:Procedure owl:equivalentClass :Procedure .
            skos:altLabel "Log record"@en .
 
 
+###  https://schema.mekanoid.io/File
+:File rdf:type owl:Class ;
+      rdfs:subClassOf :MekaThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :identifiedBy ;
+                        owl:someValuesFrom :HashValue
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :indicatedBy ;
+                        owl:allValuesFrom :FileName
+                      ] ;
+      rdfs:label "File"@en .
+
+
+###  https://schema.mekanoid.io/FileName
+:FileName rdf:type owl:Class ;
+          rdfs:subClassOf :Observable ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :indicates ;
+                            owl:someValuesFrom :File
+                          ] ;
+          rdfs:label "File Name"@en .
+
+
 ###  https://schema.mekanoid.io/Function
 :Function rdf:type owl:Class ;
           rdfs:subClassOf :MekaThing ;
@@ -439,7 +491,8 @@ d3f:Procedure owl:equivalentClass :Procedure .
                               owl:onProperty :stringValue ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onDataRange xsd:string
-                            ] .
+                            ] ;
+            rdfs:label "Observable"@en .
 
 
 ###  https://schema.mekanoid.io/Operation
