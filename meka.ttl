@@ -1,6 +1,6 @@
 @prefix : <https://schema.mekanoid.io/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -9,29 +9,23 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
 @base <https://schema.mekanoid.io/> .
 
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
-                               owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
-                               dc:creator "Anton Goncharov (anton.goncharov@mekanoid.io)"@en ;
-                               dcterms:license "MIT"^^xsd:string ;
-                               dcterms:title "MEKA: Cybersecurity Automation Ontology"^^xsd:string .
+                               owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ,
+                                           <http://www.w3.org/2006/time#2016> ;
+                               dct:created "2022-04-02"^^xsd:date ;
+                               dct:creator <mailto:anton.goncharov@gmail.com> ;
+                               dct:license "MIT"^^xsd:string ;
+                               dct:modified "2022-10-10"^^xsd:date ;
+                               dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
-###  http://purl.org/dc/elements/1.1/creator
-dc:creator rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/date
-dc:date rdf:type owl:AnnotationProperty .
-
-
 ###  http://purl.org/dc/terms/title
-dcterms:title rdf:type owl:AnnotationProperty .
+dct:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
@@ -46,7 +40,8 @@ skos:example rdf:type owl:AnnotationProperty .
 :context rdf:type owl:AnnotationProperty ;
          rdfs:label "context"@en ;
          rdfs:subPropertyOf rdfs:comment ;
-         rdfs:range xsd:longString .
+         rdfs:range xsd:anyURI ,
+                    xsd:longString .
 
 
 #################################################################
@@ -78,7 +73,8 @@ stix:indicates rdf:type owl:ObjectProperty ;
 
 ###  https://schema.mekanoid.io/objectProperty
 :objectProperty rdf:type owl:ObjectProperty ;
-                rdfs:label "Meka Object Property"@en .
+                rdfs:comment "Mekanoid object property"@en ;
+                rdfs:label "has relationship"@en .
 
 
 #################################################################
@@ -95,91 +91,203 @@ stix:id rdf:type owl:DatatypeProperty ;
         owl:equivalentProperty :id .
 
 
-###  http://purl.org/cyber/stix#md5
-stix:md5 rdf:type owl:DatatypeProperty .
-
-
-###  http://purl.org/cyber/stix#platform
-stix:platform rdf:type owl:DatatypeProperty .
-
-
-###  http://purl.org/cyber/stix#sha-1
-stix:sha-1 rdf:type owl:DatatypeProperty .
-
-
-###  http://purl.org/cyber/stix#sha-256
-stix:sha-256 rdf:type owl:DatatypeProperty .
-
-
-###  http://purl.org/cyber/stix#sha-512
-stix:sha-512 rdf:type owl:DatatypeProperty .
-
-
 ###  http://purl.org/cyber/stix#size
-stix:size rdf:type owl:DatatypeProperty .
+stix:size rdf:type owl:DatatypeProperty ;
+          owl:equivalentProperty :size .
 
 
-###  http://purl.org/cyber/stix#subject
-stix:subject rdf:type owl:DatatypeProperty .
+###  http://www.w3.org/2006/time#day
+time:day rdfs:subPropertyOf :timeProperty .
 
 
-###  http://purl.org/cyber/stix#value
-stix:value rdf:type owl:DatatypeProperty .
+###  http://www.w3.org/2006/time#dayOfYear
+time:dayOfYear rdfs:subPropertyOf :timeProperty .
 
 
-###  https://schema.mekanoid.io/data_property
-:data_property rdf:type owl:DatatypeProperty ;
-               rdfs:comment "Mekanoid Data Property"@en ;
-               rdfs:label "data property"@en .
+###  http://www.w3.org/2006/time#days
+time:days rdfs:subPropertyOf :timeProperty .
 
 
-###  https://schema.mekanoid.io/date_time
-:date_time rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :data_property ;
-           rdfs:domain :MekaThing ;
-           rdfs:range xsd:dateTimeStamp ;
-           rdfs:comment "A date and time associated with the entity"@en ;
-           rdfs:label "has timestamp"@en ;
-           skos:example "2002-10-10T12:00:00-05:00" .
+###  http://www.w3.org/2006/time#hasXSDDuration
+time:hasXSDDuration rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#hour
+time:hour rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#hours
+time:hours rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDate
+time:inXSDDate rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+time:inXSDDateTime rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTimeStamp
+time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
+                        owl:equivalentProperty :dateTime ;
+                        rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDgYear
+time:inXSDgYear rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#inXSDgYearMonth
+time:inXSDgYearMonth rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#minute
+time:minute rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#minutes
+time:minutes rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#month
+time:month rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#months
+time:months rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#nominalPosition
+time:nominalPosition rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#numericDuration
+time:numericDuration rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#numericPosition
+time:numericPosition owl:equivalentProperty :dateTimeEpoch ;
+                     rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#second
+time:second rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#seconds
+time:seconds rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#week
+time:week rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#weeks
+time:weeks rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#xsdDateTime
+time:xsdDateTime rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#year
+time:year rdfs:subPropertyOf :timeProperty .
+
+
+###  http://www.w3.org/2006/time#years
+time:years rdfs:subPropertyOf :timeProperty .
+
+
+###  https://schema.mekanoid.io/dataProperty
+:dataProperty rdf:type owl:DatatypeProperty ;
+              rdfs:comment "Mekanoid Data Property"@en ;
+              rdfs:label "has property"@en .
+
+
+###  https://schema.mekanoid.io/dateTime
+:dateTime rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dataProperty ;
+          rdfs:domain :MekaThing ;
+          rdfs:range xsd:dateTimeStamp ;
+          rdfs:comment "A date and time associated with the entity"@en ;
+          rdfs:label "has timestamp"@en ;
+          skos:definition "A date and time associated with the entity"@en ;
+          skos:example "2002-10-10T12:00:00-05:00" .
+
+
+###  https://schema.mekanoid.io/dateTimeEpoch
+:dateTimeEpoch rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :dataProperty ;
+               rdfs:range xsd:long ;
+               rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
+               rdfs:label "has epoch"@en ;
+               skos:definition "A Unix epoch timestamp associated with the entity"@en ;
+               skos:example "990577200"^^xsd:long .
+
+
+###  https://schema.mekanoid.io/firstSeen
+:firstSeen rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeSeen ;
+           rdfs:comment "The first time the enity had been observed by the application."@en ;
+           rdfs:label "first seen"@en .
+
+
+###  https://schema.mekanoid.io/firstSeenEpoch
+:firstSeenEpoch rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :dateTimeEpoch ;
+                rdfs:label "first seen"@en .
 
 
 ###  https://schema.mekanoid.io/id
 :id rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf :data_property ;
+    rdfs:subPropertyOf :dataProperty ;
     rdfs:label "has id"@en .
 
 
-###  https://schema.mekanoid.io/time_created
-:time_created rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :date_time ;
-              rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-              rdfs:label "created at"@en .
+###  https://schema.mekanoid.io/lastSeen
+:lastSeen rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :timeSeen ;
+          rdfs:comment "The last time the entity had been observed by the application."@en ;
+          rdfs:label "last seen"@en .
 
 
-###  https://schema.mekanoid.io/time_first_seen
-:time_first_seen rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :time_seen ;
-                 rdfs:comment "The first time the enity had been observed by the application."@en ;
-                 rdfs:label "first seen"@en .
+###  https://schema.mekanoid.io/size
+:size rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :dataProperty ;
+      rdfs:label "has size"@en .
 
 
-###  https://schema.mekanoid.io/time_last_seen
-:time_last_seen rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :time_seen ;
-                rdfs:comment "The last time the entity had been observed by the application."@en ;
-                rdfs:label "last seen"@en .
+###  https://schema.mekanoid.io/stringValue
+:stringValue rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:domain :Observable ;
+             rdfs:range xsd:string ;
+             rdfs:label "is"@en .
 
 
-###  https://schema.mekanoid.io/time_seen
-:time_seen rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :date_time ;
-           rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
-           rdfs:label "seen at"@en .
+###  https://schema.mekanoid.io/timeCreated
+:timeCreated rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dateTime ;
+             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
+             rdfs:label "created at"@en .
+
+
+###  https://schema.mekanoid.io/timeProperty
+:timeProperty rdf:type owl:DatatypeProperty ;
+              rdfs:label "time property"@en .
+
+
+###  https://schema.mekanoid.io/timeSeen
+:timeSeen rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dateTime ;
+          rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
+          rdfs:label "seen at"@en .
 
 
 ###  https://schema.mekanoid.io/url
 :url rdf:type owl:DatatypeProperty ;
-     rdfs:subPropertyOf :data_property ;
+     rdfs:subPropertyOf :dataProperty ;
      rdfs:range xsd:anyURI ;
      rdfs:label "has URL"@en .
 
@@ -215,16 +323,16 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/EmailAddress
 :EmailAddress rdf:type owl:Class ;
-              rdfs:subClassOf d3f:Identifier ,
-                              :MekaThing ;
+              rdfs:subClassOf :MekaThing ,
+                              :Observable ;
               rdfs:comment "An email address identifies an email box to which messages are delivered." ;
               rdfs:label "Email Address" .
 
 
 ###  https://schema.mekanoid.io/EmailSenderString
 :EmailSenderString rdf:type owl:Class ;
-                   rdfs:subClassOf d3f:Identifier ,
-                                   :MekaThing ;
+                   rdfs:subClassOf :MekaThing ,
+                                   :Observable ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
                    skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string .
@@ -232,8 +340,8 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/EmailSubjectString
 :EmailSubjectString rdf:type owl:Class ;
-                    rdfs:subClassOf d3f:Identifier ,
-                                    :MekaThing ;
+                    rdfs:subClassOf :MekaThing ,
+                                    :Observable ;
                     rdfs:label "Email Subject"@en ;
                     skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
 
@@ -295,9 +403,38 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/MekaThing
 :MekaThing rdf:type owl:Class ;
-           rdfs:subClassOf owl:Thing ;
+           rdfs:subClassOf owl:Thing ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :timeSeen ;
+                             owl:someValuesFrom xsd:dateTimeStamp
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :firstSeen ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:dateTimeStamp
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :firstSeenEpoch ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:long
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :lastSeen ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:dateTimeStamp
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :timeCreated ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:dateTimeStamp
+                           ] ;
            rdfs:label "Mekanoid Thing"@en ;
            skos:altLabel "Mekanoid Ontology Item"^^xsd:string .
+
+
+###  https://schema.mekanoid.io/Observable
+:Observable rdf:type owl:Class ;
+            rdfs:subClassOf :MekaThing .
 
 
 ###  https://schema.mekanoid.io/Operation
