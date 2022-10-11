@@ -434,7 +434,12 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/Observable
 :Observable rdf:type owl:Class ;
-            rdfs:subClassOf :MekaThing .
+            rdfs:subClassOf :MekaThing ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :stringValue ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:string
+                            ] .
 
 
 ###  https://schema.mekanoid.io/Operation
