@@ -619,6 +619,22 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
                         rdfs:label "Direct Access and Read"@en .
 
 
+###  https://schema.mekanoid.io/ExecutableBinary_000009
+:ExecutableBinary_000009 rdf:type owl:NamedIndividual ,
+                                  d3f:ExecutableBinary ;
+                         d3f:enables :file-read ,
+                                     :file-write ,
+                                     :limited-suid ,
+                                     :non-interactive-bind-shell ,
+                                     :non-interactive-reverse-shell ,
+                                     :shell ,
+                                     :sudo ,
+                                     :suid ;
+                         :indicatedBy :awk ;
+                         rdfs:comment "Unix binary"@en ;
+                         rdfs:label "awk"@en .
+
+
 ###  https://schema.mekanoid.io/Handle_Copy
 :Handle_Copy rdf:type owl:NamedIndividual ,
                       :Operation ;
@@ -667,76 +683,114 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
                rdfs:comment "It can send back a reverse shell to a listening attacker to open a remote network access."@en ;
                rdfs:label "Reverse Shell"@en .
 
-###  https://schema.mekanoid.io/Shell
-:shell rdf:type owl:NamedIndividual ,
-                :Function ;
-       rdfs:comment "It can be used to break out from restricted environments by spawning an interactive system shell."@en ;
-       rdfs:label "Shell"@en .
-
-:non-interactive-reverse-shell a owl:NamedIndividual, :Function ;
-rdfs:comment "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."@en ;
-rdfs:label "Non-interactive reverse shell"@en .
-
-
-:bind-shell a owl:NamedIndividual, :Function ;
-rdfs:comment "It can bind a shell to a local port to allow remote network access."@en ;
-rdfs:label "Bind shell"@en .
-
-
-:non-interactive-bind-shell a owl:NamedIndividual, :Function ;
-rdfs:comment "It can bind a non-interactive shell to a local port to allow remote network access."@en ;
-rdfs:label "Non-interactive bind shell"@en .
-
-
-:file-upload a owl:NamedIndividual, :Function ;
-rdfs:comment "It can exfiltrate files on the network."@en ;
-rdfs:label "File upload"@en .
-
-:file-download a owl:NamedIndividual, :Function ;
-rdfs:comment "It can download remote files."@en ;
-rdfs:label "File download"@en .
-
-
-:file-write a owl:NamedIndividual, :Function ;
-rdfs:comment "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."@en ;
-rdfs:label "File write"@en .
-
-
-:file-read a owl:NamedIndividual, :Function ;
-rdfs:comment "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."@en ;
-rdfs:label "File read"@en .
-
-
-:library-load a owl:NamedIndividual, :Function ;
-rdfs:comment "It loads shared libraries that may be used to run code in the binary execution context."@en ;
-rdfs:label "Library load"@en .
-
-
-:suid a owl:NamedIndividual, :Function ;
-rdfs:comment """If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
-
-This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
-rdfs:label "SUID"@en .
-
-:sudo a owl:NamedIndividual, :Function ;
-rdfs:comment "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."@en ;
-rdfs:label "Sudo"@en .
-
-:capabilities a owl:NamedIndividual, :Function ;
-rdfs:comment "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."@en ;
-rdfs:label "Capabilities"@en .
-
-:limited-suid a owl:NamedIndividual, :Function ;
-rdfs:comment "If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
-
-This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."@en ;
-rdfs:label "Limited SUID"@en .
-
 
 ###  https://schema.mekanoid.io/Snapshot_Create
 :Snapshot_Create rdf:type owl:NamedIndividual ,
                           :Operation ;
                  rdfs:label "Snapshot Create"@en .
+
+
+###  https://schema.mekanoid.io/awk
+:awk rdf:type owl:NamedIndividual ,
+              :FileName ;
+     stix:indicates :awk ;
+     :stringValue "awk"^^xsd:string ;
+     rdfs:label "awk"^^rdfs:Literal .
+
+
+###  https://schema.mekanoid.io/bind-shell
+:bind-shell rdf:type owl:NamedIndividual ,
+                     :Function ;
+            rdfs:comment "It can bind a shell to a local port to allow remote network access."@en ;
+            rdfs:label "Bind shell"@en .
+
+
+###  https://schema.mekanoid.io/capabilities
+:capabilities rdf:type owl:NamedIndividual ,
+                       :Function ;
+              rdfs:comment "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."@en ;
+              rdfs:label "Capabilities"@en .
+
+
+###  https://schema.mekanoid.io/file-download
+:file-download rdf:type owl:NamedIndividual ,
+                        :Function ;
+               rdfs:comment "It can download remote files."@en ;
+               rdfs:label "File download"@en .
+
+
+###  https://schema.mekanoid.io/file-read
+:file-read rdf:type owl:NamedIndividual ,
+                    :Function ;
+           rdfs:comment "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."@en ;
+           rdfs:label "File read"@en .
+
+
+###  https://schema.mekanoid.io/file-upload
+:file-upload rdf:type owl:NamedIndividual ,
+                      :Function ;
+             rdfs:comment "It can exfiltrate files on the network."@en ;
+             rdfs:label "File upload"@en .
+
+
+###  https://schema.mekanoid.io/file-write
+:file-write rdf:type owl:NamedIndividual ,
+                     :Function ;
+            rdfs:comment "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."@en ;
+            rdfs:label "File write"@en .
+
+
+###  https://schema.mekanoid.io/library-load
+:library-load rdf:type owl:NamedIndividual ,
+                       :Function ;
+              rdfs:comment "It loads shared libraries that may be used to run code in the binary execution context."@en ;
+              rdfs:label "Library load"@en .
+
+
+###  https://schema.mekanoid.io/limited-suid
+:limited-suid rdf:type owl:NamedIndividual ,
+                       :Function ;
+              rdfs:comment """If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
+              rdfs:label "Limited SUID"@en .
+
+
+###  https://schema.mekanoid.io/non-interactive-bind-shell
+:non-interactive-bind-shell rdf:type owl:NamedIndividual ,
+                                     :Function ;
+                            rdfs:comment "It can bind a non-interactive shell to a local port to allow remote network access."@en ;
+                            rdfs:label "Non-interactive bind shell"@en .
+
+
+###  https://schema.mekanoid.io/non-interactive-reverse-shell
+:non-interactive-reverse-shell rdf:type owl:NamedIndividual ,
+                                        :Function ;
+                               rdfs:comment "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."@en ;
+                               rdfs:label "Non-interactive reverse shell"@en .
+
+
+###  https://schema.mekanoid.io/shell
+:shell rdf:type owl:NamedIndividual ,
+                :Function ;
+       rdfs:comment "It can be used to break out from restricted environments by spawning an interactive system shell."@en ;
+       rdfs:label "Shell"@en .
+
+
+###  https://schema.mekanoid.io/sudo
+:sudo rdf:type owl:NamedIndividual ,
+               :Function ;
+      rdfs:comment "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."@en ;
+      rdfs:label "Sudo"@en .
+
+
+###  https://schema.mekanoid.io/suid
+:suid rdf:type owl:NamedIndividual ,
+               :Function ;
+      rdfs:comment """If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
+      rdfs:label "SUID"@en .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
