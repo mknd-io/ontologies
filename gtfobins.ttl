@@ -1,0 +1,63 @@
+:Non-interactive_reverse_shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."@en ;
+rdfs:label "Non-interactive reverse shell"@en .
+
+
+:Bind_shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can bind a shell to a local port to allow remote network access."@en ;
+rdfs:label "Bind shell"@en .
+
+
+:Non-interactive_bind_shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can bind a non-interactive shell to a local port to allow remote network access."@en ;
+rdfs:label "Non-interactive bind shell"@en .
+
+
+:File_upload a owl:NamedIndividual, :Function ;
+rdfs:comment "It can exfiltrate files on the network."@en ;
+rdfs:label "File upload"@en .
+
+
+:File_download a owl:NamedIndividual, :Function ;
+rdfs:comment "It can download remote files."@en ;
+rdfs:label "File download"@en .
+
+
+:File_write a owl:NamedIndividual, :Function ;
+rdfs:comment "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."@en ;
+rdfs:label "File write"@en .
+
+
+:File_read a owl:NamedIndividual, :Function ;
+rdfs:comment "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."@en ;
+rdfs:label "File read"@en .
+
+
+:Library_load a owl:NamedIndividual, :Function ;
+rdfs:comment "It loads shared libraries that may be used to run code in the binary execution context."@en ;
+rdfs:label "Library load"@en .
+
+
+:SUID a owl:NamedIndividual, :Function ;
+rdfs:comment """If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
+rdfs:label "SUID"@en .
+
+
+:Sudo a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."@en ;
+rdfs:label "Sudo"@en .
+
+
+:Capabilities a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."@en ;
+rdfs:label "Capabilities"@en .
+
+
+:Limited_SUID a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."@en ;
+rdfs:label "Limited SUID"@en .
+
