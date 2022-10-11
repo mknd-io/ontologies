@@ -109,11 +109,6 @@ stix:indicates rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
-###  http://purl.org/cyber/stix#URL
-stix:URL rdf:type owl:DatatypeProperty ;
-         owl:equivalentProperty :url .
-
-
 ###  http://purl.org/cyber/stix#id
 stix:id rdf:type owl:DatatypeProperty ;
         owl:equivalentProperty :id .
@@ -291,6 +286,7 @@ time:years rdfs:subPropertyOf :timeProperty .
              rdfs:subPropertyOf :dataProperty ;
              rdfs:domain :Observable ;
              rdfs:range xsd:string ;
+             rdfs:comment "the object is represented by the following string value"@en ;
              rdfs:label "is"@en .
 
 
@@ -313,16 +309,16 @@ time:years rdfs:subPropertyOf :timeProperty .
           rdfs:label "seen at"@en .
 
 
-###  https://schema.mekanoid.io/url
-:url rdf:type owl:DatatypeProperty ;
-     rdfs:subPropertyOf :dataProperty ;
-     rdfs:range xsd:anyURI ;
-     rdfs:label "has URL"@en .
-
-
 #################################################################
 #    Classes
 #################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
+d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty d3f:enables ;
+                                       owl:someValuesFrom :Function
+                                     ] .
+
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
 d3f:File owl:equivalentClass :File .
@@ -423,7 +419,11 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/Function
 :Function rdf:type owl:Class ;
-          rdfs:subClassOf :MekaThing ;
+          rdfs:subClassOf :MekaThing ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty d3f:enabled-by ;
+                            owl:someValuesFrom d3f:ExecutableBinary
+                          ] ;
           rdfs:label "Function"@en ;
           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
@@ -603,6 +603,13 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
               d3f:uses :Direct_Access_and_Read .
 
 
+###  https://schema.mekanoid.io/Command
+:Command rdf:type owl:NamedIndividual ,
+                  :Function ;
+         rdfs:comment "It can be used to break out from restricted environments by running non-interactive system commands."@en ;
+         rdfs:label "Command"@en .
+
+
 ###  https://schema.mekanoid.io/Direct_Access_and_Read
 :Direct_Access_and_Read rdf:type owl:NamedIndividual ,
                                  :Procedure ;
@@ -622,14 +629,6 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
 :LSASS_Handle_Duplication rdf:type owl:NamedIndividual ,
                                    :Procedure ;
                           rdfs:label "LSASS Handle Duplication"@en .
-
-
-###  https://schema.mekanoid.io/On_Detection_Tactical_to_Function_Part_6_What_is_a_Procedure
-:On_Detection_Tactical_to_Function_Part_6_What_is_a_Procedure rdf:type owl:NamedIndividual ,
-                                                                       d3f:Reference ;
-                                                              stix:URL "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI ;
-                                                              rdfs:label """On Detection: Tactical to Function
-Part 6: What is a Procedure?"""^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/Process_Access
@@ -660,6 +659,78 @@ Part 6: What is a Procedure?"""^^xsd:string .
 :Process_Read rdf:type owl:NamedIndividual ,
                        :Operation ;
               rdfs:label "Process Read"@en .
+
+
+###  https://schema.mekanoid.io/Reverse_Shell
+:Reverse_Shell rdf:type owl:NamedIndividual ,
+                        :Function ;
+               rdfs:comment "It can send back a reverse shell to a listening attacker to open a remote network access."@en ;
+               rdfs:label "Reverse Shell"@en .
+
+###  https://schema.mekanoid.io/Shell
+:shell rdf:type owl:NamedIndividual ,
+                :Function ;
+       rdfs:comment "It can be used to break out from restricted environments by spawning an interactive system shell."@en ;
+       rdfs:label "Shell"@en .
+
+:non-interactive-reverse-shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."@en ;
+rdfs:label "Non-interactive reverse shell"@en .
+
+
+:bind-shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can bind a shell to a local port to allow remote network access."@en ;
+rdfs:label "Bind shell"@en .
+
+
+:non-interactive-bind-shell a owl:NamedIndividual, :Function ;
+rdfs:comment "It can bind a non-interactive shell to a local port to allow remote network access."@en ;
+rdfs:label "Non-interactive bind shell"@en .
+
+
+:file-upload a owl:NamedIndividual, :Function ;
+rdfs:comment "It can exfiltrate files on the network."@en ;
+rdfs:label "File upload"@en .
+
+:file-download a owl:NamedIndividual, :Function ;
+rdfs:comment "It can download remote files."@en ;
+rdfs:label "File download"@en .
+
+
+:file-write a owl:NamedIndividual, :Function ;
+rdfs:comment "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."@en ;
+rdfs:label "File write"@en .
+
+
+:file-read a owl:NamedIndividual, :Function ;
+rdfs:comment "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."@en ;
+rdfs:label "File read"@en .
+
+
+:library-load a owl:NamedIndividual, :Function ;
+rdfs:comment "It loads shared libraries that may be used to run code in the binary execution context."@en ;
+rdfs:label "Library load"@en .
+
+
+:suid a owl:NamedIndividual, :Function ;
+rdfs:comment """If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
+rdfs:label "SUID"@en .
+
+:sudo a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."@en ;
+rdfs:label "Sudo"@en .
+
+:capabilities a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."@en ;
+rdfs:label "Capabilities"@en .
+
+:limited-suid a owl:NamedIndividual, :Function ;
+rdfs:comment "If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
+
+This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."@en ;
+rdfs:label "Limited SUID"@en .
 
 
 ###  https://schema.mekanoid.io/Snapshot_Create
