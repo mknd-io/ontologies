@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Inbound Traffic Filtering'</h2>
+
+<div id='annotations_(3)'>
+<h4>Annotations (3)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Restricting network traffic originating from untrusted networks destined towards a private host or enclave."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br />Inbound Traffic, in this context, is network traffic originating from an untrusted network towards a private host or enclave.<br />For example:<br /><br />* An untrusted network host connecting to a internal commercial portal, shopping.example.com<br />* An external mail server connecting to an internal mail server, mail.example.com<br /><br />Filtering policies are developed by administrators to meet business requirements and limit connectivity. These policies are implemented on edge devices such as firewalls, routers, and intrusion prevention systems. Examples of filters:<br /><br />* Blocking incoming traffic from spoofed internally facing IP addresses<br />* Blocking specific ports and services from establishing connections<br />* Limiting specific IP ranges from connecting to the network<br />* Dynamic inbound filtering (Hole punching, STUN, NAT-T)<br /><br />## Considerations<br />* Business requirements typically drive the development of filtering rulesets<br />* Protocols using non-standard ports may circumvent filtering technology, which does not detect application protocol based on traffic content<br /><br />## Implementations<br />* OpenWRT (Embedded)<br />* Netfilter (Linux)<br />* Windows Firewall<br />* pf(BSD)"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Inbound Traffic Filtering"</span></li>
+</ul>
+</div>
+</div><!-- annotations (3) -->
+
+
+<div id='superclasses_(2)'>
+<h4>Superclasses (2)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="NetworkTrafficFiltering___1751690792.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficFiltering">'Network&nbsp;Traffic&nbsp;Filtering'</a></li>
+<li class="asserted"><a href="../objectproperties/filters___914592776.html" class='Object Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#filters">filters</a> <span class='some'>some</span> <a href="InboundNetworkTraffic___-2110271563.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#InboundNetworkTraffic">'Inbound&nbsp;Network&nbsp;Traffic'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (2) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

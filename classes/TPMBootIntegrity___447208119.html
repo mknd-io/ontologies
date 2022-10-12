@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'TPM Boot Integrity'</h2>
+
+<div id='annotations_(5)'>
+<h4>Annotations (5)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Assuring the integrity of a platform by demonstrating that the boot process starts from a trusted combination of hardware and software and continues until the operating system has fully booted and applications are running.  Sometimes called Static Root of Trust Measurement (STRM)."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br />During the boot process, the BIOS boot block (which with this defense enabled, is the Core Root of Trust for Measurement) measures boot components (firmware, ROM). The TPM hashes those measurements and stores the hashes in Platform Configuration Registers (PCRs).  Upon a subsequent boot, these hashes are provided to a verifier which compares the stored measurements to the new boot measurements. Integrity of the boot components is assured if they match.<br /><br />Attestation of the secure boot occurs when a verifying entity requests a Quote which is a concatenation of the requested PCR values, hashed and signed by the TPM's unique RSA key.  The TPM signature is trusted because the private key is stored securely in hardware and never leaves the TPM.<br /><br />## Considerations<br /><br />* The TPM does not perform the follow-on actions of acting on the PCR value information, it just provides the PCR stored information.<br />* The current version of TPM is 2.0.; most existing implementations use TPM 1.2.<br /><br />## Citations<br />[1] [TPM 2.0 Library](https://trustedcomputinggroup.org/resource/tpm-library-specification/)<br />[2] [TCG Trusted Attestation Protocol (TAP) Use Cases for TPM Families 1.2 and 2.0 and DICE](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TNC_TAP_Use_Cases_v1r0p35_published.pdf)"</span></li>
+<li class="asserted"><a href="../annotationproperties/synonym___27012104.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#synonym">synonym</a> <span class='literal'>"STRM"</span></li>
+<li class="asserted"><a href="../annotationproperties/synonym___27012104.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#synonym">synonym</a> <span class='literal'>"Static Root of Trust Measurement"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"TPM Boot Integrity"</span></li>
+</ul>
+</div>
+</div><!-- annotations (5) -->
+
+
+<div id='superclasses_(1)'>
+<h4>Superclasses (1)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="PlatformHardening___713797960.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#PlatformHardening">'Platform&nbsp;Hardening'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (1) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

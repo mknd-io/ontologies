@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Stack Frame Canary Validation'</h2>
+
+<div id='annotations_(3)'>
+<h4>Annotations (3)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Comparing a value stored in a stack frame with a known good value in order to prevent or detect a memory segment overwrite."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br /><br />This defense must be applied at compile-time, or via a patch to the program binary.  Stack Frame Canary Verification inserts instructions at the prologue and epilogue of desired functions.  In the prologue, a canary value, typically with the same size as the register size, is stored in the system of record and on the stack.  Typically, the canary is loaded to where it has a memory address just below that of the saved instruction pointer and base pointer.  In the epilogue, the canary value stored on the stack and, is compared to the canary value in the system of record.  If the values are different, other techniques such as those in Process Eviction might be invoked, such as Process Termination to end the current process, or Executable Blacklisting to blacklist the potentially vulnerable or malfunctioning executable.<br /><br />Stack Frame Canary Verification is commonly used to detect potential tampering of a saved register value on the stack before it has been restored.  Examples of registers with values commonly saved to the stack include the instruction pointer and the base pointer.<br /><br />The canary should be stored between where the start of a buffer overrun is likely, and the data to protect, in cases where the buffer size increases it will overwrite the data to be protected.<br /><br />On most processor architectures, including x86, x64, and ARM, a "push" operation to store data to the stack grows the stack towards a lower memory address.  As in these architectures, saved register values are stored to the stack at a point in time just before space is made for the local function variables, the saved register values have a higher address than that of the local function variables.  Values at increasing indexes of a buffer are written to increasing memory addresses; therefore, an overwrite in the local variable buffer could overwrite saved register values, and a stack canary between these two would be useful in detecting an overwrite.<br /><br />On some other processor architectures such as the B5000, the stack grows towards increasing memory addresses, and some architectures, such as System Z and RCA1802A, stack direction can be chosen.  If the stack grows towards increasing memory addresses, while this architecture inherently provides more protection against a saved register being overwritten, other data including local function variables might be overwritten.<br /><br /><br />## Considerations<br /><br />There are several ways that the protection provided by a canary could be rendered ineffective.<br /><br />### Performing a malicious action before the canary is checked<br /><br />If the attacker alters the memory in such a way that it performs a malicious action before the epilogue is called, then this protection will not be effective.  This includes altering the logic of the program by altering the values of local variables stored on the function stack, or by causing an exception and exploiting the exception mechanism such as the SEH (Structured Exception Handling) mechanism on Windows.<br /><br />### Determining the canary value<br /><br />Determining the canary value is possible through reading memory either for the code used to check the canary, or from the stored canary value itself in a stack frame.<br /><br />### Changing the canary value<br /><br />A vulnerability such as a write-what-where condition that allows one to write data after the canary in the stack, would allow control of the value of the saved instruction pointer without needing to know the canary value."</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Stack Frame Canary Validation"</span></li>
+</ul>
+</div>
+</div><!-- annotations (3) -->
+
+
+<div id='superclasses_(2)'>
+<h4>Superclasses (2)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="ApplicationHardening___633090379.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationHardening">'Application&nbsp;Hardening'</a></li>
+<li class="asserted"><a href="../objectproperties/validates___659356202.html" class='Object Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#validates">validates</a> <span class='some'>some</span> <a href="StackFrame___1480988658.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#StackFrame">'Stack&nbsp;Frame'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (2) -->
+
+
+<div id='members_(2)'>
+<h4>Members (2)</h4>
+<div class='codebox'>
+<span class="asserted"><a href="../individuals/GNUGCCStackGuard___1761101251.html" class='Individual' title="http://d3fend.mitre.org/ontologies/d3fend.owl#GNUGCCStackGuard">'GNU&nbsp;GCC&nbsp;StackGuard'</a></span>,
+<span class="asserted"><a href="../individuals/MicrosoftVCCLCompilerToolBufferSecurityCheck___1696831162.html" class='Individual' title="http://d3fend.mitre.org/ontologies/d3fend.owl#MicrosoftVCCLCompilerToolBufferSecurityCheck">'Microsoft&nbsp;VCCLCompilerTool&nbsp;BufferSecurityCheck'</a></span></div>
+</div><!-- members (2) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

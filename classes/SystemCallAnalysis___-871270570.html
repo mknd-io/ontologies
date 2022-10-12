@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'System Call Analysis'</h2>
+
+<div id='annotations_(3)'>
+<h4>Annotations (3)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Analyzing system calls to determine whether a process is exhibiting unauthorized behavior."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br /><br />System calls are APIs between a user application and the operating system [1].<br /><br />By analyzing a process's use of these APIs, it is, in some cases, possible to ascertain whether a program is exhibiting unauthorized behavior, including trying to escalate its privileges.<br /><br />### Gathering System Calls<br />A common method to capture system calls is to use kernel APIs to hook [2] a process's system call invocations.<br /><br />The Linux system call `ptrace` tracks other system calls in a process and allows their alteration; this is made use of by GDB.  `strace` utilizes `ptrace` and will print to stdout each system call invoked. Other applications record this data in local or remote databases.<br /><br />The log entry for each system call, which may reference additional information such as the date and time, and the process tree for the process which made the system call, is relayed, in real time or post-facto, to an analysis module which consults a catalog or model to determine whether the distribution matches a known-good or known-bad pattern.<br /><br /><br />### Analysis<br /><br />System calls are analyzed with a variety of methods. Some analytics look for specific sequences of instructions, others may apply statistical methods to identify abnormal behavior. Sequences of instructions can be abstracted into conceptually higher order user activities, for example:<br /><br />* An attacker executes many system calls in a short period of time, with several sequences which could be used to escalate privileges.<br />* Getting the contents from a URL, writing to a new file, and then executing the same file.<br />* A ransomware program which either uses a loop or creates many threads to: read a specified file, encrypt its contents, create an output file with a similar name to the original file, and delete the unencrypted original.<br /><br />## Considerations<br /><br />* Duplicative or extraneous system calls may be added to malware to defeat analytics.<br />* Malware could replace API hooking instructions to allow system calls to be made without being monitored.<br />* A model built from a training set of system calls and related data may not be updated fast enough to detect new threats.<br /><br /><br />[1] [Syscalls](http://man7.org/linux/man-pages/man2/syscalls.2.html)<br /><br />[2] [Hooking](http://dbpedia.org/resource/Hooking)"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"System Call Analysis"</span></li>
+</ul>
+</div>
+</div><!-- annotations (3) -->
+
+
+<div id='superclasses_(2)'>
+<h4>Superclasses (2)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="ProcessAnalysis___1410039384.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#ProcessAnalysis">'Process&nbsp;Analysis'</a></li>
+<li class="asserted"><a href="../objectproperties/analyzes___744701108.html" class='Object Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes">analyzes</a> <span class='some'>some</span> <a href="SystemCall___110001498.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#SystemCall">'System&nbsp;Call'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (2) -->
+
+
+<div id='members_(1)'>
+<h4>Members (1)</h4>
+<div class='codebox'>
+<span class="asserted"><a href="../individuals/FileCreationAnalysis___1518640292.html" class='Individual' title="http://d3fend.mitre.org/ontologies/d3fend.owl#FileCreationAnalysis">'File&nbsp;Creation&nbsp;Analysis'</a></span></div>
+</div><!-- members (1) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Passive Certificate Analysis'</h2>
+
+<div id='annotations_(4)'>
+<h4>Annotations (4)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Collecting host certificates from network traffic or other passive sources like a certificate transparency log and analyzing them for unauthorized activity."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br />Certificates are analyzed outside of a TLS server connection using third-party secure update logs, domain name analysis and analytics.<br /><br />### Secure update certificate logs<br />* Certificate Logs<br />The key enabling feature is a secure service that maintains record logs of certificate activities. The logs allow users to only append certificates and never to delete or modify the log entries. The logs use Merkle Tree Hashes to ensure they have not been tampered with. The logging service also allows for public auditing by any user.<br /><br />The logging service, upon receipt of a certificate to log, will respond with a signed certificate timestamp (SCT). The SCT guarantees the certificate will be added to the log within the time specified. The SCT must be present with the certificate during a TLS handshake.<br /><br />* Certificate Monitoring<br />Certificate monitoring, of the logs, is typically done by the CA and they watch for suspicious certificate logging and unusual certificates or extensions or permissions. Monitors are also responsible for verifying the logs are accurate and public.<br /><br />* Certificate Auditors<br />Log integrity is verified by log auditors. Auditors make use of log proofs are used to validate the cryptographic hashes (Merkle Trees) that the log employs are consistent. In order to ensure consistency throughout multiple monitors and auditors, sharing a common logging service, gossip protocol is employed.<br /><br />### Phishing domain name analysis<br />* A curated corpus of known benign domains and phishing domain names is used as training text for machine learning. Through the use of feature set extraction, vectors labels are created with scoring to indicated if they are considered benign or phishing domains.<br /><br />* A stream of new or updated SSL certificates with fully qualified domain names (FQDN) is analyzed against the feature vectors and a predictive model determines a score for the domains. The scoring considers distance measures such as Levenshtein distance to help in determining the final label score. Supervised learning is also employed using the curated domains of benign and phishing domains.<br /><br />* Subdomain phishing analysis, prepending a trusted domain to a phishing domain, and regular expression comparisons  are also used in the label scoring model. A tunable measure is used to determine the threshold for alerting. This measure helps to balance between precision and recall measures.<br /><br />## Considerations<br />* Some entity will need to run the logging service and a trusted entity is preferred.<br />* Certificate Authorities will likely need to monitor the logging service for consistency.<br />* Certificate revocation is unchanged and remains outside of Certificate Transparency, but certificates needing to be revoked are visible.<br />* Technique dependent of reliable feed of new and updated certificates<br />* Some certificate authorities allow for certificates to be registered with wildcards in the FQDN and thus will fail some of the subdomain scoring<br />* Phishing HTTP domains will not be discovered"</span></li>
+<li class="asserted"><a href="../annotationproperties/comment___1501100887.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#comment">comment</a> <span class='literal'>"Passively collecting certificates and analyzing them."</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Passive Certificate Analysis"</span></li>
+</ul>
+</div>
+</div><!-- annotations (4) -->
+
+
+<div id='superclasses_(1)'>
+<h4>Superclasses (1)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="CertificateAnalysis___-186840704.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#CertificateAnalysis">'Certificate&nbsp;Analysis'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (1) -->
+
+
+<div id='members_(1)'>
+<h4>Members (1)</h4>
+<div class='codebox'>
+<span class="asserted"><a href="../individuals/PassiveCertificateAnalysis___-2042396903.html" class='Individual' title="http://d3fend.mitre.org/ontologies/d3fend.owl#PassiveCertificateAnalysis">'Passive&nbsp;Certificate&nbsp;Analysis'</a></span></div>
+</div><!-- members (1) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

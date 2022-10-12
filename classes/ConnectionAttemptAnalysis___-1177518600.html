@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Connection Attempt Analysis'</h2>
+
+<div id='annotations_(4)'>
+<h4>Annotations (4)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Analyzing failed connections in a network to detect unauthorized activity."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br />Connection Attempt Analysis in multiple ways.<br /><br />### Monitoring traffic to unallocated IP space<br />One approach looks for failed connection attempts against unallocated IP space. First, network traffic is captured to map out the network to identify network assets as well as unallocated IP space. The map is then used to determine if connection attempts are being made to the unallocated IP space.<br /><br />### Monitoring for sequentially transmitted traffic<br />Another approach passively inspects network traffic with application protocol analyzers observing network activity characteristics such as volume of packets sent/ received, TCP session attributes, and connection information between hosts (start time, source/destination host, services, etc.). Then using pattern matching to identify traffic which appears to be probing for network hosts.<br /><br />## Considerations<br /><br />* Implementations that rely on analysis of unallocated IP address space increase in their complexity with network size and decentralized network infrastructure.<br />* Inventory of unallocated IP space should should be continuously updated to mitigate the risk of false positives.<br />* IPv6 also introduces challenges including IPv6 traffic bypassing IPv4 specific protection systems (ex. firewalls and IDS) and complexity in managing both IPv6 and IPv4 addresses."</span></li>
+<li class="asserted"><a href="../annotationproperties/synonym___27012104.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#synonym">synonym</a> <span class='literal'>"Network Scan Detection"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Connection Attempt Analysis"</span></li>
+</ul>
+</div>
+</div><!-- annotations (4) -->
+
+
+<div id='superclasses_(2)'>
+<h4>Superclasses (2)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="NetworkTrafficAnalysis___-2136931304.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficAnalysis">'Network&nbsp;Traffic&nbsp;Analysis'</a></li>
+<li class="asserted"><a href="../objectproperties/analyzes___744701108.html" class='Object Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes">analyzes</a> <span class='some'>some</span> <a href="IntranetNetworkTraffic___-1277358981.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#IntranetNetworkTraffic">'Intranet&nbsp;Network&nbsp;Traffic'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (2) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>
