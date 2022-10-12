@@ -262,10 +262,23 @@ time:years rdfs:subPropertyOf :timeProperty .
                 rdfs:label "first seen"@en .
 
 
+###  https://schema.mekanoid.io/hasURL
+:hasURL rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:range xsd:anyURI ;
+        rdfs:label "has URL"@en .
+
+
 ###  https://schema.mekanoid.io/id
 :id rdf:type owl:DatatypeProperty ;
     rdfs:subPropertyOf :dataProperty ;
     rdfs:label "has id"@en .
+
+
+###  https://schema.mekanoid.io/lastAccessedEpoch
+:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :dateTimeEpoch ;
+                   rdfs:label "last accessed"@en .
 
 
 ###  https://schema.mekanoid.io/lastSeen
@@ -273,6 +286,18 @@ time:years rdfs:subPropertyOf :timeProperty .
           rdfs:subPropertyOf :timeSeen ;
           rdfs:comment "The last time the entity had been observed by the application."@en ;
           rdfs:label "last seen"@en .
+
+
+###  https://schema.mekanoid.io/lastStatusChangeEpoch
+:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :dateTimeEpoch ;
+                       rdfs:label "last status change"@en .
+
+
+###  https://schema.mekanoid.io/lastUpdatedEpoch
+:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :dateTimeEpoch ;
+                  rdfs:label "last modified"@en .
 
 
 ###  https://schema.mekanoid.io/size

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Transfer Agent Authentication'</h2>
+
+<div id='annotations_(3)'>
+<h4>Annotations (3)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Validating that server components of a messaging infrastructure are authorized to send a particular message."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br />Transfer Agent Authentication can be accomplished in different ways for depending on the protocol. In Email,  Sender Policy Framework (SPF), Domain Key Identified Email (DKIM) or Domain-based Message Authentication Reporting and Conformance (DMARC) to validate sender domain ownership.<br /><br />### SPF<br />SPF protocol allows for mail domain owners to specify the mail servers they use when sending email. SPF requires the use of SPF records published in the Domain Name System (DNS). The records record the authorized IPs for email senders. SPF uses the return-path address for domain IP identification. Email that is forwarded may cause the return-path validation problems.<br />### DKIM<br />DKIM also uses a record entry in DNS for authentication but does not rely on the simple return-path for validation. A signature header is added to email and encryption is used for security. This adds an additional layer of complexity and requires that DKIM servers be configured identified cryptographic signatures. The additional complexity results in a validation process that can survive complex routing of emails.<br /><br />### DMARC<br />DMARC is an email policy and authentication protocol that seeks to ensure that the "From" field of emails is not spoofed. DMARC makes use of both SPF records and DKIM published key validation. DMARC also has a decision policy framework, contained in a DMARC record, for handling of rejected email. The DMARC framework also updates DMARC domains with authentication statues for allowed senders of that domain.<br /><br />## Considerations<br />- Additional work is required to ensure that all SPF, DKIM and DMARC records are current and up to date.<br />- Maintenance of DKIM signing keys is needed.<br />- Using SPF without DKIM and DMARC verifies the Return-Path domain however does not prevent spoofing of the displayed From: address.<br />- Parts of an email that are not signed or verified by email authentication methods, such as the message body or the header To: and Subject: fields, can be altered or modified.<br />- Email message authentication does not replace the need to do email content analysis since executables, attachments, or links or other parts of the email beyond the sender domain are not verified."</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Transfer Agent Authentication"</span></li>
+</ul>
+</div>
+</div><!-- annotations (3) -->
+
+
+<div id='superclasses_(1)'>
+<h4>Superclasses (1)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="MessageHardening___-751999884.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#MessageHardening">'Message&nbsp;Hardening'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (1) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Forward Resolution IP Denylisting'</h2>
+
+<div id='annotations_(4)'>
+<h4>Annotations (4)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Blocking a DNS lookup's answer's IP address value."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br /><br />This technique prevents a client from learning IP addresses deemed to be potentially malicious, which would have been delivered via forward resolution responses.<br /><br />Responses to forward resolution requests (that is, requests where a domain is sent and IP(s) are returned) are collected, and the IP address(es) included as a response are examined. If the IP address(es) are in a range included in the blacklist, then the response is dropped and not forwarded to the client.<br /><br />The DNS lookup can be blocked by either dropping the network traffic with an inline device, or modifying the value of the response sent by the DNS server. To transparently prevent client applications from hanging on a request, it is common practice to replace malicious values with addresses in the range 127.0.0.0/8 or the address of a honeypot maintained by the network administrators.<br /><br />## Considerations<br /><br />* This technique does not prevent the client from contacting the blacklisted IP, only from learning about this IP address via a nameserver lookup request.<br />* DNS Response traffic can be transmitted over many different protocols, which presents a challenge to implementing methods to extract all DNS answer IP address value(s).<br />  * DNS has historically used UDP port 53, with TCP port 53 instead used for responses over 512 bytes or after a lack of response over UDP.<br />  * Usage of new protocols to provide confidentiality for DNS traffic, such as DoH (DNS over HTTPS) and DoT (DNS over TLS), complicates collection of the IP address(es) in DNS responses. These protocols have often been enabled in browser settings transparently after a browser update, with DNS requests proxied over one of these cryptographic protocols through a specified host.<br />* This technique must be implemented logically between the application that receives the response and the server which sent the response.<br />  * DNS responses sent in an encrypted manner, such as those using DoH or DoT, will require interception of the TLS connections in order to determine the IP address(es) in the response.<br />* Replacing the response is not effective in the case that the nameserver uses a technique to provide integrity of its responses, such as DNSSEC for DNS responses."</span></li>
+<li class="asserted"><a href="../annotationproperties/synonym___27012104.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#synonym">synonym</a> <span class='literal'>"Forward Resolution IP Blacklisting"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Forward Resolution IP Denylisting"</span></li>
+</ul>
+</div>
+</div><!-- annotations (4) -->
+
+
+<div id='superclasses_(2)'>
+<h4>Superclasses (2)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="DNSDenylisting___1514722876.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#DNSDenylisting">'DNS&nbsp;Denylisting'</a></li>
+<li class="asserted"><a href="../objectproperties/blocks___382975379.html" class='Object Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#blocks">blocks</a> <span class='some'>some</span> <a href="InboundInternetDNSResponseTraffic___538087802.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#InboundInternetDNSResponseTraffic">'Inbound&nbsp;Internet&nbsp;DNS&nbsp;Response&nbsp;Traffic'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (2) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>

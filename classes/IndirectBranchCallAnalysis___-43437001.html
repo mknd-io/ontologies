@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Ontology Browser</title>
+<meta http-equiv='content-type' content='text/html;charset=UTF-8'>
+<link rel='stylesheet' href='../css/default.css' type='text/css' />
+</head>
+
+<body>
+
+<div id='tabs'>
+<a href='../ontologies/index.html' class='' >Ontologies</a>
+<a href='index.html' class='' >Classes</a>
+<a href='../objectproperties/index.html' class='' >Object Properties</a>
+<a href='../dataproperties/index.html' class='' >Data Properties</a>
+<a href='../annotationproperties/index.html' class='' >Annotation Properties</a>
+<a href='../individuals/index.html' class='' >Individuals</a>
+<a href='../datatypes/index.html' class='' >Datatypes</a>
+<a href='../cloud/' class='' >Clouds</a>
+</div> <!-- tabs -->
+
+
+<div class='summary'><h2>Class: 'Indirect Branch Call Analysis'</h2>
+
+<div id='annotations_(3)'>
+<h4>Annotations (3)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="../annotationproperties/definition___754722144.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#definition">definition</a> <span class='literal'>"Analyzing vendor specific branch call recording in order to detect ROP style attacks."</span></li>
+<li class="asserted"><a href="../annotationproperties/kb-article___1564829325.html" class='Annotation Property' title="http://d3fend.mitre.org/ontologies/d3fend.owl#kb-article">kb-article</a> <span class='literal'>"## How it works<br /><br />This technique is used to detect an attacker attempting to exploit and execute code on a target system's call stack using return-oriented programming (ROP). Modern processors that have the ability to maintain a list of the branching calls, e.g., Intel's Last Branch Recording (LBR), can be used to track and analyze indirect branching calls that are indicative of malicious activity.<br /><br />In order to reduce the number of indirect branch calls to analyze to a manageable set it is assumed that malicious ROP activity will involve the use of system calls.  The technique observes indirect branch calls that are part of paths that lead to system calls, all others are ignored. Branching calls chained together is often referred to as gadgets and gadgets are often used in ROP attacks. Indirect branch calls that involve a transfer from user-space to kernel-space are of interest for this technique.<br /><br />Identification of potential ROP exploit execution includes:<br /><br />- Inspecting the LBR when a system function call is made<br /><br />  - The LBR is configured to return only instruction of interest (ret, indirect jmp, indirect calls)<br /><br /><br />- Behavior is analyzed for<br />  - Ret instructions that appear to target areas not preceded by the call sites<br />  - Sequences of small code fragments that appear to be chained through the indirect branching calls (gadgets)<br /><br /><br />- Of interest are returns that appear to not render control back after calls<br />  - Typical ret-call are paired<br />  - gadgets will appear to have ret followed by instruction of next instruction of the following gadget<br /><br /><br />## Considerations<br /><br />* May be operating system dependent since specific system calls are used to scope branching behavoir<br />* Processors need to support access to a Last Branch Recording list feature<br />* The size of the LBR stack can limit the expected size of the analyzed execution stack<br />* If processor does not support LBR then overhead costs for the analysis can be significant"</span></li>
+<li class="asserted"><a href="../annotationproperties/label___653429740.html" class='Annotation Property' title="http://www.w3.org/2000/01/rdf-schema#label">rdfs:label</a> <span class='literal'>"Indirect Branch Call Analysis"</span></li>
+</ul>
+</div>
+</div><!-- annotations (3) -->
+
+
+<div id='superclasses_(1)'>
+<h4>Superclasses (1)</h4>
+<div class='codebox'>
+<ul>
+<li class="asserted"><a href="ProcessAnalysis___1410039384.html" class='Class' title="http://d3fend.mitre.org/ontologies/d3fend.owl#ProcessAnalysis">'Process&nbsp;Analysis'</a></li>
+</ul>
+</div>
+</div><!-- superclasses (1) -->
+
+</div> <!-- summary -->
+<p class='footer'>
+<a href='http://code.google.com/p/ontology-browser/' target='_blank'>OWL HTML inside</a>
+</p>
+</body>
+</html>
