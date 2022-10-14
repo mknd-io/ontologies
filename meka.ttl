@@ -330,7 +330,8 @@ time:years rdfs:subPropertyOf :timeProperty .
 
 ###  https://schema.mekanoid.io/timeProperty
 :timeProperty rdf:type owl:DatatypeProperty ;
-              rdfs:label "time property"@en .
+              rdfs:label "time property"@en ;
+              :context "Grouped here from time ontology: https://www.w3.org/2006/time"@en .
 
 
 ###  https://schema.mekanoid.io/timeSeen
