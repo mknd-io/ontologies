@@ -288,6 +288,12 @@ time:years rdfs:subPropertyOf :timeProperty .
           rdfs:label "last seen"@en .
 
 
+###  https://schema.mekanoid.io/lastSeenEpoch
+:lastSeenEpoch rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :dateTimeEpoch ;
+               rdfs:label "last seen"@en .
+
+
 ###  https://schema.mekanoid.io/lastStatusChangeEpoch
 :lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf :dateTimeEpoch ;
