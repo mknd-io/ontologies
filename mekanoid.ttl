@@ -262,6 +262,13 @@ time:years rdfs:subPropertyOf :timeProperty .
                 rdfs:label "first seen"@en .
 
 
+###  https://schema.mekanoid.io/hasIcon
+:hasIcon rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :dataProperty ;
+         rdfs:range rdfs:Literal ;
+         rdfs:label "has icon"@en .
+
+
 ###  https://schema.mekanoid.io/hasURL
 :hasURL rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :dataProperty ;
