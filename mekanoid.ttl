@@ -9,6 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix types: <https://ontology.unifiedcyberontology.org/uco/types/> .
 @base <https://schema.mekanoid.io/> .
 
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
@@ -108,6 +109,16 @@ stix:indicates rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
+
+###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
+types:hashMethod rdf:type owl:DatatypeProperty ;
+        owl:equivalentProperty :hashMethod .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/types/hashValue
+types:hashValue rdf:type owl:DatatypeProperty ;
+        owl:equivalentProperty :hashValue .
+
 
 ###  http://purl.org/cyber/stix#id
 stix:id rdf:type owl:DatatypeProperty ;
@@ -260,6 +271,22 @@ time:years rdfs:subPropertyOf :timeProperty .
 :firstSeenEpoch rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf :dateTimeEpoch ;
                 rdfs:label "first seen"@en .
+
+
+###  https://schema.mekanoid.io/hashMethod
+:hashMethod rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :dataProperty ;
+            rdfs:label "hashMethod"@en ;
+            rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en ;
+            rdfs:range xsd:string .
+
+
+###  https://schema.mekanoid.io/hashValue
+:hashValue rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :dataProperty ;
+           rdfs:label "hashValue"@en ;
+           rdfs:comment "A cryptographic hash value."@en ;
+           rdfs:range xsd:hexBinary .
 
 
 ###  https://schema.mekanoid.io/hasIcon
@@ -432,7 +459,7 @@ d3f:Procedure owl:equivalentClass :Procedure .
       rdfs:subClassOf :MekaThing ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :identifiedBy ;
-                        owl:someValuesFrom :HashValue
+                        owl:someValuesFrom :Hash
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :indicatedBy ;
@@ -467,11 +494,23 @@ d3f:Procedure owl:equivalentClass :Procedure .
           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
 
-###  https://schema.mekanoid.io/HashValue
-:HashValue rdf:type owl:Class ;
-           rdfs:subClassOf d3f:Identifier ,
-                           :MekaThing ;
-           rdfs:label "Hash Value"@en .
+###  https://schema.mekanoid.io/Hash
+:Hash rdf:type owl:Class ;
+      rdfs:subClassOf types:Hash ,
+                      d3f:Identifier ,
+                      :MekaThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hashValue ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:hexBinary
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hashMethod ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
+                      ] ;
+      rdfs:label "Hash"@en ;
+      rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en .
 
 
 ###  https://schema.mekanoid.io/IPv4
