@@ -110,16 +110,6 @@ stix:indicates rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
-###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
-types:hashMethod rdf:type owl:DatatypeProperty ;
-        owl:equivalentProperty :hashMethod .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/types/hashValue
-types:hashValue rdf:type owl:DatatypeProperty ;
-        owl:equivalentProperty :hashValue .
-
-
 ###  http://purl.org/cyber/stix#id
 stix:id rdf:type owl:DatatypeProperty ;
         owl:equivalentProperty :id .
@@ -233,6 +223,16 @@ time:year rdfs:subPropertyOf :timeProperty .
 time:years rdfs:subPropertyOf :timeProperty .
 
 
+###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
+types:hashMethod rdf:type owl:DatatypeProperty ;
+                 owl:equivalentProperty :hashMethod .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/types/hashValue
+types:hashValue rdf:type owl:DatatypeProperty ;
+                owl:equivalentProperty :hashValue .
+
+
 ###  https://schema.mekanoid.io/dataProperty
 :dataProperty rdf:type owl:DatatypeProperty ;
               rdfs:comment "Mekanoid Data Property"@en ;
@@ -273,22 +273,6 @@ time:years rdfs:subPropertyOf :timeProperty .
                 rdfs:label "first seen"@en .
 
 
-###  https://schema.mekanoid.io/hashMethod
-:hashMethod rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :dataProperty ;
-            rdfs:label "hashMethod"@en ;
-            rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en ;
-            rdfs:range xsd:string .
-
-
-###  https://schema.mekanoid.io/hashValue
-:hashValue rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :dataProperty ;
-           rdfs:label "hashValue"@en ;
-           rdfs:comment "A cryptographic hash value."@en ;
-           rdfs:range xsd:hexBinary .
-
-
 ###  https://schema.mekanoid.io/hasIcon
 :hasIcon rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :dataProperty ;
@@ -301,6 +285,22 @@ time:years rdfs:subPropertyOf :timeProperty .
         rdfs:subPropertyOf :dataProperty ;
         rdfs:range xsd:anyURI ;
         rdfs:label "has URL"@en .
+
+
+###  https://schema.mekanoid.io/hashMethod
+:hashMethod rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :dataProperty ;
+            rdfs:range xsd:string ;
+            rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en ;
+            rdfs:label "hashMethod"@en .
+
+
+###  https://schema.mekanoid.io/hashValue
+:hashValue rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :dataProperty ;
+           rdfs:range xsd:hexBinary ;
+           rdfs:comment "A cryptographic hash value."@en ;
+           rdfs:label "hashValue"@en .
 
 
 ###  https://schema.mekanoid.io/id
@@ -496,21 +496,15 @@ d3f:Procedure owl:equivalentClass :Procedure .
 
 ###  https://schema.mekanoid.io/Hash
 :Hash rdf:type owl:Class ;
-      rdfs:subClassOf types:Hash ,
-                      d3f:Identifier ,
+      rdfs:subClassOf d3f:Identifier ,
                       :MekaThing ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hashValue ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:onDataRange xsd:hexBinary
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :hashMethod ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:string
                       ] ;
-      rdfs:label "Hash"@en ;
-      rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en .
+      rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en ;
+      rdfs:label "Hash"@en .
 
 
 ###  https://schema.mekanoid.io/IPv4
@@ -530,6 +524,13 @@ d3f:Procedure owl:equivalentClass :Procedure .
           rdfs:subClassOf :Event ;
           rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence." ;
           rdfs:label "Incident"@en .
+
+
+###  https://schema.mekanoid.io/MD5
+:MD5 rdf:type owl:Class ;
+     rdfs:subClassOf :Hash ;
+     rdfs:comment "MD5 cryptographic hash value"@en ;
+     rdfs:label "MD5 Hash"@en .
 
 
 ###  https://schema.mekanoid.io/Malware
@@ -620,6 +621,26 @@ d3f:Procedure owl:equivalentClass :Procedure .
                  rdfs:label "Public IP Address"@en ;
                  skos:example "4.2.2.1" ,
                               "8.8.8.8" .
+
+
+###  https://schema.mekanoid.io/SHA1
+:SHA1 rdf:type owl:Class ;
+      rdfs:subClassOf :Hash ;
+      rdfs:comment "SHA-1 cryptographic hash value"@en ;
+      rdfs:label "SHA-1 Hash"@en .
+
+
+###  https://schema.mekanoid.io/SHA256
+:SHA256 rdf:type owl:Class ;
+        rdfs:subClassOf :Hash ;
+        rdfs:comment "SHA-256 cryptographic hash value"@en ;
+        rdfs:label "SHA-256 Hash"@en .
+
+
+###  https://schema.mekanoid.io/SHA512
+:SHA512 rdf:type owl:Class ;
+        rdfs:subClassOf :Hash ;
+        rdfs:label "SHA-512 Hash"@en .
 
 
 ###  https://schema.mekanoid.io/Socket
