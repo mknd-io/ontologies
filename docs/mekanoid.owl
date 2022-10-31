@@ -1,0 +1,1363 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="https://schema.mekanoid.io/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="https://schema.mekanoid.io/">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://d3fend.mitre.org/ontologies/d3fend.owl</Import>
+    <Import>http://www.w3.org/2006/time#2016</Import>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/created"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2022-04-02</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/creator"/>
+        <IRI>mailto:anton.goncharov@gmail.com</IRI>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/license"/>
+        <Literal>MIT</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/modified"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2022-10-10</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/title"/>
+        <Literal>Mekanoid Cybersecurity Automation Ontology</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="ActionableItem"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Attack"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EmailAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EmailSenderString"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EmailSubjectString"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Event"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EventData"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="File"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="FileName"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Function"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Hash"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="IPv4"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="IPv6"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Incident"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="MD5"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Malware"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="MekaThing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Observable"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Operation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Payload"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PrivateIPAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Procedure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PublicIPAddress"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SHA1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SHA256"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SHA512"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Socket"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SubTechnique"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Tactic"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Technique"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Ticket"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Trojan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Username"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/cyber/stix#indicatedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://purl.org/cyber/stix#indicates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="identifiedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="identifies"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="indicatedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="indicates"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="mayBeIndicatedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="mayIndicate"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="objectProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="http://purl.org/cyber/stix#id"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="http://purl.org/cyber/stix#size"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDDateTimeStamp"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="https://ontology.unifiedcyberontology.org/uco/types/hashMethod"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="https://ontology.unifiedcyberontology.org/uco/types/hashValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="dataProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="dateTime"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="firstSeen"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="firstSeenEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasIcon"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hasURL"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hashMethod"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="hashValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="id"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="lastAccessedEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="lastSeen"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="lastSeenEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="lastStatusChangeEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="lastUpdatedEpoch"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="size"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="stringValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="timeCreated"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="timeProperty"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="timeSeen"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/title"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="context"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/created"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/modified"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/creator"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#File"/>
+        <Class IRI="File"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTactic"/>
+        <Class IRI="Tactic"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTechnique"/>
+        <Class IRI="Technique"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Procedure"/>
+        <Class IRI="Procedure"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#enables"/>
+            <Class IRI="Function"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ActionableItem"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Attack"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailAddress"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailAddress"/>
+        <Class IRI="Observable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailSenderString"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailSenderString"/>
+        <Class IRI="Observable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailSubjectString"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EmailSubjectString"/>
+        <Class IRI="Observable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Event"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EventData"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Record"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EventData"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="File"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="File"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="identifiedBy"/>
+            <Class IRI="Hash"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="File"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="indicatedBy"/>
+            <Class IRI="FileName"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="File"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="size"/>
+            <Datatype abbreviatedIRI="xsd:long"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="FileName"/>
+        <Class IRI="Observable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="FileName"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="indicates"/>
+            <Class IRI="File"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Function"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Function"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#enabled-by"/>
+            <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Hash"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Hash"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Hash"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="hashValue"/>
+            <Datatype abbreviatedIRI="xsd:hexBinary"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="IPv4"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="IPv6"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Incident"/>
+        <Class IRI="Event"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MD5"/>
+        <Class IRI="Hash"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Malware"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Software"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Malware"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="timeSeen"/>
+            <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="firstSeen"/>
+            <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="firstSeenEpoch"/>
+            <Datatype abbreviatedIRI="xsd:long"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="lastSeen"/>
+            <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MekaThing"/>
+        <DataMaxCardinality cardinality="1">
+            <DataProperty IRI="timeCreated"/>
+            <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+        </DataMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Observable"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Observable"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="stringValue"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Operation"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Payload"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Software"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Payload"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PrivateIPAddress"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Procedure"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PublicIPAddress"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SHA1"/>
+        <Class IRI="Hash"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SHA256"/>
+        <Class IRI="Hash"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SHA512"/>
+        <Class IRI="Hash"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Socket"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SubTechnique"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Tactic"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Technique"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Ticket"/>
+        <Class IRI="ActionableItem"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Trojan"/>
+        <Class IRI="Malware"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Username"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Username"/>
+        <Class IRI="MekaThing"/>
+    </SubClassOf>
+    <EquivalentObjectProperties>
+        <ObjectProperty IRI="http://purl.org/cyber/stix#indicatedBy"/>
+        <ObjectProperty IRI="indicatedBy"/>
+    </EquivalentObjectProperties>
+    <EquivalentObjectProperties>
+        <ObjectProperty IRI="http://purl.org/cyber/stix#indicates"/>
+        <ObjectProperty IRI="indicates"/>
+    </EquivalentObjectProperties>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="identifiedBy"/>
+        <ObjectProperty IRI="objectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="identifies"/>
+        <ObjectProperty IRI="objectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="indicatedBy"/>
+        <ObjectProperty IRI="mayBeIndicatedBy"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="indicates"/>
+        <ObjectProperty IRI="mayIndicate"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="mayBeIndicatedBy"/>
+        <ObjectProperty IRI="objectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="mayIndicate"/>
+        <ObjectProperty IRI="objectProperty"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="identifiedBy"/>
+        <ObjectProperty IRI="identifies"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="indicatedBy"/>
+        <ObjectProperty IRI="indicates"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="mayBeIndicatedBy"/>
+        <ObjectProperty IRI="mayIndicate"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="identifies"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="identifiedBy"/>
+        <Class IRI="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+    </ObjectPropertyRange>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://purl.org/cyber/stix#id"/>
+        <DataProperty IRI="id"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://purl.org/cyber/stix#size"/>
+        <DataProperty IRI="size"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDDateTimeStamp"/>
+        <DataProperty IRI="dateTime"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="http://www.w3.org/2006/time#numericPosition"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="https://ontology.unifiedcyberontology.org/uco/types/hashMethod"/>
+        <DataProperty IRI="hashMethod"/>
+    </EquivalentDataProperties>
+    <EquivalentDataProperties>
+        <DataProperty IRI="https://ontology.unifiedcyberontology.org/uco/types/hashValue"/>
+        <DataProperty IRI="hashValue"/>
+    </EquivalentDataProperties>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#day"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#dayOfYear"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#days"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#hasXSDDuration"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#hour"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#hours"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDDate"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDDateTime"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDDateTimeStamp"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDgYear"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#inXSDgYearMonth"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#minute"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#minutes"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#month"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#months"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#nominalPosition"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#numericDuration"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#numericPosition"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#second"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#seconds"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#week"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#weeks"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#xsdDateTime"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#year"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="http://www.w3.org/2006/time#years"/>
+        <DataProperty IRI="timeProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="dateTime"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="dateTimeEpoch"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="firstSeen"/>
+        <DataProperty IRI="timeSeen"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="firstSeenEpoch"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasIcon"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hasURL"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hashMethod"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="hashValue"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="id"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="lastAccessedEpoch"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="lastSeen"/>
+        <DataProperty IRI="timeSeen"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="lastSeenEpoch"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="lastStatusChangeEpoch"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="lastUpdatedEpoch"/>
+        <DataProperty IRI="dateTimeEpoch"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="size"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="stringValue"/>
+        <DataProperty IRI="dataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="timeCreated"/>
+        <DataProperty IRI="dateTime"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="timeSeen"/>
+        <DataProperty IRI="dateTime"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="dateTime"/>
+        <Class IRI="MekaThing"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="stringValue"/>
+        <Class IRI="Observable"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="dateTime"/>
+        <Datatype abbreviatedIRI="xsd:dateTimeStamp"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="dateTimeEpoch"/>
+        <Datatype abbreviatedIRI="xsd:long"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasIcon"/>
+        <Datatype abbreviatedIRI="rdfs:Literal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hasURL"/>
+        <Datatype abbreviatedIRI="xsd:anyURI"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hashMethod"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="hashValue"/>
+        <Datatype abbreviatedIRI="xsd:hexBinary"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="stringValue"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>ActionableItem</IRI>
+        <Literal xml:lang="en">A foundational element for analyst workflows.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ActionableItem</IRI>
+        <Literal xml:lang="en">Actionable Item</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Attack</IRI>
+        <Literal xml:lang="en">Attack</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>EmailAddress</IRI>
+        <Literal>An email address identifies an email box to which messages are delivered.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EmailAddress</IRI>
+        <Literal>Email Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>EmailSenderString</IRI>
+        <Literal xml:lang="en">A string showing a combination of a name and the email address in angle brackets.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EmailSenderString</IRI>
+        <Literal xml:lang="en">Email Sender</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>EmailSenderString</IRI>
+        <Literal>Britney Greenman &lt;mexragasu@gmail.com&gt;</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EmailSubjectString</IRI>
+        <Literal xml:lang="en">Email Subject</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>EmailSubjectString</IRI>
+        <Literal>Fwd: Fwd: Re: RE: RE: LOL</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Event</IRI>
+        <Literal xml:lang="en">Event</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EventData</IRI>
+        <Literal xml:lang="en">Event Data</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+        <IRI>EventData</IRI>
+        <Literal xml:lang="en">Log record</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>File</IRI>
+        <Literal xml:lang="en">File</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>FileName</IRI>
+        <Literal xml:lang="en">File Name</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Function</IRI>
+        <Literal xml:lang="en">Function</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="context"/>
+        <IRI>Function</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Hash</IRI>
+        <Literal xml:lang="en">A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the &apos;hash&apos;) and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Hash</IRI>
+        <Literal xml:lang="en">Hash</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IPv4</IRI>
+        <Literal xml:lang="en">IP Address v4</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IPv6</IRI>
+        <Literal xml:lang="en">IP Address v6</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Incident</IRI>
+        <Literal>An incident is an event that could lead to loss of, or disruption to, an organization&apos;s operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Incident</IRI>
+        <Literal xml:lang="en">Incident</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>MD5</IRI>
+        <Literal xml:lang="en">MD5 cryptographic hash value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MD5</IRI>
+        <Literal xml:lang="en">MD5 Hash</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Malware</IRI>
+        <Literal xml:lang="en">Malware</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+        <IRI>Malware</IRI>
+        <Literal xml:lang="en">Malicious software</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MekaThing</IRI>
+        <Literal xml:lang="en">Mekanoid Thing</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+        <IRI>MekaThing</IRI>
+        <Literal>Mekanoid Ontology Item</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Observable</IRI>
+        <Literal xml:lang="en">Observable</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Operation</IRI>
+        <Literal xml:lang="en">Operation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="context"/>
+        <IRI>Operation</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Payload</IRI>
+        <Literal xml:lang="en">Payload</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
+        <IRI>PrivateIPAddress</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/IP_address#Private_addresses</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PrivateIPAddress</IRI>
+        <Literal xml:lang="en">Private IP Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>PrivateIPAddress</IRI>
+        <Literal>10.0.0.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>PrivateIPAddress</IRI>
+        <Literal>192.168.0.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Procedure</IRI>
+        <Literal xml:lang="en">Procedure</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="context"/>
+        <IRI>Procedure</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>PublicIPAddress</IRI>
+        <Literal xml:lang="en">A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home&apos;s network by the ISP. In this case, it is also locally visible by logging into the router configuration.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
+        <IRI>PublicIPAddress</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/IP_address#Public_address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PublicIPAddress</IRI>
+        <Literal xml:lang="en">Public IP Address</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>PublicIPAddress</IRI>
+        <Literal>4.2.2.1</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>PublicIPAddress</IRI>
+        <Literal>8.8.8.8</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>SHA1</IRI>
+        <Literal xml:lang="en">SHA-1 cryptographic hash value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SHA1</IRI>
+        <Literal xml:lang="en">SHA-1 Hash</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>SHA256</IRI>
+        <Literal xml:lang="en">SHA-256 cryptographic hash value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SHA256</IRI>
+        <Literal xml:lang="en">SHA-256 Hash</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SHA512</IRI>
+        <Literal xml:lang="en">SHA-512 Hash</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Socket</IRI>
+        <Literal xml:lang="en">Network Socket</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>Socket</IRI>
+        <Literal>51.89.163.40:443</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SubTechnique</IRI>
+        <Literal xml:lang="en">Sub Technique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Tactic</IRI>
+        <Literal xml:lang="en">MITRE ATT&amp;CK Tactic</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Tactic</IRI>
+        <Literal xml:lang="en">Tactic</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>Technique</IRI>
+        <Literal xml:lang="en">MITRE ATT&amp;CK Technique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Technique</IRI>
+        <Literal xml:lang="en">Technique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Ticket</IRI>
+        <Literal xml:lang="en">Ticket</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+        <IRI>Ticket</IRI>
+        <Literal xml:lang="en">Issue</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#altLabel"/>
+        <IRI>Ticket</IRI>
+        <Literal xml:lang="en">Task</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Trojan</IRI>
+        <Literal xml:lang="en">Trojan</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>Trojan</IRI>
+        <Literal>Trickbot</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Username</IRI>
+        <Literal xml:lang="en">Username</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>context</IRI>
+        <Literal xml:lang="en">context</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>dataProperty</IRI>
+        <Literal xml:lang="en">Mekanoid Data Property</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>dataProperty</IRI>
+        <Literal xml:lang="en">has property</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>dateTime</IRI>
+        <Literal xml:lang="en">A date and time associated with the entity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>dateTime</IRI>
+        <Literal xml:lang="en">has timestamp</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>dateTime</IRI>
+        <Literal xml:lang="en">A date and time associated with the entity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>dateTime</IRI>
+        <Literal>2002-10-10T12:00:00-05:00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>dateTimeEpoch</IRI>
+        <Literal xml:lang="en">A Unix epoch timestamp associated with the entity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>dateTimeEpoch</IRI>
+        <Literal xml:lang="en">has epoch</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition"/>
+        <IRI>dateTimeEpoch</IRI>
+        <Literal xml:lang="en">A Unix epoch timestamp associated with the entity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example"/>
+        <IRI>dateTimeEpoch</IRI>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#long">990577200</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>firstSeen</IRI>
+        <Literal xml:lang="en">The first time the enity had been observed by the application.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>firstSeen</IRI>
+        <Literal xml:lang="en">first seen</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>firstSeenEpoch</IRI>
+        <Literal xml:lang="en">first seen</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasIcon</IRI>
+        <Literal xml:lang="en">has icon</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hasURL</IRI>
+        <Literal xml:lang="en">has URL</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>hashMethod</IRI>
+        <Literal xml:lang="en">A particular cryptographic hashing method (e.g., MD5).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hashMethod</IRI>
+        <Literal xml:lang="en">hashMethod</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>hashValue</IRI>
+        <Literal xml:lang="en">A cryptographic hash value.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>hashValue</IRI>
+        <Literal xml:lang="en">hashValue</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>id</IRI>
+        <Literal xml:lang="en">has id</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>identifiedBy</IRI>
+        <Literal xml:lang="en">is identified by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>identifies</IRI>
+        <Literal xml:lang="en">identifies</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>indicatedBy</IRI>
+        <Literal xml:lang="en">indicated by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>indicates</IRI>
+        <Literal xml:lang="en">indicates</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>lastAccessedEpoch</IRI>
+        <Literal xml:lang="en">last accessed</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>lastSeen</IRI>
+        <Literal xml:lang="en">The last time the entity had been observed by the application.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>lastSeen</IRI>
+        <Literal xml:lang="en">last seen</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>lastSeenEpoch</IRI>
+        <Literal xml:lang="en">last seen</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>lastStatusChangeEpoch</IRI>
+        <Literal xml:lang="en">last status change</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>lastUpdatedEpoch</IRI>
+        <Literal xml:lang="en">last modified</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>mayBeIndicatedBy</IRI>
+        <Literal xml:lang="en">may be indicated by</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>mayIndicate</IRI>
+        <Literal xml:lang="en">may indicate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>objectProperty</IRI>
+        <Literal xml:lang="en">Mekanoid object property</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>objectProperty</IRI>
+        <Literal xml:lang="en">has relationship</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>size</IRI>
+        <Literal xml:lang="en">has size</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>stringValue</IRI>
+        <Literal xml:lang="en">the object is represented by the following string value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>stringValue</IRI>
+        <Literal xml:lang="en">is</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>timeCreated</IRI>
+        <Literal xml:lang="en">Time when the entity had been created at the point of origin.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>timeCreated</IRI>
+        <Literal xml:lang="en">created at</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>timeProperty</IRI>
+        <Literal xml:lang="en">time property</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="context"/>
+        <IRI>timeProperty</IRI>
+        <Literal xml:lang="en">Grouped here from time ontology: https://www.w3.org/2006/time</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>timeSeen</IRI>
+        <Literal xml:lang="en">A timestamp associated with a point in time when the entity had been observed by the application in some way.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>timeSeen</IRI>
+        <Literal xml:lang="en">seen at</Literal>
+    </AnnotationAssertion>
+    <SubAnnotationPropertyOf>
+        <AnnotationProperty IRI="context"/>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+    </SubAnnotationPropertyOf>
+    <AnnotationPropertyRange>
+        <AnnotationProperty IRI="context"/>
+        <AbbreviatedIRI>xsd:anyURI</AbbreviatedIRI>
+    </AnnotationPropertyRange>
+    <AnnotationPropertyRange>
+        <AnnotationProperty IRI="context"/>
+        <AbbreviatedIRI>xsd:longString</AbbreviatedIRI>
+    </AnnotationPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 5.1.13.2020-01-27T22:08:36Z) https://github.com/owlcs/owlapi/ -->
+
