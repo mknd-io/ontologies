@@ -2,7 +2,5 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="https://schema.mekanoid.io/" uri="mekanoid.ttl"/>
     <uri id="Imports Wizard Entry" name="http://www.w3.org/2006/time#2016" uri="https://w3.org/2006/time"/>
-    <uri id="Imports Wizard Entry" name="http://d3fend.mitre.org/ontologies/d3fend/0.10.1-BETA-1/d3fend.owl" uri="file:/Users/antong/Downloads/d3fend%20(1).ttl"/>
     <uri id="Imports Wizard Entry" name="http://d3fend.mitre.org/ontologies/d3fend/0.10.1-BETA-1/d3fend.owl" uri="https://d3fend.mitre.org/ontologies/d3fend.ttl"/>
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
 </catalog>
