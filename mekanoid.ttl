@@ -13,8 +13,7 @@
 @base <https://schema.mekanoid.io/> .
 
 <https://schema.mekanoid.io/> rdf:type owl:Ontology ;
-                               owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ,
-                                           <http://www.w3.org/2006/time#2016> ;
+                               owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                dct:created "2022-04-02"^^xsd:date ;
                                dct:creator <mailto:anton.goncharov@gmail.com> ;
                                dct:license "MIT"^^xsd:string ;
@@ -25,12 +24,28 @@
 #    Annotation properties
 #################################################################
 
+###  http://purl.org/dc/terms/created
+dct:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dct:modified rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/title
 dct:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
 skos:altLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#example
@@ -128,35 +143,43 @@ stix:size rdf:type owl:DatatypeProperty ;
 
 
 ###  http://www.w3.org/2006/time#day
-time:day rdfs:subPropertyOf :timeProperty .
+time:day rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#dayOfYear
-time:dayOfYear rdfs:subPropertyOf :timeProperty .
+time:dayOfYear rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#days
-time:days rdfs:subPropertyOf :timeProperty .
+time:days rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hasXSDDuration
-time:hasXSDDuration rdfs:subPropertyOf :timeProperty .
+time:hasXSDDuration rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hour
-time:hour rdfs:subPropertyOf :timeProperty .
+time:hour rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hours
-time:hours rdfs:subPropertyOf :timeProperty .
+time:hours rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDate
-time:inXSDDate rdfs:subPropertyOf :timeProperty .
+time:inXSDDate rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDateTime
-time:inXSDDateTime rdfs:subPropertyOf :timeProperty .
+time:inXSDDateTime rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDateTimeStamp
@@ -166,68 +189,84 @@ time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
 
 
 ###  http://www.w3.org/2006/time#inXSDgYear
-time:inXSDgYear rdfs:subPropertyOf :timeProperty .
+time:inXSDgYear rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDgYearMonth
-time:inXSDgYearMonth rdfs:subPropertyOf :timeProperty .
+time:inXSDgYearMonth rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#minute
-time:minute rdfs:subPropertyOf :timeProperty .
+time:minute rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#minutes
-time:minutes rdfs:subPropertyOf :timeProperty .
+time:minutes rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#month
-time:month rdfs:subPropertyOf :timeProperty .
+time:month rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#months
-time:months rdfs:subPropertyOf :timeProperty .
+time:months rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#nominalPosition
-time:nominalPosition rdfs:subPropertyOf :timeProperty .
+time:nominalPosition rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#numericDuration
-time:numericDuration rdfs:subPropertyOf :timeProperty .
+time:numericDuration rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#numericPosition
-time:numericPosition owl:equivalentProperty :dateTimeEpoch ;
+time:numericPosition rdf:type owl:DatatypeProperty ;
+                     owl:equivalentProperty :dateTimeEpoch ;
                      rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#second
-time:second rdfs:subPropertyOf :timeProperty .
+time:second rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#seconds
-time:seconds rdfs:subPropertyOf :timeProperty .
+time:seconds rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#week
-time:week rdfs:subPropertyOf :timeProperty .
+time:week rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#weeks
-time:weeks rdfs:subPropertyOf :timeProperty .
+time:weeks rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#xsdDateTime
-time:xsdDateTime rdfs:subPropertyOf :timeProperty .
+time:xsdDateTime rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#year
-time:year rdfs:subPropertyOf :timeProperty .
+time:year rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :timeProperty .
 
 
 ###  http://www.w3.org/2006/time#years
-time:years rdfs:subPropertyOf :timeProperty .
+time:years rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeProperty .
 
 
 ###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
