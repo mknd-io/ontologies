@@ -425,31 +425,14 @@ d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
                                      ] .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
-d3f:File owl:equivalentClass :File .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTactic
-d3f:OffensiveTactic owl:equivalentClass :Tactic .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTechnique
-d3f:OffensiveTechnique owl:equivalentClass :Technique .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Procedure
-d3f:Procedure owl:equivalentClass :Procedure ;
-              rdfs:label "Procedure"@en ;
-              :icon "procedure.svg" .
-
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
 d3f:Software :icon "software.svg" .
 
 
 ###  https://schema.mekanoid.io/ActionableItem
 :ActionableItem rdf:type owl:Class ;
-                rdfs:subClassOf :MekaThing ;
+                rdfs:subClassOf d3f:Record ,
+                                :MekaThing ;
                 rdfs:comment "A foundational element for analyst workflows."@en ;
                 rdfs:label "Actionable Item"@en .
 
@@ -457,13 +440,14 @@ d3f:Software :icon "software.svg" .
 ###  https://schema.mekanoid.io/Attack
 :Attack rdf:type owl:Class ;
         rdfs:subClassOf :MekaThing ;
-        rdfs:label "Attack"@en .
+        rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI ;
+        rdfs:label "Attack"@en ;
+        skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
 
 
 ###  https://schema.mekanoid.io/EmailAddress
 :EmailAddress rdf:type owl:Class ;
-              rdfs:subClassOf :MekaThing ,
-                              :Observable ;
+              rdfs:subClassOf :Observable ;
               rdfs:comment "An email address identifies an email box to which messages are delivered." ;
               rdfs:label "Email Address" ;
               :icon "email-address.svg" .
@@ -471,18 +455,15 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/EmailSenderString
 :EmailSenderString rdf:type owl:Class ;
-                   rdfs:subClassOf :MekaThing ,
-                                   :Observable ;
+                   rdfs:subClassOf :Observable ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
-                   skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string ;
-                   :icon "email-address.svg" .
+                   skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/EmailSubjectString
 :EmailSubjectString rdf:type owl:Class ;
-                    rdfs:subClassOf :MekaThing ,
-                                    :Observable ;
+                    rdfs:subClassOf :Observable ;
                     rdfs:label "Email Subject"@en ;
                     skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
 
@@ -501,33 +482,9 @@ d3f:Software :icon "software.svg" .
            skos:altLabel "Log record"@en .
 
 
-###  https://schema.mekanoid.io/File
-:File rdf:type owl:Class ;
-      rdfs:subClassOf :MekaThing ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :identifiedBy ;
-                        owl:someValuesFrom :Hash
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :indicatedBy ;
-                        owl:allValuesFrom :FileName
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :size ;
-                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:long
-                      ] ;
-      rdfs:label "File"@en ;
-      :icon "file.svg" .
-
-
 ###  https://schema.mekanoid.io/FileName
 :FileName rdf:type owl:Class ;
-          rdfs:subClassOf :Observable ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :indicates ;
-                            owl:someValuesFrom :File
-                          ] ;
+          rdfs:subClassOf :Observable ;
           rdfs:label "File Name"@en .
 
 
@@ -545,7 +502,6 @@ d3f:Software :icon "software.svg" .
 ###  https://schema.mekanoid.io/Hash
 :Hash rdf:type owl:Class ;
       rdfs:subClassOf d3f:Identifier ,
-                      :MekaThing ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hashValue ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -632,7 +588,7 @@ d3f:Software :icon "software.svg" .
                               owl:onDataRange xsd:string
                             ] ;
             rdfs:label "Observable"@en ;
-            :icon "observable.svg" .
+            :icon "pin.svg" .
 
 
 ###  https://schema.mekanoid.io/Operation
@@ -644,8 +600,7 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/Payload
 :Payload rdf:type owl:Class ;
-         rdfs:subClassOf d3f:Software ,
-                         :MekaThing ;
+         rdfs:subClassOf :MekaThing ;
          rdfs:label "Payload"@en .
 
 
@@ -656,14 +611,6 @@ d3f:Software :icon "software.svg" .
                   rdfs:label "Private IP Address"@en ;
                   skos:example "10.0.0.1" ,
                                "192.168.0.1" .
-
-
-###  https://schema.mekanoid.io/Procedure
-:Procedure rdf:type owl:Class ;
-           rdfs:subClassOf :MekaThing ;
-           rdfs:label "Procedure"@en ;
-           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI ;
-           :icon "procedure.svg" .
 
 
 ###  https://schema.mekanoid.io/PublicIPAddress
@@ -704,27 +651,6 @@ d3f:Software :icon "software.svg" .
         :icon "network.svg" .
 
 
-###  https://schema.mekanoid.io/SubTechnique
-:SubTechnique rdf:type owl:Class ;
-              rdfs:subClassOf :MekaThing ;
-              rdfs:label "Sub Technique"@en .
-
-
-###  https://schema.mekanoid.io/Tactic
-:Tactic rdf:type owl:Class ;
-        rdfs:subClassOf :MekaThing ;
-        rdfs:comment "MITRE ATT&CK Tactic"@en ;
-        rdfs:label "Tactic"@en .
-
-
-###  https://schema.mekanoid.io/Technique
-:Technique rdf:type owl:Class ;
-           rdfs:subClassOf :MekaThing ;
-           rdfs:comment "MITRE ATT&CK Technique"@en ;
-           rdfs:label "Technique"@en ;
-           :icon "technique.svg" .
-
-
 ###  https://schema.mekanoid.io/Ticket
 :Ticket rdf:type owl:Class ;
         rdfs:subClassOf :ActionableItem ;
@@ -743,8 +669,7 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/Username
 :Username rdf:type owl:Class ;
-          rdfs:subClassOf d3f:Identifier ,
-                          :MekaThing ;
+          rdfs:subClassOf d3f:Identifier ;
           rdfs:label "Username"@en .
 
 
@@ -762,6 +687,13 @@ d3f:Database :icon "database.svg" .
 
 
 d3f:Directory :icon "folder.svg" .
+
+
+d3f:File :icon "file.svg" .
+
+
+d3f:Procedure rdfs:label "Procedure"@en ;
+              :icon "procedure.svg" .
 
 
 d3f:Process :icon "process.svg" .
