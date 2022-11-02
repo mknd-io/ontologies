@@ -620,7 +620,7 @@ d3f:Software :icon "software.svg" .
                            ] ;
            rdfs:label "Mekanoid Thing"@en ;
            skos:altLabel "Mekanoid Ontology Item"^^xsd:string ;
-           :icon "artifact.svg" .
+           :icon "instance.svg" .
 
 
 ###  https://schema.mekanoid.io/Observable
