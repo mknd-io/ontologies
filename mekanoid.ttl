@@ -517,6 +517,9 @@ d3f:Software :icon "software.svg" .
       rdfs:subClassOf d3f:IPAddress ;
       rdfs:label "IP Address v4"@en .
 
+:DetectionRule a owl:Class ;
+      rdfs:subClassOf :MekaThing ;
+      rdfs:label "Detection Rule"@en .
 
 ###  https://schema.mekanoid.io/IPv6
 :IPv6 rdf:type owl:Class ;
