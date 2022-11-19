@@ -121,12 +121,16 @@ stix:indicates rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :objectProperty ;
              rdfs:label "may indicate"@en .
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl##providedBy
+d3f:providedBy rdf owl:ObjectProperty ;
+    rdfs:subPropertyOf d3f:d3fend-catalog-object-property .
+    owl:inverseOf d3f:provides
+    rdfs:label "provided by"@en;
 
 ###  https://schema.mekanoid.io/objectProperty
 :objectProperty rdf:type owl:ObjectProperty ;
                 rdfs:comment "Mekanoid object property"@en ;
                 rdfs:label "has relationship"@en .
-
 
 #################################################################
 #    Data properties
@@ -413,6 +417,11 @@ types:hashValue rdf:type owl:DatatypeProperty ;
           rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
           rdfs:label "seen at"@en .
 
+:needs-privileges rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dateTime ;
+          rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
+          rdfs:label "seen at"@en .
+
 
 #################################################################
 #    Classes
@@ -674,7 +683,6 @@ d3f:Software :icon "software.svg" .
 :Username rdf:type owl:Class ;
           rdfs:subClassOf d3f:Identifier ;
           rdfs:label "Username"@en .
-
 
 #################################################################
 #    Annotations
