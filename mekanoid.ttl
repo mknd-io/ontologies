@@ -462,7 +462,7 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/mekanoid.owlAttack
 :Attack rdf:type owl:Class ;
-        rdfs:subClassOf :MekaThing ;
+        rdfs:subClassOf :Event ;
         rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI ;
         rdfs:label "Attack"@en ;
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
@@ -470,7 +470,11 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/mekanoid.owlDetectionRule
 :DetectionRule rdf:type owl:Class ;
-               rdfs:subClassOf :Configuration ;
+               rdfs:subClassOf :Configuration ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty d3f:creates ;
+                                 owl:someValuesFrom :Detection
+                               ] ;
                rdfs:label "Detection Rule"@en .
 
 
@@ -707,6 +711,18 @@ d3f:Software :icon "software.svg" .
                rdfs:subClassOf :MekaThing ;
                rdfs:label "Configuration"@en ;
                :icon "gear.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Detection
+:Detection rdf:type owl:Class ;
+           rdfs:subClassOf :Event ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty d3f:created-by ;
+                             owl:someValuesFrom :DetectionRule
+                           ] ;
+           rdfs:label "Detection"@en ;
+           skos:altLabel "Alert"@en ,
+                         "Signal"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Sigma
