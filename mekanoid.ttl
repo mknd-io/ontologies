@@ -430,6 +430,19 @@ types:hashValue rdf:type owl:DatatypeProperty ;
           rdfs:label "seen at"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#external-id
+:external-id rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "external ID"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#value
+:value rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :dataProperty ;
+       rdfs:comment "A value parameter to be passed to Tasks"@en ;
+       rdfs:label "has value"@en .
+
+
 #################################################################
 #    Classes
 #################################################################
@@ -466,6 +479,25 @@ d3f:Software :icon "software.svg" .
         rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI ;
         rdfs:label "Attack"@en ;
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owlConfiguration
+:Configuration rdf:type owl:Class ;
+               rdfs:subClassOf :MekaThing ;
+               rdfs:label "Configuration"@en ;
+               :icon "gear.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owlDetection
+:Detection rdf:type owl:Class ;
+           rdfs:subClassOf :Event ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty d3f:created-by ;
+                             owl:someValuesFrom :DetectionRule
+                           ] ;
+           rdfs:label "Detection"@en ;
+           skos:altLabel "Alert"@en ,
+                         "Signal"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owlDetectionRule
@@ -676,6 +708,22 @@ d3f:Software :icon "software.svg" .
         rdfs:label "SHA-512 Hash"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owlSigma
+:Sigma rdf:type owl:Class ;
+       rdfs:subClassOf :DetectionRule ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty d3f:contained-by ;
+                         owl:someValuesFrom d3f:ConfigurationFile
+                       ] ;
+       rdfs:label "Sigma Rule"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owlSignature
+:Signature rdf:type owl:Class ;
+           rdfs:subClassOf :DetectionRule ;
+           rdfs:label "Signature"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owlSocket
 :Socket rdf:type owl:Class ;
         rdfs:subClassOf :MekaThing ;
@@ -706,42 +754,7 @@ d3f:Software :icon "software.svg" .
           rdfs:label "Username"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#Configuration
-:Configuration rdf:type owl:Class ;
-               rdfs:subClassOf :MekaThing ;
-               rdfs:label "Configuration"@en ;
-               :icon "gear.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Detection
-:Detection rdf:type owl:Class ;
-           rdfs:subClassOf :Event ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty d3f:created-by ;
-                             owl:someValuesFrom :DetectionRule
-                           ] ;
-           rdfs:label "Detection"@en ;
-           skos:altLabel "Alert"@en ,
-                         "Signal"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Sigma
-:Sigma rdf:type owl:Class ;
-       rdfs:subClassOf :DetectionRule ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty d3f:contained-by ;
-                         owl:someValuesFrom d3f:ConfigurationFile
-                       ] ;
-       rdfs:label "Sigma Rule"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Signature
-:Signature rdf:type owl:Class ;
-           rdfs:subClassOf :DetectionRule ;
-           rdfs:label "Signature"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Yara
+###  https://schema.mekanoid.io/mekanoid.owlYara
 :Yara rdf:type owl:Class ;
       rdfs:subClassOf :DetectionRule ;
       rdfs:label "YARA Rule"@en .
