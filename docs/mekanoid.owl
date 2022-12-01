@@ -13,7 +13,7 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 
 
 
-Ontology: <https://schema.mekanoid.io/mekanoid.owl>
+Ontology: <https://schema.mekanoid.io/mekanoid.owl#>
 
 Import: <http://d3fend.mitre.org/ontologies/d3fend.owl>
 
@@ -24,6 +24,15 @@ Annotations:
     dct:modified "2022-10-10"^^xsd:date,
     dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string
 
+AnnotationProperty: <https://schema.mekanoid.io/mekanoid.owl#critical>
+
+    Annotations: 
+        rdfs:label "is critical"@en
+    
+    Range: 
+        <http://www.w3.org/2001/XMLSchema#boolean>
+    
+    
 AnnotationProperty: context
 
     Annotations: 
@@ -98,6 +107,18 @@ Datatype: xsd:long
 
     
 Datatype: xsd:string
+
+    
+ObjectProperty: d3f:contained-by
+
+    
+ObjectProperty: d3f:contains
+
+    
+ObjectProperty: d3f:created-by
+
+    
+ObjectProperty: d3f:creates
 
     
 ObjectProperty: d3f:d3fend-catalog-object-property
@@ -228,6 +249,25 @@ ObjectProperty: stix:indicates
 
     EquivalentTo: 
         indicates
+    
+    
+DataProperty: <https://schema.mekanoid.io/mekanoid.owl#external-id>
+
+    Annotations: 
+        rdfs:label "external ID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: <https://schema.mekanoid.io/mekanoid.owl#value>
+
+    Annotations: 
+        rdfs:comment "A value parameter to be passed to Tasks"@en,
+        rdfs:label "has value"@en
+    
+    SubPropertyOf: 
+        dataProperty
     
     
 DataProperty: dataProperty
@@ -661,7 +701,29 @@ Class: Attack
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en
     
     SubClassOf: 
+        Event
+    
+    
+Class: Configuration
+
+    Annotations: 
+        rdfs:label "Configuration"@en,
+        icon "gear.svg"
+    
+    SubClassOf: 
         MekaThing
+    
+    
+Class: Detection
+
+    Annotations: 
+        rdfs:label "Detection"@en,
+        skos:altLabel "Alert"@en,
+        skos:altLabel "Signal"@en
+    
+    SubClassOf: 
+        Event,
+        d3f:created-by some DetectionRule
     
     
 Class: DetectionRule
@@ -670,7 +732,8 @@ Class: DetectionRule
         rdfs:label "Detection Rule"@en
     
     SubClassOf: 
-        MekaThing
+        Configuration,
+        d3f:creates some Detection
     
     
 Class: EmailAddress
@@ -907,6 +970,25 @@ Class: SHA512
         Hash
     
     
+Class: Sigma
+
+    Annotations: 
+        rdfs:label "Sigma Rule"@en
+    
+    SubClassOf: 
+        DetectionRule,
+        d3f:contained-by some d3f:ConfigurationFile
+    
+    
+Class: Signature
+
+    Annotations: 
+        rdfs:label "Signature"@en
+    
+    SubClassOf: 
+        DetectionRule
+    
+    
 Class: Socket
 
     Annotations: 
@@ -947,6 +1029,21 @@ Class: Username
     
     SubClassOf: 
         d3f:Identifier
+    
+    
+Class: Yara
+
+    Annotations: 
+        rdfs:label "YARA Rule"@en
+    
+    SubClassOf: 
+        DetectionRule
+    
+    
+Class: d3f:ConfigurationFile
+
+    SubClassOf: 
+        d3f:contains some Configuration
     
     
 Class: d3f:ExecutableBinary
