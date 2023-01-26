@@ -78,7 +78,27 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:label "provided by"@en .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
+d3f:analyzed-by rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+               owl:inverseOf d3f:analyzes ;
+               rdfs:label "analyzed by"@en .
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#provides
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
+d3f:isolated-by rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+               owl:inverseOf d3f:analyzes ;
+               rdfs:label "isolated by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
+d3f:connected-by rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+               owl:inverseOf d3f:connects ;
+               rdfs:label "connected by"@en .
+
 
 ###  http://purl.org/cyber/stix#indicatedBy
 stix:indicatedBy rdf:type owl:ObjectProperty ;
@@ -417,6 +437,13 @@ types:hashValue rdf:type owl:DatatypeProperty ;
              rdfs:label "created at"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#timeCreatedEpoch
+:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dateTimeEpoch ;
+             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
+             rdfs:label "created at"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#timeProperty
 :timeProperty rdf:type owl:DatatypeProperty ;
               rdfs:label "time property"@en ;
@@ -441,6 +468,48 @@ types:hashValue rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :dataProperty ;
        rdfs:comment "A value parameter to be passed to Tasks"@en ;
        rdfs:label "has value"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#userId
+:userId rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "userID"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#teamId
+:teamId rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "teamID"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importId
+:importId rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "importId"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBucketName
+:importBucketName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "bucketName"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importFileName
+:importFileName rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "filename"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#templateId
+:templateId rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "templateId"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBuckeUrl
+:importBucketUrl rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "bucketUrl"@en .
 
 
 #################################################################
