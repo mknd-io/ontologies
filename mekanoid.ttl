@@ -71,6 +71,32 @@ skos:example rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
+d3f:analyzed-by rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                owl:inverseOf d3f:analyzes ;
+                rdfs:label "analyzed by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes
+d3f:analyzes owl:inverseOf d3f:isolated-by .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
+d3f:connected-by rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                 owl:inverseOf d3f:connects ;
+                 rdfs:label "connected by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#connects
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
+d3f:isolated-by rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                rdfs:label "isolated by"@en .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy
 d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
@@ -78,27 +104,7 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:label "provided by"@en .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
-d3f:analyzed-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:analyzes ;
-               rdfs:label "analyzed by"@en .
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#provides
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
-d3f:isolated-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:analyzes ;
-               rdfs:label "isolated by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
-d3f:connected-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:connects ;
-               rdfs:label "connected by"@en .
-
 
 ###  http://purl.org/cyber/stix#indicatedBy
 stix:indicatedBy rdf:type owl:ObjectProperty ;
@@ -335,6 +341,12 @@ types:hashValue rdf:type owl:DatatypeProperty ;
                skos:example "990577200"^^xsd:long .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#external-id
+:external-id rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dataProperty ;
+             rdfs:label "external ID"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#firstSeen
 :firstSeen rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :timeSeen ;
@@ -375,6 +387,30 @@ types:hashValue rdf:type owl:DatatypeProperty ;
 :id rdf:type owl:DatatypeProperty ;
     rdfs:subPropertyOf :dataProperty ;
     rdfs:label "has id"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBucketName
+:importBucketName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :dataProperty ;
+                  rdfs:label "bucketName"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBucketUrl
+:importBucketUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :dataProperty ;
+                 rdfs:label "bucketUrl"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importFileName
+:importFileName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :dataProperty ;
+                rdfs:label "filename"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importId
+:importId rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dataProperty ;
+          rdfs:label "importId"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#lastAccessedEpoch
@@ -430,6 +466,18 @@ types:hashValue rdf:type owl:DatatypeProperty ;
              rdfs:label "is"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#teamId
+:teamId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:label "teamID"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#templateId
+:templateId rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :dataProperty ;
+            rdfs:label "templateId"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#timeCreated
 :timeCreated rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :dateTime ;
@@ -439,9 +487,9 @@ types:hashValue rdf:type owl:DatatypeProperty ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#timeCreatedEpoch
 :timeCreatedEpoch rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dateTimeEpoch ;
-             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-             rdfs:label "created at"@en .
+                  rdfs:subPropertyOf :dateTimeEpoch ;
+                  rdfs:comment "Time when the entity had been created at the point of origin."@en ;
+                  rdfs:label "created at"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#timeProperty
@@ -457,10 +505,10 @@ types:hashValue rdf:type owl:DatatypeProperty ;
           rdfs:label "seen at"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#external-id
-:external-id rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "external ID"@en .
+###  https://schema.mekanoid.io/mekanoid.owl#userId
+:userId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:label "userID"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#value
@@ -468,48 +516,6 @@ types:hashValue rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :dataProperty ;
        rdfs:comment "A value parameter to be passed to Tasks"@en ;
        rdfs:label "has value"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#userId
-:userId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "userID"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#teamId
-:teamId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "teamID"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importId
-:importId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "importId"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importBucketName
-:importBucketName rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "bucketName"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importFileName
-:importFileName rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "filename"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#templateId
-:templateId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "templateId"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importBuckeUrl
-:importBucketUrl rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "bucketUrl"@en .
 
 
 #################################################################
@@ -528,6 +534,10 @@ d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
                                        owl:onProperty d3f:enables ;
                                        owl:someValuesFrom :Function
                                      ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
+d3f:Identifier :icon "text.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
@@ -550,6 +560,14 @@ d3f:Software :icon "software.svg" .
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#Case
+:Case rdf:type owl:Class ;
+      rdfs:subClassOf :ActionableItem ;
+      rdfs:label "Case"@en ;
+      skos:altLabel "Incident"@en ;
+      :icon "case.svg" .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#Configuration
 :Configuration rdf:type owl:Class ;
                rdfs:subClassOf :MekaThing ;
@@ -566,7 +584,8 @@ d3f:Software :icon "software.svg" .
                            ] ;
            rdfs:label "Detection"@en ;
            skos:altLabel "Alert"@en ,
-                         "Signal"@en .
+                         "Signal"@en ;
+           :icon "signal.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#DetectionRule
@@ -576,7 +595,8 @@ d3f:Software :icon "software.svg" .
                                  owl:onProperty d3f:creates ;
                                  owl:someValuesFrom :Detection
                                ] ;
-               rdfs:label "Detection Rule"@en .
+               rdfs:label "Detection Rule"@en ;
+               :icon "rule.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#EmailAddress
@@ -784,7 +804,8 @@ d3f:Software :icon "software.svg" .
                          owl:onProperty d3f:contained-by ;
                          owl:someValuesFrom d3f:ConfigurationFile
                        ] ;
-       rdfs:label "Sigma Rule"@en .
+       rdfs:label "Sigma Rule"@en ;
+       :icon "rule-sigma.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Signature
@@ -806,7 +827,8 @@ d3f:Software :icon "software.svg" .
         rdfs:subClassOf :ActionableItem ;
         rdfs:label "Ticket"@en ;
         skos:altLabel "Issue"@en ,
-                      "Task"@en .
+                      "Task"@en ;
+        :icon "ticket.svg"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Trojan
@@ -826,12 +848,16 @@ d3f:Software :icon "software.svg" .
 ###  https://schema.mekanoid.io/mekanoid.owl#Yara
 :Yara rdf:type owl:Class ;
       rdfs:subClassOf :DetectionRule ;
-      rdfs:label "YARA Rule"@en .
+      rdfs:label "YARA Rule"@en ;
+      :icon "rule-yara.svg" .
 
 
 #################################################################
 #    Annotations
 #################################################################
+
+d3f:Artifact :icon "class.svg" .
+
 
 d3f:BinaryLargeObject :icon "binary.svg" .
 
@@ -839,19 +865,61 @@ d3f:BinaryLargeObject :icon "binary.svg" .
 d3f:BinarySegment :icon "binary.svg" .
 
 
+d3f:ClientComputer :icon "screen.svg" .
+
+
+d3f:DNSLookup :icon "dns.svg" .
+
+
+d3f:DNSRecord :icon "dns.svg" .
+
+
 d3f:Database :icon "database.svg" .
+
+
+d3f:DigitalObject :icon "cube.svg" .
 
 
 d3f:Directory :icon "folder.svg" .
 
 
+d3f:DocumentFile :icon "doc.svg" .
+
+
+d3f:DomainName :icon "domain.svg" .
+
+
+d3f:Email :icon "email-message.svg" .
+
+
+d3f:ExecutableFile :icon "code-file.svg" .
+
+
 d3f:File :icon "file.svg" .
+
+
+d3f:FileHash :icon "file-hash.svg" .
+
+
+d3f:Host :icon "computer.svg" .
+
+
+d3f:IntrusionDetectionSystem :icon "broken.svg" .
+
+
+d3f:Link :icon "url.svg" .
 
 
 d3f:Network :icon "network.svg" .
 
 
+d3f:NetworkNode :icon "network.svg" .
+
+
 d3f:NetworkTraffic :icon "network.svg" .
+
+
+d3f:OperatingSystem :icon "software.svg" .
 
 
 d3f:Procedure rdfs:label "Procedure"@en ;
@@ -861,7 +929,19 @@ d3f:Procedure rdfs:label "Procedure"@en ;
 d3f:Process :icon "process.svg" .
 
 
-d3f:UserAccount :icon "user.svg" .
+d3f:Sensor :icon "broken.svg" .
+
+
+d3f:Server :icon "server.svg" .
+
+
+d3f:Technique :icon "technique.svg" .
+
+
+d3f:URL :icon "url.svg" .
+
+
+d3f:UserAccount :icon "user-account.svg" .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
