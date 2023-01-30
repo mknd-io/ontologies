@@ -590,7 +590,7 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/mekanoid.owl#DetectionRule
 :DetectionRule rdf:type owl:Class ;
-               rdfs:subClassOf :Configuration ,
+               rdfs:subClassOf :ApplicationRule ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty d3f:creates ;
                                  owl:someValuesFrom :Detection
