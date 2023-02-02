@@ -12,7 +12,7 @@
 #################################################################
 
 ###  https://schema.mekanoid.io/mekanoid.owl#OWLNamedIndividual_000011
-mknd:1000011 rdf:type mknd:Case ;
+mknd:1000011 rdf:type mknd:Incident ;
   rdfs:label "Suspicious files incident including Ransomware on one endpoint"@en ;
   d3f:contains mknd:1000013, mknd:1000014, mknd:1000015, mknd:1000016.
 

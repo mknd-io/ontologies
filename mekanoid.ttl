@@ -560,11 +560,11 @@ d3f:Software :icon "software.svg" .
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#Case
-:Case rdf:type owl:Class ;
+###  https://schema.mekanoid.io/mekanoid.owl#Incident
+:Incident rdf:type owl:Class ;
       rdfs:subClassOf :ActionableItem ;
-      rdfs:label "Case"@en ;
-      skos:altLabel "Incident"@en ;
+      rdfs:label "Incident"@en ;
+      skos:altLabel "Case"@en ;
       :icon "case.svg" .
 
 
@@ -676,14 +676,6 @@ d3f:Software :icon "software.svg" .
 :IPv6 rdf:type owl:Class ;
       rdfs:subClassOf d3f:IPAddress ;
       rdfs:label "IP Address v6"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Incident
-:Incident rdf:type owl:Class ;
-          rdfs:subClassOf :Event ;
-          rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence." ;
-          rdfs:label "Incident"@en .
-
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MD5
 :MD5 rdf:type owl:Class ;
