@@ -614,14 +614,6 @@ d3f:Software :icon "software.svg" .
       rdfs:subClassOf d3f:IPAddress ;
       rdfs:label "IP Address v6"@en .
 
-
-###  https://schema.mekanoid.io/mekanoid.owl#Incident
-:Incident rdf:type owl:Class ;
-          rdfs:subClassOf :Event ;
-          rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence." ;
-          rdfs:label "Incident"@en .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#MD5
 :MD5 rdf:type owl:Class ;
      rdfs:subClassOf :Hash ;

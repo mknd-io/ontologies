@@ -837,17 +837,6 @@ Class: IPv6
     SubClassOf: 
         d3f:IPAddress
     
-    
-Class: Incident
-
-    Annotations: 
-        rdfs:comment "An incident is an event that could lead to loss of, or disruption to, an organization's operations, services or functions. Incident management (IcM) is a term describing the activities of an organization to identify, analyze, and correct hazards to prevent a future re-occurrence.",
-        rdfs:label "Incident"@en
-    
-    SubClassOf: 
-        Event
-    
-    
 Class: MD5
 
     Annotations: 
