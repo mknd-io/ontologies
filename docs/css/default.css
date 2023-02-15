@@ -1,4 +1,4 @@
-body {font-family: Work Sans, sans-serif; font-size: 9pt; padding: 10px;}
+body {font-family: Verdana, Arial, sans-serif; font-size: 9pt; padding: 5px;}
 
 img {border: none;}
 img.button {position: relative; top: 8px;}
@@ -18,7 +18,6 @@ img.button {position: relative; top: 8px;}
 .min {color: #770077;}
 .max {color: #770077;}
 .exactly {color: #770077;}
-.data {color: #086D8C;}
 
 div.codebox {overflow: hidden;
     background: #f1f5f9; width: 95%; padding: 5px;
