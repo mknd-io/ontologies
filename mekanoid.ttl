@@ -882,7 +882,8 @@ d3f:DocumentFile :icon "doc.svg" .
 d3f:DomainName :icon "domain.svg" .
 
 
-d3f:Email :icon "email-message.svg" .
+d3f:Email :icon "email-message.svg" ;
+          skos:altLabel "Email Message"@en .
 
 
 d3f:ExecutableFile :icon "code-file.svg" .
