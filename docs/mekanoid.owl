@@ -19,20 +19,11 @@ Import: <http://d3fend.mitre.org/ontologies/d3fend.owl>
 
 Annotations: 
     dct:created "2022-04-02"^^xsd:date,
-    dct:creator <mailto:anton.goncharov@gmail.com>,
+    dct:creator <mailto:anton.goncharov@mekanoid.io>,
     dct:license "MIT"^^xsd:string,
-    dct:modified "2022-10-10"^^xsd:date,
-    dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string
+    dct:modified "2023-02-15"^^xsd:date,
+    dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string
 
-AnnotationProperty: <https://schema.mekanoid.io/mekanoid.owl#critical>
-
-    Annotations: 
-        rdfs:label "is critical"@en
-    
-    Range: 
-        <http://www.w3.org/2001/XMLSchema#boolean>
-    
-    
 AnnotationProperty: context
 
     Annotations: 
@@ -109,6 +100,43 @@ Datatype: xsd:long
 Datatype: xsd:string
 
     
+ObjectProperty: d3f:analyzed-by
+
+    Annotations: 
+        rdfs:label "analyzed by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:analyzes
+    
+    
+ObjectProperty: d3f:analyzes
+
+    InverseOf: 
+        d3f:analyzed-by,
+        d3f:isolated-by
+    
+    
+ObjectProperty: d3f:connected-by
+
+    Annotations: 
+        rdfs:label "connected by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:connects
+    
+    
+ObjectProperty: d3f:connects
+
+    InverseOf: 
+        d3f:connected-by
+    
+    
 ObjectProperty: d3f:contained-by
 
     
@@ -129,6 +157,18 @@ ObjectProperty: d3f:enabled-by
     
 ObjectProperty: d3f:enables
 
+    
+ObjectProperty: d3f:isolated-by
+
+    Annotations: 
+        rdfs:label "isolated by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:analyzes
+    
     
 ObjectProperty: d3f:providedBy
 
@@ -251,25 +291,6 @@ ObjectProperty: stix:indicates
         indicates
     
     
-DataProperty: <https://schema.mekanoid.io/mekanoid.owl#external-id>
-
-    Annotations: 
-        rdfs:label "external ID"@en
-    
-    SubPropertyOf: 
-        dataProperty
-    
-    
-DataProperty: <https://schema.mekanoid.io/mekanoid.owl#value>
-
-    Annotations: 
-        rdfs:comment "A value parameter to be passed to Tasks"@en,
-        rdfs:label "has value"@en
-    
-    SubPropertyOf: 
-        dataProperty
-    
-    
 DataProperty: dataProperty
 
     Annotations: 
@@ -314,6 +335,15 @@ DataProperty: dateTimeEpoch
     
     EquivalentTo: 
         time:numericPosition
+    
+    
+DataProperty: external-id
+
+    Annotations: 
+        rdfs:label "external ID"@en
+    
+    SubPropertyOf: 
+        dataProperty
     
     
 DataProperty: firstSeen
@@ -389,6 +419,42 @@ DataProperty: id
     
     EquivalentTo: 
         stix:id
+    
+    
+DataProperty: importBucketName
+
+    Annotations: 
+        rdfs:label "bucketName"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importBucketUrl
+
+    Annotations: 
+        rdfs:label "bucketUrl"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importFileName
+
+    Annotations: 
+        rdfs:label "filename"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importId
+
+    Annotations: 
+        rdfs:label "importId"@en
+    
+    SubPropertyOf: 
+        dataProperty
     
     
 DataProperty: lastAccessedEpoch
@@ -482,6 +548,24 @@ DataProperty: stringValue
     
     Range: 
         xsd:string
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: teamId
+
+    Annotations: 
+        rdfs:label "teamID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: templateId
+
+    Annotations: 
+        rdfs:label "templateId"@en
     
     SubPropertyOf: 
         dataProperty
@@ -653,6 +737,16 @@ DataProperty: timeCreated
         dateTime
     
     
+DataProperty: timeCreatedEpoch
+
+    Annotations: 
+        rdfs:comment "Time when the entity had been created at the point of origin."@en,
+        rdfs:label "created at"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
 DataProperty: timeProperty
 
     Annotations: 
@@ -680,6 +774,25 @@ DataProperty: types:hashValue
 
     EquivalentTo: 
         hashValue
+    
+    
+DataProperty: userId
+
+    Annotations: 
+        rdfs:label "userID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: value
+
+    Annotations: 
+        rdfs:comment "A value parameter to be passed to Tasks"@en,
+        rdfs:label "has value"@en
+    
+    SubPropertyOf: 
+        dataProperty
     
     
 Class: ActionableItem
@@ -719,7 +832,8 @@ Class: Detection
     Annotations: 
         rdfs:label "Detection"@en,
         skos:altLabel "Alert"@en,
-        skos:altLabel "Signal"@en
+        skos:altLabel "Signal"@en,
+        icon "signal.svg"
     
     SubClassOf: 
         Event,
@@ -729,10 +843,11 @@ Class: Detection
 Class: DetectionRule
 
     Annotations: 
-        rdfs:label "Detection Rule"@en
+        rdfs:label "Detection Rule"@en,
+        icon "rule.svg"
     
     SubClassOf: 
-        Configuration,
+        d3f:ApplicationRule,
         d3f:creates some Detection
     
     
@@ -836,6 +951,18 @@ Class: IPv6
     
     SubClassOf: 
         d3f:IPAddress
+    
+    
+Class: Incident
+
+    Annotations: 
+        rdfs:label "Incident"@en,
+        skos:altLabel "Case"@en,
+        icon "case.svg"
+    
+    SubClassOf: 
+        ActionableItem
+    
     
 Class: MD5
 
@@ -962,7 +1089,8 @@ Class: SHA512
 Class: Sigma
 
     Annotations: 
-        rdfs:label "Sigma Rule"@en
+        rdfs:label "Sigma Rule"@en,
+        icon "rule-sigma.svg"
     
     SubClassOf: 
         DetectionRule,
@@ -994,7 +1122,8 @@ Class: Ticket
     Annotations: 
         rdfs:label "Ticket"@en,
         skos:altLabel "Issue"@en,
-        skos:altLabel "Task"@en
+        skos:altLabel "Task"@en,
+        icon "ticket.svg"@en
     
     SubClassOf: 
         ActionableItem
@@ -1023,11 +1152,15 @@ Class: Username
 Class: Yara
 
     Annotations: 
-        rdfs:label "YARA Rule"@en
+        rdfs:label "YARA Rule"@en,
+        icon "rule-yara.svg"
     
     SubClassOf: 
         DetectionRule
     
+    
+Class: d3f:ApplicationRule
+
     
 Class: d3f:ConfigurationFile
 
@@ -1046,6 +1179,9 @@ Class: d3f:IPAddress
     
 Class: d3f:Identifier
 
+    Annotations: 
+        icon "text.svg"
+    
     
 Class: d3f:Record
 

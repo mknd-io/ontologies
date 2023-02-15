@@ -1,794 +1,1197 @@
-@prefix : <https://schema.mekanoid.io/mekanoid.owl#> .
-@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix stix: <http://purl.org/cyber/stix#> .
-@prefix time: <http://www.w3.org/2006/time#> .
-@prefix types: <https://ontology.unifiedcyberontology.org/uco/types/> .
-@base <https://schema.mekanoid.io/mekanoid.owl#> .
-
-<https://schema.mekanoid.io/mekanoid.owl> rdf:type owl:Ontology ;
-                                           owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
-                                           dct:created "2022-04-02"^^xsd:date ;
-                                           dct:creator <mailto:anton.goncharov@gmail.com> ;
-                                           dct:license "MIT"^^xsd:string ;
-                                           dct:modified "2022-10-10"^^xsd:date ;
-                                           dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string .
-
-#################################################################
-#    Annotation properties
-#################################################################
-
-###  http://purl.org/dc/terms/created
-dct:created rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/creator
-dct:creator rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/modified
-dct:modified rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/title
-dct:title rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#altLabel
-skos:altLabel rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#definition
-skos:definition rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#example
-skos:example rdf:type owl:AnnotationProperty .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#context
-:context rdf:type owl:AnnotationProperty ;
-         rdfs:label "context"@en ;
-         rdfs:subPropertyOf rdfs:comment ;
-         rdfs:range xsd:anyURI ,
-                    xsd:longString .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#icon
-:icon rdf:type owl:AnnotationProperty ;
-      rdfs:label "has icon"@en ;
-      rdfs:range xsd:anyURI ;
-      rdfs:domain owl:Thing .
-
-
-#################################################################
-#    Object Properties
-#################################################################
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy
-d3f:providedBy rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:provides ;
-               rdfs:label "provided by"@en .
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#provides
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
-d3f:analyzed-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:analyzes ;
-               rdfs:label "analyzed by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
-d3f:isolated-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:isolates ;
-               rdfs:label "isolated by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
-d3f:connected-by rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:connects ;
-               rdfs:label "connected by"@en .
-
-
-###  http://purl.org/cyber/stix#indicatedBy
-stix:indicatedBy rdf:type owl:ObjectProperty ;
-                 owl:equivalentProperty :indicatedBy .
-
-
-###  http://purl.org/cyber/stix#indicates
-stix:indicates rdf:type owl:ObjectProperty ;
-               owl:equivalentProperty :indicates .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#identifiedBy
-:identifiedBy rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf :objectProperty ;
-              owl:inverseOf :identifies ;
-              rdfs:range d3f:Identifier ;
-              rdfs:label "is identified by"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#identifies
-:identifies rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :objectProperty ;
-            rdfs:domain d3f:Identifier ;
-            rdfs:label "identifies"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#indicatedBy
-:indicatedBy rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :mayBeIndicatedBy ;
-             owl:inverseOf :indicates ;
-             rdfs:label "indicated by"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#indicates
-:indicates rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :mayIndicate ;
-           rdfs:label "indicates"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#mayBeIndicatedBy
-:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :objectProperty ;
-                  owl:inverseOf :mayIndicate ;
-                  rdfs:label "may be indicated by"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#mayIndicate
-:mayIndicate rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :objectProperty ;
-             rdfs:label "may indicate"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#objectProperty
-:objectProperty rdf:type owl:ObjectProperty ;
-                rdfs:comment "Mekanoid object property"@en ;
-                rdfs:label "has relationship"@en .
-
-
-#################################################################
-#    Data properties
-#################################################################
-
-###  http://purl.org/cyber/stix#id
-stix:id rdf:type owl:DatatypeProperty ;
-        owl:equivalentProperty :id .
-
-
-###  http://purl.org/cyber/stix#size
-stix:size rdf:type owl:DatatypeProperty ;
-          owl:equivalentProperty :size .
-
-
-###  http://www.w3.org/2006/time#day
-time:day rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#dayOfYear
-time:dayOfYear rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#days
-time:days rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#hasXSDDuration
-time:hasXSDDuration rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#hour
-time:hour rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#hours
-time:hours rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDDate
-time:inXSDDate rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDDateTime
-time:inXSDDateTime rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDDateTimeStamp
-time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
-                        owl:equivalentProperty :dateTime ;
-                        rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDgYear
-time:inXSDgYear rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#inXSDgYearMonth
-time:inXSDgYearMonth rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#minute
-time:minute rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#minutes
-time:minutes rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#month
-time:month rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#months
-time:months rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#nominalPosition
-time:nominalPosition rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#numericDuration
-time:numericDuration rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#numericPosition
-time:numericPosition rdf:type owl:DatatypeProperty ;
-                     owl:equivalentProperty :dateTimeEpoch ;
-                     rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#second
-time:second rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#seconds
-time:seconds rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#week
-time:week rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#weeks
-time:weeks rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#xsdDateTime
-time:xsdDateTime rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#year
-time:year rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
-
-
-###  http://www.w3.org/2006/time#years
-time:years rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
-types:hashMethod rdf:type owl:DatatypeProperty ;
-                 owl:equivalentProperty :hashMethod .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/types/hashValue
-types:hashValue rdf:type owl:DatatypeProperty ;
-                owl:equivalentProperty :hashValue .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#dataProperty
-:dataProperty rdf:type owl:DatatypeProperty ;
-              rdfs:comment "Mekanoid Data Property"@en ;
-              rdfs:label "has property"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#dateTime
-:dateTime rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :dataProperty ;
-          rdfs:domain :MekaThing ;
-          rdfs:range xsd:dateTimeStamp ;
-          rdfs:comment "A date and time associated with the entity"@en ;
-          rdfs:label "has timestamp"@en ;
-          skos:definition "A date and time associated with the entity"@en ;
-          skos:example "2002-10-10T12:00:00-05:00" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#dateTimeEpoch
-:dateTimeEpoch rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :dataProperty ;
-               rdfs:range xsd:long ;
-               rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
-               rdfs:label "has epoch"@en ;
-               skos:definition "A Unix epoch timestamp associated with the entity"@en ;
-               skos:example "990577200"^^xsd:long .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#firstSeen
-:firstSeen rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeSeen ;
-           rdfs:comment "The first time the enity had been observed by the application."@en ;
-           rdfs:label "first seen"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#firstSeenEpoch
-:firstSeenEpoch rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :dateTimeEpoch ;
-                rdfs:label "first seen"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#hasURL
-:hasURL rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :dataProperty ;
-        rdfs:range xsd:anyURI ;
-        rdfs:label "has URL"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#hashMethod
-:hashMethod rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :dataProperty ;
-            rdfs:range xsd:string ;
-            rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en ;
-            rdfs:label "hashMethod"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#hashValue
-:hashValue rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :dataProperty ;
-           rdfs:range xsd:hexBinary ;
-           rdfs:comment "A cryptographic hash value."@en ;
-           rdfs:label "hashValue"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#id
-:id rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf :dataProperty ;
-    rdfs:label "has id"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#lastAccessedEpoch
-:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :dateTimeEpoch ;
-                   rdfs:label "last accessed"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#lastSeen
-:lastSeen rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeSeen ;
-          rdfs:comment "The last time the entity had been observed by the application."@en ;
-          rdfs:label "last seen"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#lastSeenEpoch
-:lastSeenEpoch rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :dateTimeEpoch ;
-               rdfs:label "last seen"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#lastStatusChangeEpoch
-:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf :dateTimeEpoch ;
-                       rdfs:label "last status change"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#lastUpdatedEpoch
-:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :dateTimeEpoch ;
-                  rdfs:label "last modified"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#needs-privileges
-:needs-privileges rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :dateTime ;
-                  rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
-                  rdfs:label "seen at"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#size
-:size rdf:type owl:DatatypeProperty ;
-      rdfs:subPropertyOf :dataProperty ;
-      rdfs:label "has size"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#stringValue
-:stringValue rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:domain :Observable ;
-             rdfs:range xsd:string ;
-             rdfs:comment "the object is represented by the following string value"@en ;
-             rdfs:label "is"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#timeCreated
-:timeCreated rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dateTime ;
-             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-             rdfs:label "created at"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#timeCreatedEpoch
-:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dateTimeEpoch ;
-             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-             rdfs:label "created at"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#timeProperty
-:timeProperty rdf:type owl:DatatypeProperty ;
-              rdfs:label "time property"@en ;
-              :context "Grouped here from time ontology: https://www.w3.org/2006/time"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#timeSeen
-:timeSeen rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :dateTime ;
-          rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
-          rdfs:label "seen at"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#userId
-:userId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "userID"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#teamId
-:teamId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "teamID"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importId
-:importId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "importId"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importBucketName
-:importBucketName rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "bucketName"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importFileName
-:importFileName rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "filename"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#templateId
-:templateId rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "templateId"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#importBuckeUrl
-:importBucketUrl rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:label "bucketUrl"@en .
-
-
-#################################################################
-#    Classes
-#################################################################
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
-d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                       owl:onProperty d3f:enables ;
-                                       owl:someValuesFrom :Function
-                                     ] .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
-d3f:Software :icon "software.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#ActionableItem
-:ActionableItem rdf:type owl:Class ;
-                rdfs:subClassOf d3f:Record ,
-                                :MekaThing ;
-                rdfs:comment "A foundational element for analyst workflows."@en ;
-                rdfs:label "Actionable Item"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Attack
-:Attack rdf:type owl:Class ;
-        rdfs:subClassOf :MekaThing ;
-        rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI ;
-        rdfs:label "Attack"@en ;
-        skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#DetectionRule
-:DetectionRule rdf:type owl:Class ;
-               rdfs:subClassOf :MekaThing ;
-               rdfs:label "Detection Rule"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#EmailAddress
-:EmailAddress rdf:type owl:Class ;
-              rdfs:subClassOf :Observable ;
-              rdfs:comment "An email address identifies an email box to which messages are delivered." ;
-              rdfs:label "Email Address" ;
-              :icon "email-address.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#EmailSenderString
-:EmailSenderString rdf:type owl:Class ;
-                   rdfs:subClassOf :Observable ;
-                   rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
-                   rdfs:label "Email Sender"@en ;
-                   skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#EmailSubjectString
-:EmailSubjectString rdf:type owl:Class ;
-                    rdfs:subClassOf :Observable ;
-                    rdfs:label "Email Subject"@en ;
-                    skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Event
-:Event rdf:type owl:Class ;
-       rdfs:subClassOf :MekaThing ;
-       rdfs:label "Event"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#EventData
-:EventData rdf:type owl:Class ;
-           rdfs:subClassOf d3f:Record ,
-                           :MekaThing ;
-           rdfs:label "Event Data"@en ;
-           skos:altLabel "Log record"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#FileName
-:FileName rdf:type owl:Class ;
-          rdfs:subClassOf :Observable ;
-          rdfs:label "File Name"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Function
-:Function rdf:type owl:Class ;
-          rdfs:subClassOf :MekaThing ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty d3f:enabled-by ;
-                            owl:someValuesFrom d3f:ExecutableBinary
-                          ] ;
-          rdfs:label "Function"@en ;
-          :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Hash
-:Hash rdf:type owl:Class ;
-      rdfs:subClassOf d3f:Identifier ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :hashValue ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:hexBinary
-                      ] ;
-      rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en ;
-      rdfs:label "Hash"@en ;
-      :icon "hash.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#IPv4
-:IPv4 rdf:type owl:Class ;
-      rdfs:subClassOf d3f:IPAddress ;
-      rdfs:label "IP Address v4"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#IPv6
-:IPv6 rdf:type owl:Class ;
-      rdfs:subClassOf d3f:IPAddress ;
-      rdfs:label "IP Address v6"@en .
-
-###  https://schema.mekanoid.io/mekanoid.owl#MD5
-:MD5 rdf:type owl:Class ;
-     rdfs:subClassOf :Hash ;
-     rdfs:comment "MD5 cryptographic hash value"@en ;
-     rdfs:label "MD5 Hash"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Malware
-:Malware rdf:type owl:Class ;
-         rdfs:subClassOf d3f:Software ,
-                         :MekaThing ;
-         rdfs:label "Malware"@en ;
-         skos:altLabel "Malicious software"@en ;
-         :icon "skull.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#MekaThing
-:MekaThing rdf:type owl:Class ;
-           rdfs:subClassOf owl:Thing ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :timeSeen ;
-                             owl:someValuesFrom xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :firstSeen ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :firstSeenEpoch ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:long
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :lastSeen ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :timeCreated ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ;
-           rdfs:label "Mekanoid Thing"@en ;
-           skos:altLabel "Mekanoid Ontology Item"^^xsd:string ;
-           :icon "instance.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Observable
-:Observable rdf:type owl:Class ;
-            rdfs:subClassOf :MekaThing ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :stringValue ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:string
-                            ] ;
-            rdfs:label "Observable"@en ;
-            :icon "pin.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Operation
-:Operation rdf:type owl:Class ;
-           rdfs:subClassOf :MekaThing ;
-           rdfs:label "Operation"@en ;
-           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Payload
-:Payload rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing ;
-         rdfs:label "Payload"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#PrivateIPAddress
-:PrivateIPAddress rdf:type owl:Class ;
-                  rdfs:subClassOf d3f:IPAddress ;
-                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
-                  rdfs:label "Private IP Address"@en ;
-                  skos:example "10.0.0.1" ,
-                               "192.168.0.1" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#PublicIPAddress
-:PublicIPAddress rdf:type owl:Class ;
-                 rdfs:subClassOf d3f:IPAddress ;
-                 rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en ;
-                 rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
-                 rdfs:label "Public IP Address"@en ;
-                 skos:example "4.2.2.1" ,
-                              "8.8.8.8" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#SHA1
-:SHA1 rdf:type owl:Class ;
-      rdfs:subClassOf :Hash ;
-      rdfs:comment "SHA-1 cryptographic hash value"@en ;
-      rdfs:label "SHA-1 Hash"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#SHA256
-:SHA256 rdf:type owl:Class ;
-        rdfs:subClassOf :Hash ;
-        rdfs:comment "SHA-256 cryptographic hash value"@en ;
-        rdfs:label "SHA-256 Hash"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#SHA512
-:SHA512 rdf:type owl:Class ;
-        rdfs:subClassOf :Hash ;
-        rdfs:label "SHA-512 Hash"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Socket
-:Socket rdf:type owl:Class ;
-        rdfs:subClassOf :MekaThing ;
-        rdfs:label "Network Socket"@en ;
-        skos:example "51.89.163.40:443"^^xsd:string ;
-        :icon "network.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Ticket
-:Ticket rdf:type owl:Class ;
-        rdfs:subClassOf :ActionableItem ;
-        rdfs:label "Ticket"@en ;
-        skos:altLabel "Issue"@en ,
-                      "Task"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Trojan
-:Trojan rdf:type owl:Class ;
-        rdfs:subClassOf :Malware ;
-        rdfs:label "Trojan"@en ;
-        skos:example "Trickbot"^^xsd:string ;
-        :icon "trojan.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Username
-:Username rdf:type owl:Class ;
-          rdfs:subClassOf d3f:Identifier ;
-          rdfs:label "Username"@en .
-
-
-#################################################################
-#    Annotations
-#################################################################
-
-d3f:BinaryLargeObject :icon "binary.svg" .
-
-
-d3f:BinarySegment :icon "binary.svg" .
-
-
-d3f:Database :icon "database.svg" .
-
-
-d3f:Directory :icon "folder.svg" .
-
-
-d3f:File :icon "file.svg" .
-
-
-d3f:Network :icon "network.svg" .
-
-
-d3f:NetworkTraffic :icon "network.svg" .
-
-
-d3f:Procedure rdfs:label "Procedure"@en ;
-              :icon "procedure.svg" .
-
-
-d3f:Process :icon "process.svg" .
-
-
-d3f:UserAccount :icon "user.svg" .
-
-
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+Prefix: : <https://schema.mekanoid.io/mekanoid.owl#>
+Prefix: d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>
+Prefix: dct: <http://purl.org/dc/terms/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: skos: <http://www.w3.org/2004/02/skos/core#>
+Prefix: stix: <http://purl.org/cyber/stix#>
+Prefix: time: <http://www.w3.org/2006/time#>
+Prefix: types: <https://ontology.unifiedcyberontology.org/uco/types/>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <https://schema.mekanoid.io/mekanoid.owl#>
+
+Import: <http://d3fend.mitre.org/ontologies/d3fend.owl>
+
+Annotations: 
+    dct:created "2022-04-02"^^xsd:date,
+    dct:creator <mailto:anton.goncharov@mekanoid.io>,
+    dct:license "MIT"^^xsd:string,
+    dct:modified "2023-02-15"^^xsd:date,
+    dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string
+
+AnnotationProperty: context
+
+    Annotations: 
+        rdfs:label "context"@en
+    
+    SubPropertyOf: 
+        rdfs:comment
+    
+    Range: 
+        <http://www.w3.org/2001/XMLSchema#anyURI>,
+        <http://www.w3.org/2001/XMLSchema#longString>
+    
+    
+AnnotationProperty: dct:created
+
+    
+AnnotationProperty: dct:creator
+
+    
+AnnotationProperty: dct:license
+
+    
+AnnotationProperty: dct:modified
+
+    
+AnnotationProperty: dct:title
+
+    
+AnnotationProperty: icon
+
+    Annotations: 
+        rdfs:label "has icon"@en
+    
+    Domain: 
+        <http://www.w3.org/2002/07/owl#Thing>
+    
+    Range: 
+        <http://www.w3.org/2001/XMLSchema#anyURI>
+    
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: rdfs:isDefinedBy
+
+    
+AnnotationProperty: rdfs:label
+
+    
+AnnotationProperty: skos:altLabel
+
+    
+AnnotationProperty: skos:definition
+
+    
+AnnotationProperty: skos:example
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: xsd:anyURI
+
+    
+Datatype: xsd:dateTimeStamp
+
+    
+Datatype: xsd:hexBinary
+
+    
+Datatype: xsd:long
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: d3f:analyzed-by
+
+    Annotations: 
+        rdfs:label "analyzed by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:analyzes
+    
+    
+ObjectProperty: d3f:analyzes
+
+    InverseOf: 
+        d3f:analyzed-by,
+        d3f:isolated-by
+    
+    
+ObjectProperty: d3f:connected-by
+
+    Annotations: 
+        rdfs:label "connected by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:connects
+    
+    
+ObjectProperty: d3f:connects
+
+    InverseOf: 
+        d3f:connected-by
+    
+    
+ObjectProperty: d3f:contained-by
+
+    
+ObjectProperty: d3f:contains
+
+    
+ObjectProperty: d3f:created-by
+
+    
+ObjectProperty: d3f:creates
+
+    
+ObjectProperty: d3f:d3fend-catalog-object-property
+
+    
+ObjectProperty: d3f:enabled-by
+
+    
+ObjectProperty: d3f:enables
+
+    
+ObjectProperty: d3f:isolated-by
+
+    Annotations: 
+        rdfs:label "isolated by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:analyzes
+    
+    
+ObjectProperty: d3f:providedBy
+
+    Annotations: 
+        rdfs:label "provided by"@en
+    
+    SubPropertyOf: 
+        d3f:d3fend-catalog-object-property
+    
+    InverseOf: 
+        d3f:provides
+    
+    
+ObjectProperty: d3f:provides
+
+    InverseOf: 
+        d3f:providedBy
+    
+    
+ObjectProperty: identifiedBy
+
+    Annotations: 
+        rdfs:label "is identified by"@en
+    
+    SubPropertyOf: 
+        objectProperty
+    
+    Range: 
+        d3f:Identifier
+    
+    InverseOf: 
+        identifies
+    
+    
+ObjectProperty: identifies
+
+    Annotations: 
+        rdfs:label "identifies"@en
+    
+    SubPropertyOf: 
+        objectProperty
+    
+    Domain: 
+        d3f:Identifier
+    
+    InverseOf: 
+        identifiedBy
+    
+    
+ObjectProperty: indicatedBy
+
+    Annotations: 
+        rdfs:label "indicated by"@en
+    
+    SubPropertyOf: 
+        mayBeIndicatedBy
+    
+    EquivalentTo: 
+        stix:indicatedBy
+    
+    InverseOf: 
+        indicates
+    
+    
+ObjectProperty: indicates
+
+    Annotations: 
+        rdfs:label "indicates"@en
+    
+    SubPropertyOf: 
+        mayIndicate
+    
+    EquivalentTo: 
+        stix:indicates
+    
+    InverseOf: 
+        indicatedBy
+    
+    
+ObjectProperty: mayBeIndicatedBy
+
+    Annotations: 
+        rdfs:label "may be indicated by"@en
+    
+    SubPropertyOf: 
+        objectProperty
+    
+    InverseOf: 
+        mayIndicate
+    
+    
+ObjectProperty: mayIndicate
+
+    Annotations: 
+        rdfs:label "may indicate"@en
+    
+    SubPropertyOf: 
+        objectProperty
+    
+    InverseOf: 
+        mayBeIndicatedBy
+    
+    
+ObjectProperty: objectProperty
+
+    Annotations: 
+        rdfs:comment "Mekanoid object property"@en,
+        rdfs:label "has relationship"@en
+    
+    
+ObjectProperty: stix:indicatedBy
+
+    EquivalentTo: 
+        indicatedBy
+    
+    
+ObjectProperty: stix:indicates
+
+    EquivalentTo: 
+        indicates
+    
+    
+DataProperty: dataProperty
+
+    Annotations: 
+        rdfs:comment "Mekanoid Data Property"@en,
+        rdfs:label "has property"@en
+    
+    
+DataProperty: dateTime
+
+    Annotations: 
+        rdfs:comment "A date and time associated with the entity"@en,
+        rdfs:label "has timestamp"@en,
+        skos:definition "A date and time associated with the entity"@en,
+        skos:example "2002-10-10T12:00:00-05:00"
+    
+    Domain: 
+        MekaThing
+    
+    Range: 
+        xsd:dateTimeStamp
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        time:inXSDDateTimeStamp
+    
+    
+DataProperty: dateTimeEpoch
+
+    Annotations: 
+        rdfs:comment "A Unix epoch timestamp associated with the entity"@en,
+        rdfs:label "has epoch"@en,
+        skos:definition "A Unix epoch timestamp associated with the entity"@en,
+        skos:example "990577200"^^xsd:long
+    
+    Range: 
+        xsd:long
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        time:numericPosition
+    
+    
+DataProperty: external-id
+
+    Annotations: 
+        rdfs:label "external ID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: firstSeen
+
+    Annotations: 
+        rdfs:comment "The first time the enity had been observed by the application."@en,
+        rdfs:label "first seen"@en
+    
+    SubPropertyOf: 
+        timeSeen
+    
+    
+DataProperty: firstSeenEpoch
+
+    Annotations: 
+        rdfs:label "first seen"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: hasURL
+
+    Annotations: 
+        rdfs:label "has URL"@en
+    
+    Range: 
+        xsd:anyURI
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: hashMethod
+
+    Annotations: 
+        rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en,
+        rdfs:label "hashMethod"@en
+    
+    Range: 
+        xsd:string
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        types:hashMethod
+    
+    
+DataProperty: hashValue
+
+    Annotations: 
+        rdfs:comment "A cryptographic hash value."@en,
+        rdfs:label "hashValue"@en
+    
+    Range: 
+        xsd:hexBinary
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        types:hashValue
+    
+    
+DataProperty: id
+
+    Annotations: 
+        rdfs:label "has id"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        stix:id
+    
+    
+DataProperty: importBucketName
+
+    Annotations: 
+        rdfs:label "bucketName"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importBucketUrl
+
+    Annotations: 
+        rdfs:label "bucketUrl"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importFileName
+
+    Annotations: 
+        rdfs:label "filename"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: importId
+
+    Annotations: 
+        rdfs:label "importId"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: lastAccessedEpoch
+
+    Annotations: 
+        rdfs:label "last accessed"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: lastSeen
+
+    Annotations: 
+        rdfs:comment "The last time the entity had been observed by the application."@en,
+        rdfs:label "last seen"@en
+    
+    SubPropertyOf: 
+        timeSeen
+    
+    
+DataProperty: lastSeenEpoch
+
+    Annotations: 
+        rdfs:label "last seen"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: lastStatusChangeEpoch
+
+    Annotations: 
+        rdfs:label "last status change"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: lastUpdatedEpoch
+
+    Annotations: 
+        rdfs:label "last modified"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: needs-privileges
+
+    Annotations: 
+        rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en,
+        rdfs:label "seen at"@en
+    
+    SubPropertyOf: 
+        dateTime
+    
+    
+DataProperty: size
+
+    Annotations: 
+        rdfs:label "has size"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    EquivalentTo: 
+        stix:size
+    
+    
+DataProperty: stix:id
+
+    EquivalentTo: 
+        id
+    
+    
+DataProperty: stix:size
+
+    EquivalentTo: 
+        size
+    
+    
+DataProperty: stringValue
+
+    Annotations: 
+        rdfs:comment "the object is represented by the following string value"@en,
+        rdfs:label "is"@en
+    
+    Domain: 
+        Observable
+    
+    Range: 
+        xsd:string
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: teamId
+
+    Annotations: 
+        rdfs:label "teamID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: templateId
+
+    Annotations: 
+        rdfs:label "templateId"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: time:day
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:dayOfYear
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:days
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:hasXSDDuration
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:hour
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:hours
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:inXSDDate
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:inXSDDateTime
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:inXSDDateTimeStamp
+
+    SubPropertyOf: 
+        timeProperty
+    
+    EquivalentTo: 
+        dateTime
+    
+    
+DataProperty: time:inXSDgYear
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:inXSDgYearMonth
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:minute
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:minutes
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:month
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:months
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:nominalPosition
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:numericDuration
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:numericPosition
+
+    SubPropertyOf: 
+        timeProperty
+    
+    EquivalentTo: 
+        dateTimeEpoch
+    
+    
+DataProperty: time:second
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:seconds
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:week
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:weeks
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:xsdDateTime
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:year
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: time:years
+
+    SubPropertyOf: 
+        timeProperty
+    
+    
+DataProperty: timeCreated
+
+    Annotations: 
+        rdfs:comment "Time when the entity had been created at the point of origin."@en,
+        rdfs:label "created at"@en
+    
+    SubPropertyOf: 
+        dateTime
+    
+    
+DataProperty: timeCreatedEpoch
+
+    Annotations: 
+        rdfs:comment "Time when the entity had been created at the point of origin."@en,
+        rdfs:label "created at"@en
+    
+    SubPropertyOf: 
+        dateTimeEpoch
+    
+    
+DataProperty: timeProperty
+
+    Annotations: 
+        rdfs:label "time property"@en,
+        context "Grouped here from time ontology: https://www.w3.org/2006/time"@en
+    
+    
+DataProperty: timeSeen
+
+    Annotations: 
+        rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en,
+        rdfs:label "seen at"@en
+    
+    SubPropertyOf: 
+        dateTime
+    
+    
+DataProperty: types:hashMethod
+
+    EquivalentTo: 
+        hashMethod
+    
+    
+DataProperty: types:hashValue
+
+    EquivalentTo: 
+        hashValue
+    
+    
+DataProperty: userId
+
+    Annotations: 
+        rdfs:label "userID"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: value
+
+    Annotations: 
+        rdfs:comment "A value parameter to be passed to Tasks"@en,
+        rdfs:label "has value"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+Class: ActionableItem
+
+    Annotations: 
+        rdfs:comment "A foundational element for analyst workflows."@en,
+        rdfs:label "Actionable Item"@en
+    
+    SubClassOf: 
+        d3f:Record,
+        MekaThing
+    
+    
+Class: Attack
+
+    Annotations: 
+        rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI,
+        rdfs:label "Attack"@en,
+        skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en
+    
+    SubClassOf: 
+        Event
+    
+    
+Class: Configuration
+
+    Annotations: 
+        rdfs:label "Configuration"@en,
+        icon "gear.svg"
+    
+    SubClassOf: 
+        MekaThing
+    
+    
+Class: Detection
+
+    Annotations: 
+        rdfs:label "Detection"@en,
+        skos:altLabel "Alert"@en,
+        skos:altLabel "Signal"@en,
+        icon "signal.svg"
+    
+    SubClassOf: 
+        Event,
+        d3f:created-by some DetectionRule
+    
+    
+Class: DetectionRule
+
+    Annotations: 
+        rdfs:label "Detection Rule"@en,
+        icon "rule.svg"
+    
+    SubClassOf: 
+        d3f:ApplicationRule,
+        d3f:creates some Detection
+    
+    
+Class: EmailAddress
+
+    Annotations: 
+        rdfs:comment "An email address identifies an email box to which messages are delivered.",
+        rdfs:label "Email Address",
+        icon "email-address.svg"
+    
+    SubClassOf: 
+        Observable
+    
+    
+Class: EmailSenderString
+
+    Annotations: 
+        rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en,
+        rdfs:label "Email Sender"@en,
+        skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string
+    
+    SubClassOf: 
+        Observable
+    
+    
+Class: EmailSubjectString
+
+    Annotations: 
+        rdfs:label "Email Subject"@en,
+        skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string
+    
+    SubClassOf: 
+        Observable
+    
+    
+Class: Event
+
+    Annotations: 
+        rdfs:label "Event"@en
+    
+    SubClassOf: 
+        MekaThing
+    
+    
+Class: EventData
+
+    Annotations: 
+        rdfs:label "Event Data"@en,
+        skos:altLabel "Log record"@en
+    
+    SubClassOf: 
+        d3f:Record,
+        MekaThing
+    
+    
+Class: FileName
+
+    Annotations: 
+        rdfs:label "File Name"@en
+    
+    SubClassOf: 
+        Observable
+    
+    
+Class: Function
+
+    Annotations: 
+        rdfs:label "Function"@en,
+        context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI
+    
+    SubClassOf: 
+        MekaThing,
+        d3f:enabled-by some d3f:ExecutableBinary
+    
+    
+Class: Hash
+
+    Annotations: 
+        rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en,
+        rdfs:label "Hash"@en,
+        icon "hash.svg"
+    
+    SubClassOf: 
+        d3f:Identifier,
+        hashValue exactly 1 xsd:hexBinary
+    
+    
+Class: IPv4
+
+    Annotations: 
+        rdfs:label "IP Address v4"@en
+    
+    SubClassOf: 
+        d3f:IPAddress
+    
+    
+Class: IPv6
+
+    Annotations: 
+        rdfs:label "IP Address v6"@en
+    
+    SubClassOf: 
+        d3f:IPAddress
+    
+    
+Class: Incident
+
+    Annotations: 
+        rdfs:label "Incident"@en,
+        skos:altLabel "Case"@en,
+        icon "case.svg"
+    
+    SubClassOf: 
+        ActionableItem
+    
+    
+Class: MD5
+
+    Annotations: 
+        rdfs:comment "MD5 cryptographic hash value"@en,
+        rdfs:label "MD5 Hash"@en
+    
+    SubClassOf: 
+        Hash
+    
+    
+Class: Malware
+
+    Annotations: 
+        rdfs:label "Malware"@en,
+        skos:altLabel "Malicious software"@en,
+        icon "skull.svg"
+    
+    SubClassOf: 
+        d3f:Software,
+        MekaThing
+    
+    
+Class: MekaThing
+
+    Annotations: 
+        rdfs:label "Mekanoid Thing"@en,
+        skos:altLabel "Mekanoid Ontology Item"^^xsd:string,
+        icon "instance.svg"
+    
+    SubClassOf: 
+        owl:Thing,
+        timeSeen some xsd:dateTimeStamp,
+        firstSeen exactly 1 xsd:dateTimeStamp,
+        firstSeenEpoch exactly 1 xsd:long,
+        lastSeen max 1 xsd:dateTimeStamp,
+        timeCreated max 1 xsd:dateTimeStamp
+    
+    
+Class: Observable
+
+    Annotations: 
+        rdfs:label "Observable"@en,
+        icon "pin.svg"
+    
+    SubClassOf: 
+        MekaThing,
+        stringValue exactly 1 xsd:string
+    
+    
+Class: Operation
+
+    Annotations: 
+        rdfs:label "Operation"@en,
+        context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI
+    
+    SubClassOf: 
+        MekaThing
+    
+    
+Class: Payload
+
+    Annotations: 
+        rdfs:label "Payload"@en
+    
+    SubClassOf: 
+        MekaThing
+    
+    
+Class: PrivateIPAddress
+
+    Annotations: 
+        rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI,
+        rdfs:label "Private IP Address"@en,
+        skos:example "10.0.0.1",
+        skos:example "192.168.0.1"
+    
+    SubClassOf: 
+        d3f:IPAddress
+    
+    
+Class: PublicIPAddress
+
+    Annotations: 
+        rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en,
+        rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI,
+        rdfs:label "Public IP Address"@en,
+        skos:example "4.2.2.1",
+        skos:example "8.8.8.8"
+    
+    SubClassOf: 
+        d3f:IPAddress
+    
+    
+Class: SHA1
+
+    Annotations: 
+        rdfs:comment "SHA-1 cryptographic hash value"@en,
+        rdfs:label "SHA-1 Hash"@en
+    
+    SubClassOf: 
+        Hash
+    
+    
+Class: SHA256
+
+    Annotations: 
+        rdfs:comment "SHA-256 cryptographic hash value"@en,
+        rdfs:label "SHA-256 Hash"@en
+    
+    SubClassOf: 
+        Hash
+    
+    
+Class: SHA512
+
+    Annotations: 
+        rdfs:label "SHA-512 Hash"@en
+    
+    SubClassOf: 
+        Hash
+    
+    
+Class: Sigma
+
+    Annotations: 
+        rdfs:label "Sigma Rule"@en,
+        icon "rule-sigma.svg"
+    
+    SubClassOf: 
+        DetectionRule,
+        d3f:contained-by some d3f:ConfigurationFile
+    
+    
+Class: Signature
+
+    Annotations: 
+        rdfs:label "Signature"@en
+    
+    SubClassOf: 
+        DetectionRule
+    
+    
+Class: Socket
+
+    Annotations: 
+        rdfs:label "Network Socket"@en,
+        skos:example "51.89.163.40:443"^^xsd:string,
+        icon "network.svg"
+    
+    SubClassOf: 
+        MekaThing
+    
+    
+Class: Ticket
+
+    Annotations: 
+        rdfs:label "Ticket"@en,
+        skos:altLabel "Issue"@en,
+        skos:altLabel "Task"@en,
+        icon "ticket.svg"@en
+    
+    SubClassOf: 
+        ActionableItem
+    
+    
+Class: Trojan
+
+    Annotations: 
+        rdfs:label "Trojan"@en,
+        skos:example "Trickbot"^^xsd:string,
+        icon "trojan.svg"
+    
+    SubClassOf: 
+        Malware
+    
+    
+Class: Username
+
+    Annotations: 
+        rdfs:label "Username"@en
+    
+    SubClassOf: 
+        d3f:Identifier
+    
+    
+Class: Yara
+
+    Annotations: 
+        rdfs:label "YARA Rule"@en,
+        icon "rule-yara.svg"
+    
+    SubClassOf: 
+        DetectionRule
+    
+    
+Class: d3f:ApplicationRule
+
+    
+Class: d3f:ConfigurationFile
+
+    SubClassOf: 
+        d3f:contains some Configuration
+    
+    
+Class: d3f:ExecutableBinary
+
+    SubClassOf: 
+        d3f:enables some Function
+    
+    
+Class: d3f:IPAddress
+
+    
+Class: d3f:Identifier
+
+    Annotations: 
+        icon "text.svg"
+    
+    
+Class: d3f:Record
+
+    
+Class: d3f:Software
+
+    Annotations: 
+        icon "software.svg"
+    
+    
+Class: owl:Thing
+
+    
