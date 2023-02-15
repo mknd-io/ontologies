@@ -15,10 +15,10 @@
 <https://schema.mekanoid.io/mekanoid.owl#> rdf:type owl:Ontology ;
                                             owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                             dct:created "2022-04-02"^^xsd:date ;
-                                            dct:creator <mailto:anton.goncharov@gmail.com> ;
+                                            dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT"^^xsd:string ;
-                                            dct:modified "2022-10-10"^^xsd:date ;
-                                            dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string .
+                                            dct:modified "2023-02-15"^^xsd:date ;
+                                            dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string .
 
 #################################################################
 #    Annotation properties
