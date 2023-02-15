@@ -43,7 +43,7 @@ mknd:1000016 rdfs:type d3f:File ;
   d3f:identified-by mknd:1000018, mknd:1000019 .
 
 mknd:1000017 rdfs:type d3f:Directory ;
-  rdfs:label """C:\Users\administrator1\Downloads""" ;
+  rdfs:label """C:\\Users\\administrator1\\Downloads""" ;
   d3f:contains mknd:1000016 .
 
 mknd:1000018 rdfs:type d3f:Hash ;
