@@ -560,14 +560,6 @@ d3f:Software :icon "software.svg" .
         skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#Incident
-:Incident rdf:type owl:Class ;
-      rdfs:subClassOf :ActionableItem ;
-      rdfs:label "Incident"@en ;
-      skos:altLabel "Case"@en ;
-      :icon "case.svg" .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#Configuration
 :Configuration rdf:type owl:Class ;
                rdfs:subClassOf :MekaThing ;
@@ -590,7 +582,7 @@ d3f:Software :icon "software.svg" .
 
 ###  https://schema.mekanoid.io/mekanoid.owl#DetectionRule
 :DetectionRule rdf:type owl:Class ;
-               rdfs:subClassOf :ApplicationRule ,
+               rdfs:subClassOf d3f:ApplicationRule ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty d3f:creates ;
                                  owl:someValuesFrom :Detection
@@ -676,6 +668,15 @@ d3f:Software :icon "software.svg" .
 :IPv6 rdf:type owl:Class ;
       rdfs:subClassOf d3f:IPAddress ;
       rdfs:label "IP Address v6"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Incident
+:Incident rdf:type owl:Class ;
+          rdfs:subClassOf :ActionableItem ;
+          rdfs:label "Incident"@en ;
+          skos:altLabel "Case"@en ;
+          :icon "case.svg" .
+
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MD5
 :MD5 rdf:type owl:Class ;
