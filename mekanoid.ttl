@@ -345,7 +345,7 @@ types:hashValue rdf:type owl:DatatypeProperty ;
 :extClassification rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf :dataProperty ;
                    rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en ;
-                   rdfs:label "classification"@en .
+                   rdfs:label "Classification"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#extPriority
@@ -497,6 +497,13 @@ types:hashValue rdf:type owl:DatatypeProperty ;
 :size rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf :dataProperty ;
       rdfs:label "has size"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#status
+:status rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en ;
+        rdfs:label "Status"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#stringValue
