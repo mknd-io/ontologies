@@ -17,7 +17,7 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT"^^xsd:string ;
-                                            dct:modified "2023-02-15"^^xsd:date ;
+                                            dct:modified "2023-03-06" ;
                                             dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string .
 
 #################################################################
@@ -341,6 +341,48 @@ types:hashValue rdf:type owl:DatatypeProperty ;
                skos:example "990577200"^^xsd:long .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#extClassification
+:extClassification rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :dataProperty ;
+                   rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en ;
+                   rdfs:label "classification"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#extPriority
+:extPriority rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :extClassification ;
+             rdfs:comment "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+             rdfs:label "Priority"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#extRisk
+:extRisk rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :extClassification ;
+         rdfs:comment "Risk as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+         rdfs:label "Risk"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#extSeverity
+:extSeverity rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :extClassification ;
+             rdfs:comment "Severity as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+             rdfs:label "Severity"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#extThreat
+:extThreat rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :extClassification ;
+           rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en ;
+           rdfs:label "Threat Level"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#extUrgency
+:extUrgency rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :extClassification ;
+            rdfs:comment "Urgency as defined by the 3rd party vendor responsible for generating the Artifact."@en ;
+            rdfs:label "Urgency"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#external-id
 :external-id rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :dataProperty ;
@@ -380,7 +422,7 @@ types:hashValue rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :dataProperty ;
            rdfs:range xsd:hexBinary ;
            rdfs:comment "A cryptographic hash value."@en ;
-           rdfs:label "hashValue"@en .
+           rdfs:label "hash value"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#id
