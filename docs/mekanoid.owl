@@ -21,7 +21,7 @@ Annotations:
     dct:created "2022-04-02"^^xsd:date,
     dct:creator <mailto:anton.goncharov@mekanoid.io>,
     dct:license "MIT"^^xsd:string,
-    dct:modified "2023-02-15"^^xsd:date,
+    dct:modified "2023-03-06",
     dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string
 
 AnnotationProperty: context
@@ -188,6 +188,12 @@ ObjectProperty: d3f:provides
         d3f:providedBy
     
     
+ObjectProperty: d3f:used-by
+
+    
+ObjectProperty: d3f:uses
+
+    
 ObjectProperty: identifiedBy
 
     Annotations: 
@@ -337,6 +343,66 @@ DataProperty: dateTimeEpoch
         time:numericPosition
     
     
+DataProperty: extClassification
+
+    Annotations: 
+        rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en,
+        rdfs:label "Classification"@en
+    
+    SubPropertyOf: 
+        dataProperty
+    
+    
+DataProperty: extPriority
+
+    Annotations: 
+        rdfs:comment "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en,
+        rdfs:label "Priority"@en
+    
+    SubPropertyOf: 
+        extClassification
+    
+    
+DataProperty: extRisk
+
+    Annotations: 
+        rdfs:comment "Risk as defined by the 3rd party vendor responsible for creating the Artifact."@en,
+        rdfs:label "Risk"@en
+    
+    SubPropertyOf: 
+        extClassification
+    
+    
+DataProperty: extSeverity
+
+    Annotations: 
+        rdfs:comment "Severity as defined by the 3rd party vendor responsible for creating the Artifact."@en,
+        rdfs:label "Severity"@en
+    
+    SubPropertyOf: 
+        extClassification
+    
+    
+DataProperty: extThreat
+
+    Annotations: 
+        rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en,
+        rdfs:label "Threat Level"@en
+    
+    SubPropertyOf: 
+        extClassification
+    
+    
+DataProperty: extUrgency
+
+    Annotations: 
+        rdfs:comment "Urgency as defined by the 3rd party vendor responsible for generating the Artifact."@en,
+        rdfs:label "Urgency"@en
+    
+    SubPropertyOf: 
+        extClassification
+    
+    
 DataProperty: external-id
 
     Annotations: 
@@ -397,7 +463,7 @@ DataProperty: hashValue
 
     Annotations: 
         rdfs:comment "A cryptographic hash value."@en,
-        rdfs:label "hashValue"@en
+        rdfs:label "hash value"@en
     
     Range: 
         xsd:hexBinary
@@ -523,6 +589,16 @@ DataProperty: size
     
     EquivalentTo: 
         stix:size
+    
+    
+DataProperty: status
+
+    Annotations: 
+        rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en,
+        rdfs:label "Status"@en
+    
+    SubPropertyOf: 
+        dataProperty
     
     
 DataProperty: stix:id
@@ -909,7 +985,9 @@ Class: FileName
         rdfs:label "File Name"@en
     
     SubClassOf: 
-        Observable
+        MekaThing,
+        Observable,
+        d3f:used-by some d3f:File
     
     
 Class: Function
@@ -932,6 +1010,7 @@ Class: Hash
     
     SubClassOf: 
         d3f:Identifier,
+        MekaThing,
         hashValue exactly 1 xsd:hexBinary
     
     
@@ -1114,6 +1193,7 @@ Class: Socket
         icon "network.svg"
     
     SubClassOf: 
+        d3f:Identifier,
         MekaThing
     
     
@@ -1146,7 +1226,7 @@ Class: Username
         rdfs:label "Username"@en
     
     SubClassOf: 
-        d3f:Identifier
+        Observable
     
     
 Class: Yara
@@ -1174,6 +1254,12 @@ Class: d3f:ExecutableBinary
         d3f:enables some Function
     
     
+Class: d3f:File
+
+    Annotations: 
+        icon "file.svg"
+    
+    
 Class: d3f:IPAddress
 
     
@@ -1190,6 +1276,15 @@ Class: d3f:Software
 
     Annotations: 
         icon "software.svg"
+    
+    
+Class: d3f:UserAccount
+
+    Annotations: 
+        icon "user-account.svg"
+    
+    SubClassOf: 
+        d3f:uses some Username
     
     
 Class: owl:Thing
