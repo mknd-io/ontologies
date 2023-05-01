@@ -757,7 +757,8 @@ d3f:Software :icon "software.svg" .
                   rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                   rdfs:label "Private IP Address"@en ;
                   skos:example "10.0.0.1" ,
-                               "192.168.0.1" .
+                               "192.168.0.1" ;
+                  :icon "ip.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#PublicIPAddress
@@ -767,7 +768,8 @@ d3f:Software :icon "software.svg" .
                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
                  rdfs:label "Public IP Address"@en ;
                  skos:example "4.2.2.1" ,
-                              "8.8.8.8" .
+                              "8.8.8.8" ;
+                  :icon "ip.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#SHA1
@@ -924,6 +926,9 @@ d3f:Process :icon "process.svg" .
 
 
 d3f:Sensor :icon "broken.svg" .
+
+
+d3f:SoftwareService :icon "software.svg" .
 
 
 d3f:Server :icon "server.svg" .
