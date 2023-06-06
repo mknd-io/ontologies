@@ -593,16 +593,20 @@ d3f:File :icon "file.svg" .
 d3f:Identifier :icon "text.svg" .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
-d3f:Software :icon "software.svg" .
-
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
 d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:onProperty d3f:uses ;
                                   owl:someValuesFrom :Username
                                 ] ;
                 :icon "user-account.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#ASN
+:ASN rdf:type owl:Class ;
+     rdfs:subClassOf d3f:Identifier ,
+                     :MekaThing ;
+     rdfs:comment "Autonomous System Number"@en ;
+     rdfs:label "ASN"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#ActionableItem
@@ -691,8 +695,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#FileName
 :FileName rdf:type owl:Class ;
-          rdfs:subClassOf :MekaThing ,
-                          :Observable ,
+          rdfs:subClassOf :Observable ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty d3f:used-by ;
                             owl:someValuesFrom d3f:File
@@ -750,6 +753,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
      rdfs:subClassOf :Hash ;
      rdfs:comment "MD5 cryptographic hash value"@en ;
      rdfs:label "MD5 Hash"@en .
+
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MekaThing
 :MekaThing rdf:type owl:Class ;
@@ -826,7 +830,14 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                  rdfs:label "Public IP Address"@en ;
                  skos:example "4.2.2.1" ,
                               "8.8.8.8" ;
-                  :icon "ip.svg" .
+                 :icon "ip.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Report
+:Report rdf:type owl:Class ;
+        rdfs:subClassOf d3f:Record ,
+                        :MekaThing ;
+        rdfs:label "Report"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#SHA1
@@ -869,7 +880,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 ###  https://schema.mekanoid.io/mekanoid.owl#Socket
 :Socket rdf:type owl:Class ;
         rdfs:subClassOf d3f:Identifier ,
-                        :MekaThing ;
+                        :Observable ;
         rdfs:label "Network Socket"@en ;
         skos:example "51.89.163.40:443"^^xsd:string ;
         :icon "network.svg" .
@@ -882,6 +893,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
         skos:altLabel "Issue"@en ,
                       "Task"@en ;
         :icon "ticket.svg"@en .
+
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Username
 :Username rdf:type owl:Class ;
@@ -948,6 +960,7 @@ d3f:Host :icon "computer.svg" .
 
 d3f:IntrusionDetectionSystem :icon "broken.svg" .
 
+d3f:IPAddress :icon "ip.svg" .
 
 d3f:Link :icon "url.svg" .
 
@@ -974,10 +987,13 @@ d3f:Process :icon "process.svg" .
 d3f:Sensor :icon "broken.svg" .
 
 
-d3f:SoftwareService :icon "software.svg" .
-
-
 d3f:Server :icon "server.svg" .
+
+
+d3f:Software :icon "software.svg" .
+
+
+d3f:SoftwareService :icon "software.svg" .
 
 
 d3f:Technique :icon "technique.svg" .
