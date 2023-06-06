@@ -17,8 +17,8 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT"^^xsd:string ;
-                                            dct:modified "2023-03-06" ;
-                                            dct:title "Mekanoid Ontology for Cybersecurity Automation"^^xsd:string .
+                                            dct:modified "2023-06-06" ;
+                                            dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string .
 
 #################################################################
 #    Annotation properties
@@ -882,15 +882,6 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
         skos:altLabel "Issue"@en ,
                       "Task"@en ;
         :icon "ticket.svg"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Trojan
-:Trojan rdf:type owl:Class ;
-        rdfs:subClassOf :Malware ;
-        rdfs:label "Trojan"@en ;
-        skos:example "Trickbot"^^xsd:string ;
-        :icon "trojan.svg" .
-
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Username
 :Username rdf:type owl:Class ;
