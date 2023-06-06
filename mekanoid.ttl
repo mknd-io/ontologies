@@ -751,16 +751,6 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
      rdfs:comment "MD5 cryptographic hash value"@en ;
      rdfs:label "MD5 Hash"@en .
 
-
-###  https://schema.mekanoid.io/mekanoid.owl#Malware
-:Malware rdf:type owl:Class ;
-         rdfs:subClassOf d3f:Software ,
-                         :MekaThing ;
-         rdfs:label "Malware"@en ;
-         skos:altLabel "Malicious software"@en ;
-         :icon "skull.svg" .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#MekaThing
 :MekaThing rdf:type owl:Class ;
            rdfs:subClassOf owl:Thing ,
