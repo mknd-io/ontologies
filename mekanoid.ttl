@@ -16,9 +16,9 @@
                                             owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
-                                            dct:license "MIT"^^xsd:string ;
+                                            dct:license "MIT" ;
                                             dct:modified "2023-06-06" ;
-                                            dct:title "Mekanoid Cybersecurity Automation Ontology"^^xsd:string .
+                                            dct:title "Mekanoid Cybersecurity Automation Ontology" .
 
 #################################################################
 #    Annotation properties
@@ -68,6 +68,14 @@ skos:example rdf:type owl:AnnotationProperty .
 
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -82,6 +90,10 @@ d3f:analyzed-by rdf:type owl:ObjectProperty ;
 d3f:analyzes owl:inverseOf d3f:isolated-by .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
+d3f:associated-with rdf:type owl:SymmetricProperty .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
 d3f:connected-by rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
@@ -89,12 +101,14 @@ d3f:connected-by rdf:type owl:ObjectProperty ;
                  rdfs:label "connected by"@en .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#connects
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
 d3f:isolated-by rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
                 rdfs:label "isolated by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with
+d3f:may-be-associated-with rdf:type owl:SymmetricProperty .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy
@@ -104,21 +118,9 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:label "provided by"@en .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#provides
-
-###  http://purl.org/cyber/stix#indicatedBy
-stix:indicatedBy rdf:type owl:ObjectProperty ;
-                 owl:equivalentProperty :indicatedBy .
-
-
-###  http://purl.org/cyber/stix#indicates
-stix:indicates rdf:type owl:ObjectProperty ;
-               owl:equivalentProperty :indicates .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#identifiedBy
 :identifiedBy rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf :objectProperty ;
+              rdfs:subPropertyOf :mekanoid-object-property ;
               owl:inverseOf :identifies ;
               rdfs:range d3f:Identifier ;
               rdfs:label "is identified by"@en .
@@ -126,7 +128,7 @@ stix:indicates rdf:type owl:ObjectProperty ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#identifies
 :identifies rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :objectProperty ;
+            rdfs:subPropertyOf :mekanoid-object-property ;
             rdfs:domain d3f:Identifier ;
             rdfs:label "identifies"@en .
 
@@ -146,21 +148,22 @@ stix:indicates rdf:type owl:ObjectProperty ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#mayBeIndicatedBy
 :mayBeIndicatedBy rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :objectProperty ;
+                  rdfs:subPropertyOf :mekanoid-object-property ;
                   owl:inverseOf :mayIndicate ;
                   rdfs:label "may be indicated by"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#mayIndicate
 :mayIndicate rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :objectProperty ;
+             rdfs:subPropertyOf :mekanoid-object-property ;
              rdfs:label "may indicate"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#objectProperty
-:objectProperty rdf:type owl:ObjectProperty ;
-                rdfs:comment "Mekanoid object property"@en ;
-                rdfs:label "has relationship"@en .
+###  https://schema.mekanoid.io/mekanoid.owl#mekanoid-object-property
+:mekanoid-object-property rdf:type owl:ObjectProperty ,
+                                   owl:SymmetricProperty ;
+                          rdfs:comment "Mekanoid object property"@en ;
+                          rdfs:label "has relationship"@en .
 
 
 #################################################################
@@ -589,6 +592,10 @@ d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
 d3f:File :icon "file.svg" .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+d3f:IPAddress :icon "ip.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
 d3f:Identifier :icon "text.svg" .
 
@@ -669,14 +676,14 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                    rdfs:subClassOf :Observable ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
-                   skos:example "Britney Greenman <mexragasu@gmail.com>"^^xsd:string .
+                   skos:example "Britney Greenman <mexragasu@gmail.com>" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#EmailSubjectString
 :EmailSubjectString rdf:type owl:Class ;
                     rdfs:subClassOf :Observable ;
                     rdfs:label "Email Subject"@en ;
-                    skos:example "Fwd: Fwd: Re: RE: RE: LOL"^^xsd:string .
+                    skos:example "Fwd: Fwd: Re: RE: RE: LOL" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Event
@@ -783,7 +790,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                              owl:onDataRange xsd:dateTimeStamp
                            ] ;
            rdfs:label "Mekanoid Thing"@en ;
-           skos:altLabel "Mekanoid Ontology Item"^^xsd:string ;
+           skos:altLabel "Mekanoid Ontology Item" ;
            :icon "instance.svg" .
 
 
@@ -882,7 +889,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
         rdfs:subClassOf d3f:Identifier ,
                         :Observable ;
         rdfs:label "Network Socket"@en ;
-        skos:example "51.89.163.40:443"^^xsd:string ;
+        skos:example "51.89.163.40:443" ;
         :icon "network.svg" .
 
 
@@ -945,8 +952,8 @@ d3f:DocumentFile :icon "doc.svg" .
 d3f:DomainName :icon "domain.svg" .
 
 
-d3f:Email :icon "email-message.svg" ;
-          skos:altLabel "Email Message"@en .
+d3f:Email skos:altLabel "Email Message"@en ;
+          :icon "email-message.svg" .
 
 
 d3f:ExecutableFile :icon "code-file.svg" .
@@ -960,7 +967,6 @@ d3f:Host :icon "computer.svg" .
 
 d3f:IntrusionDetectionSystem :icon "broken.svg" .
 
-d3f:IPAddress :icon "ip.svg" .
 
 d3f:Link :icon "url.svg" .
 
@@ -1002,4 +1008,4 @@ d3f:Technique :icon "technique.svg" .
 d3f:URL :icon "url.svg" .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
