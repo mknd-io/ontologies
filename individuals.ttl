@@ -5,11 +5,15 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix analysis: <https://ontology.unifiedcyberontology.org/uco/analysis/> .
+@prefix observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@base <https://schema.mekanoid.io/mekanoid.owl#> .
 
 #################################################################
 #    Individuals
