@@ -1,4 +1,4 @@
-@prefix : <https://schema.mekanoid.io/> .
+@prefix : <https://schema.mekanoid.io/mekanoid.owl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
