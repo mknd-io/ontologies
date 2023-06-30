@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="Imports Wizard Entry" name="https://schema.mekanoid.io/mekanoid.owl#" uri="https://schema.mekanoid.io/mekanoid.owl"/>
-    <uri id="Imports Wizard Entry" name="https://schema.mekanoid.io/mekanoid.owl" uri="https://schema.mekanoid.io/mekanoid.owl"/>
-    <uri id="Imports Wizard Entry" name="http://www.w3.org/2006/time#2016" uri="https://w3.org/2006/time"/>
     <uri id="Imports Wizard Entry" name="http://d3fend.mitre.org/ontologies/d3fend/0.10.1-BETA-1/d3fend.owl" uri="https://d3fend.mitre.org/ontologies/d3fend.ttl"/>
 </catalog>
