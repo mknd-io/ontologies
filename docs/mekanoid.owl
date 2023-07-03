@@ -7,20 +7,34 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:core="https://ontology.unifiedcyberontology.org/uco/core/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:stix="http://purl.org/cyber/stix#"
      xmlns:time="http://www.w3.org/2006/time#"
-     xmlns:types="https://ontology.unifiedcyberontology.org/uco/types/"
-     xmlns:analysis="https://ontology.unifiedcyberontology.org/uco/analysis/"
-     xmlns:observable="https://ontology.unifiedcyberontology.org/uco/observable/">
+     xmlns:uco-co="https://ontology.unifiedcyberontology.org/co/"
+     xmlns:uco-owl="https://ontology.unifiedcyberontology.org/owl/"
+     xmlns:uco-core="https://ontology.unifiedcyberontology.org/uco/core/"
+     xmlns:uco-role="https://ontology.unifiedcyberontology.org/uco/role/"
+     xmlns:uco-time="https://ontology.unifiedcyberontology.org/uco/time/"
+     xmlns:uco-tool="https://ontology.unifiedcyberontology.org/uco/tool/"
+     xmlns:uco-types="https://ontology.unifiedcyberontology.org/uco/types/"
+     xmlns:uco-action="https://ontology.unifiedcyberontology.org/uco/action/"
+     xmlns:uco-master="https://ontology.unifiedcyberontology.org/uco/uco/"
+     xmlns:uco-victim="https://ontology.unifiedcyberontology.org/uco/victim/"
+     xmlns:uco-marking="https://ontology.unifiedcyberontology.org/uco/marking/"
+     xmlns:uco-pattern="https://ontology.unifiedcyberontology.org/uco/pattern/"
+     xmlns:uco-analysis="https://ontology.unifiedcyberontology.org/uco/analysis/"
+     xmlns:uco-identity="https://ontology.unifiedcyberontology.org/uco/identity/"
+     xmlns:uco-location="https://ontology.unifiedcyberontology.org/uco/location/"
+     xmlns:uco-observable="https://ontology.unifiedcyberontology.org/uco/observable/"
+     xmlns:uco-vocabulary="https://ontology.unifiedcyberontology.org/uco/vocabulary/"
+     xmlns:uco-configuration="https://ontology.unifiedcyberontology.org/uco/configuration/">
     <owl:Ontology rdf:about="https://schema.mekanoid.io/mekanoid.owl#">
         <owl:imports rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl"/>
         <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2022-04-02</dct:created>
         <dct:creator rdf:resource="mailto:anton.goncharov@mekanoid.io"/>
         <dct:license>MIT</dct:license>
-        <dct:modified>2023-06-24</dct:modified>
+        <dct:modified>2023-07-03</dct:modified>
         <dct:title>Mekanoid Cybersecurity Automation Ontology</dct:title>
     </owl:Ontology>
     
