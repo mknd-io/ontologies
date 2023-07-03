@@ -9,6 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix uco-co: <https://ontology.unifiedcyberontology.org/co/> .
 @prefix uco-owl: <https://ontology.unifiedcyberontology.org/owl/> .
 @prefix uco-core: <https://ontology.unifiedcyberontology.org/uco/core/> .
@@ -184,6 +185,10 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                           rdfs:comment "Mekanoid object property"@en ;
                           rdfs:label "has relationship"@en .
 
+uco-core:externalReference a owl:ObjectProperty ;
+    rdfs:label "External Reference"@en-US ;
+    rdfs:comment "Specifies a reference to a resource outside of the UCO."@en-US ;
+    rdfs:range uco-core:ExternalReference .
 
 #################################################################
 #    Data properties
@@ -324,6 +329,12 @@ time:year rdf:type owl:DatatypeProperty ;
 ###  http://www.w3.org/2006/time#years
 time:years rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :timeProperty .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/core/statement
+uco-core:statement rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "A textual statement of an assertion." .
 
 
 ###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
@@ -627,6 +638,47 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                 :icon "user-account.svg" .
 
 
+###  https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult
+uco-analysis:AnalyticResult rdf:type owl:Class ;
+                            rdfs:subClassOf uco-core:Assertion .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/core/Assertion
+uco-core:Assertion rdf:type owl:Class ;
+                   rdfs:subClassOf uco-core:UcoThing ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty uco-core:statement ;
+                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onDataRange xsd:string
+                                   ] .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/core/ExternalReference
+uco-core:ExternalReference a owl:Class,
+        sh:NodeShape ;
+    rdfs:label "ExternalReference"@en ;
+    rdfs:comment "Characteristics of a reference to a resource outside of the UCO."@en ;
+    rdfs:subClassOf uco-core:UcoInherentCharacterizationThing ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path uco-core:referenceURL ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path uco-core:definingContext ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path uco-core:externalIdentifier ] ;
+    sh:targetClass uco-core:ExternalReference .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/core/UcoThing
+uco-core:UcoThing rdf:type owl:Class ;
+                  rdfs:label "UCO Thing"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#ASN
 :ASN rdf:type owl:Class ;
      rdfs:subClassOf d3f:Identifier ,
@@ -783,19 +835,18 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MekaThing
 :MekaThing rdf:type owl:Class ;
-           rdfs:subClassOf owl:Thing ,
-                           [ rdf:type owl:Restriction ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
                              owl:onProperty :timeSeen ;
                              owl:someValuesFrom xsd:dateTimeStamp
                            ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :firstSeen ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onDataRange xsd:dateTimeStamp
                            ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :firstSeenEpoch ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onDataRange xsd:long
                            ] ,
                            [ rdf:type owl:Restriction ;
@@ -815,12 +866,7 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Observable
 :Observable rdf:type owl:Class ;
-            rdfs:subClassOf :MekaThing ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :stringValue ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:string
-                            ] ;
+            rdfs:subClassOf :MekaThing ;
             rdfs:label "Observable"@en ;
             :icon "pin.svg" .
 
