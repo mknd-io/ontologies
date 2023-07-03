@@ -1,34 +1,97 @@
-@prefix : <https://schema.mekanoid.io/> .
+@prefix : <https://schema.mekanoid.io/mekanoid.owl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix types: <https://ontology.unifiedcyberontology.org/uco/types/> .
+@prefix analysis: <https://ontology.unifiedcyberontology.org/uco/analysis/> .
+@prefix observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@base <https://schema.mekanoid.io/mekanoid.owl#> .
+
+<https://schema.mekanoid.io/mekanoid.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#enables
+d3f:enables rdf:type owl:AnnotationProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#uses
+d3f:uses rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/cyber/stix#indicates
+stix:indicates rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#indicatedBy
+:indicatedBy rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#stringValue
+:stringValue rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
+d3f:ExecutableBinary rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001
+d3f:T1003.001 rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#FileName
+:FileName rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Function
+:Function rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Operation
+:Operation rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Procedure
+:Procedure rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#SubTechnique
+:SubTechnique rdf:type owl:Class .
+
 
 #################################################################
 #    Individuals
 #################################################################
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001
-d3f:T1003.001 rdf:type d3f:T1003.001 ,
-                       :SubTechnique ;
-              d3f:uses :Direct_Access_and_Read .
+d3f:T1003.001 rdf:type owl:NamedIndividual ,
+                       owl:Class ,
+                       d3f:T1003.001 ,
+                       :SubTechnique .
 
 
-###  https://schema.mekanoid.io/Command
+###  https://schema.mekanoid.io/mekanoid.owl#Command
 :Command rdf:type owl:NamedIndividual ,
                   :Function ;
          rdfs:comment "It can be used to break out from restricted environments by running non-interactive system commands."@en ;
          rdfs:label "Command"@en .
 
 
-###  https://schema.mekanoid.io/Direct_Access_and_Read
+###  https://schema.mekanoid.io/mekanoid.owl#Direct_Access_and_Read
 :Direct_Access_and_Read rdf:type owl:NamedIndividual ,
                                  :Procedure ;
                         d3f:uses :Process_Access ,
@@ -37,7 +100,7 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
                         rdfs:label "Direct Access and Read"@en .
 
 
-###  https://schema.mekanoid.io/ExecutableBinary_000009
+###  https://schema.mekanoid.io/mekanoid.owl#ExecutableBinary_000009
 :ExecutableBinary_000009 rdf:type owl:NamedIndividual ,
                                   d3f:ExecutableBinary ;
                          d3f:enables :file-read ,
@@ -48,124 +111,124 @@ d3f:T1003.001 rdf:type d3f:T1003.001 ,
                                      :shell ,
                                      :sudo ,
                                      :suid ;
-                         :indicatedBy :awk ;
                          rdfs:comment "Unix binary"@en ;
-                         rdfs:label "awk"@en .
+                         rdfs:label "awk"@en ;
+                         :indicatedBy :awk .
 
 
-###  https://schema.mekanoid.io/Handle_Copy
+###  https://schema.mekanoid.io/mekanoid.owl#Handle_Copy
 :Handle_Copy rdf:type owl:NamedIndividual ,
                       :Operation ;
              rdfs:label "Handle Copy"@en .
 
 
-###  https://schema.mekanoid.io/LSASS_Handle_Duplication
+###  https://schema.mekanoid.io/mekanoid.owl#LSASS_Handle_Duplication
 :LSASS_Handle_Duplication rdf:type owl:NamedIndividual ,
                                    :Procedure ;
                           rdfs:label "LSASS Handle Duplication"@en .
 
 
-###  https://schema.mekanoid.io/Process_Access
+###  https://schema.mekanoid.io/mekanoid.owl#Process_Access
 :Process_Access rdf:type owl:NamedIndividual ,
                          :Operation ;
                 rdfs:label "Process Access"@en .
 
 
-###  https://schema.mekanoid.io/Process_Create
+###  https://schema.mekanoid.io/mekanoid.owl#Process_Create
 :Process_Create rdf:type owl:NamedIndividual ,
                          :Operation ;
                 rdfs:label "Process Create"@en .
 
 
-###  https://schema.mekanoid.io/Process_Enumerate
+###  https://schema.mekanoid.io/mekanoid.owl#Process_Enumerate
 :Process_Enumerate rdf:type owl:NamedIndividual ,
                             :Operation ;
                    rdfs:label "Process Enumerate"@en .
 
 
-###  https://schema.mekanoid.io/Process_Enumeration
+###  https://schema.mekanoid.io/mekanoid.owl#Process_Enumeration
 :Process_Enumeration rdf:type owl:NamedIndividual ,
                               :Operation ;
                      rdfs:label "Process Enumeration"@en .
 
 
-###  https://schema.mekanoid.io/Process_Read
+###  https://schema.mekanoid.io/mekanoid.owl#Process_Read
 :Process_Read rdf:type owl:NamedIndividual ,
                        :Operation ;
               rdfs:label "Process Read"@en .
 
 
-###  https://schema.mekanoid.io/Reverse_Shell
+###  https://schema.mekanoid.io/mekanoid.owl#Reverse_Shell
 :Reverse_Shell rdf:type owl:NamedIndividual ,
                         :Function ;
                rdfs:comment "It can send back a reverse shell to a listening attacker to open a remote network access."@en ;
                rdfs:label "Reverse Shell"@en .
 
 
-###  https://schema.mekanoid.io/Snapshot_Create
+###  https://schema.mekanoid.io/mekanoid.owl#Snapshot_Create
 :Snapshot_Create rdf:type owl:NamedIndividual ,
                           :Operation ;
                  rdfs:label "Snapshot Create"@en .
 
 
-###  https://schema.mekanoid.io/awk
+###  https://schema.mekanoid.io/mekanoid.owl#awk
 :awk rdf:type owl:NamedIndividual ,
               :FileName ;
      stix:indicates :awk ;
-     :stringValue "awk"^^xsd:string ;
-     rdfs:label "awk"^^rdfs:Literal .
+     rdfs:label "awk"^^rdfs:Literal ;
+     :stringValue "awk" .
 
 
-###  https://schema.mekanoid.io/bind-shell
+###  https://schema.mekanoid.io/mekanoid.owl#bind-shell
 :bind-shell rdf:type owl:NamedIndividual ,
                      :Function ;
             rdfs:comment "It can bind a shell to a local port to allow remote network access."@en ;
             rdfs:label "Bind shell"@en .
 
 
-###  https://schema.mekanoid.io/capabilities
+###  https://schema.mekanoid.io/mekanoid.owl#capabilities
 :capabilities rdf:type owl:NamedIndividual ,
                        :Function ;
               rdfs:comment "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."@en ;
               rdfs:label "Capabilities"@en .
 
 
-###  https://schema.mekanoid.io/file-download
+###  https://schema.mekanoid.io/mekanoid.owl#file-download
 :file-download rdf:type owl:NamedIndividual ,
                         :Function ;
                rdfs:comment "It can download remote files."@en ;
                rdfs:label "File download"@en .
 
 
-###  https://schema.mekanoid.io/file-read
+###  https://schema.mekanoid.io/mekanoid.owl#file-read
 :file-read rdf:type owl:NamedIndividual ,
                     :Function ;
            rdfs:comment "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."@en ;
            rdfs:label "File read"@en .
 
 
-###  https://schema.mekanoid.io/file-upload
+###  https://schema.mekanoid.io/mekanoid.owl#file-upload
 :file-upload rdf:type owl:NamedIndividual ,
                       :Function ;
              rdfs:comment "It can exfiltrate files on the network."@en ;
              rdfs:label "File upload"@en .
 
 
-###  https://schema.mekanoid.io/file-write
+###  https://schema.mekanoid.io/mekanoid.owl#file-write
 :file-write rdf:type owl:NamedIndividual ,
                      :Function ;
             rdfs:comment "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."@en ;
             rdfs:label "File write"@en .
 
 
-###  https://schema.mekanoid.io/library-load
+###  https://schema.mekanoid.io/mekanoid.owl#library-load
 :library-load rdf:type owl:NamedIndividual ,
                        :Function ;
               rdfs:comment "It loads shared libraries that may be used to run code in the binary execution context."@en ;
               rdfs:label "Library load"@en .
 
 
-###  https://schema.mekanoid.io/limited-suid
+###  https://schema.mekanoid.io/mekanoid.owl#limited-suid
 :limited-suid rdf:type owl:NamedIndividual ,
                        :Function ;
               rdfs:comment """If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
@@ -174,35 +237,35 @@ This example creates a local SUID copy of the binary and runs it to maintain ele
               rdfs:label "Limited SUID"@en .
 
 
-###  https://schema.mekanoid.io/non-interactive-bind-shell
+###  https://schema.mekanoid.io/mekanoid.owl#non-interactive-bind-shell
 :non-interactive-bind-shell rdf:type owl:NamedIndividual ,
                                      :Function ;
                             rdfs:comment "It can bind a non-interactive shell to a local port to allow remote network access."@en ;
                             rdfs:label "Non-interactive bind shell"@en .
 
 
-###  https://schema.mekanoid.io/non-interactive-reverse-shell
+###  https://schema.mekanoid.io/mekanoid.owl#non-interactive-reverse-shell
 :non-interactive-reverse-shell rdf:type owl:NamedIndividual ,
                                         :Function ;
                                rdfs:comment "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."@en ;
                                rdfs:label "Non-interactive reverse shell"@en .
 
 
-###  https://schema.mekanoid.io/shell
+###  https://schema.mekanoid.io/mekanoid.owl#shell
 :shell rdf:type owl:NamedIndividual ,
                 :Function ;
        rdfs:comment "It can be used to break out from restricted environments by spawning an interactive system shell."@en ;
        rdfs:label "Shell"@en .
 
 
-###  https://schema.mekanoid.io/sudo
+###  https://schema.mekanoid.io/mekanoid.owl#sudo
 :sudo rdf:type owl:NamedIndividual ,
                :Function ;
       rdfs:comment "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."@en ;
       rdfs:label "Sudo"@en .
 
 
-###  https://schema.mekanoid.io/suid
+###  https://schema.mekanoid.io/mekanoid.owl#suid
 :suid rdf:type owl:NamedIndividual ,
                :Function ;
       rdfs:comment """If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.
@@ -210,3 +273,12 @@ This example creates a local SUID copy of the binary and runs it to maintain ele
 This example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."""@en ;
       rdfs:label "SUID"@en .
 
+
+#################################################################
+#    Annotations
+#################################################################
+
+d3f:T1003.001 d3f:uses :Direct_Access_and_Read .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
