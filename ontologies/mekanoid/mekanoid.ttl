@@ -1033,7 +1033,12 @@ d3f:Host :icon "computer.svg" .
 d3f:IntrusionDetectionSystem :icon "broken.svg" .
 
 
+d3f:IPAddress :icon "ip.svg" .
+
+
 d3f:Link :icon "url.svg" .
+
+d3f:LogFile :icon "doc.svg" .
 
 
 d3f:Network :icon "network.svg" .
