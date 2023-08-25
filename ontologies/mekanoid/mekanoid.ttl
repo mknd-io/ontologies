@@ -162,6 +162,11 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:label "provided by"@en .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#records
+d3f:records rdfs:domain uco-core:ExternalReference ;
+            rdfs:range uco-core:Assertion .
+
+
 ###  https://ontology.unifiedcyberontology.org/uco/core/externalReference
 uco-core:externalReference rdf:type owl:ObjectProperty ;
                            rdfs:range uco-core:ExternalReference ;
@@ -642,6 +647,10 @@ d3f:ConfigurationFile rdfs:subClassOf [ rdf:type owl:Restriction ;
 d3f:ConfigurationResource owl:equivalentClass :Configuration .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
+d3f:DomainName :icon "domain.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
 d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
                                        owl:onProperty d3f:enables ;
@@ -653,12 +662,33 @@ d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
 d3f:File :icon "file.svg" .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
+d3f:FileHash :icon "file-hash.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
-d3f:IPAddress :icon "ip.svg" .
+d3f:IPAddress rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:associated-with ;
+                                owl:someValuesFrom uco-analysis:AnalyticResult
+                              ] ;
+              :icon "ip.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
 d3f:Identifier :icon "text.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Log
+d3f:Log rdfs:subClassOf d3f:Record ;
+        :icon "log.svg"^^xsd:anyURI .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
+d3f:URL rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:associated-with ;
+                          owl:someValuesFrom uco-analysis:AnalyticResult
+                        ] ;
+        :icon "url.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
@@ -682,7 +712,27 @@ sh:NodeShape rdf:type owl:Class .
 
 ###  https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult
 uco-analysis:AnalyticResult rdf:type owl:Class ;
-                            rdfs:subClassOf uco-core:Assertion .
+                            rdfs:subClassOf uco-core:Assertion ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty d3f:analyzes ;
+                                              owl:someValuesFrom d3f:FileHash
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty d3f:analyzes ;
+                                              owl:someValuesFrom d3f:IPAddress
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty d3f:analyzes ;
+                                              owl:someValuesFrom d3f:URL
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty d3f:analyzes ;
+                                              owl:someValuesFrom :Hash
+                                            ] ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty uco-core:externalReference ;
+                                              owl:someValuesFrom uco-core:ExternalReference
+                                            ] .
 
 
 ###  https://ontology.unifiedcyberontology.org/uco/core/Assertion
@@ -697,11 +747,31 @@ uco-core:Assertion rdf:type owl:Class ;
 
 ###  https://ontology.unifiedcyberontology.org/uco/core/ExternalReference
 uco-core:ExternalReference rdf:type owl:Class ;
-                           rdfs:subClassOf uco-core:UcoInherentCharacterizationThing .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/core/UcoInherentCharacterizationThing
-uco-core:UcoInherentCharacterizationThing rdf:type owl:Class .
+                           rdfs:subClassOf uco-core:UcoThing ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom d3f:DomainName
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom d3f:FileHash
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom d3f:IPAddress
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom d3f:URL
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom :Hash
+                                           ] ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty d3f:analyzes ;
+                                             owl:someValuesFrom :MekaThing
+                                           ] .
 
 
 ###  https://ontology.unifiedcyberontology.org/uco/core/UcoThing
@@ -835,6 +905,10 @@ uco-core:UcoThing rdf:type owl:Class ;
 :Hash rdf:type owl:Class ;
       rdfs:subClassOf d3f:Identifier ,
                       :MekaThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:associated-with ;
+                        owl:someValuesFrom uco-analysis:AnalyticResult
+                      ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :value ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1067,17 +1141,11 @@ d3f:Directory :icon "folder.svg" .
 d3f:DocumentFile :icon "doc.svg" .
 
 
-d3f:DomainName :icon "domain.svg" .
-
-
 d3f:Email skos:altLabel "Email Message"@en ;
           :icon "email-message.svg" .
 
 
 d3f:ExecutableFile :icon "code-file.svg" .
-
-
-d3f:FileHash :icon "file-hash.svg" .
 
 
 d3f:Host :icon "computer.svg" .
@@ -1124,9 +1192,6 @@ d3f:SoftwareService :icon "software.svg" .
 
 
 d3f:Technique :icon "technique.svg" .
-
-
-d3f:URL :icon "url.svg" .
 
 
 uco-core:ExternalReference rdfs:comment "Characteristics of a reference to a resource outside of the UCO."@en ;
