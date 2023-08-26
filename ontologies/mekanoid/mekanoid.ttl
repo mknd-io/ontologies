@@ -35,8 +35,8 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT" ;
-                                            dct:modified "2023-07-03" ;
-                                            dct:title "Mekanoid Cybersecurity Automation Ontology" .
+                                            dct:modified "2023-08-25" ;
+                                            dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
 #    Annotation properties
