@@ -162,6 +162,10 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
                rdfs:label "provided by"@en .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in
+d3f:recorded-in owl:inverseOf d3f:records .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#records
 d3f:records rdfs:domain uco-core:ExternalReference ;
             rdfs:range uco-core:Assertion .
@@ -225,16 +229,6 @@ uco-core:externalReference rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://purl.org/cyber/stix#id
-stix:id rdf:type owl:DatatypeProperty ;
-        owl:equivalentProperty :id .
-
-
-###  http://purl.org/cyber/stix#size
-stix:size rdf:type owl:DatatypeProperty ;
-          owl:equivalentProperty :size .
-
 
 ###  http://www.w3.org/2006/time#day
 time:day rdf:type owl:DatatypeProperty ;
@@ -370,13 +364,9 @@ uco-core:statement rdf:type owl:DatatypeProperty ;
 
 
 ###  https://ontology.unifiedcyberontology.org/uco/types/hashMethod
-uco-types:hashMethod rdf:type owl:DatatypeProperty ;
-                     owl:equivalentProperty :hashMethod .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/types/hashValue
-uco-types:hashValue rdf:type owl:DatatypeProperty ;
-                    owl:equivalentProperty :hashValue .
+uco-types:hashMethod rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:label "hash method"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#dataProperty
@@ -451,6 +441,8 @@ uco-types:hashValue rdf:type owl:DatatypeProperty ;
 ###  https://schema.mekanoid.io/mekanoid.owl#external-id
 :external-id rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :dataProperty ;
+             rdfs:domain d3f:Host ,
+                         d3f:UserAccount ;
              rdfs:label "external ID"@en .
 
 
@@ -472,22 +464,6 @@ uco-types:hashValue rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :dataProperty ;
         rdfs:range xsd:anyURI ;
         rdfs:label "has URL"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#hashMethod
-:hashMethod rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :dataProperty ;
-            rdfs:range xsd:string ;
-            rdfs:comment "A particular cryptographic hashing method (e.g., MD5)."@en ;
-            rdfs:label "hashMethod"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#hashValue
-:hashValue rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :dataProperty ;
-           rdfs:range xsd:hexBinary ;
-           rdfs:comment "A cryptographic hash value."@en ;
-           rdfs:label "hash value"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#id
@@ -628,6 +604,8 @@ uco-types:hashValue rdf:type owl:DatatypeProperty ;
 ###  https://schema.mekanoid.io/mekanoid.owl#value
 :value rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :dataProperty ;
+       rdf:type owl:FunctionalProperty ;
+       rdfs:domain d3f:Identifier ;
        rdfs:comment "A value parameter to be passed to Tasks"@en ;
        rdfs:label "has value"@en .
 
@@ -664,6 +642,10 @@ d3f:File :icon "file.svg" .
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
 d3f:FileHash :icon "file-hash.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
+d3f:Host :icon "computer.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
