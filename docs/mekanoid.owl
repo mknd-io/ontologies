@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://schema.mekanoid.io/mekanoid.owl#"
      xml:base="https://schema.mekanoid.io/mekanoid.owl"
+     xmlns:sh="http://www.w3.org/ns/shacl#"
      xmlns:d3f="http://d3fend.mitre.org/ontologies/d3fend.owl#"
      xmlns:dct="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -11,7 +12,6 @@
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:stix="http://purl.org/cyber/stix#"
      xmlns:time="http://www.w3.org/2006/time#"
-     xmlns:shacl="http://www.w3.org/ns/shacl#"
      xmlns:uco-co="https://ontology.unifiedcyberontology.org/co/"
      xmlns:uco-owl="https://ontology.unifiedcyberontology.org/owl/"
      xmlns:uco-core="https://ontology.unifiedcyberontology.org/uco/core/"
@@ -35,8 +35,8 @@
         <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2022-04-02</dct:created>
         <dct:creator rdf:resource="mailto:anton.goncharov@mekanoid.io"/>
         <dct:license>MIT</dct:license>
-        <dct:modified>2023-07-03</dct:modified>
-        <dct:title>Mekanoid Cybersecurity Automation Ontology</dct:title>
+        <dct:modified>2023-08-25</dct:modified>
+        <dct:title>Mekanoid Ontology for Cybersecurity Automation</dct:title>
     </owl:Ontology>
     
 
@@ -242,6 +242,23 @@
     
 
 
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in">
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#records"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#records -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#records">
+        <rdfs:domain rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+        <rdfs:range rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/Assertion"/>
+    </rdf:Description>
+    
+
+
     <!-- https://ontology.unifiedcyberontology.org/uco/core/externalReference -->
 
     <owl:ObjectProperty rdf:about="https://ontology.unifiedcyberontology.org/uco/core/externalReference">
@@ -329,22 +346,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://purl.org/cyber/stix#id -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/cyber/stix#id">
-        <owl:equivalentProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#id"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/cyber/stix#size -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/cyber/stix#size">
-        <owl:equivalentProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#size"/>
-    </owl:DatatypeProperty>
     
 
 
@@ -562,15 +563,8 @@
     <!-- https://ontology.unifiedcyberontology.org/uco/types/hashMethod -->
 
     <owl:DatatypeProperty rdf:about="https://ontology.unifiedcyberontology.org/uco/types/hashMethod">
-        <owl:equivalentProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#hashMethod"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://ontology.unifiedcyberontology.org/uco/types/hashValue -->
-
-    <owl:DatatypeProperty rdf:about="https://ontology.unifiedcyberontology.org/uco/types/hashValue">
-        <owl:equivalentProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#hashValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">hash method</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -675,6 +669,8 @@
 
     <owl:DatatypeProperty rdf:about="https://schema.mekanoid.io/mekanoid.owl#external-id">
         <rdfs:subPropertyOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#dataProperty"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Host"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount"/>
         <rdfs:label xml:lang="en">external ID</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -705,28 +701,6 @@
         <rdfs:subPropertyOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#dataProperty"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
         <rdfs:label xml:lang="en">has URL</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://schema.mekanoid.io/mekanoid.owl#hashMethod -->
-
-    <owl:DatatypeProperty rdf:about="https://schema.mekanoid.io/mekanoid.owl#hashMethod">
-        <rdfs:subPropertyOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#dataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment xml:lang="en">A particular cryptographic hashing method (e.g., MD5).</rdfs:comment>
-        <rdfs:label xml:lang="en">hashMethod</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://schema.mekanoid.io/mekanoid.owl#hashValue -->
-
-    <owl:DatatypeProperty rdf:about="https://schema.mekanoid.io/mekanoid.owl#hashValue">
-        <rdfs:subPropertyOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#dataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#hexBinary"/>
-        <rdfs:comment xml:lang="en">A cryptographic hash value.</rdfs:comment>
-        <rdfs:label xml:lang="en">hash value</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -933,6 +907,8 @@
 
     <owl:DatatypeProperty rdf:about="https://schema.mekanoid.io/mekanoid.owl#value">
         <rdfs:subPropertyOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#dataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
         <rdfs:comment xml:lang="en">A value parameter to be passed to Tasks</rdfs:comment>
         <rdfs:label xml:lang="en">has value</rdfs:label>
     </owl:DatatypeProperty>
@@ -963,6 +939,22 @@
     
 
 
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationResource -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationResource">
+        <owl:equivalentClass rdf:resource="https://schema.mekanoid.io/mekanoid.owl#Configuration"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName">
+        <icon>domain.svg</icon>
+    </rdf:Description>
+    
+
+
     <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary -->
 
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary">
@@ -984,9 +976,31 @@
     
 
 
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash">
+        <icon>file-hash.svg</icon>
+    </rdf:Description>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Host -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Host">
+        <icon>computer.svg</icon>
+    </rdf:Description>
+    
+
+
     <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress -->
 
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <icon>ip.svg</icon>
     </rdf:Description>
     
@@ -996,6 +1010,29 @@
 
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier">
         <icon>text.svg</icon>
+    </rdf:Description>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Log -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Log">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Record"/>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">log.svg</icon>
+    </rdf:Description>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#URL -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#URL">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon>url.svg</icon>
     </rdf:Description>
     
 
@@ -1014,6 +1051,19 @@
     
 
 
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#WideAreaNetwork -->
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#WideAreaNetwork">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#identifiedBy"/>
+                <owl:someValuesFrom rdf:resource="https://schema.mekanoid.io/mekanoid.owl#ASN"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+    
+
+
     <!-- http://www.w3.org/ns/shacl#NodeShape -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/shacl#NodeShape"/>
@@ -1024,6 +1074,36 @@
 
     <owl:Class rdf:about="https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult">
         <rdfs:subClassOf rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/Assertion"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#URL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://schema.mekanoid.io/mekanoid.owl#Hash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalReference"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1046,14 +1126,44 @@
     <!-- https://ontology.unifiedcyberontology.org/uco/core/ExternalReference -->
 
     <owl:Class rdf:about="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference">
-        <rdfs:subClassOf rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/UcoInherentCharacterizationThing"/>
+        <rdfs:subClassOf rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/UcoThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#URL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://schema.mekanoid.io/mekanoid.owl#Hash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://schema.mekanoid.io/mekanoid.owl#MekaThing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
-    
-
-
-    <!-- https://ontology.unifiedcyberontology.org/uco/core/UcoInherentCharacterizationThing -->
-
-    <owl:Class rdf:about="https://ontology.unifiedcyberontology.org/uco/core/UcoInherentCharacterizationThing"/>
     
 
 
@@ -1070,6 +1180,19 @@
     <owl:Class rdf:about="https://schema.mekanoid.io/mekanoid.owl#ASN">
         <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
         <rdfs:subClassOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#identifies"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#WideAreaNetwork"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Autonomous System Number</rdfs:comment>
         <rdfs:label xml:lang="en">ASN</rdfs:label>
     </owl:Class>
@@ -1232,7 +1355,13 @@
         <rdfs:subClassOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#MekaThing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#hashValue"/>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#value"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#hexBinary"/>
             </owl:Restriction>
@@ -1331,6 +1460,13 @@
 
     <owl:Class rdf:about="https://schema.mekanoid.io/mekanoid.owl#Observable">
         <rdfs:subClassOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.mekanoid.io/mekanoid.owl#value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Observable</rdfs:label>
         <icon>pin.svg</icon>
     </owl:Class>
@@ -1547,9 +1683,6 @@
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DocumentFile">
         <icon>doc.svg</icon>
     </rdf:Description>
-    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName">
-        <icon>domain.svg</icon>
-    </rdf:Description>
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Email">
         <skos:altLabel xml:lang="en">Email Message</skos:altLabel>
         <icon>email-message.svg</icon>
@@ -1557,17 +1690,14 @@
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableFile">
         <icon>code-file.svg</icon>
     </rdf:Description>
-    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash">
-        <icon>file-hash.svg</icon>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Host">
-        <icon>computer.svg</icon>
-    </rdf:Description>
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#IntrusionDetectionSystem">
         <icon>broken.svg</icon>
     </rdf:Description>
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Link">
         <icon>url.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#LogFile">
+        <icon>doc.svg</icon>
     </rdf:Description>
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Network">
         <icon>network.svg</icon>
@@ -1603,37 +1733,34 @@
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Technique">
         <icon>technique.svg</icon>
     </rdf:Description>
-    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#URL">
-        <icon>url.svg</icon>
-    </rdf:Description>
     <rdf:Description rdf:about="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference">
         <rdfs:comment xml:lang="en">Characteristics of a reference to a resource outside of the UCO.</rdfs:comment>
         <rdfs:label xml:lang="en">ExternalReference</rdfs:label>
-        <shacl:property>
+        <sh:property>
             <rdf:Description>
-                <shacl:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
-                <shacl:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</shacl:maxCount>
-                <shacl:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
-                <shacl:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/referenceURL"/>
+                <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
+                <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/definingContext"/>
             </rdf:Description>
-        </shacl:property>
-        <shacl:property>
+        </sh:property>
+        <sh:property>
             <rdf:Description>
-                <shacl:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                <shacl:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</shacl:maxCount>
-                <shacl:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
-                <shacl:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/definingContext"/>
+                <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
+                <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalIdentifier"/>
             </rdf:Description>
-        </shacl:property>
-        <shacl:property>
+        </sh:property>
+        <sh:property>
             <rdf:Description>
-                <shacl:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                <shacl:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</shacl:maxCount>
-                <shacl:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
-                <shacl:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalIdentifier"/>
+                <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
+                <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/referenceURL"/>
             </rdf:Description>
-        </shacl:property>
-        <shacl:targetClass rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+        </sh:property>
+        <sh:targetClass rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
     </rdf:Description>
 </rdf:RDF>
 
