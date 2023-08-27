@@ -10,7 +10,6 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:stix="http://purl.org/cyber/stix#"
      xmlns:time="http://www.w3.org/2006/time#"
      xmlns:uco-co="https://ontology.unifiedcyberontology.org/co/"
      xmlns:uco-owl="https://ontology.unifiedcyberontology.org/owl/"
@@ -979,6 +978,12 @@
     <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash -->
 
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/Assertion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <icon>file-hash.svg</icon>
     </rdf:Description>
     
@@ -1009,6 +1014,18 @@
     <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier -->
 
     <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/Assertion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalReference"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <icon>text.svg</icon>
     </rdf:Description>
     
@@ -1104,6 +1121,7 @@
                 <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">message.svg</icon>
     </owl:Class>
     
 
@@ -1269,6 +1287,18 @@
 
     <owl:Class rdf:about="https://schema.mekanoid.io/mekanoid.owl#EmailAddress">
         <rdfs:subClassOf rdf:resource="https://schema.mekanoid.io/mekanoid.owl#Observable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/Assertion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalReference"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment>An email address identifies an email box to which messages are delivered.</rdfs:comment>
         <rdfs:label>Email Address</rdfs:label>
         <icon>email-address.svg</icon>
@@ -1357,6 +1387,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
                 <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalReference"/>
+                <owl:someValuesFrom rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1741,14 +1777,6 @@
                 <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
                 <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
                 <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
-                <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/definingContext"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:property>
-            <rdf:Description>
-                <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
-                <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
                 <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/externalIdentifier"/>
             </rdf:Description>
         </sh:property>
@@ -1760,7 +1788,16 @@
                 <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/referenceURL"/>
             </rdf:Description>
         </sh:property>
+        <sh:property>
+            <rdf:Description>
+                <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:nodeKind rdf:resource="http://www.w3.org/ns/shacl#Literal"/>
+                <sh:path rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/definingContext"/>
+            </rdf:Description>
+        </sh:property>
         <sh:targetClass rdf:resource="https://ontology.unifiedcyberontology.org/uco/core/ExternalReference"/>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">doc.svg</icon>
     </rdf:Description>
 </rdf:RDF>
 
