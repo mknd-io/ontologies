@@ -589,17 +589,6 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 #    Classes
 #################################################################
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationFile
-d3f:ConfigurationFile rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                        owl:onProperty d3f:contains ;
-                                        owl:someValuesFrom :Configuration
-                                      ] .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationResource
-d3f:ConfigurationResource owl:equivalentClass :Configuration .
-
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
 d3f:DomainName :icon "domain.svg" .
 
@@ -636,6 +625,10 @@ d3f:Log rdfs:subClassOf d3f:Record ;
         :icon "log.svg"^^xsd:anyURI .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
+d3f:Subroutine owl:equivalentClass :Function .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
 d3f:URL :icon "url.svg" .
 
@@ -646,6 +639,10 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:someValuesFrom :Username
                                 ] ;
                 :icon "user-account.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
+d3f:UserAction owl:disjointWith :MachineAction .
 
 
 ###  http://www.w3.org/ns/shacl#NodeShape
@@ -682,24 +679,9 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                 rdfs:label "Actionable Item"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#Attack
-:Attack rdf:type owl:Class ;
-        rdfs:subClassOf :Event ;
-        rdfs:isDefinedBy "https://niccs.cisa.gov/cybersecurity-career-resources/glossary"^^xsd:anyURI ;
-        rdfs:label "Attack"@en ;
-        skos:definition "An attempt to gain unauthorized access to system services, resources, or information, or an attempt to compromise system integrity."@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Configuration
-:Configuration rdf:type owl:Class ;
-               rdfs:subClassOf :MekaThing ;
-               rdfs:label "Configuration"@en ;
-               :icon "gear.svg" .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#Detection
 :Detection rdf:type owl:Class ;
-           rdfs:subClassOf :Event ,
+           rdfs:subClassOf d3f:DigitalEvent ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty d3f:created-by ;
                              owl:someValuesFrom :DetectionRule
@@ -742,20 +724,6 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                     rdfs:subClassOf :Observable ;
                     rdfs:label "Email Subject"@en ;
                     skos:example "Fwd: Fwd: Re: RE: RE: LOL" .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#Event
-:Event rdf:type owl:Class ;
-       rdfs:subClassOf :MekaThing ;
-       rdfs:label "Event"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.owl#EventData
-:EventData rdf:type owl:Class ;
-           rdfs:subClassOf d3f:Record ,
-                           :MekaThing ;
-           rdfs:label "Event Data"@en ;
-           skos:altLabel "Log record"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#FileName
@@ -822,6 +790,14 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
      rdfs:subClassOf :Hash ;
      rdfs:comment "MD5 cryptographic hash value"@en ;
      rdfs:label "MD5 Hash"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#MachineAction
+:MachineAction rdf:type owl:Class ;
+               rdfs:subClassOf d3f:DigitalEvent ,
+                               :MekaThing ;
+               rdfs:label "Machine Action" ;
+               skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Malware
@@ -902,6 +878,7 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                               owl:onDataRange xsd:string
                             ] ;
             rdfs:label "Observable"@en ;
+            skos:definition "A notable string value useful which may offer helpful hints to during cybersecurity investigations." ;
             :icon "pin.svg" .
 
 
@@ -1100,22 +1077,22 @@ uco-core:ExternalReference rdf:type owl:NamedIndividual ,
                                     sh:NodeShape .
 
 
-[ sh:datatype xsd:string ;
+[ sh:datatype xsd:anyURI ;
   sh:maxCount 1 ;
   sh:nodeKind sh:Literal ;
-  sh:path uco-core:externalIdentifier
+  sh:path uco-core:referenceURL
 ] .
 
 [ sh:datatype xsd:string ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:definingContext
+   sh:path uco-core:externalIdentifier
  ] .
 
-[ sh:datatype xsd:anyURI ;
+[ sh:datatype xsd:string ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:referenceURL
+   sh:path uco-core:definingContext
  ] .
 
 #################################################################
