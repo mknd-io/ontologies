@@ -35,7 +35,7 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT" ;
-                                            dct:modified "2023-08-31"^^xsd:date ;
+                                            dct:modified "2023-09-05" ;
                                             dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
@@ -605,7 +605,8 @@ d3f:File :icon "file.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
-d3f:FileHash :icon "file-hash.svg" .
+d3f:FileHash owl:equivalentClass :Hash ;
+             :icon "file-hash.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
@@ -649,10 +650,6 @@ d3f:UserAction owl:disjointWith :MachineAction .
 sh:NodeShape rdf:type owl:Class .
 
 
-###  https://ontology.unifiedcyberontology.org/uco/analysis/AnalyticResult
-uco-analysis:AnalyticResult rdf:type owl:Class .
-
-
 ###  https://schema.mekanoid.io/mekanoid.owl#ASN
 :ASN rdf:type owl:Class ;
      rdfs:subClassOf d3f:Identifier ,
@@ -677,6 +674,65 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                                 :MekaThing ;
                 rdfs:comment "A foundational element for analyst workflows."@en ;
                 rdfs:label "Actionable Item"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#AppUser
+:AppUser rdf:type owl:Class ;
+         rdfs:subClassOf :SystemObject ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:accessed-by ;
+                           owl:someValuesFrom d3f:User
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:accesses ;
+                           owl:someValuesFrom :Tenant
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:creates ;
+                           owl:someValuesFrom :TaskPattern
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:executes ;
+                           owl:someValuesFrom :ManualTaskRun
+                         ] ;
+         rdfs:comment "Mekanoid User Account" ;
+         rdfs:label "User Account" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#ApplicationUserAccount
+:ApplicationUserAccount rdf:type owl:Class ;
+                        rdfs:subClassOf d3f:UserAccount ;
+                        rdfs:comment "Application User Account" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#AutomatedTaskRun
+:AutomatedTaskRun rdf:type owl:Class ;
+                  rdfs:subClassOf :MachineAction ,
+                                  :TaskRun ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:invoked-by ;
+                                    owl:allValuesFrom :TaskPattern
+                                  ] ;
+                  rdfs:label "Automated Task Run" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Connection
+:Connection rdf:type owl:Class ;
+            rdfs:subClassOf :SystemObject ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:enables ;
+                              owl:someValuesFrom :Task
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:enables ;
+                              owl:allValuesFrom :Integration
+                            ] .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#DataTemplate
+:DataTemplate rdf:type owl:Class ;
+              rdfs:subClassOf :SystemObject ;
+              rdfs:label "Data Template" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Detection
@@ -753,7 +809,7 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                       :MekaThing ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty d3f:associated-with ;
-                        owl:someValuesFrom uco-analysis:AnalyticResult
+                        owl:someValuesFrom :Verdict
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :value ;
@@ -783,6 +839,19 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
           rdfs:label "Incident"@en ;
           skos:altLabel "Case"@en ;
           :icon "case.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Integration
+:Integration rdf:type owl:Class ;
+             rdfs:subClassOf :SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:contains ;
+                               owl:someValuesFrom :Task
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:enabled-by ;
+                               owl:someValuesFrom :Connection
+                             ] .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MD5
@@ -836,6 +905,17 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
                            owl:someValuesFrom :FileName
                          ] ;
          rdfs:label "Malicious Software" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#ManualTaskRun
+:ManualTaskRun rdf:type owl:Class ;
+               rdfs:subClassOf d3f:UserAction ,
+                               :TaskRun ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty d3f:invoked-by ;
+                                 owl:allValuesFrom :AppUser
+                               ] ;
+               rdfs:label "Manual Task Run" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MekaThing
@@ -1005,6 +1085,87 @@ uco-analysis:AnalyticResult rdf:type owl:Class .
         rdfs:label "Network Socket"@en ;
         skos:example "51.89.163.40:443" ;
         :icon "network.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#SystemObject
+:SystemObject rdf:type owl:Class ;
+              rdfs:subClassOf :MekaThing ;
+              rdfs:comment "Mekanoid System Object" ;
+              rdfs:label "Meka Object" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Task
+:Task rdf:type owl:Class ;
+      rdfs:subClassOf :SystemObject ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:contained-by ;
+                        owl:someValuesFrom :Integration
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:uses ;
+                        owl:someValuesFrom :DataTemplate
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:uses ;
+                        owl:allValuesFrom :TaskTemplate
+                      ] ;
+      skos:altLabel "Atomic Task" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskPattern
+:TaskPattern rdf:type owl:Class ;
+             rdfs:subClassOf :SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:created-by ;
+                               owl:someValuesFrom :AppUser
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:invokes ;
+                               owl:someValuesFrom :AutomatedTaskRun
+                             ] ;
+             rdfs:label "Task Pattern" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskRun
+:TaskRun rdf:type owl:Class ;
+         rdfs:subClassOf d3f:DigitalEvent ,
+                         :SystemObject ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:creates ;
+                           owl:someValuesFrom :TaskRunLog
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:uses ;
+                           owl:someValuesFrom :DataTemplate
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:uses ;
+                           owl:someValuesFrom :TaskTemplate
+                         ] ;
+         rdfs:label "Task Run" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskRunLog
+:TaskRunLog rdf:type owl:Class ;
+            rdfs:subClassOf d3f:EventLog ,
+                            :SystemObject ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:created-by ;
+                              owl:someValuesFrom :TaskRun
+                            ] ;
+            rdfs:label "Task Run Log" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskTemplate
+:TaskTemplate rdf:type owl:Class ;
+              rdfs:subClassOf :SystemObject ;
+              rdfs:label "Task Template" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Tenant
+:Tenant rdf:type owl:Class ;
+        rdfs:subClassOf :SystemObject ;
+        rdfs:comment "Mekanoid Tenant" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Ticket
