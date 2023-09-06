@@ -443,6 +443,7 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 ###  https://schema.mekanoid.io/mekanoid.owl#hasURL
 :hasURL rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :dataProperty ;
+        rdfs:domain d3f:File ;
         rdfs:range xsd:anyURI ;
         rdfs:label "has URL"@en .
 
@@ -512,6 +513,8 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 :size rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf :dataProperty ;
       rdf:type owl:FunctionalProperty ;
+      rdfs:domain d3f:File ;
+      rdfs:range xsd:byte ;
       rdfs:label "has size"@en .
 
 
@@ -1238,10 +1241,10 @@ uco-core:ExternalReference rdf:type owl:NamedIndividual ,
                                     sh:NodeShape .
 
 
-[ sh:datatype xsd:anyURI ;
+[ sh:datatype xsd:string ;
   sh:maxCount 1 ;
   sh:nodeKind sh:Literal ;
-  sh:path uco-core:referenceURL
+  sh:path uco-core:definingContext
 ] .
 
 [ sh:datatype xsd:string ;
@@ -1250,10 +1253,10 @@ uco-core:ExternalReference rdf:type owl:NamedIndividual ,
    sh:path uco-core:externalIdentifier
  ] .
 
-[ sh:datatype xsd:string ;
+[ sh:datatype xsd:anyURI ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:definingContext
+   sh:path uco-core:referenceURL
  ] .
 
 #################################################################
