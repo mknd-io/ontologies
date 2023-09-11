@@ -35,7 +35,7 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT" ;
-                                            dct:modified "2023-09-05" ;
+                                            dct:modified "2023-09-11" ;
                                             dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
@@ -370,6 +370,7 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 ###  https://schema.mekanoid.io/mekanoid.owl#dateTimeEpoch
 :dateTimeEpoch rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf :dataProperty ;
+               rdf:type owl:FunctionalProperty ;
                rdfs:range xsd:long ;
                rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
                rdfs:label "has epoch"@en ;
@@ -608,8 +609,7 @@ d3f:File :icon "file.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
-d3f:FileHash owl:equivalentClass :Hash ;
-             :icon "file-hash.svg" .
+d3f:FileHash :icon "file-hash.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
@@ -634,7 +634,15 @@ d3f:Subroutine owl:equivalentClass :Function .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
-d3f:URL :icon "url.svg" .
+d3f:URL rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:identifies ;
+                          owl:someValuesFrom :Malware
+                        ] ;
+        :icon "url.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#User
+d3f:User :icon "employee.svg"^^xsd:anyURI .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
@@ -681,7 +689,8 @@ sh:NodeShape rdf:type owl:Class .
 
 ###  https://schema.mekanoid.io/mekanoid.owl#AppUser
 :AppUser rdf:type owl:Class ;
-         rdfs:subClassOf :SystemObject ,
+         rdfs:subClassOf :ApplicationUserAccount ,
+                         :SystemObject ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:accessed-by ;
                            owl:someValuesFrom d3f:User
@@ -699,13 +708,13 @@ sh:NodeShape rdf:type owl:Class .
                            owl:someValuesFrom :ManualTaskRun
                          ] ;
          rdfs:comment "Mekanoid User Account" ;
-         rdfs:label "User Account" .
+         rdfs:label "Mekanoid User Account" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#ApplicationUserAccount
 :ApplicationUserAccount rdf:type owl:Class ;
                         rdfs:subClassOf d3f:UserAccount ;
-                        rdfs:comment "Application User Account" .
+                        rdfs:label "Application User Account" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#AutomatedTaskRun
@@ -729,13 +738,15 @@ sh:NodeShape rdf:type owl:Class .
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:enables ;
                               owl:allValuesFrom :Integration
-                            ] .
+                            ] ;
+            :icon "connection.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#DataTemplate
 :DataTemplate rdf:type owl:Class ;
               rdfs:subClassOf :SystemObject ;
-              rdfs:label "Data Template" .
+              rdfs:label "Data Template" ;
+              :icon "file.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Detection
@@ -1094,7 +1105,8 @@ sh:NodeShape rdf:type owl:Class .
 :SystemObject rdf:type owl:Class ;
               rdfs:subClassOf :MekaThing ;
               rdfs:comment "Mekanoid System Object" ;
-              rdfs:label "Meka Object" .
+              rdfs:label "Meka Object" ;
+              :icon "mekanoid.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Task
@@ -1112,7 +1124,9 @@ sh:NodeShape rdf:type owl:Class .
                         owl:onProperty d3f:uses ;
                         owl:allValuesFrom :TaskTemplate
                       ] ;
-      skos:altLabel "Atomic Task" .
+      rdfs:comment "An abstract concept. Something to be done." ;
+      skos:altLabel "Atomic Task" ;
+      :icon "task.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#TaskPattern
@@ -1126,7 +1140,8 @@ sh:NodeShape rdf:type owl:Class .
                                owl:onProperty d3f:invokes ;
                                owl:someValuesFrom :AutomatedTaskRun
                              ] ;
-             rdfs:label "Task Pattern" .
+             rdfs:label "Task Pattern" ;
+             :icon "flow.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#TaskRun
@@ -1145,7 +1160,8 @@ sh:NodeShape rdf:type owl:Class .
                            owl:onProperty d3f:uses ;
                            owl:someValuesFrom :TaskTemplate
                          ] ;
-         rdfs:label "Task Run" .
+         rdfs:label "Task Run" ;
+         :icon "task.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#TaskRunLog
@@ -1156,19 +1172,22 @@ sh:NodeShape rdf:type owl:Class .
                               owl:onProperty d3f:created-by ;
                               owl:someValuesFrom :TaskRun
                             ] ;
-            rdfs:label "Task Run Log" .
+            rdfs:label "Task Run Log" ;
+            :icon "log.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#TaskTemplate
 :TaskTemplate rdf:type owl:Class ;
               rdfs:subClassOf :SystemObject ;
-              rdfs:label "Task Template" .
+              rdfs:label "Task Template" ;
+              :icon "file.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Tenant
 :Tenant rdf:type owl:Class ;
         rdfs:subClassOf :SystemObject ;
-        rdfs:comment "Mekanoid Tenant" .
+        rdfs:comment "Mekanoid Tenant" ;
+        :icon "biz-unit.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Ticket
@@ -1244,13 +1263,13 @@ uco-core:ExternalReference rdf:type owl:NamedIndividual ,
 [ sh:datatype xsd:string ;
   sh:maxCount 1 ;
   sh:nodeKind sh:Literal ;
-  sh:path uco-core:definingContext
+  sh:path uco-core:externalIdentifier
 ] .
 
 [ sh:datatype xsd:string ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:externalIdentifier
+   sh:path uco-core:definingContext
  ] .
 
 [ sh:datatype xsd:anyURI ;
@@ -1300,6 +1319,9 @@ d3f:Email skos:altLabel "Email Message"@en ;
 d3f:ExecutableFile :icon "code-file.svg" .
 
 
+d3f:HardwareDevice :icon "device.svg"^^xsd:anyURI .
+
+
 d3f:IntrusionDetectionSystem :icon "broken.svg" .
 
 
@@ -1318,7 +1340,7 @@ d3f:NetworkNode :icon "network.svg" .
 d3f:NetworkTraffic :icon "network.svg" .
 
 
-d3f:OperatingSystem :icon "software.svg" .
+d3f:OperatingSystem :icon "os.svg"^^xsd:anyURI .
 
 
 d3f:Procedure rdfs:label "Procedure"@en ;
