@@ -35,7 +35,7 @@
                                             dct:created "2022-04-02"^^xsd:date ;
                                             dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                             dct:license "MIT" ;
-                                            dct:modified "2023-09-11" ;
+                                            dct:modified "2023-09-14"^^xsd:date ;
                                             dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
@@ -100,6 +100,14 @@ sh:targetClass rdf:type owl:AnnotationProperty .
          rdfs:subPropertyOf rdfs:comment ;
          rdfs:range xsd:anyURI ,
                     xsd:longString .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#cpe
+:cpe rdf:type owl:AnnotationProperty ;
+     rdfs:label "has CPE" ;
+     skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" ;
+     rdfs:range xsd:string ;
+     rdfs:domain d3f:Software .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#icon
@@ -167,12 +175,6 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in
 d3f:recorded-in owl:inverseOf d3f:records .
-
-
-###  https://ontology.unifiedcyberontology.org/uco/core/externalReference
-uco-core:externalReference rdf:type owl:ObjectProperty ;
-                           rdfs:comment "Specifies a reference to a resource outside of the UCO."@en-us ;
-                           rdfs:label "External Reference"@en-us .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#indicatedBy
@@ -444,7 +446,8 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 ###  https://schema.mekanoid.io/mekanoid.owl#hasURL
 :hasURL rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :dataProperty ;
-        rdfs:domain d3f:File ;
+        rdfs:domain d3f:File ,
+                    :Report ;
         rdfs:range xsd:anyURI ;
         rdfs:label "has URL"@en .
 
@@ -508,6 +511,13 @@ uco-types:hashMethod rdf:type owl:DatatypeProperty ,
 :lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf :dateTimeEpoch ;
                   rdfs:label "last modified"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#reference
+:reference rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :hasURL ;
+           rdfs:range xsd:anyURI ;
+           rdfs:label "has reference" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#size
@@ -629,6 +639,14 @@ d3f:Log rdfs:subClassOf d3f:Record ;
         :icon "log.svg"^^xsd:anyURI .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
+d3f:Software rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:may-contain ;
+                               owl:someValuesFrom d3f:Vulnerability
+                             ] ;
+             :icon "software.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
 d3f:Subroutine owl:equivalentClass :Function .
 
@@ -655,6 +673,14 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
 d3f:UserAction owl:disjointWith :MachineAction .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
+d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:may-be-contained-by ;
+                                    owl:someValuesFrom d3f:Software
+                                  ] ;
+                  :icon "vulnerability.svg"^^xsd:anyURI .
 
 
 ###  http://www.w3.org/ns/shacl#NodeShape
@@ -740,6 +766,11 @@ sh:NodeShape rdf:type owl:Class .
                               owl:allValuesFrom :Integration
                             ] ;
             :icon "connection.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Control
+:Control rdf:type owl:Class ;
+         rdfs:subClassOf :MekaThing .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#DataTemplate
@@ -1075,6 +1106,14 @@ sh:NodeShape rdf:type owl:Class .
         rdfs:label "SHA-512 Hash"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#SecurityPolicy
+:SecurityPolicy rdf:type owl:Class ;
+                rdfs:subClassOf d3f:ApplicationRule ,
+                                :Control ;
+                rdfs:label "Security Policy" ;
+                :icon "cube.svg"^^xsd:anyURI .
+
+
 ###  https://schema.mekanoid.io/mekanoid.owl#Sigma
 :Sigma rdf:type owl:Class ;
        rdfs:subClassOf :DetectionRule ,
@@ -1260,22 +1299,22 @@ uco-core:ExternalReference rdf:type owl:NamedIndividual ,
                                     sh:NodeShape .
 
 
-[ sh:datatype xsd:string ;
+[ sh:datatype xsd:anyURI ;
   sh:maxCount 1 ;
   sh:nodeKind sh:Literal ;
-  sh:path uco-core:externalIdentifier
+  sh:path uco-core:referenceURL
 ] .
 
 [ sh:datatype xsd:string ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:definingContext
+   sh:path uco-core:externalIdentifier
  ] .
 
-[ sh:datatype xsd:anyURI ;
+[ sh:datatype xsd:string ;
    sh:maxCount 1 ;
    sh:nodeKind sh:Literal ;
-   sh:path uco-core:referenceURL
+   sh:path uco-core:definingContext
  ] .
 
 #################################################################
@@ -1354,9 +1393,6 @@ d3f:Sensor :icon "broken.svg" .
 
 
 d3f:Server :icon "server.svg" .
-
-
-d3f:Software :icon "software.svg" .
 
 
 d3f:SoftwareService :icon "software.svg" .
