@@ -1,0 +1,367 @@
+@prefix : <https://schema.mekanoid.io/mekanoid.owl#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+<https://schema.mekanoid.io/mekanoid-app.ttl#> rdf:type owl:Ontology ;
+                                            owl:imports <https://schema.mekanoid.io/mekanoid.owl#>,
+                                                <http://d3fend.mitre.org/ontologies/d3fend.owl#>,
+                                                <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> ;
+                                            dct:created "2022-09-19"^^xsd:date ;
+                                            dct:modified "2023-09-19"^^xsd:date ;
+                                            dct:title "Definitions and annotations used by the Mekanoid application" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  https://schema.mekanoid.io/mekanoid.owl#icon
+:icon rdf:type owl:AnnotationProperty ;
+      rdfs:label "has icon"@en ;
+      rdfs:range xsd:anyURI ;
+      rdfs:domain owl:Thing .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :dataProperty ;
+    rdfs:label "has id"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBucketName
+:importBucketName rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :dataProperty ;
+                  rdfs:label "S3 bucket"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importBucketUrl
+:importBucketUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasURL ;
+                 rdfs:label "S3 bucket URL"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importFileName
+:importFileName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :dataProperty ;
+                rdfs:label "filename"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#importId
+:importId rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dataProperty ;
+          rdfs:label "import ID"@en .
+
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#teamId
+:teamId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:label "teamID"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#templateId
+:templateId rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :dataProperty ;
+            rdfs:label "templateId"@en .
+
+###  https://schema.mekanoid.io/mekanoid.owl#userId
+:userId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :dataProperty ;
+        rdfs:label "userID"@en .
+
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
+d3f:DomainName :icon "domain.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
+d3f:File :icon "file.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
+d3f:FileHash :icon "file-hash.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
+d3f:Host :icon "computer.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+d3f:IPAddress :icon "ip.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
+d3f:Identifier :icon "text.svg" .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Log
+d3f:Log :icon "log.svg"^^xsd:anyURI .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
+d3f:Software :icon "software.svg" .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
+d3f:URL :icon "url.svg" .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#User
+d3f:User :icon "employee.svg"^^xsd:anyURI .
+
+d3f:UserAccount :icon "user-account.svg" .
+
+d3f:Vulnerability :icon "vulnerability.svg"^^xsd:anyURI .
+
+###  https://schema.mekanoid.io/mekanoid.owl#AutomatedTaskRun
+:AutomatedTaskRun rdf:type owl:Class ;
+                  rdfs:subClassOf :MachineAction ,
+                                  :TaskRun ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:invoked-by ;
+                                    owl:allValuesFrom :TaskPattern
+                                  ] ;
+                  rdfs:label "Automated Task Run" .
+
+###  https://schema.mekanoid.io/mekanoid.owl#Connection
+:Connection rdf:type owl:Class ;
+            rdfs:subClassOf :SystemObject ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:enables ;
+                              owl:someValuesFrom :Task
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:enables ;
+                              owl:allValuesFrom :Integration
+                            ] ;
+            :icon "connection.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#DataTemplate
+:DataTemplate rdf:type owl:Class ;
+              rdfs:subClassOf :SystemObject ;
+              rdfs:label "Data Template" ;
+              :icon "file.svg"^^xsd:anyURI .
+
+###  https://schema.mekanoid.io/mekanoid.owl#Integration
+:Integration rdf:type owl:Class ;
+             rdfs:subClassOf :SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:contains ;
+                               owl:someValuesFrom :Task
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:enabled-by ;
+                               owl:someValuesFrom :Connection
+                             ] .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#ManualTaskRun
+:ManualTaskRun rdf:type owl:Class ;
+               rdfs:subClassOf d3f:UserAction ,
+                               :TaskRun ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty d3f:invoked-by ;
+                                 owl:allValuesFrom :AppUser
+                               ] ;
+               rdfs:label "Manual Task Run" .
+
+:MekaThing :icon "instance.svg" .
+
+:PublicIPAddress :icon "ip.svg" .
+
+:Report :icon "doc.svg"^^xsd:anyURI .
+
+:Sigma :icon "rule-sigma.svg" .
+
+:Socket :icon "network.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#SystemObject
+:SystemObject rdf:type owl:Class ;
+              rdfs:subClassOf :MekaThing ;
+              rdfs:comment "Mekanoid System Object" ;
+              rdfs:label "Meka Object" ;
+              :icon "mekanoid.svg"^^xsd:anyURI .
+
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Task
+:Task rdf:type owl:Class ;
+      rdfs:subClassOf :SystemObject ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:contained-by ;
+                        owl:someValuesFrom :Integration
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:uses ;
+                        owl:someValuesFrom :DataTemplate
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:uses ;
+                        owl:allValuesFrom :TaskTemplate
+                      ] ;
+      rdfs:comment "An abstract concept. Something to be done." ;
+      skos:altLabel "Atomic Task" ;
+      :icon "task.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskPattern
+:TaskPattern rdf:type owl:Class ;
+             rdfs:subClassOf :SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:created-by ;
+                               owl:someValuesFrom :AppUser
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:invokes ;
+                               owl:someValuesFrom :AutomatedTaskRun
+                             ] ;
+             rdfs:label "Task Pattern" ;
+             :icon "flow.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskRun
+:TaskRun rdf:type owl:Class ;
+         rdfs:subClassOf d3f:DigitalEvent ,
+                         :SystemObject ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:creates ;
+                           owl:someValuesFrom :TaskRunLog
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:uses ;
+                           owl:someValuesFrom :DataTemplate
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:uses ;
+                           owl:someValuesFrom :TaskTemplate
+                         ] ;
+         rdfs:label "Task Run" ;
+         :icon "task.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskRunLog
+:TaskRunLog rdf:type owl:Class ;
+            rdfs:subClassOf d3f:EventLog ,
+                            :SystemObject ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:created-by ;
+                              owl:someValuesFrom :TaskRun
+                            ] ;
+            rdfs:label "Task Run Log" ;
+            :icon "log.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#TaskTemplate
+:TaskTemplate rdf:type owl:Class ;
+              rdfs:subClassOf :SystemObject ;
+              rdfs:label "Task Template" ;
+              :icon "file.svg"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.owl#Tenant
+:Tenant rdf:type owl:Class ;
+        rdfs:subClassOf :SystemObject ;
+        rdfs:comment "Mekanoid Tenant" ;
+        :icon "biz-unit.svg"^^xsd:anyURI .
+
+:Yara :icon "rule-yara.svg" .
+
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+d3f:Artifact :icon "class.svg" .
+
+
+d3f:BinaryLargeObject :icon "binary.svg" .
+
+
+d3f:BinarySegment :icon "binary.svg" .
+
+
+d3f:ClientComputer :icon "screen.svg" .
+
+
+d3f:DNSLookup :icon "dns.svg" .
+
+
+d3f:DNSRecord :icon "dns.svg" .
+
+
+d3f:Database :icon "database.svg" .
+
+
+d3f:DigitalObject :icon "cube.svg" .
+
+
+d3f:Directory :icon "folder.svg" .
+
+
+d3f:DocumentFile :icon "doc.svg" .
+
+
+d3f:Email :icon "email-message.svg" .
+
+
+d3f:ExecutableFile :icon "code-file.svg" .
+
+
+d3f:HardwareDevice :icon "device.svg"^^xsd:anyURI .
+
+
+d3f:IntrusionDetectionSystem :icon "broken.svg" .
+
+
+d3f:Link :icon "url.svg" .
+
+
+d3f:LogFile :icon "doc.svg" .
+
+
+d3f:Network :icon "network.svg" .
+
+
+d3f:NetworkNode :icon "network.svg" .
+
+
+d3f:NetworkTraffic :icon "network.svg" .
+
+
+d3f:OperatingSystem :icon "os.svg"^^xsd:anyURI .
+
+
+d3f:Procedure :icon "procedure.svg" .
+
+
+d3f:Process :icon "process.svg" .
+
+
+d3f:Sensor :icon "broken.svg" .
+
+
+d3f:Server :icon "server.svg" .
+
+
+d3f:SoftwareService :icon "software.svg" .
+
+
+d3f:Technique :icon "technique.svg" .
