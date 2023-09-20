@@ -1,6 +1,7 @@
 @prefix : <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix mknd-d3f: <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -783,7 +784,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                    rdfs:subClassOf :Observable ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
-                   skos:example "Britney Greenman <mexragasu"@gmail.com> .
+                   skos:example """Britney Greenman <mexragasu@gmail.com>"""^^xsd:string .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#EmailSubjectString
