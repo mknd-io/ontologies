@@ -3,3 +3,4 @@ node_modules
 mekanoid.properties
 ontologies/mekanoid/mekanoid-app.properties
 ontologies/mekanoid/mekanoid-d3fend.properties
+docs/mekanoid-d3fend.properties
