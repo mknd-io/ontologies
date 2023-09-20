@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 mekanoid.properties
+ontologies/mekanoid/mekanoid-app.properties
+ontologies/mekanoid/mekanoid-d3fend.properties
