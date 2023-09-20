@@ -8,7 +8,6 @@
 @prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@base <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
 
 <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> rdf:type owl:Ontology ;
                                                    owl:imports d3f: ,
