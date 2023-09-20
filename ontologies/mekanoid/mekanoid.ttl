@@ -554,12 +554,16 @@ time:years rdf:type owl:DatatypeProperty ;
               rdfs:label "vulnerability property" .
 
 
-#################################################################
-#    Classes
-#################################################################
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
+d3f:UserAction owl:disjointWith :MachineAction .
 
-###  http://www.w3.org/ns/shacl#NodeShape
-sh:NodeShape rdf:type owl:Class .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
+d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:may-be-contained-by ;
+                                    owl:someValuesFrom d3f:Software
+                                  ] ;
+                  :icon "vulnerability.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#ASN
@@ -738,6 +742,17 @@ sh:NodeShape rdf:type owl:Class .
           :icon "case.svg" .
 
 
+###  https://schema.mekanoid.io/mekanoid.owl#Integration
+:Integration rdf:type owl:Class ;
+             rdfs:subClassOf :SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:contains ;
+                               owl:someValuesFrom :Task
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:enabled-by ;
+                               owl:someValuesFrom :Connection
+                             ] .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MD5
