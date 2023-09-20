@@ -10,7 +10,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@base <https://schema.mekanoid.io/mekanoid.owl#> .
 
 <https://schema.mekanoid.io/mekanoid.owl#> a owl:Ontology ;
                                             owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
