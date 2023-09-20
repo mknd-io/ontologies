@@ -5,14 +5,14 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix mknd: <https://schema.mekanoid.io/mekanoid.owl#> .
+@prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @base <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
 
 <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> rdf:type owl:Ontology ;
                                                    owl:imports d3f: ,
-                                                               mknd: ;
+                                                               <https://schema.mekanoid.io/mekanoid.ttl#> ;
                                                    dct:created "2022-09-19"^^xsd:date ;
                                                    dct:creator <mailto:anton.goncharov@mekanoid.io> ;
                                                    dct:license "MIT" ;
@@ -108,24 +108,24 @@ d3f:recorded-in owl:inverseOf d3f:records .
 #################################################################
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#identifier
-d3f:identifier owl:equivalentProperty mknd:external-id ;
-               rdfs:subPropertyOf mknd:vendorProperty .
+d3f:identifier owl:equivalentProperty <https://schema.mekanoid.io/mekanoid.owl#external-id> ;
+               rdfs:subPropertyOf <https://schema.mekanoid.io/mekanoid.owl#vendorProperty> .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#version
-d3f:version rdfs:subPropertyOf mknd:vulnProperty .
+d3f:version rdfs:subPropertyOf <https://schema.mekanoid.io/mekanoid.owl#vulnProperty> .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#external-id
-mknd:external-id rdf:type owl:DatatypeProperty .
+<https://schema.mekanoid.io/mekanoid.owl#external-id> rdf:type owl:DatatypeProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#vendorProperty
-mknd:vendorProperty rdf:type owl:DatatypeProperty .
+<https://schema.mekanoid.io/mekanoid.owl#vendorProperty> rdf:type owl:DatatypeProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#vulnProperty
-mknd:vulnProperty rdf:type owl:DatatypeProperty .
+<https://schema.mekanoid.io/mekanoid.owl#vulnProperty> rdf:type owl:DatatypeProperty .
 
 
 #################################################################
@@ -160,19 +160,19 @@ d3f:Software rdfs:subClassOf [ rdf:type owl:Restriction ;
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
 d3f:URL rdfs:subClassOf [ rdf:type owl:Restriction ;
                           owl:onProperty d3f:identifies ;
-                          owl:someValuesFrom mknd:Malware
+                          owl:someValuesFrom <https://schema.mekanoid.io/mekanoid.owl#Malware>
                         ] .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
 d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:onProperty d3f:uses ;
-                                  owl:someValuesFrom mknd:Username
+                                  owl:someValuesFrom <https://schema.mekanoid.io/mekanoid.owl#Username>
                                 ] .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
-d3f:UserAction owl:disjointWith mknd:MachineAction .
+d3f:UserAction owl:disjointWith <https://schema.mekanoid.io/mekanoid.owl#MachineAction> .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
@@ -183,15 +183,15 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#MachineAction
-mknd:MachineAction rdf:type owl:Class .
+<https://schema.mekanoid.io/mekanoid.owl#MachineAction> rdf:type owl:Class .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Malware
-mknd:Malware rdf:type owl:Class .
+<https://schema.mekanoid.io/mekanoid.owl#Malware> rdf:type owl:Class .
 
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Username
-mknd:Username rdf:type owl:Class .
+<https://schema.mekanoid.io/mekanoid.owl#Username> rdf:type owl:Class .
 
 
 #################################################################
@@ -199,8 +199,8 @@ mknd:Username rdf:type owl:Class .
 #################################################################
 
 ###  https://schema.mekanoid.io/mekanoid.owl#Upload
-mknd:Upload rdf:type owl:NamedIndividual ,
-                     d3f:UseCaseGoal .
+<https://schema.mekanoid.io/mekanoid.owl#Upload> rdf:type owl:NamedIndividual ,
+                                                          d3f:UseCaseGoal .
 
 
 #################################################################
