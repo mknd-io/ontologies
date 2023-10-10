@@ -3,20 +3,20 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix mknd: <https://schema.mekanoid.io/mekanoid.owl#> .
+@prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://schema.mekanoid.io/mekanoid.owl#> .
+@base <https://schema.mekanoid.io/mekanoid.ttl#> .
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  https://schema.mekanoid.io/mekanoid.owl#OWLNamedIndividual_000011
+###  https://schema.mekanoid.io/mekanoid.ttl#OWLNamedIndividual_000011
 mknd:1000011 rdf:type mknd:Incident ;
   rdfs:label "Suspicious files incident including Ransomware on one endpoint"@en ;
   d3f:contains mknd:1000013, mknd:1000014, mknd:1000015, mknd:1000016.
 
-###  https://schema.mekanoid.io/mekanoid.owl#000013
+###  https://schema.mekanoid.io/mekanoid.ttl#000013
 mknd:1000013 rdf:type mknd:Detection ;
   rdfs:label """'Seven' ransomware was prevented"""@en ;
   d3f:contained-by mknd:1000011 .
