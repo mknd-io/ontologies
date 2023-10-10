@@ -1,11 +1,11 @@
-@prefix : <https://schema.mekanoid.io/mekanoid.owl#> .
+@prefix : <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://schema.mekanoid.io/mekanoid.owl#> .
+@base <https://schema.mekanoid.io/mekanoid.ttl#> .
 
 [ rdf:type owl:Ontology ;
    owl:imports <http://d3fend.mitre.org/ontologies/d3fend/0.12.0-BETA-1/d3fend.owl> ,
@@ -84,7 +84,7 @@ d3f:uses rdf:type owl:AnnotationProperty .
 <http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#size
+###  https://schema.mekanoid.io/mekanoid.ttl#size
 :size rdf:type owl:AnnotationProperty .
 
 
@@ -100,14 +100,14 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
 <https://schema.mekanoid.io/meka.ttl#trickbot> rdf:type owl:NamedIndividual .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#Tit_marina_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com
 :Tit_marina_gmail_com rdf:type owl:NamedIndividual ,
                                d3f:Email ;
                       rdfs:label "Tit.marina@gmail.com" ;
                       :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#alzholn_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com
 :alzholn_gmail_com rdf:type owl:NamedIndividual ,
                             :EmailAddress ;
                    d3f:contains :gmail_com ;
@@ -115,7 +115,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
                    :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#antongoncharov_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com
 :antongoncharov_gmail_com rdf:type owl:NamedIndividual ,
                                    :EmailAddress ;
                           d3f:contains :gmail_com ;
@@ -124,7 +124,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
                                    "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#cavadova_nastena_1991_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com
 :cavadova_nastena_1991_gmail_com rdf:type owl:NamedIndividual ,
                                           :EmailAddress ;
                                  d3f:contains :gmail_com ;
@@ -132,7 +132,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
                                  rdfs:label "cavadova.nastena.1991@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#domain_mail_sor_f41_google_com
+###  https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com
 :domain_mail_sor_f41_google_com rdf:type owl:NamedIndividual ,
                                          d3f:DomainName ,
                                          d3f:Hostname ;
@@ -146,7 +146,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
         Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#email_2_ONPZ_TZ0_H_CU46_WJ_B
+###  https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B
 :email_2_ONPZ_TZ0_H_CU46_WJ_B rdf:type owl:NamedIndividual ,
                                        d3f:Email ;
                               d3f:contains :file_0TKpbITb_851532_pdf ;
@@ -165,7 +165,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
                               rdfs:label "Email: '2 ONPZ TZ0 H CU46 WJ B'" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#extracted_trickbot_payload_3
+###  https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3
 :extracted_trickbot_payload_3 rdf:type owl:NamedIndividual ,
                                        d3f:ImageCodeSegment ;
                               d3f:contained-by :file_131_doc ;
@@ -184,7 +184,7 @@ d3f:T1204.002 d3f:employed-by <https://schema.mekanoid.io/meka.ttl#trickbot> .
           \"\"148.251.185.165:443\"\",\"""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#file_0TKpbITb_851532_pdf
+###  https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf
 :file_0TKpbITb_851532_pdf rdf:type owl:NamedIndividual ,
                                    d3f:EmailAttachment ;
                           d3f:contained-by :email_2_ONPZ_TZ0_H_CU46_WJ_B ;
@@ -196,7 +196,7 @@ Content-Transfer-Encoding: base64
 X-Attachment-Id: file0""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#file_131_doc
+###  https://schema.mekanoid.io/mekanoid.ttl#file_131_doc
 :file_131_doc rdf:type owl:NamedIndividual ,
                        d3f:File ,
                        d3f:OfficeApplicationFile ;
@@ -215,21 +215,21 @@ X-Attachment-Id: file0""" .
               :size "547328" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#gmail_com
 :gmail_com rdf:type owl:NamedIndividual ,
                     d3f:DomainName ;
            d3f:employed-by :mexragasu_gmail_com ;
            rdfs:label "gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#google_com
+###  https://schema.mekanoid.io/mekanoid.ttl#google_com
 :google_com rdf:type owl:NamedIndividual ,
                      d3f:DomainName ;
             <http://purl.org/dc/elements/1.1/date> "1651875647774"^^xsd:long ;
             rdfs:label "google.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#ip_209_85_220_41
+###  https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41
 :ip_209_85_220_41 rdf:type owl:NamedIndividual ,
                            :IPv4 ;
                   d3f:associated-with :email_2_ONPZ_TZ0_H_CU46_WJ_B ;
@@ -250,21 +250,21 @@ X-Attachment-Id: file0""" .
         Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#ip_51_89_163_40
+###  https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40
 :ip_51_89_163_40 rdf:type owl:NamedIndividual ,
                           :IPv4 ;
                  d3f:employed-by :trickbot ;
                  rdfs:label "51.89.163.40" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#ip_89_223_126_186
+###  https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186
 :ip_89_223_126_186 rdf:type owl:NamedIndividual ,
                             :IPv4 ;
                    d3f:employed-by :trickbot ;
                    rdfs:label "89.223.126.186" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#kalinin_p_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com
 :kalinin_p_gmail_com rdf:type owl:NamedIndividual ,
                               :EmailAddress ;
                      d3f:contains :gmail_com ;
@@ -273,14 +273,14 @@ X-Attachment-Id: file0""" .
                      :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#localhost
+###  https://schema.mekanoid.io/mekanoid.ttl#localhost
 :localhost rdf:type owl:NamedIndividual ,
                     d3f:Hostname ;
            d3f:name "localhost" ;
            rdfs:label "localhost" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#mailserver_mail_sor_f41_google_com__209_85_220_41
+###  https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41
 :mailserver_mail_sor_f41_google_com__209_85_220_41 rdf:type owl:NamedIndividual ,
                                                             d3f:MailServer ;
                                                    d3f:uses :domain_mail_sor_f41_google_com ,
@@ -293,7 +293,7 @@ X-Attachment-Id: file0""" .
         Wed, 27 Apr 2022 19:50:55 -0700 (PDT)""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#mett911_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com
 :mett911_gmail_com rdf:type owl:NamedIndividual ,
                             :EmailAddress ;
                    d3f:contains :gmail_com ;
@@ -302,7 +302,7 @@ X-Attachment-Id: file0""" .
                    :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#mexragasu_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com
 :mexragasu_gmail_com rdf:type owl:NamedIndividual ,
                               :EmailAddress ;
                      d3f:contains :gmail_com ;
@@ -319,7 +319,7 @@ Authentication-Results: mx.google.com;
                             Return-Path: mexragasu@gmail.com""" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#mx_google_com
+###  https://schema.mekanoid.io/mekanoid.ttl#mx_google_com
 :mx_google_com rdf:type owl:NamedIndividual ,
                         d3f:DomainName ,
                         d3f:Hostname ;
@@ -328,13 +328,13 @@ Authentication-Results: mx.google.com;
                rdfs:label "mx.google.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#port_443
+###  https://schema.mekanoid.io/mekanoid.ttl#port_443
 :port_443 rdf:type owl:NamedIndividual ;
           <http://purl.org/cyber/stix#value> "443"^^xsd:int ;
           rdfs:label "Port 443" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#s_game_00_gmail_com
+###  https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com
 :s_game_00_gmail_com rdf:type owl:NamedIndividual ,
                               :EmailAddress ;
                      <http://purl.org/dc/elements/1.1/date> "1651872818641"^^xsd:long ;
@@ -342,7 +342,7 @@ Authentication-Results: mx.google.com;
                      :context "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#tcpip_51_89_163_40_443
+###  https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443
 :tcpip_51_89_163_40_443 rdf:type owl:NamedIndividual ,
                                  :Socket ;
                         d3f:employed-by :trickbot ;
@@ -351,7 +351,7 @@ Authentication-Results: mx.google.com;
                         rdfs:label "51.89.163.40:443" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#tcpip_89_223_126_186_443
+###  https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443
 :tcpip_89_223_126_186_443 rdf:type owl:NamedIndividual ,
                                    :Socket ;
                           d3f:employed-by :trickbot ;
@@ -360,7 +360,7 @@ Authentication-Results: mx.google.com;
                           rdfs:label "89.223.126.186:443" .
 
 
-###  https://schema.mekanoid.io/mekanoid.owl#trickbot
+###  https://schema.mekanoid.io/mekanoid.ttl#trickbot
 :trickbot rdf:type owl:NamedIndividual ,
                    d3f:T1587.001 ;
           d3f:uses d3f:T1204.002 ,
