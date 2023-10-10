@@ -1,7 +1,6 @@
 @prefix : <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
-@prefix mknd-d3f: <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -11,16 +10,17 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix mknd-d3f: <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
 @base <https://schema.mekanoid.io/mekanoid.ttl#> .
 
-<https://schema.mekanoid.io/mekanoid.ttl#> a owl:Ontology ;
-                                            owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl#>,
-                                               <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> ;
-                                            dct:created "2022-04-02"^^xsd:date ;
-                                            dct:creator <mailto:anton.goncharov@mekanoid.io> ;
-                                            dct:license "MIT" ;
-                                            dct:modified "2023-09-19" ;
-                                            rdfs:label "Mekanoid Ontology for Cybersecurity Automation" .
+<https://schema.mekanoid.io/mekanoid.ttl> rdf:type owl:Ontology ;
+                                           owl:imports d3f: ,
+                                                       mknd-d3f: ;
+                                           dct:created "2022-04-02"^^xsd:date ;
+                                           dct:creator <mailto:anton.goncharov@mekanoid.io> ;
+                                           dct:license "MIT" ;
+                                           dct:modified "2023-09-21" ;
+                                           rdfs:label "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
 #    Annotation properties
@@ -784,7 +784,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                    rdfs:subClassOf :Observable ;
                    rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
                    rdfs:label "Email Sender"@en ;
-                   skos:example """Britney Greenman <mexragasu@gmail.com>"""^^xsd:string .
+                   skos:example "Britney Greenman <mexragasu@gmail.com>" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#EmailSubjectString
