@@ -1,6 +1,8 @@
 @prefix : <https://schema.mekanoid.io/mekanoid.ttl#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix d3fm: <https://schema.mekanoid.io/d3fend-mknd.ttl#> .
+@prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -10,17 +12,15 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix mknd-d3f: <https://schema.mekanoid.io/mekanoid-d3fend.ttl#> .
-@base <https://schema.mekanoid.io/mekanoid.ttl#> .
 
-<https://schema.mekanoid.io/mekanoid.ttl> rdf:type owl:Ontology ;
-                                           owl:imports d3f: ,
-                                                       mknd-d3f: ;
-                                           dct:created "2022-04-02"^^xsd:date ;
-                                           dct:creator <mailto:anton.goncharov@mekanoid.io> ;
-                                           dct:license "MIT" ;
-                                           dct:modified "2023-09-21" ;
-                                           rdfs:label "Mekanoid Ontology for Cybersecurity Automation" .
+<https://schema.mekanoid.io/mekanoid.ttl#> 
+  a owl:Ontology ;
+  owl:imports d3f:, d3fm: ;
+  dct:created "2022-04-02"^^xsd:date ;
+  dct:creator <mailto:anton.goncharov@mekanoid.io> ;
+  dct:license "MIT" ;
+  dct:modified "2023-10-09" ;
+  dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
 #    Annotation properties
@@ -89,15 +89,9 @@ sh:targetClass rdf:type owl:AnnotationProperty .
 ###  https://schema.mekanoid.io/mekanoid.ttl#cpe
 :cpe rdf:type owl:AnnotationProperty ;
      rdfs:label "has CPE" ;
+     skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" ;
      rdfs:range xsd:string ;
-     rdfs:domain d3f:Vulnerability .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#icon
-:icon rdf:type owl:AnnotationProperty ;
-      rdfs:label "has icon"@en ;
-      rdfs:range xsd:anyURI ;
-      rdfs:domain owl:Thing .
+     rdfs:domain d3f:Software .
 
 
 #################################################################
@@ -111,54 +105,6 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 #    Object Properties
 #################################################################
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
-d3f:analyzed-by rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-                owl:inverseOf d3f:analyzes ;
-                rdfs:label "analyzed by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes
-d3f:analyzes owl:inverseOf d3f:isolated-by .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
-d3f:associated-with rdf:type owl:ObjectProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
-d3f:connected-by rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-                 owl:inverseOf d3f:connects ;
-                 rdfs:label "connected by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by
-d3f:identified-by owl:inverseOf d3f:identifies .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
-d3f:isolated-by rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-                rdfs:label "isolated by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with
-d3f:may-be-associated-with rdf:type owl:ObjectProperty ,
-                                    owl:SymmetricProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy
-d3f:providedBy rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-               owl:inverseOf d3f:provides ;
-               rdfs:label "provided by"@en .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in
-d3f:recorded-in owl:inverseOf d3f:records .
-
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#indicatedBy
 :indicatedBy rdf:type owl:ObjectProperty ;
@@ -196,6 +142,14 @@ d3f:recorded-in owl:inverseOf d3f:records .
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#version
+d3f:version rdfs:subPropertyOf mknd:vulnProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#identifier
+d3f:identifier owl:equivalentProperty mknd:external-id ;
+               rdfs:subPropertyOf mknd:vendorProperty .
 
 ###  http://www.w3.org/2006/time#day
 time:day rdf:type owl:DatatypeProperty ;
@@ -324,6 +278,42 @@ time:years rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :timeProperty .
 
 
+###  https://schema.mekanoid.io/mekanoid.ttl#attackComplexity
+:attackComplexity rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :vulnProperty ;
+                  rdfs:label "attack complexity" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#attackVector
+:attackVector rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :vulnProperty ;
+              rdfs:label "attack vector" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#availabilityImpact
+:availabilityImpact rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :vulnProperty ;
+                    rdfs:label "availability impact" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#baseScore
+:baseScore rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :vulnProperty ;
+           rdfs:label "base score" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#baseSeverity
+:baseSeverity rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :vulnProperty ;
+              rdfs:label "base severity" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#confidentialityImpact
+:confidentialityImpact rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :vulnProperty ;
+                       rdfs:label "confidentiality impact" .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#dataProperty
 :dataProperty rdf:type owl:DatatypeProperty ;
               rdfs:comment "Mekanoid Data Property"@en ;
@@ -351,9 +341,15 @@ time:years rdf:type owl:DatatypeProperty ;
                skos:example "990577200"^^xsd:long .
 
 
+###  https://schema.mekanoid.io/mekanoid.ttl#extCategory
+:extCategory rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :vendorProperty ;
+             rdfs:label "Category" .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#extClassification
 :extClassification rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :dataProperty ;
+                   rdfs:subPropertyOf :vendorProperty ;
                    rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en ;
                    rdfs:label "Classification"@en .
 
@@ -379,11 +375,24 @@ time:years rdf:type owl:DatatypeProperty ;
              rdfs:label "Severity"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.ttl#extStatus
+:extStatus rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :vendorProperty ;
+           rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en ;
+           rdfs:label "Status"@en .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#extThreat
 :extThreat rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :extClassification ;
            rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en ;
            rdfs:label "Threat Level"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#extType
+:extType rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :vendorProperty ;
+         rdfs:label "Type" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extUrgency
@@ -395,10 +404,10 @@ time:years rdf:type owl:DatatypeProperty ;
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#external-id
 :external-id rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
+             rdfs:subPropertyOf :vendorProperty ;
              rdfs:domain d3f:Host ,
                          d3f:UserAccount ;
-             rdfs:label "external ID"@en .
+             rdfs:label "External ID"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#firstSeen
@@ -423,34 +432,10 @@ time:years rdf:type owl:DatatypeProperty ;
         rdfs:label "has URL"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.ttl#id
-:id rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf :dataProperty ;
-    rdfs:label "has id"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#importBucketName
-:importBucketName rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :dataProperty ;
-                  rdfs:label "bucketName"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#importBucketUrl
-:importBucketUrl rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :dataProperty ;
-                 rdfs:label "bucketUrl"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#importFileName
-:importFileName rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :dataProperty ;
-                rdfs:label "filename"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#importId
-:importId rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :dataProperty ;
-          rdfs:label "importId"@en .
+###  https://schema.mekanoid.io/mekanoid.ttl#integrityImpact
+:integrityImpact rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :vulnProperty ;
+                 rdfs:label "integrity impact" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastAccessedEpoch
@@ -484,11 +469,22 @@ time:years rdf:type owl:DatatypeProperty ;
                   rdfs:label "last modified"@en .
 
 
+###  https://schema.mekanoid.io/mekanoid.ttl#privilegesRequired
+:privilegesRequired rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :vulnProperty ;
+                    rdfs:label "privileges required" .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#reference
 :reference rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :hasURL ;
            rdfs:range xsd:anyURI ;
            rdfs:label "has reference" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#scope
+:scope rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :vulnProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#size
@@ -500,13 +496,6 @@ time:years rdf:type owl:DatatypeProperty ;
       rdfs:label "has size"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.ttl#status
-:status rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :dataProperty ;
-        rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en ;
-        rdfs:label "Status"@en .
-
-
 ###  https://schema.mekanoid.io/mekanoid.ttl#stringValue
 :stringValue rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf :dataProperty ;
@@ -514,19 +503,6 @@ time:years rdf:type owl:DatatypeProperty ;
              rdfs:range xsd:string ;
              rdfs:comment "the object is represented by the following string value"@en ;
              rdfs:label "is"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#teamId
-:teamId rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :dataProperty ;
-        rdfs:label "teamID"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#templateId
-:templateId rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :dataProperty ;
-            rdfs:label "templateId"@en .
-
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#timeCreated
 :timeCreated rdf:type owl:DatatypeProperty ;
@@ -555,10 +531,10 @@ time:years rdf:type owl:DatatypeProperty ;
           rdfs:label "seen at"@en .
 
 
-###  https://schema.mekanoid.io/mekanoid.ttl#userId
-:userId rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :dataProperty ;
-        rdfs:label "userID"@en .
+###  https://schema.mekanoid.io/mekanoid.ttl#userInteraction
+:userInteraction rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :vulnProperty ;
+                 rdfs:label "user interaction" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#value
@@ -570,76 +546,22 @@ time:years rdf:type owl:DatatypeProperty ;
        rdfs:label "has value"@en .
 
 
-#################################################################
-#    Classes
-#################################################################
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
-d3f:DomainName :icon "domain.svg" .
+###  https://schema.mekanoid.io/mekanoid.ttl#vectorString
+:vectorString rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :vulnProperty ;
+              rdfs:label "vector" .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
-d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                       owl:onProperty d3f:enables ;
-                                       owl:someValuesFrom :Function
-                                     ] .
+###  https://schema.mekanoid.io/mekanoid.ttl#vendorProperty
+:vendorProperty rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :dataProperty ;
+                rdfs:label "vendor property" .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#File
-d3f:File :icon "file.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash
-d3f:FileHash :icon "file-hash.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
-d3f:Host :icon "computer.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
-d3f:IPAddress :icon "ip.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
-d3f:Identifier :icon "text.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Log
-d3f:Log rdfs:subClassOf d3f:Record ;
-        :icon "log.svg"^^xsd:anyURI .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
-d3f:Software rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:may-contain ;
-                               owl:someValuesFrom d3f:Vulnerability
-                             ] ;
-             :icon "software.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
-d3f:Subroutine owl:equivalentClass :Function .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
-d3f:URL rdfs:subClassOf [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:identifies ;
-                          owl:someValuesFrom :Malware
-                        ] ;
-        :icon "url.svg" .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#User
-d3f:User :icon "employee.svg"^^xsd:anyURI .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
-d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty d3f:uses ;
-                                  owl:someValuesFrom :Username
-                                ] ;
-                :icon "user-account.svg" .
+###  https://schema.mekanoid.io/mekanoid.ttl#vulnProperty
+:vulnProperty rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :dataProperty ;
+              rdfs:label "vulnerability property" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
@@ -652,6 +574,24 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:someValuesFrom d3f:Software
                                   ] ;
                   :icon "vulnerability.svg"^^xsd:anyURI .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
+d3f:URL rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:identifies ;
+                          owl:someValuesFrom mknd:Malware
+                        ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
+d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty d3f:uses ;
+                                  owl:someValuesFrom mknd:Username
+                                ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
+d3f:UserAction owl:disjointWith mknd:MachineAction .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#ASN
@@ -710,41 +650,11 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                         rdfs:label "Application User Account" .
 
 
-###  https://schema.mekanoid.io/mekanoid.ttl#AutomatedTaskRun
-:AutomatedTaskRun rdf:type owl:Class ;
-                  rdfs:subClassOf :MachineAction ,
-                                  :TaskRun ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty d3f:invoked-by ;
-                                    owl:allValuesFrom :TaskPattern
-                                  ] ;
-                  rdfs:label "Automated Task Run" .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Connection
-:Connection rdf:type owl:Class ;
-            rdfs:subClassOf :SystemObject ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:enables ;
-                              owl:someValuesFrom :Task
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:enables ;
-                              owl:allValuesFrom :Integration
-                            ] ;
-            :icon "connection.svg"^^xsd:anyURI .
-
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Control
 :Control rdf:type owl:Class ;
          rdfs:subClassOf :MekaThing .
 
-
-###  https://schema.mekanoid.io/mekanoid.ttl#DataTemplate
-:DataTemplate rdf:type owl:Class ;
-              rdfs:subClassOf :SystemObject ;
-              rdfs:label "Data Template" ;
-              :icon "file.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Detection
@@ -811,6 +721,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                             owl:onProperty d3f:enabled-by ;
                             owl:someValuesFrom d3f:ExecutableBinary
                           ] ;
+          owl:equivalentClass d3f:Subroutine ;
           rdfs:label "Function"@en ;
           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
@@ -831,6 +742,12 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
       rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en ;
       rdfs:label "Hash"@en ;
       :icon "hash.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#IOCRule
+:IOCRule rdf:type owl:Class ;
+         rdfs:subClassOf :DetectionRule ;
+         rdfs:label "IOC" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#IPv4
@@ -878,12 +795,14 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                rdfs:subClassOf d3f:DigitalEvent ,
                                :MekaThing ;
                rdfs:label "Machine Action" ;
+               owl:disjointWith d3f:UserAction ;
                skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Malware
 :Malware rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing ,
+         rdfs:subClassOf d3f:Software ,
+                         :MekaThing ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:associated-with ;
                            owl:someValuesFrom d3f:DomainName
@@ -919,16 +838,6 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
          rdfs:label "Malicious Software" .
 
 
-###  https://schema.mekanoid.io/mekanoid.ttl#ManualTaskRun
-:ManualTaskRun rdf:type owl:Class ;
-               rdfs:subClassOf d3f:UserAction ,
-                               :TaskRun ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty d3f:invoked-by ;
-                                 owl:allValuesFrom :AppUser
-                               ] ;
-               rdfs:label "Manual Task Run" .
-
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#MekaThing
 :MekaThing rdf:type owl:Class ;
@@ -957,8 +866,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                              owl:onDataRange xsd:dateTimeStamp
                            ] ;
            rdfs:label "Mekanoid Thing"@en ;
-           skos:altLabel "Mekanoid Ontology Item" ;
-           :icon "instance.svg" .
+           skos:altLabel "Mekanoid Ontology Item" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Observable
@@ -979,6 +887,12 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
            rdfs:subClassOf :MekaThing ;
            rdfs:label "Operation"@en ;
            :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Path
+:Path rdf:type owl:Class ;
+      rdfs:subClassOf :Observable ;
+      d3f:definition "A generic URI string pointing to location of a directory or file on one or multiple systems." .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Payload
@@ -1004,8 +918,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
                  rdfs:label "Public IP Address"@en ;
                  skos:example "4.2.2.1" ,
-                              "8.8.8.8" ;
-                 :icon "ip.svg" .
+                              "8.8.8.8" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Report
@@ -1049,8 +962,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                           owl:someValuesFrom xsd:anyURI
                         ] ;
         rdfs:label "Analysis Report"@en ;
-        skos:definition "A document containing the results of an assessment or analysis of an artifact." ;
-        :icon "doc.svg"^^xsd:anyURI .
+        skos:definition "A document containing the results of an assessment or analysis of an artifact."  .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#SHA1
@@ -1088,8 +1000,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
                          owl:onProperty d3f:contained-by ;
                          owl:someValuesFrom d3f:ConfigurationFile
                        ] ;
-       rdfs:label "Sigma Rule"@en ;
-       :icon "rule-sigma.svg" .
+       rdfs:label "Sigma Rule"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Signature
@@ -1103,97 +1014,7 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
         rdfs:subClassOf d3f:Identifier ,
                         :Observable ;
         rdfs:label "Network Socket"@en ;
-        skos:example "51.89.163.40:443" ;
-        :icon "network.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#SystemObject
-:SystemObject rdf:type owl:Class ;
-              rdfs:subClassOf :MekaThing ;
-              rdfs:comment "Mekanoid System Object" ;
-              rdfs:label "Meka Object" ;
-              :icon "mekanoid.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Task
-:Task rdf:type owl:Class ;
-      rdfs:subClassOf :SystemObject ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty d3f:contained-by ;
-                        owl:someValuesFrom :Integration
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty d3f:uses ;
-                        owl:someValuesFrom :DataTemplate
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty d3f:uses ;
-                        owl:allValuesFrom :TaskTemplate
-                      ] ;
-      rdfs:comment "An abstract concept. Something to be done." ;
-      skos:altLabel "Atomic Task" ;
-      :icon "task.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#TaskPattern
-:TaskPattern rdf:type owl:Class ;
-             rdfs:subClassOf :SystemObject ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:created-by ;
-                               owl:someValuesFrom :AppUser
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:invokes ;
-                               owl:someValuesFrom :AutomatedTaskRun
-                             ] ;
-             rdfs:label "Task Pattern" ;
-             :icon "flow.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#TaskRun
-:TaskRun rdf:type owl:Class ;
-         rdfs:subClassOf d3f:DigitalEvent ,
-                         :SystemObject ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:creates ;
-                           owl:someValuesFrom :TaskRunLog
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:uses ;
-                           owl:someValuesFrom :DataTemplate
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:uses ;
-                           owl:someValuesFrom :TaskTemplate
-                         ] ;
-         rdfs:label "Task Run" ;
-         :icon "task.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#TaskRunLog
-:TaskRunLog rdf:type owl:Class ;
-            rdfs:subClassOf d3f:EventLog ,
-                            :SystemObject ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:created-by ;
-                              owl:someValuesFrom :TaskRun
-                            ] ;
-            rdfs:label "Task Run Log" ;
-            :icon "log.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#TaskTemplate
-:TaskTemplate rdf:type owl:Class ;
-              rdfs:subClassOf :SystemObject ;
-              rdfs:label "Task Template" ;
-              :icon "file.svg"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Tenant
-:Tenant rdf:type owl:Class ;
-        rdfs:subClassOf :SystemObject ;
-        rdfs:comment "Mekanoid Tenant" ;
-        :icon "biz-unit.svg"^^xsd:anyURI .
+        skos:example "51.89.163.40:443" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Ticket
@@ -1253,92 +1074,14 @@ d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
 ###  https://schema.mekanoid.io/mekanoid.ttl#Yara
 :Yara rdf:type owl:Class ;
       rdfs:subClassOf :DetectionRule ;
-      rdfs:label "YARA Rule"@en ;
-      :icon "rule-yara.svg" .
-
+      rdfs:label "YARA Rule"@en .
 
 #################################################################
-#    Annotations
+#    Individuals
 #################################################################
 
-d3f:Artifact :icon "class.svg" .
-
-
-d3f:BinaryLargeObject :icon "binary.svg" .
-
-
-d3f:BinarySegment :icon "binary.svg" .
-
-
-d3f:ClientComputer :icon "screen.svg" .
-
-
-d3f:DNSLookup :icon "dns.svg" .
-
-
-d3f:DNSRecord :icon "dns.svg" .
-
-
-d3f:Database :icon "database.svg" .
-
-
-d3f:DigitalObject :icon "cube.svg" .
-
-
-d3f:Directory :icon "folder.svg" .
-
-
-d3f:DocumentFile :icon "doc.svg" .
-
-
-d3f:Email skos:altLabel "Email Message"@en ;
-          :icon "email-message.svg" .
-
-
-d3f:ExecutableFile :icon "code-file.svg" .
-
-
-d3f:HardwareDevice :icon "device.svg"^^xsd:anyURI .
-
-
-d3f:IntrusionDetectionSystem :icon "broken.svg" .
-
-
-d3f:Link :icon "url.svg" .
-
-
-d3f:LogFile :icon "doc.svg" .
-
-
-d3f:Network :icon "network.svg" .
-
-
-d3f:NetworkNode :icon "network.svg" .
-
-
-d3f:NetworkTraffic :icon "network.svg" .
-
-
-d3f:OperatingSystem :icon "os.svg"^^xsd:anyURI .
-
-
-d3f:Procedure rdfs:label "Procedure"@en ;
-              :icon "procedure.svg" .
-
-
-d3f:Process :icon "process.svg" .
-
-
-d3f:Sensor :icon "broken.svg" .
-
-
-d3f:Server :icon "server.svg" .
-
-
-d3f:SoftwareService :icon "software.svg" .
-
-
-d3f:Technique :icon "technique.svg" .
-
+###  https://schema.mekanoid.io/mekanoid.ttl#Upload
+mknd:Upload rdf:type owl:NamedIndividual ,
+                     d3f:UseCaseGoal .
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
