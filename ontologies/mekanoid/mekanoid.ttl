@@ -921,6 +921,15 @@ d3f:UserAction owl:disjointWith mknd:MachineAction .
                               "8.8.8.8" .
 
 
+###  https://schema.mekanoid.io/mekanoid.ttl#MACAddress
+:MACAddress rdf:type owl:Class ;
+                 rdfs:subClassOf d3f:Identifier ,
+                                 :Observable ;
+                 rdfs:label "MAC Address"@en ;
+                 skos:example "00-1B-63-84-45-E6",
+                              "00:1b:63:84:45:e6" .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#Report
 :Report rdf:type owl:Class ;
         rdfs:subClassOf d3f:Record ,
