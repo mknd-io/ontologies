@@ -82,8 +82,8 @@ sh:targetClass rdf:type owl:AnnotationProperty .
 :context rdf:type owl:AnnotationProperty ;
          rdfs:label "context"@en ;
          rdfs:subPropertyOf rdfs:comment ;
-         rdfs:range xsd:anyURI ,
-                    xsd:longString .
+         rdfs:range [ rdf:type owl:Class ; 
+                      owl:unionOf ( xsd:anyURI xsd:string ) ] .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#cpe
