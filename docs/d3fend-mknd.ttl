@@ -1,0 +1,139 @@
+@prefix : <https://schema.mekanoid.io/d3fend-mknd.ttl#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix d3fm: <http://d3fend.mitre.org/ontologies/d3fend-mknd.ttl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <https://schema.mekanoid.io/d3fend-mknd.ttl#> .
+
+### The sole purpose of this onthology is to extend MITRE D3FEND with missing concepts.
+### It should use no terms from the Mekanoid ontology. All terms should be imported from MITRE D3FEND.
+### Any terms using Mekanoid ontology should be moved to the Mekanoid ontology.
+
+<https://schema.mekanoid.io/d3fend-mknd.ttl#>
+    a owl:Ontology ;
+    owl:imports d3f: ;
+    dct:created "2022-09-19"^^xsd:date ;
+    dct:creator "Anton Goncharov" ;
+    dct:license "MIT" ;
+    dct:modified "2023-10-09"^^xsd:date ;
+    dct:title "Mekanoid's expanded version of MITRE D3FEND ontology" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
+d3f:analyzed-by rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                owl:inverseOf d3f:analyzes ;
+                rdfs:label "analyzed by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes
+d3f:analyzes owl:inverseOf d3f:isolated-by .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
+d3f:associated-with rdf:type owl:ObjectProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
+d3f:connected-by rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                 owl:inverseOf d3f:connects ;
+                 rdfs:label "connected by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#enables
+d3f:enables owl:inverseOf d3f:has-goal .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#has-goal
+d3f:has-goal rdfs:range d3f:UseCaseGoal .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by
+d3f:identified-by owl:inverseOf d3f:identifies .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by
+d3f:isolated-by rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                rdfs:label "isolated by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with
+d3f:may-be-associated-with rdf:type owl:ObjectProperty ,
+                                    owl:SymmetricProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy
+d3f:providedBy rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+               owl:inverseOf d3f:provides ;
+               rdfs:label "provided by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in
+d3f:recorded-in owl:inverseOf d3f:records .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Command
+d3f:Command rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:has-goal ;
+                              owl:someValuesFrom d3f:UseCaseGoal
+                            ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary
+d3f:ExecutableBinary rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty d3f:enables ;
+                                       owl:someValuesFrom d3f:Subroutine
+                                     ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Log
+d3f:Log rdfs:subClassOf d3f:Record .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Software
+d3f:Software rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:may-contain ;
+                               owl:someValuesFrom d3f:Vulnerability
+                             ] .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
+d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:may-be-contained-by ;
+                                    owl:someValuesFrom d3f:Software
+                                  ] .
+
+
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+d3f:Email skos:altLabel "Email Message"@en .
+
+
+d3f:Procedure rdfs:label "Procedure"@en .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
