@@ -1,26 +1,28 @@
 @prefix : <https://schema.mekanoid.io/mekanoid.ttl#> .
-@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
-@prefix d3fm: <https://schema.mekanoid.io/d3fend-mknd.ttl#> .
-@prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d3fm: <https://schema.mekanoid.io/d3fend-mknd.ttl#> .
+@prefix mknd: <https://schema.mekanoid.io/mekanoid.ttl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix stix: <http://purl.org/cyber/stix#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@base <https://schema.mekanoid.io/mekanoid.ttl#> .
 
-<https://schema.mekanoid.io/mekanoid.ttl#> 
-  a owl:Ontology ;
-  owl:imports d3f:, d3fm: ;
-  dct:created "2022-04-02"^^xsd:date ;
-  dct:creator <mailto:anton.goncharov@mekanoid.io> ;
-  dct:license "MIT" ;
-  dct:modified "2023-10-09" ;
-  dct:title "Mekanoid Ontology for Cybersecurity Automation" .
+<https://schema.mekanoid.io/mekanoid.ttl#> rdf:type owl:Ontology ;
+                                            owl:versionIRI <https://schema.mekanoid.io/mekanoid-2301113.ttl#> ;
+                                            owl:imports d3f: ,
+                                                        d3fm: ;
+                                            dct:created "2022-04-02"^^xsd:date ;
+                                            dct:creator <mailto:anton.goncharov@mekanoid.io> ;
+                                            dct:license "MIT" ;
+                                            dct:modified "2023-11-13"^^xsd:date ;
+                                            dct:title "Mekanoid Ontology for Cybersecurity Automation" .
 
 #################################################################
 #    Annotation properties
@@ -40,6 +42,10 @@ dct:modified rdf:type owl:AnnotationProperty .
 
 ###  http://purl.org/dc/terms/title
 dct:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#qualifiedCardinality
+owl:qualifiedCardinality rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2004/02/skos/core#altLabel
@@ -79,19 +85,20 @@ sh:targetClass rdf:type owl:AnnotationProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#context
-:context rdf:type owl:AnnotationProperty ;
-         rdfs:label "context"@en ;
-         rdfs:subPropertyOf rdfs:comment ;
-         rdfs:range [ rdf:type owl:Class ; 
-                      owl:unionOf ( xsd:anyURI xsd:string ) ] .
+mknd:context rdf:type owl:AnnotationProperty ;
+             rdfs:subPropertyOf rdfs:comment .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#cpe
-:cpe rdf:type owl:AnnotationProperty ;
-     rdfs:label "has CPE" ;
-     skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" ;
-     rdfs:range xsd:string ;
-     rdfs:domain d3f:Software .
+mknd:cpe rdf:type owl:AnnotationProperty ;
+         rdfs:label "has CPE" ;
+         skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" ;
+         rdfs:range xsd:string ;
+         rdfs:domain d3f:Software .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#icon
+mknd:icon rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -106,474 +113,494 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  https://schema.mekanoid.io/mekanoid.ttl#context
+mknd:context rdf:type owl:ObjectProperty ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( xsd:anyURI
+                                        xsd:string
+                                      )
+                        ] .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#indicatedBy
-:indicatedBy rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :mayBeIndicatedBy ;
-             owl:inverseOf :indicates ;
-             rdfs:label "indicated by"@en .
+mknd:indicatedBy rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf mknd:mayBeIndicatedBy ;
+                 owl:inverseOf mknd:indicates ;
+                 rdfs:label "indicated by"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#indicates
-:indicates rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :mayIndicate ;
-           rdfs:label "indicates"@en .
+mknd:indicates rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf mknd:mayIndicate ;
+               rdfs:label "indicates"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#mayBeIndicatedBy
-:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :mekanoid-object-property ;
-                  owl:inverseOf :mayIndicate ;
-                  rdfs:label "may be indicated by"@en .
+mknd:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf mknd:mekanoid-object-property ;
+                      owl:inverseOf mknd:mayIndicate ;
+                      rdfs:label "may be indicated by"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#mayIndicate
-:mayIndicate rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :mekanoid-object-property ;
-             rdfs:label "may indicate"@en .
+mknd:mayIndicate rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf mknd:mekanoid-object-property ;
+                 rdfs:label "may indicate"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#mekanoid-object-property
-:mekanoid-object-property rdf:type owl:ObjectProperty ,
-                                   owl:SymmetricProperty ;
-                          rdfs:comment "Mekanoid object property"@en ;
-                          rdfs:label "has relationship"@en .
+mknd:mekanoid-object-property rdf:type owl:ObjectProperty ,
+                                       owl:SymmetricProperty ;
+                              rdfs:comment "Mekanoid object property"@en ;
+                              rdfs:label "has relationship"@en .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#version
-d3f:version rdfs:subPropertyOf mknd:vulnProperty .
-
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#identifier
 d3f:identifier owl:equivalentProperty mknd:external-id ;
                rdfs:subPropertyOf mknd:vendorProperty .
 
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#version
+d3f:version rdfs:subPropertyOf mknd:vulnProperty .
+
+
 ###  http://www.w3.org/2006/time#day
 time:day rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :timeProperty .
+         rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#dayOfYear
 time:dayOfYear rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :timeProperty .
+               rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#days
 time:days rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
+          rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hasXSDDuration
 time:hasXSDDuration rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :timeProperty .
+                    rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hour
 time:hour rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
+          rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#hours
 time:hours rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
+           rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDate
 time:inXSDDate rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :timeProperty .
+               rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDateTime
 time:inXSDDateTime rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :timeProperty .
+                   rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDDateTimeStamp
 time:inXSDDateTimeStamp rdf:type owl:DatatypeProperty ;
-                        owl:equivalentProperty :dateTime ;
-                        rdfs:subPropertyOf :timeProperty .
+                        owl:equivalentProperty mknd:dateTime ;
+                        rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDgYear
 time:inXSDgYear rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :timeProperty .
+                rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#inXSDgYearMonth
 time:inXSDgYearMonth rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
+                     rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#minute
 time:minute rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
+            rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#minutes
 time:minutes rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :timeProperty .
+             rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#month
 time:month rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
+           rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#months
 time:months rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
+            rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#nominalPosition
 time:nominalPosition rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
+                     rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#numericDuration
 time:numericDuration rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf :timeProperty .
+                     rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#numericPosition
 time:numericPosition rdf:type owl:DatatypeProperty ;
-                     owl:equivalentProperty :dateTimeEpoch ;
-                     rdfs:subPropertyOf :timeProperty .
+                     owl:equivalentProperty mknd:dateTimeEpoch ;
+                     rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#second
 time:second rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :timeProperty .
+            rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#seconds
 time:seconds rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :timeProperty .
+             rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#week
 time:week rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
+          rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#weeks
 time:weeks rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
+           rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#xsdDateTime
 time:xsdDateTime rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :timeProperty .
+                 rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#year
 time:year rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeProperty .
+          rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  http://www.w3.org/2006/time#years
 time:years rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeProperty .
+           rdfs:subPropertyOf mknd:timeProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#attackComplexity
-:attackComplexity rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :vulnProperty ;
-                  rdfs:label "attack complexity" .
+mknd:attackComplexity rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf mknd:vulnProperty ;
+                      rdfs:label "attack complexity" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#attackVector
-:attackVector rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "attack vector" .
+mknd:attackVector rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf mknd:vulnProperty ;
+                  rdfs:label "attack vector" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#availabilityImpact
-:availabilityImpact rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :vulnProperty ;
-                    rdfs:label "availability impact" .
+mknd:availabilityImpact rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf mknd:vulnProperty ;
+                        rdfs:label "availability impact" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#baseScore
-:baseScore rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :vulnProperty ;
-           rdfs:label "base score" .
+mknd:baseScore rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:vulnProperty ;
+               rdfs:label "base score" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#baseSeverity
-:baseSeverity rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "base severity" .
+mknd:baseSeverity rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf mknd:vulnProperty ;
+                  rdfs:label "base severity" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#confidentialityImpact
-:confidentialityImpact rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf :vulnProperty ;
-                       rdfs:label "confidentiality impact" .
+mknd:confidentialityImpact rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf mknd:vulnProperty ;
+                           rdfs:label "confidentiality impact" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#dataProperty
-:dataProperty rdf:type owl:DatatypeProperty ;
-              rdfs:comment "Mekanoid Data Property"@en ;
-              rdfs:label "has property"@en .
+mknd:dataProperty rdf:type owl:DatatypeProperty ;
+                  rdfs:comment "Mekanoid Data Property"@en ;
+                  rdfs:label "has property"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#dateTime
-:dateTime rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :dataProperty ;
-          rdfs:domain :MekaThing ;
-          rdfs:range xsd:dateTimeStamp ;
-          rdfs:label "has timestamp"@en ;
-          skos:definition "A date and time associated with the entity"@en ;
-          skos:example "2002-10-10T12:00:00-05:00" .
+mknd:dateTime rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf mknd:dataProperty ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain mknd:MekaThing ;
+              rdfs:range xsd:dateTimeStamp ;
+              rdfs:label "has timestamp"@en ;
+              skos:definition "A date and time associated with the entity"@en ;
+              skos:example "2002-10-10T12:00:00-05:00" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#dateTimeEpoch
-:dateTimeEpoch rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :dataProperty ;
-               rdf:type owl:FunctionalProperty ;
-               rdfs:range xsd:long ;
-               rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
-               rdfs:label "has epoch"@en ;
-               skos:definition "A Unix epoch timestamp associated with the entity"@en ;
-               skos:example "990577200"^^xsd:long .
+mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf mknd:dataProperty ;
+                   rdf:type owl:FunctionalProperty ;
+                   rdfs:range xsd:long ;
+                   rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
+                   rdfs:label "has epoch"@en ;
+                   skos:definition "A Unix epoch timestamp associated with the entity"@en ;
+                   skos:example "990577200"^^xsd:long .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extCategory
-:extCategory rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :vendorProperty ;
-             rdfs:label "Category" .
+mknd:extCategory rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:vendorProperty ;
+                 rdfs:label "Category" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extClassification
-:extClassification rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :vendorProperty ;
-                   rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en ;
-                   rdfs:label "Classification"@en .
+mknd:extClassification rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf mknd:vendorProperty ;
+                       rdfs:comment "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en ;
+                       rdfs:label "Classification"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extPriority
-:extPriority rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :extClassification ;
-             rdfs:comment "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
-             rdfs:label "Priority"@en .
+mknd:extPriority rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:extClassification ;
+                 rdfs:comment "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+                 rdfs:label "Priority"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extRisk
-:extRisk rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :extClassification ;
-         rdfs:comment "Risk as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
-         rdfs:label "Risk"@en .
+mknd:extRisk rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf mknd:extClassification ;
+             rdfs:comment "Risk as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+             rdfs:label "Risk"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extSeverity
-:extSeverity rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :extClassification ;
-             rdfs:comment "Severity as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
-             rdfs:label "Severity"@en .
+mknd:extSeverity rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:extClassification ;
+                 rdfs:comment "Severity as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
+                 rdfs:label "Severity"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extStatus
-:extStatus rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :vendorProperty ;
-           rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en ;
-           rdfs:label "Status"@en .
+mknd:extStatus rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:vendorProperty ;
+               rdfs:comment "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en ;
+               rdfs:label "Status"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extThreat
-:extThreat rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :extClassification ;
-           rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en ;
-           rdfs:label "Threat Level"@en .
+mknd:extThreat rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:extClassification ;
+               rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en ;
+               rdfs:label "Threat Level"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extType
-:extType rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :vendorProperty ;
-         rdfs:label "Type" .
+mknd:extType rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf mknd:vendorProperty ;
+             rdfs:label "Type" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#extUrgency
-:extUrgency rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf :extClassification ;
-            rdfs:comment "Urgency as defined by the 3rd party vendor responsible for generating the Artifact."@en ;
-            rdfs:label "Urgency"@en .
+mknd:extUrgency rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf mknd:extClassification ;
+                rdfs:comment "Urgency as defined by the 3rd party vendor responsible for generating the Artifact."@en ;
+                rdfs:label "Urgency"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#external-id
-:external-id rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :vendorProperty ;
-             rdfs:domain d3f:Host ,
-                         d3f:UserAccount ;
-             rdfs:label "External ID"@en .
+mknd:external-id rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:vendorProperty ;
+                 rdfs:domain d3f:Host ,
+                             d3f:UserAccount .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#firstSeen
-:firstSeen rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :timeSeen ;
-           rdfs:comment "The first time the enity had been observed by the application."@en ;
-           rdfs:label "first seen"@en .
+mknd:firstSeen rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:timeSeen ;
+               rdfs:comment "The first time the enity had been observed by the application."@en ;
+               rdfs:label "first seen"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#firstSeenEpoch
-:firstSeenEpoch rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :dateTimeEpoch ;
-                rdfs:label "first seen"@en .
+mknd:firstSeenEpoch rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                    rdfs:label "first seen"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#hasURL
-:hasURL rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf :dataProperty ;
-        rdfs:domain d3f:File ,
-                    :Report ;
-        rdfs:range xsd:anyURI ;
-        rdfs:label "has URL"@en .
+mknd:hasURL rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf mknd:dataProperty ;
+            rdfs:domain d3f:File ,
+                        mknd:Report ;
+            rdfs:range xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#integrityImpact
-:integrityImpact rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :vulnProperty ;
-                 rdfs:label "integrity impact" .
+mknd:integrityImpact rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf mknd:vulnProperty ;
+                     rdfs:label "integrity impact" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastAccessedEpoch
-:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :dateTimeEpoch ;
-                   rdfs:label "last accessed"@en .
+mknd:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                       rdfs:label "last accessed"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastSeen
-:lastSeen rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :timeSeen ;
-          rdfs:comment "The last time the entity had been observed by the application."@en ;
-          rdfs:label "last seen"@en .
+mknd:lastSeen rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf mknd:timeSeen ;
+              rdfs:comment "The last time the entity had been observed by the application."@en ;
+              rdfs:label "last seen"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastSeenEpoch
-:lastSeenEpoch rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :dateTimeEpoch ;
-               rdfs:label "last seen"@en .
+mknd:lastSeenEpoch rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                   rdfs:label "last seen"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastStatusChangeEpoch
-:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
-                       rdfs:subPropertyOf :dateTimeEpoch ;
-                       rdfs:label "last status change"@en .
+mknd:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                           rdfs:label "last status change"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#lastUpdated
+mknd:lastUpdated rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:updated ;
+                 rdfs:label "last updated at" ;
+                 skos:altLabel "last modified at" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#lastUpdatedEpoch
-:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :dateTimeEpoch ;
-                  rdfs:label "last modified"@en .
+mknd:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                      rdfs:label "last modified"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#privilegesRequired
-:privilegesRequired rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :vulnProperty ;
-                    rdfs:label "privileges required" .
+mknd:privilegesRequired rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf mknd:vulnProperty ;
+                        rdfs:label "privileges required" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#reference
-:reference rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf :hasURL ;
-           rdfs:range xsd:anyURI ;
-           rdfs:label "has reference" .
+mknd:reference rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:hasURL ;
+               rdfs:range xsd:anyURI ;
+               rdfs:label "has reference" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#scope
-:scope rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf :vulnProperty .
+mknd:scope rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf mknd:vulnProperty .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#size
-:size rdf:type owl:DatatypeProperty ;
-      rdfs:subPropertyOf :dataProperty ;
-      rdf:type owl:FunctionalProperty ;
-      rdfs:domain d3f:File ;
-      rdfs:range xsd:byte ;
-      rdfs:label "has size"@en .
+mknd:size rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf mknd:dataProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain d3f:File ;
+          rdfs:range xsd:byte ;
+          rdfs:label "has size"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#stringValue
-:stringValue rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dataProperty ;
-             rdfs:domain :Observable ;
-             rdfs:range xsd:string ;
-             rdfs:comment "the object is represented by the following string value"@en ;
-             rdfs:label "is"@en .
+mknd:stringValue rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:dataProperty ;
+                 rdfs:domain mknd:Observable ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "the object is represented by the following string value"@en ;
+                 rdfs:label "is"@en .
+
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#timeCreated
-:timeCreated rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf :dateTime ;
-             rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-             rdfs:label "created at"@en .
+mknd:timeCreated rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:dateTime ;
+                 rdfs:comment "Time when the entity had been created at the point of origin."@en ;
+                 rdfs:label "created at"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#timeCreatedEpoch
-:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :dateTimeEpoch ;
-                  rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-                  rdfs:label "created at"@en .
+mknd:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                      rdfs:comment "Time when the entity had been created at the point of origin."@en ;
+                      rdfs:label "created at"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#timeProperty
-:timeProperty rdf:type owl:DatatypeProperty ;
-              rdfs:label "time property"@en ;
-              :context "Grouped here from time ontology: https://www.w3.org/2006/time"@en .
+mknd:timeProperty rdf:type owl:DatatypeProperty ;
+                  rdfs:label "time property"@en ;
+                  mknd:context "Grouped here from time ontology: https://www.w3.org/2006/time"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#timeSeen
-:timeSeen rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf :dateTime ;
-          rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
-          rdfs:label "seen at"@en .
+mknd:timeSeen rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf mknd:dateTime ;
+              rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
+              rdfs:label "seen at"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#updated
+mknd:updated rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf mknd:dateTime ;
+             rdfs:label "updated at" ;
+             skos:altLabel "modified at" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#userInteraction
-:userInteraction rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :vulnProperty ;
-                 rdfs:label "user interaction" .
+mknd:userInteraction rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf mknd:vulnProperty ;
+                     rdfs:label "user interaction" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#value
-:value rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf :dataProperty ;
-       rdf:type owl:FunctionalProperty ;
-       rdfs:domain d3f:Identifier ;
-       rdfs:comment "A value parameter to be passed to Tasks"@en ;
-       rdfs:label "has value"@en .
+mknd:value rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf mknd:dataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain d3f:Identifier ;
+           rdfs:comment "A value parameter to be passed to Tasks"@en ;
+           rdfs:label "has value"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#vectorString
-:vectorString rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "vector" .
+mknd:vectorString rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf mknd:vulnProperty ;
+                  rdfs:label "vector" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#vendorProperty
-:vendorProperty rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf :dataProperty ;
-                rdfs:label "vendor property" .
+mknd:vendorProperty rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf mknd:dataProperty ;
+                    rdfs:label "vendor property" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#vulnProperty
-:vulnProperty rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf :dataProperty ;
-              rdfs:label "vulnerability property" .
+mknd:vulnProperty rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf mknd:dataProperty ;
+                  rdfs:label "vulnerability property" .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
-d3f:UserAction owl:disjointWith :MachineAction .
+#################################################################
+#    Classes
+#################################################################
 
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
-d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty d3f:may-be-contained-by ;
-                                    owl:someValuesFrom d3f:Software
-                                  ] ;
-                  :icon "vulnerability.svg"^^xsd:anyURI .
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
+d3f:Subroutine owl:equivalentClass mknd:Function .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
@@ -594,496 +621,524 @@ d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
 d3f:UserAction owl:disjointWith mknd:MachineAction .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
+d3f:Vulnerability rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:may-be-contained-by ;
+                                    owl:someValuesFrom d3f:Software
+                                  ] ;
+                  mknd:icon "vulnerability.svg"^^xsd:anyURI .
+
+
+###  http://org.semanticweb.owlapi/error#Error1
+<http://org.semanticweb.owlapi/error#Error1> rdf:type owl:Class .
+
+
 ###  https://schema.mekanoid.io/mekanoid.ttl#ASN
-:ASN rdf:type owl:Class ;
-     rdfs:subClassOf d3f:Identifier ,
-                     :MekaThing ,
-                     [ rdf:type owl:Restriction ;
-                       owl:onProperty :id ;
-                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                       owl:onDataRange xsd:string
-                     ] ,
-                     [ rdf:type owl:Restriction ;
-                       owl:onProperty :value ;
-                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                       owl:onDataRange xsd:string
-                     ] ;
-     rdfs:comment "Autonomous System Number"@en ;
-     rdfs:label "ASN"@en .
+mknd:ASN rdf:type owl:Class ;
+         rdfs:subClassOf d3f:Identifier ,
+                         <http://org.semanticweb.owlapi/error#Error1> ,
+                         mknd:MekaThing ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty mknd:value ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange xsd:string
+                         ] ;
+         rdfs:comment "Autonomous System Number"@en ;
+         rdfs:label "ASN"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#ActionableItem
-:ActionableItem rdf:type owl:Class ;
-                rdfs:subClassOf d3f:Record ,
-                                :MekaThing ;
-                rdfs:comment "A foundational element for analyst workflows."@en ;
-                rdfs:label "Actionable Item"@en .
+mknd:ActionableItem rdf:type owl:Class ;
+                    rdfs:subClassOf d3f:Record ,
+                                    mknd:MekaThing ;
+                    rdfs:comment "A foundational element for analyst workflows."@en ;
+                    rdfs:label "Actionable Item"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#AppUser
-:AppUser rdf:type owl:Class ;
-         rdfs:subClassOf :ApplicationUserAccount ,
-                         :SystemObject ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:accessed-by ;
-                           owl:someValuesFrom d3f:User
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:accesses ;
-                           owl:someValuesFrom :Tenant
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:creates ;
-                           owl:someValuesFrom :TaskPattern
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:executes ;
-                           owl:someValuesFrom :ManualTaskRun
-                         ] ;
-         rdfs:comment "Mekanoid User Account" ;
-         rdfs:label "Mekanoid User Account" .
+mknd:AppUser rdf:type owl:Class ;
+             rdfs:subClassOf mknd:ApplicationUserAccount ,
+                             mknd:SystemObject ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:accessed-by ;
+                               owl:someValuesFrom d3f:User
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:accesses ;
+                               owl:someValuesFrom mknd:Tenant
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:creates ;
+                               owl:someValuesFrom mknd:TaskPattern
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:executes ;
+                               owl:someValuesFrom mknd:ManualTaskRun
+                             ] ;
+             rdfs:comment "Mekanoid User Account" ;
+             rdfs:label "Mekanoid User Account" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#ApplicationUserAccount
-:ApplicationUserAccount rdf:type owl:Class ;
-                        rdfs:subClassOf d3f:UserAccount ;
-                        rdfs:label "Application User Account" .
+mknd:ApplicationUserAccount rdf:type owl:Class ;
+                            rdfs:subClassOf d3f:UserAccount ;
+                            rdfs:label "Application User Account" .
 
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Connection
+mknd:Connection rdf:type owl:Class .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Control
-:Control rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing .
-
+mknd:Control rdf:type owl:Class ;
+             rdfs:subClassOf mknd:MekaThing .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Detection
-:Detection rdf:type owl:Class ;
-           rdfs:subClassOf d3f:DigitalEvent ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty d3f:created-by ;
-                             owl:someValuesFrom :DetectionRule
-                           ] ;
-           rdfs:label "Detection"@en ;
-           skos:altLabel "Alert"@en ,
-                         "Signal"@en ;
-           :icon "signal.svg" .
+mknd:Detection rdf:type owl:Class ;
+               rdfs:subClassOf d3f:DigitalEvent ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty d3f:created-by ;
+                                 owl:someValuesFrom mknd:DetectionRule
+                               ] ;
+               rdfs:label "Detection"@en ;
+               skos:altLabel "Alert"@en ,
+                             "Signal"@en ;
+               mknd:icon "signal.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#DetectionRule
-:DetectionRule rdf:type owl:Class ;
-               rdfs:subClassOf d3f:ApplicationRule ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty d3f:creates ;
-                                 owl:someValuesFrom :Detection
-                               ] ;
-               rdfs:label "Detection Rule"@en ;
-               :icon "rule.svg" .
+mknd:DetectionRule rdf:type owl:Class ;
+                   rdfs:subClassOf d3f:ApplicationRule ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty d3f:creates ;
+                                     owl:someValuesFrom mknd:Detection
+                                   ] ;
+                   rdfs:label "Detection Rule"@en ;
+                   mknd:icon "rule.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#EmailAddress
-:EmailAddress rdf:type owl:Class ;
-              rdfs:subClassOf :Observable ;
-              rdfs:comment "An email address identifies an email box to which messages are delivered." ;
-              rdfs:label "Email Address" ;
-              :icon "email-address.svg" .
+mknd:EmailAddress rdf:type owl:Class ;
+                  rdfs:subClassOf mknd:Observable ;
+                  rdfs:comment "An email address identifies an email box to which messages are delivered." ;
+                  rdfs:label "Email Address" ;
+                  mknd:icon "email-address.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#EmailSenderString
-:EmailSenderString rdf:type owl:Class ;
-                   rdfs:subClassOf :Observable ;
-                   rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
-                   rdfs:label "Email Sender"@en ;
-                   skos:example "Britney Greenman <mexragasu@gmail.com>" .
+mknd:EmailSenderString rdf:type owl:Class ;
+                       rdfs:subClassOf mknd:Observable ;
+                       rdfs:comment "A string showing a combination of a name and the email address in angle brackets."@en ;
+                       rdfs:label "Email Sender"@en ;
+                       skos:example "Britney Greenman <mexragasu@gmail.com>" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#EmailSubjectString
-:EmailSubjectString rdf:type owl:Class ;
-                    rdfs:subClassOf :Observable ;
-                    rdfs:label "Email Subject"@en ;
-                    skos:example "Fwd: Fwd: Re: RE: RE: LOL" .
+mknd:EmailSubjectString rdf:type owl:Class ;
+                        rdfs:subClassOf mknd:Observable ;
+                        rdfs:label "Email Subject"@en ;
+                        skos:example "Fwd: Fwd: Re: RE: RE: LOL" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#FileName
-:FileName rdf:type owl:Class ;
-          rdfs:subClassOf :Observable ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty d3f:used-by ;
-                            owl:someValuesFrom d3f:File
-                          ] ;
-          rdfs:label "File Name"@en .
+mknd:FileName rdf:type owl:Class ;
+              rdfs:subClassOf mknd:Observable ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:used-by ;
+                                owl:someValuesFrom d3f:File
+                              ] ;
+              rdfs:label "File Name"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Function
-:Function rdf:type owl:Class ;
-          rdfs:subClassOf :MekaThing ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty d3f:enabled-by ;
-                            owl:someValuesFrom d3f:ExecutableBinary
-                          ] ;
-          owl:equivalentClass d3f:Subroutine ;
-          rdfs:label "Function"@en ;
-          :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+mknd:Function rdf:type owl:Class ;
+              rdfs:subClassOf mknd:MekaThing ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:enabled-by ;
+                                owl:someValuesFrom d3f:ExecutableBinary
+                              ] ;
+              rdfs:label "Function"@en ;
+              mknd:context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Hash
-:Hash rdf:type owl:Class ;
-      rdfs:subClassOf d3f:Identifier ,
-                      :MekaThing ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty d3f:associated-with ;
-                        owl:someValuesFrom :Verdict
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :value ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:hexBinary
-                      ] ;
-      rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en ;
-      rdfs:label "Hash"@en ;
-      :icon "hash.svg" .
+mknd:Hash rdf:type owl:Class ;
+          rdfs:subClassOf d3f:Identifier ,
+                          mknd:MekaThing ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty d3f:associated-with ;
+                            owl:someValuesFrom mknd:Verdict
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty mknd:value ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:hexBinary
+                          ] ;
+          rdfs:comment "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en ;
+          rdfs:label "Hash"@en ;
+          mknd:icon "hash.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#IOCRule
-:IOCRule rdf:type owl:Class ;
-         rdfs:subClassOf :DetectionRule ;
-         rdfs:label "IOC" .
+mknd:IOCRule rdf:type owl:Class ;
+             rdfs:subClassOf mknd:DetectionRule ;
+             rdfs:label "IOC" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#IPv4
-:IPv4 rdf:type owl:Class ;
-      rdfs:subClassOf d3f:IPAddress ;
-      rdfs:label "IP Address v4"@en .
+mknd:IPv4 rdf:type owl:Class ;
+          rdfs:subClassOf d3f:IPAddress ;
+          rdfs:label "IP Address v4"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#IPv6
-:IPv6 rdf:type owl:Class ;
-      rdfs:subClassOf d3f:IPAddress ;
-      rdfs:label "IP Address v6"@en .
+mknd:IPv6 rdf:type owl:Class ;
+          rdfs:subClassOf d3f:IPAddress ;
+          rdfs:label "IP Address v6"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Incident
-:Incident rdf:type owl:Class ;
-          rdfs:subClassOf :ActionableItem ;
-          rdfs:label "Incident"@en ;
-          skos:altLabel "Case"@en ;
-          :icon "case.svg" .
+mknd:Incident rdf:type owl:Class ;
+              rdfs:subClassOf mknd:ActionableItem ;
+              rdfs:label "Incident"@en ;
+              skos:altLabel "Case"@en ;
+              mknd:icon "case.svg" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Integration
-:Integration rdf:type owl:Class ;
-             rdfs:subClassOf :SystemObject ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:contains ;
-                               owl:someValuesFrom :Task
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:enabled-by ;
-                               owl:someValuesFrom :Connection
-                             ] .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#MD5
-:MD5 rdf:type owl:Class ;
-     rdfs:subClassOf :Hash ;
-     rdfs:comment "MD5 cryptographic hash value"@en ;
-     rdfs:label "MD5 Hash"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#MachineAction
-:MachineAction rdf:type owl:Class ;
-               rdfs:subClassOf d3f:DigitalEvent ,
-                               :MekaThing ;
-               rdfs:label "Machine Action" ;
-               owl:disjointWith d3f:UserAction ;
-               skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Malware
-:Malware rdf:type owl:Class ;
-         rdfs:subClassOf d3f:Software ,
-                         :MekaThing ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:associated-with ;
-                           owl:someValuesFrom d3f:DomainName
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:associated-with ;
-                           owl:someValuesFrom d3f:IPAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom d3f:FileHash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom d3f:URL
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom :Hash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom d3f:DomainName
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom d3f:IPAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom :FileName
-                         ] ;
-         rdfs:label "Malicious Software" .
-
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#MekaThing
-:MekaThing rdf:type owl:Class ;
-           rdfs:subClassOf [ rdf:type owl:Restriction ;
-                             owl:onProperty :timeSeen ;
-                             owl:someValuesFrom xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :firstSeen ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :firstSeenEpoch ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:long
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :lastSeen ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :timeCreated ;
-                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange xsd:dateTimeStamp
-                           ] ;
-           rdfs:label "Mekanoid Thing"@en ;
-           skos:altLabel "Mekanoid Ontology Item" .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Observable
-:Observable rdf:type owl:Class ;
-            rdfs:subClassOf :MekaThing ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :value ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:string
-                            ] ;
-            rdfs:label "Observable"@en ;
-            skos:definition "A notable string value useful which may offer helpful hints to during cybersecurity investigations." ;
-            :icon "pin.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Operation
-:Operation rdf:type owl:Class ;
-           rdfs:subClassOf :MekaThing ;
-           rdfs:label "Operation"@en ;
-           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Path
-:Path rdf:type owl:Class ;
-      rdfs:subClassOf :Observable ;
-      d3f:definition "A generic URI string pointing to location of a directory or file on one or multiple systems." .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#Payload
-:Payload rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing ;
-         rdfs:label "Payload"@en .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#PrivateIPAddress
-:PrivateIPAddress rdf:type owl:Class ;
-                  rdfs:subClassOf d3f:IPAddress ;
-                  rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
-                  rdfs:label "Private IP Address"@en ;
-                  skos:example "10.0.0.1" ,
-                               "192.168.0.1" ;
-                  :icon "ip.svg" .
-
-
-###  https://schema.mekanoid.io/mekanoid.ttl#PublicIPAddress
-:PublicIPAddress rdf:type owl:Class ;
-                 rdfs:subClassOf d3f:IPAddress ;
-                 rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en ;
-                 rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
-                 rdfs:label "Public IP Address"@en ;
-                 skos:example "4.2.2.1" ,
-                              "8.8.8.8" .
+mknd:Integration rdf:type owl:Class ;
+                 rdfs:subClassOf mknd:SystemObject ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty d3f:contains ;
+                                   owl:someValuesFrom mknd:Task
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty d3f:enabled-by ;
+                                   owl:someValuesFrom mknd:Connection
+                                 ] .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#MACAddress
-:MACAddress rdf:type owl:Class ;
-                 rdfs:subClassOf d3f:Identifier ,
-                                 :Observable ;
-                 rdfs:label "MAC Address"@en ;
-                 skos:example "00-1B-63-84-45-E6",
-                              "00:1b:63:84:45:e6" .
+mknd:MACAddress rdf:type owl:Class ;
+                rdfs:subClassOf d3f:Identifier ,
+                                mknd:Observable ;
+                rdfs:label "MAC Address"@en ;
+                skos:example "00-1B-63-84-45-E6" ,
+                             "00:1b:63:84:45:e6" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#MD5
+mknd:MD5 rdf:type owl:Class ;
+         rdfs:subClassOf mknd:Hash ;
+         rdfs:comment "MD5 cryptographic hash value"@en ;
+         rdfs:label "MD5 Hash"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#MachineAction
+mknd:MachineAction rdf:type owl:Class ;
+                   rdfs:subClassOf d3f:DigitalEvent ,
+                                   mknd:MekaThing ;
+                   rdfs:label "Machine Action" ;
+                   skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Malware
+mknd:Malware rdf:type owl:Class ;
+             rdfs:subClassOf d3f:Software ,
+                             mknd:MekaThing ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:associated-with ;
+                               owl:someValuesFrom d3f:DomainName
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:associated-with ;
+                               owl:someValuesFrom d3f:IPAddress
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:identified-by ;
+                               owl:someValuesFrom d3f:FileHash
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:identified-by ;
+                               owl:someValuesFrom d3f:URL
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:identified-by ;
+                               owl:someValuesFrom mknd:Hash
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty mknd:mayBeIndicatedBy ;
+                               owl:someValuesFrom d3f:DomainName
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty mknd:mayBeIndicatedBy ;
+                               owl:someValuesFrom d3f:IPAddress
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty mknd:mayBeIndicatedBy ;
+                               owl:someValuesFrom mknd:FileName
+                             ] ;
+             rdfs:label "Malicious Software" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#ManualTaskRun
+mknd:ManualTaskRun rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#MekaThing
+mknd:MekaThing rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty mknd:timeSeen ;
+                                 owl:someValuesFrom xsd:dateTimeStamp
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty mknd:firstSeen ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTimeStamp
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty mknd:firstSeenEpoch ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:long
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty mknd:lastSeen ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTimeStamp
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty mknd:timeCreated ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:dateTimeStamp
+                               ] ;
+               rdfs:label "Mekanoid Thing"@en ;
+               skos:altLabel "Mekanoid Ontology Item" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Observable
+mknd:Observable rdf:type owl:Class ;
+                rdfs:subClassOf mknd:MekaThing ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty mknd:value ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:string
+                                ] ;
+                rdfs:label "Observable"@en ;
+                skos:definition "A notable string value useful which may offer helpful hints to during cybersecurity investigations." ;
+                mknd:icon "pin.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Operation
+mknd:Operation rdf:type owl:Class ;
+               rdfs:subClassOf mknd:MekaThing ;
+               rdfs:label "Operation"@en ;
+               mknd:context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Path
+mknd:Path rdf:type owl:Class ;
+          rdfs:subClassOf mknd:Observable ;
+          d3f:definition "A generic URI string pointing to location of a directory or file on one or multiple systems." .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Payload
+mknd:Payload rdf:type owl:Class ;
+             rdfs:subClassOf mknd:MekaThing ;
+             rdfs:label "Payload"@en .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#PrivateIPAddress
+mknd:PrivateIPAddress rdf:type owl:Class ;
+                      rdfs:subClassOf d3f:IPAddress ;
+                      rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
+                      rdfs:label "Private IP Address"@en ;
+                      skos:example "10.0.0.1" ,
+                                   "192.168.0.1" ;
+                      mknd:icon "ip.svg" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#PublicIPAddress
+mknd:PublicIPAddress rdf:type owl:Class ;
+                     rdfs:subClassOf d3f:IPAddress ;
+                     rdfs:comment "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en ;
+                     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI ;
+                     rdfs:label "Public IP Address"@en ;
+                     skos:example "4.2.2.1" ,
+                                  "8.8.8.8" .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Report
-:Report rdf:type owl:Class ;
-        rdfs:subClassOf d3f:Record ,
-                        :MekaThing ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom d3f:DomainName
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom d3f:FileHash
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom d3f:IPAddress
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom d3f:URL
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom :EmailAddress
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom :Hash
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:analyzes ;
-                          owl:someValuesFrom :Socket
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :external-id ;
-                          owl:someValuesFrom xsd:string
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasURL ;
-                          owl:someValuesFrom xsd:anyURI
-                        ] ;
-        rdfs:label "Analysis Report"@en ;
-        skos:definition "A document containing the results of an assessment or analysis of an artifact."  .
+mknd:Report rdf:type owl:Class ;
+            rdfs:subClassOf d3f:Record ,
+                            mknd:MekaThing ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom d3f:DomainName
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom d3f:FileHash
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom d3f:IPAddress
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom d3f:URL
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom mknd:EmailAddress
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom mknd:Hash
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty d3f:analyzes ;
+                              owl:someValuesFrom mknd:Socket
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty mknd:external-id ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty mknd:hasURL ;
+                              owl:someValuesFrom xsd:anyURI
+                            ] ;
+            rdfs:label "Analysis Report"@en ;
+            skos:definition "A document containing the results of an assessment or analysis of an artifact." .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#SHA1
-:SHA1 rdf:type owl:Class ;
-      rdfs:subClassOf :Hash ;
-      rdfs:comment "SHA-1 cryptographic hash value"@en ;
-      rdfs:label "SHA-1 Hash"@en .
+mknd:SHA1 rdf:type owl:Class ;
+          rdfs:subClassOf mknd:Hash ;
+          rdfs:comment "SHA-1 cryptographic hash value"@en ;
+          rdfs:label "SHA-1 Hash"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#SHA256
-:SHA256 rdf:type owl:Class ;
-        rdfs:subClassOf :Hash ;
-        rdfs:comment "SHA-256 cryptographic hash value"@en ;
-        rdfs:label "SHA-256 Hash"@en .
+mknd:SHA256 rdf:type owl:Class ;
+            rdfs:subClassOf mknd:Hash ;
+            rdfs:comment "SHA-256 cryptographic hash value"@en ;
+            rdfs:label "SHA-256 Hash"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#SHA512
-:SHA512 rdf:type owl:Class ;
-        rdfs:subClassOf :Hash ;
-        rdfs:label "SHA-512 Hash"@en .
+mknd:SHA512 rdf:type owl:Class ;
+            rdfs:subClassOf mknd:Hash ;
+            rdfs:label "SHA-512 Hash"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#SecurityPolicy
-:SecurityPolicy rdf:type owl:Class ;
-                rdfs:subClassOf d3f:ApplicationRule ,
-                                :Control ;
-                rdfs:label "Security Policy" ;
-                :icon "cube.svg"^^xsd:anyURI .
+mknd:SecurityPolicy rdf:type owl:Class ;
+                    rdfs:subClassOf d3f:ApplicationRule ,
+                                    mknd:Control ;
+                    rdfs:label "Security Policy" ;
+                    mknd:icon "cube.svg"^^xsd:anyURI .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Sigma
-:Sigma rdf:type owl:Class ;
-       rdfs:subClassOf :DetectionRule ,
-                       [ rdf:type owl:Restriction ;
-                         owl:onProperty d3f:contained-by ;
-                         owl:someValuesFrom d3f:ConfigurationFile
-                       ] ;
-       rdfs:label "Sigma Rule"@en .
+mknd:Sigma rdf:type owl:Class ;
+           rdfs:subClassOf mknd:DetectionRule ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty d3f:contained-by ;
+                             owl:someValuesFrom d3f:ConfigurationFile
+                           ] ;
+           rdfs:label "Sigma Rule"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Signature
-:Signature rdf:type owl:Class ;
-           rdfs:subClassOf :DetectionRule ;
-           rdfs:label "Signature"@en .
+mknd:Signature rdf:type owl:Class ;
+               rdfs:subClassOf mknd:DetectionRule ;
+               rdfs:label "Signature"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Socket
-:Socket rdf:type owl:Class ;
-        rdfs:subClassOf d3f:Identifier ,
-                        :Observable ;
-        rdfs:label "Network Socket"@en ;
-        skos:example "51.89.163.40:443" .
+mknd:Socket rdf:type owl:Class ;
+            rdfs:subClassOf d3f:Identifier ,
+                            mknd:Observable ;
+            rdfs:label "Network Socket"@en ;
+            skos:example "51.89.163.40:443" .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#SystemObject
+mknd:SystemObject rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Task
+mknd:Task rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#TaskPattern
+mknd:TaskPattern rdf:type owl:Class .
+
+
+###  https://schema.mekanoid.io/mekanoid.ttl#Tenant
+mknd:Tenant rdf:type owl:Class .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Ticket
-:Ticket rdf:type owl:Class ;
-        rdfs:subClassOf :ActionableItem ;
-        rdfs:label "Ticket"@en ;
-        skos:altLabel "Issue"@en ,
-                      "Task"@en ;
-        :icon "ticket.svg"@en .
+mknd:Ticket rdf:type owl:Class ;
+            rdfs:subClassOf mknd:ActionableItem ;
+            rdfs:label "Ticket"@en ;
+            skos:altLabel "Issue"@en ,
+                          "Task"@en ;
+            mknd:icon "ticket.svg"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Username
-:Username rdf:type owl:Class ;
-          rdfs:subClassOf :Observable ;
-          rdfs:label "Username"@en .
+mknd:Username rdf:type owl:Class ;
+              rdfs:subClassOf mknd:Observable ;
+              rdfs:label "Username"@en .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Verdict
-:Verdict rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom d3f:DomainName
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom d3f:FileHash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom d3f:IPAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom d3f:URL
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom :EmailAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom :Hash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:evaluates ;
-                           owl:someValuesFrom :Socket
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:recorded-in ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onClass :Report
-                         ] ;
-         skos:definition "A summary of an assessment for an observable or an IoC." .
+mknd:Verdict rdf:type owl:Class ;
+             rdfs:subClassOf mknd:MekaThing ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom d3f:DomainName
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom d3f:FileHash
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom d3f:IPAddress
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom d3f:URL
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom mknd:EmailAddress
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom mknd:Hash
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:evaluates ;
+                               owl:someValuesFrom mknd:Socket
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:recorded-in ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass mknd:Report
+                             ] ;
+             skos:definition "A summary of an assessment for an observable or an IoC." .
 
 
 ###  https://schema.mekanoid.io/mekanoid.ttl#Yara
-:Yara rdf:type owl:Class ;
-      rdfs:subClassOf :DetectionRule ;
-      rdfs:label "YARA Rule"@en .
+mknd:Yara rdf:type owl:Class ;
+          rdfs:subClassOf mknd:DetectionRule ;
+          rdfs:label "YARA Rule"@en .
+
 
 #################################################################
 #    Individuals
@@ -1092,5 +1147,23 @@ d3f:UserAction owl:disjointWith mknd:MachineAction .
 ###  https://schema.mekanoid.io/mekanoid.ttl#Upload
 mknd:Upload rdf:type owl:NamedIndividual ,
                      d3f:UseCaseGoal .
+
+
+[ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+#################################################################
+#    Annotations
+#################################################################
+
+mknd:context rdfs:label "context"@en .
+
+
+mknd:external-id rdfs:label "external ID"@en ;
+                 skos:altLabel "vendor ID" .
+
+
+mknd:hasURL rdfs:label "has URL"@en .
+
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
