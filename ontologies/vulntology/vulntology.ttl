@@ -1,59 +1,61 @@
 @prefix : <https://ontology.mekanoid.io/vulntology/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://ontology.mekanoid.io/vulntology/> .
 
-<https://ontology.mekanoid.io/vulntology/> a owl:Ontology ;
-                                           rdfs:isDefinedBy "https://github.com/usnistgov/vulntology/"^^xsd:anyURI .
+<https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
+                                 rdfs:isDefinedBy "https://github.com/usnistgov/vulntology/"^^xsd:anyURI .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#affectsProduct
+###  https://mekanoid.io/ontology/affectsProduct
 :affectsProduct rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#blockedByBarrier
+###  https://mekanoid.io/ontology/blockedByBarrier
 :blockedByBarrier rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#doesNotResultInImpact
+###  https://mekanoid.io/ontology/doesNotResultInImpact
 :doesNotResultInImpact rdf:type owl:ObjectProperty ;
                        owl:propertyDisjointWith :resultsInImpact ;
                        rdfs:comment "Impacts will not occur due to an Action." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasAction
+###  https://mekanoid.io/ontology/hasAction
 :hasAction rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasEntityRole
+###  https://mekanoid.io/ontology/hasEntityRole
 :hasEntityRole rdf:type owl:ObjectProperty ,
                         owl:FunctionalProperty ;
                rdfs:domain :ActionObject ;
                rdfs:range :ImpactObject .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasIdentity
+###  https://mekanoid.io/ontology/hasIdentity
 :hasIdentity rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasKnownChain
+###  https://mekanoid.io/ontology/hasKnownChain
 :hasKnownChain rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasOriginatingProduct
+###  https://mekanoid.io/ontology/hasOriginatingProduct
 :hasOriginatingProduct rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasScenario
+###  https://mekanoid.io/ontology/hasScenario
 :hasScenario rdf:type owl:ObjectProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#resultsInImpact
+###  https://mekanoid.io/ontology/resultsInImpact
 :resultsInImpact rdf:type owl:ObjectProperty ,
                           owl:FunctionalProperty ;
                  rdfs:comment "Impacts will occur due to an Action." .
@@ -63,151 +65,158 @@
 #    Data properties
 #################################################################
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#affectsContext
+###  https://mekanoid.io/ontology/affectsContext
 :affectsContext rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdfs:comment "The conceptual entity where the impacts are realized from successful exploitation of a security vulnerability. Different impacts can be realized by multiple contexts from multiple scenarios." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#evidencedBySource
+###  https://mekanoid.io/ontology/evidencedBySource
 :evidencedBySource rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf owl:topDataProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasBarrierType
+###  https://mekanoid.io/ontology/hasBarrierType
 :hasBarrierType rdf:type owl:DatatypeProperty ;
                 rdfs:comment "Identifies the kind of barrier. Based on the barrier's type, additional properties may be required." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasCriticality
+###  https://mekanoid.io/ontology/hasCriticality
 :hasCriticality rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdfs:comment "A measure of the relative importance of the associated Scope." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasCve5Product
+###  https://mekanoid.io/ontology/hasCve5Product
 :hasCve5Product rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
-                rdfs:comment "This is to reference the CVE Program CVE 5 JSON's product section, which can communicate many complicated methods of string based product applicability." .
+                rdfs:comment "This is to reference the CVE Program CVE 5 JSON's product section, which can communicate many complicated methods of string based product applicability." ;
+                rdfs:label "CVE v5 Product"@en .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasEngineeringMethod
+###  https://mekanoid.io/ontology/hasEngineeringMethod
 :hasEngineeringMethod rdf:type owl:DatatypeProperty ;
                       rdfs:comment "The method or mechanism used to manipulate a user into interacting with a malicious resource." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasEntityRole
-:hasEntityRole rdf:type owl:DatatypeProperty .
+###  https://mekanoid.io/ontology/hasEntityRole
+:hasEntityRole rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasEscapeContext
+###  https://mekanoid.io/ontology/hasEscapeContext
 :hasEscapeContext rdf:type owl:DatatypeProperty ;
                   rdfs:comment "The association denotes where a sandbox breakout originated." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasExploitedWeakness
+###  https://mekanoid.io/ontology/hasExploitedWeakness
 :hasExploitedWeakness rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf owl:topDataProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasGainedPrivilege
+###  https://mekanoid.io/ontology/hasGainedPrivilege
 :hasGainedPrivilege rdf:type owl:DatatypeProperty ;
                     rdfs:comment "Abstraction to assist in capturing relative privilege levels. The abstraction is only for the sake of discussing the vulnerability and is not intended to communicate the actual granular privileges that exist in most information system environments." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasImpactMethod
+###  https://mekanoid.io/ontology/hasImpactMethod
 :hasImpactMethod rdf:type owl:DatatypeProperty ;
                  rdfs:comment "A description of the method used to exploit a vulnerability providing some additional information on the impact of exploitation." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasImpactMethodType
+###  https://mekanoid.io/ontology/hasImpactMethodType
 :hasImpactMethodType rdf:type owl:DatatypeProperty ;
                      rdfs:range rdfs:Literal ;
                      rdfs:comment "The nature of impact." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasLocation
+###  https://mekanoid.io/ontology/hasLocation
 :hasLocation rdf:type owl:DatatypeProperty ;
              rdfs:comment "Designating the specific area or location impacted. Serves as supplemental information" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasLogicalImpact
+###  https://mekanoid.io/ontology/hasLogicalImpact
 :hasLogicalImpact rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf owl:topDataProperty ;
                   rdfs:comment "Impacts that occur to the digital aspects of the software. These are considered for assessing traditional notions of confidentiality, integrity and availability." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasName
+###  https://mekanoid.io/ontology/hasName
 :hasName rdf:type owl:DatatypeProperty ;
          rdfs:comment "A name or label to assist in identifying a given action in the context of the containing Vulnerability. This name should be unique across all sibling actions." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasNeededPrivilege
+###  https://mekanoid.io/ontology/hasNeededPrivilege
 :hasNeededPrivilege rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf owl:topDataProperty ;
                     rdfs:comment "The privileges that are needed relative to the type of barrier being overcome." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasNvdCpeApplicabilityStatement
+###  https://mekanoid.io/ontology/hasNvdCpeApplicabilityStatement
 :hasNvdCpeApplicabilityStatement rdf:type owl:DatatypeProperty ;
                                  rdfs:subPropertyOf owl:topDataProperty ;
-                                 rdfs:comment "This is to reference the NVD configurations section, which requires much more complex JSON than simple strings." .
+                                 rdfs:comment "This is to reference the NVD configurations section, which requires much more complex JSON than simple strings." ;
+                                 rdfs:label "NVD CPE Applicability Statement" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasPhysicalImpact
+###  https://mekanoid.io/ontology/hasPhysicalImpact
 :hasPhysicalImpact rdf:type owl:DatatypeProperty ;
                    rdfs:comment "A tangible impact to a physical device, machinery, the surrounding environment, or people." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasProductEnumeration
+###  https://mekanoid.io/ontology/hasProductEnumeration
 :hasProductEnumeration rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf owl:topDataProperty ;
                        rdfs:comment "The enumeration of one or many products as dictated by the identification scheme. Contains a scheme and value pair. This is intended to be used for simple enumerations such as generic free text or common formats that identify explicit instances of products such as CPE or SWID." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasScope
+###  https://mekanoid.io/ontology/hasScope
 :hasScope rdf:type owl:DatatypeProperty ;
           rdfs:comment "A coarse measure of the level of impact an exploit could have on a target" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#hasSectorOfInterest
+###  https://mekanoid.io/ontology/hasSectorOfInterest
 :hasSectorOfInterest rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf owl:topDataProperty .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#id
+###  https://mekanoid.io/ontology/id
 :id rdf:type owl:DatatypeProperty ,
              owl:FunctionalProperty ;
     rdfs:comment "A globally unique identifier for the action that distinguishes it from other actions related to the same vulnerability." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#relatesToContext
+###  https://mekanoid.io/ontology/relatesToContext
 :relatesToContext rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf owl:topDataProperty ;
                   rdfs:comment "The context to which the privileges are related" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#requiresAttackTheater
+###  https://mekanoid.io/ontology/requiresAttackTheater
 :requiresAttackTheater rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf owl:topDataProperty ;
                        rdfs:comment "The Theatre or Attack Theater is the area or place from which an attack must occur. Each separate theater represents varying levels of implied trust and attack surface." .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#scheme
+###  https://mekanoid.io/ontology/scheme
 :scheme rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf owl:topDataProperty .
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdf:type owl:FunctionalProperty ;
+        rdfs:range xsd:anyURI ;
+        rdfs:label "Scheme" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#value
+###  https://mekanoid.io/ontology/value
 :value rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf owl:topDataProperty .
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:label "Value" .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#ActionObject
+###  https://mekanoid.io/ontology/ActionObject
 :ActionObject rdf:type owl:Class ;
               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty :doesNotResultInImpact ;
@@ -243,7 +252,7 @@
               rdfs:label "Action" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#BarrierObject
+###  https://mekanoid.io/ontology/BarrierObject
 :BarrierObject rdf:type owl:Class ;
                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasEngineeringMethod ;
@@ -269,7 +278,7 @@
                rdfs:label "Barrier" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#ImpactMethodObject
+###  https://mekanoid.io/ontology/ImpactMethodObject
 :ImpactMethodObject rdf:type owl:Class ;
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasEscapeContext ;
@@ -287,7 +296,7 @@
                     rdfs:label "Impact Method" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#ImpactObject
+###  https://mekanoid.io/ontology/ImpactObject
 :ImpactObject rdf:type owl:Class ;
               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasCriticality ;
@@ -313,7 +322,7 @@
               rdfs:label "Impact" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#ProductObject
+###  https://mekanoid.io/ontology/ProductObject
 :ProductObject rdf:type owl:Class ;
                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasCve5Product ;
@@ -331,7 +340,7 @@
                rdfs:label "Product" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#ScenarioObject
+###  https://mekanoid.io/ontology/ScenarioObject
 :ScenarioObject rdf:type owl:Class ;
                 rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:onProperty :blockedByBarrier ;
@@ -370,11 +379,11 @@
                 rdfs:label "Scenario" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#VulnerabilityIdentifierObject
+###  https://mekanoid.io/ontology/VulnerabilityIdentifierObject
 :VulnerabilityIdentifierObject rdf:type owl:Class ;
                                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                  owl:onProperty :scheme ;
-                                                 owl:allValuesFrom rdfs:Literal
+                                                 owl:allValuesFrom xsd:anyURI
                                                ] ,
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty :value ;
@@ -384,7 +393,7 @@
                                rdfs:label "Vulnerability Identifier" .
 
 
-###  https://schema.mekanoid.io/mknd-vulntology.ttl#VulnerabilityObject
+###  https://mekanoid.io/ontology/VulnerabilityObject
 :VulnerabilityObject rdf:type owl:Class ;
                      rdfs:subClassOf [ rdf:type owl:Restriction ;
                                        owl:onProperty :hasKnownChain ;
@@ -412,6 +421,13 @@
                      rdfs:comment "A Vulnerability is any weakness in the computational logic found in products or devices that could be exploited by a threat source." ;
                      rdfs:label "Vulnerability" .
 
+
+[ rdf:type [ rdf:type owl:Restriction ;
+             owl:onProperty :scheme ;
+             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+             owl:onDataRange xsd:anyURI
+           ]
+] .
 
 #################################################################
 #    Annotations
