@@ -1,0 +1,313 @@
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+_:genid1 <http://www.w3.org/2002/07/owl#imports> <http://d3fend.mitre.org/ontologies/d3fend/0.12.0-BETA-1/d3fend.owl> .
+_:genid1 <http://www.w3.org/2002/07/owl#imports> <https://schema.mekanoid.io/mekanoid.ttl#> .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
+<http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by
+<http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#contains
+<http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by
+<http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient
+<http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender
+<http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#name
+<http://d3fend.mitre.org/ontologies/d3fend.owl#name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from
+<http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#uses
+<http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#URL
+<http://purl.org/cyber/stix#URL> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#id
+<http://purl.org/cyber/stix#id> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#indicatedBy
+<http://purl.org/cyber/stix#indicatedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#indicates
+<http://purl.org/cyber/stix#indicates> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#platform
+<http://purl.org/cyber/stix#platform> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#subject
+<http://purl.org/cyber/stix#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/cyber/stix#value
+<http://purl.org/cyber/stix#value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#context
+<https://schema.mekanoid.io/mekanoid.ttl#context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#hasURL
+<https://schema.mekanoid.io/mekanoid.ttl#hasURL> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#size
+<https://schema.mekanoid.io/mekanoid.ttl#size> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#value
+<https://schema.mekanoid.io/mekanoid.ttl#value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#EmailAddress
+<https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#IPv4
+<https://schema.mekanoid.io/mekanoid.ttl#IPv4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#Socket
+<https://schema.mekanoid.io/mekanoid.ttl#Socket> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002
+<http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/meka.ttl#trickbot> .
+# 
+# https://schema.mekanoid.io/meka.ttl#trickbot
+<https://schema.mekanoid.io/meka.ttl#trickbot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Email> .
+<https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "Tit.marina@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "alzholn@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "antongoncharov@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "Delivered-To: antongoncharov@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "cavadova.nastena.1991@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#value> "cavadova.nastena.1991@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://purl.org/dc/elements/1.1/date> "1651871641903"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <http://www.w3.org/2000/01/rdf-schema#label> "mail-sor-f41.google.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Email> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient> <https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender> <https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from> <https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://purl.org/cyber/stix#id> "CADH-WYBxVjvHkqT9-MXtSRCCh_jtA6TiUqjoZ8GwboKUg46Q5w@mail.gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://purl.org/cyber/stix#subject> "2 ONPZ TZ0 H CU46 WJ B" .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://purl.org/dc/elements/1.1/date> "1651869201379"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> <http://www.w3.org/2000/01/rdf-schema#label> "Email: '2 ONPZ TZ0 H CU46 WJ B'" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment> .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://purl.org/cyber/stix#indicates> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://purl.org/cyber/stix#platform> "Windows" .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <http://www.w3.org/2000/01/rdf-schema#label> "trickbot.payload-3" .
+<https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> <https://schema.mekanoid.io/mekanoid.ttl#context> "\"      \"\"dumped_file\"\": \"\"extracted/trickbot.payload-3\"\",\n      \"\"resource\"\": \"\"behavioral1/memory/3212-19-0x0000000000A20000-0x0000000000A56000-memory.dmp\"\",\n      \"\"config\"\": {\n        \"\"family\"\": \"\"trickbot\"\",\n        \"\"rule\"\": \"\"Trickbot2019\"\",\n        \"\"c2\"\": [\n          \"\"51.89.163.40:443\"\",\n          \"\"89.223.126.186:443\"\",\n          \"\"45.67.231.68:443\"\",\n          \"\"148.251.185.165:443\"\",\"" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#EmailAttachment> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <http://purl.org/dc/elements/1.1/date> "1651869980282"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <http://www.w3.org/2000/01/rdf-schema#label> "0TKpbITb 851532.pdf" .
+<https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf> <https://schema.mekanoid.io/mekanoid.ttl#context> "Content-Type: application/pdf; name=\"0TKpbITb 851532.pdf\"\nContent-Disposition: attachment; filename=\"0TKpbITb 851532.pdf\"\nContent-Transfer-Encoding: base64\nX-Attachment-Id: file0" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#file_131_doc
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#File> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#OfficeApplicationFile> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <http://www.w3.org/2000/01/rdf-schema#label> "0TKpbITb_851532.pdf" .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <https://schema.mekanoid.io/mekanoid.ttl#context> "\"sample\": {\n    \"id\": \"200916-w52vg1yl1a\",\n    \"target\": \"0TKpbITb_851532.pdf\",\n    \"size\": 547328,\n    \"md5\": \"3e241f5a1e7be77f25078560c8660351\",\n    \"sha1\": \"ba25c371e75d1a52c1f41c163dc8840626423948\",\n    \"sha256\": \"22d653dab4765e13c5fce0bf46a28a098d05582148fdf3101093f3687b42a5f1\",\n    \"sha512\": \"4f031f6a3e44687ca65ceec847aacf3053feec0882bd5c07febef85ba1a7570ec1f4357446dfc84226448e1d8eb342066eeb3e6e7394d53caadd66223a2ff345\"\n  }" .
+<https://schema.mekanoid.io/mekanoid.ttl#file_131_doc> <https://schema.mekanoid.io/mekanoid.ttl#size> "547328" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> .
+<https://schema.mekanoid.io/mekanoid.ttl#gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#google_com
+<https://schema.mekanoid.io/mekanoid.ttl#google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> .
+<https://schema.mekanoid.io/mekanoid.ttl#google_com> <http://purl.org/dc/elements/1.1/date> "1651875647774"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#google_com> <http://www.w3.org/2000/01/rdf-schema#label> "google.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#IPv4> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://purl.org/dc/elements/1.1/date> "1651871342751"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <http://www.w3.org/2000/01/rdf-schema#label> "209.85.220.41" .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> <https://schema.mekanoid.io/mekanoid.ttl#context> "ARC-Authentication-Results: i=1; mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\n       Authentication-Results: mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\n       Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40
+<https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#IPv4> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> <http://www.w3.org/2000/01/rdf-schema#label> "51.89.163.40" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186
+<https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#IPv4> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> <http://www.w3.org/2000/01/rdf-schema#label> "89.223.126.186" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <http://purl.org/dc/elements/1.1/date> "1651872886439"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "kalinin.p@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#localhost
+<https://schema.mekanoid.io/mekanoid.ttl#localhost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#localhost> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> .
+<https://schema.mekanoid.io/mekanoid.ttl#localhost> <http://d3fend.mitre.org/ontologies/d3fend.owl#name> "localhost" .
+<https://schema.mekanoid.io/mekanoid.ttl#localhost> <http://www.w3.org/2000/01/rdf-schema#label> "localhost" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#MailServer> .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41> .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://purl.org/dc/elements/1.1/date> "1651874057950"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <http://www.w3.org/2000/01/rdf-schema#label> "mail-sor-f41.google.com. [209.85.220.41]" .
+<https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41> <https://schema.mekanoid.io/mekanoid.ttl#context> "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <http://purl.org/dc/elements/1.1/date> "1651872550694"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "mett911@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#gmail_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <http://purl.org/dc/elements/1.1/date> "1651872922823"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "mexragasu@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "ARC-Authentication-Results: i=1; mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\nAuthentication-Results: mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com  ,\n                            Return-Path: mexragasu@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#mx_google_com
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName> .
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname> .
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#google_com> .
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://purl.org/dc/elements/1.1/date> "1651873369851"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#mx_google_com> <http://www.w3.org/2000/01/rdf-schema#label> "mx.google.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#port_443
+<https://schema.mekanoid.io/mekanoid.ttl#port_443> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#port_443> <http://purl.org/cyber/stix#value> "443"^^<http://www.w3.org/2001/XMLSchema#int> .
+<https://schema.mekanoid.io/mekanoid.ttl#port_443> <http://www.w3.org/2000/01/rdf-schema#label> "Port 443" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com
+<https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#EmailAddress> .
+<https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> <http://purl.org/dc/elements/1.1/date> "1651872818641"^^<http://www.w3.org/2001/XMLSchema#long> .
+<https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> <http://www.w3.org/2000/01/rdf-schema#label> "s.game.00@gmail.com" .
+<https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com> <https://schema.mekanoid.io/mekanoid.ttl#context> "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#Socket> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#port_443> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> <http://www.w3.org/2000/01/rdf-schema#label> "51.89.163.40:443" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#Socket> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by> <https://schema.mekanoid.io/mekanoid.ttl#trickbot> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#port_443> .
+<https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> <http://www.w3.org/2000/01/rdf-schema#label> "89.223.126.186:443" .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#trickbot
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#T1587.001> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://purl.org/cyber/stix#indicatedBy> <https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3> .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://purl.org/dc/terms/description> "Developed in 2016, TrickBot is one of the more recent banking Trojans."@en .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <http://www.w3.org/2000/01/rdf-schema#label> "Trickbot" .
+<https://schema.mekanoid.io/mekanoid.ttl#trickbot> <https://schema.mekanoid.io/mekanoid.ttl#hasURL> "https://attack.mitre.org/software/S0266/"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+# 
+# Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

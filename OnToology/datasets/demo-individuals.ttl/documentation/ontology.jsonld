@@ -1,0 +1,506 @@
+[ {
+  "@id" : "_:genid1",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "http://d3fend.mitre.org/ontologies/d3fend/0.12.0-BETA-1/d3fend.owl"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#"
+  } ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/meka.ttl#trickbot"
+  } ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contains",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#name",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#uses",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#URL",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#id",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#indicatedBy",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#indicates",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#platform",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#subject",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#value",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/dc/elements/1.1/date",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/meka.ttl#trickbot",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#IPv4",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Socket",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#Email" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Tit.marina@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "alzholn@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "antongoncharov@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "Delivered-To: antongoncharov@gmail.com"
+  }, {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "cavadova.nastena.1991@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#value" : [ {
+    "@value" : "cavadova.nastena.1991@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#context",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName", "http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651871641903"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "mail-sor-f41.google.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#Email" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41"
+  } ],
+  "http://purl.org/cyber/stix#id" : [ {
+    "@value" : "CADH-WYBxVjvHkqT9-MXtSRCCh_jtA6TiUqjoZ8GwboKUg46Q5w@mail.gmail.com"
+  } ],
+  "http://purl.org/cyber/stix#subject" : [ {
+    "@value" : "2 ONPZ TZ0 H CU46 WJ B"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651869201379"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Email: '2 ONPZ TZ0 H CU46 WJ B'"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file_131_doc"
+  } ],
+  "http://purl.org/cyber/stix#indicates" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://purl.org/cyber/stix#platform" : [ {
+    "@value" : "Windows"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "trickbot.payload-3"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "\"      \"\"dumped_file\"\": \"\"extracted/trickbot.payload-3\"\",\n      \"\"resource\"\": \"\"behavioral1/memory/3212-19-0x0000000000A20000-0x0000000000A56000-memory.dmp\"\",\n      \"\"config\"\": {\n        \"\"family\"\": \"\"trickbot\"\",\n        \"\"rule\"\": \"\"Trickbot2019\"\",\n        \"\"c2\"\": [\n          \"\"51.89.163.40:443\"\",\n          \"\"89.223.126.186:443\"\",\n          \"\"45.67.231.68:443\"\",\n          \"\"148.251.185.165:443\"\",\""
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#EmailAttachment" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651869980282"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "0TKpbITb 851532.pdf"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "Content-Type: application/pdf; name=\"0TKpbITb 851532.pdf\"\nContent-Disposition: attachment; filename=\"0TKpbITb 851532.pdf\"\nContent-Transfer-Encoding: base64\nX-Attachment-Id: file0"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file_131_doc",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#File", "http://d3fend.mitre.org/ontologies/d3fend.owl#OfficeApplicationFile" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "0TKpbITb_851532.pdf"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "\"sample\": {\n    \"id\": \"200916-w52vg1yl1a\",\n    \"target\": \"0TKpbITb_851532.pdf\",\n    \"size\": 547328,\n    \"md5\": \"3e241f5a1e7be77f25078560c8660351\",\n    \"sha1\": \"ba25c371e75d1a52c1f41c163dc8840626423948\",\n    \"sha256\": \"22d653dab4765e13c5fce0bf46a28a098d05582148fdf3101093f3687b42a5f1\",\n    \"sha512\": \"4f031f6a3e44687ca65ceec847aacf3053feec0882bd5c07febef85ba1a7570ec1f4357446dfc84226448e1d8eb342066eeb3e6e7394d53caadd66223a2ff345\"\n  }"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#size" : [ {
+    "@value" : "547328"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#google_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName" ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651875647774"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "google.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#hasURL",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651871342751"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#IPv4"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "209.85.220.41"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "ARC-Authentication-Results: i=1; mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\n       Authentication-Results: mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\n       Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#IPv4"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "51.89.163.40"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#IPv4"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "89.223.126.186"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651872886439"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "kalinin.p@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#localhost",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#name" : [ {
+    "@value" : "localhost"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "localhost"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#MailServer" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651874057950"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "mail-sor-f41.google.com. [209.85.220.41]"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])\n        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54\n        (Google Transport Security);\n        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651872550694"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "mett911@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#gmail_com"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651872922823"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "mexragasu@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "ARC-Authentication-Results: i=1; mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,\nAuthentication-Results: mx.google.com;\n       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;\n       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;\n       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com  ,\n                            Return-Path: mexragasu@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#mx_google_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName", "http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#google_com"
+  } ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651873369851"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "mx.google.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#port_443",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/cyber/stix#value" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#int",
+    "@value" : "443"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Port 443"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/elements/1.1/date" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#long",
+    "@value" : "1651872818641"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "s.game.00@gmail.com"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#context" : [ {
+    "@value" : "To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#size",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#port_443"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Socket"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "51.89.163.40:443"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#port_443"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Socket"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "89.223.126.186:443"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#trickbot",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual", "http://d3fend.mitre.org/ontologies/d3fend.owl#T1587.001" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443"
+  } ],
+  "http://purl.org/cyber/stix#indicatedBy" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3"
+  } ],
+  "http://purl.org/dc/terms/description" : [ {
+    "@language" : "en",
+    "@value" : "Developed in 2016, TrickBot is one of the more recent banking Trojans."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "Trickbot"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#hasURL" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#anyURI",
+    "@value" : "https://attack.mitre.org/software/S0266/"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#value",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+} ]

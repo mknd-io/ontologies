@@ -1,0 +1,182 @@
+[ {
+  "@id" : "_:genid1",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#Host",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contains",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#identifies",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#used-by",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#uses",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://www.w3.org/2000/01/rdf-schema#value",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000011",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000013"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000014"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000015"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000016"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Incident"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Suspicious files incident including Ransomware on one endpoint"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000013",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000011"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Detection"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "'Seven' ransomware was prevented"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000014",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000015"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#Host"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@value" : "OnboardingStatus: Onboarded"
+  }, {
+    "@value" : "osFamily: Windows"
+  }, {
+    "@value" : "osVersion: 21H1"
+  }, {
+    "@value" : "type: Microsoft.SecurityInsights/Entities"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "testmachine13"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#external-id" : [ {
+    "@value" : "e897e1e6-fb77-4ca1-f064-a57a45e5ddcb"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#last-seen" : [ {
+    "@value" : "2023-01-30T01:52:54.859Z"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000015",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000020"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#used-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000014"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "testmachine13"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#value" : [ {
+    "@value" : "testmachine13"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000016",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000017"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000018"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000019"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "1db93ee81050da0ba413543f9fbc388499a466792f9a54ea6f1bbdb712ba9690.7z"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000017",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#contains" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000016"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "C:\\Users\\administrator1\\Downloads"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000018",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm" : [ {
+    "@value" : "SHA1"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#identifies" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000016"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "0864d8088fdaf859fa2ea72c9e0989d627b5f5e2(SHA1)"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#value" : [ {
+    "@value" : "0864d8088fdaf859fa2ea72c9e0989d627b5f5e2"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000019",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm" : [ {
+    "@value" : "SHA256"
+  } ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#identifies" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000016"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "5fd1bc2e17b58b15f0b215562c4b9830238ea2879ab0d3e562c49cf563dd920d(SHA256)"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#value" : [ {
+    "@value" : "5fd1bc2e17b58b15f0b215562c4b9830238ea2879ab0d3e562c49cf563dd920d"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000020",
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#1000014"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@value" : "99.46.182.244"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#value" : [ {
+    "@value" : "99.46.182.244"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Detection",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Incident",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#external-id",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#last-seen",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#value",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+} ]

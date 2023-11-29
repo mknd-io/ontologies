@@ -1,0 +1,2470 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://mekanoid.io/ontology/"
+     xml:base="https://mekanoid.io/ontology/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:d3fend="http://d3fend.mitre.org/ontologies/d3fend.owl#"
+     xmlns:ontology="https://mekanoid.io/ontology/">
+    <owl:Ontology rdf:about="https://mekanoid.io/ontology/">
+        <owl:versionIRI rdf:resource="https://mekanoid.io/ontology/0.2.1/"/>
+        <owl:imports rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2022-04-02</terms:created>
+        <terms:description>Mekanoid Ontology is a public RDFS ontology for semantic knowledge graph applications. Its purpose is to make possible trusted and autonomous cybersecurity threat response for any organization. It is a superset of the D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change.</terms:description>
+        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2023-11-29</terms:modified>
+        <terms:title>Mekanoid Ontology for Cybersecurity Automation</terms:title>
+        <rdfs:comment>Use of the Mekanoid Ontology, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation.</rdfs:comment>
+        <owl:versionInfo>0.2.1</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#definition -->
+
+
+    <owl:AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#definition"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/created -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/created"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/modified -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/modified"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#qualifiedCardinality -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#qualifiedCardinality"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#altLabel"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#example"/>
+    
+
+
+    <!-- https://mekanoid.io/ontology/context -->
+
+
+    <owl:AnnotationProperty rdf:about="https://mekanoid.io/ontology/context">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/cpe -->
+
+
+    <owl:AnnotationProperty rdf:about="https://mekanoid.io/ontology/cpe">
+        <rdfs:label>has CPE</rdfs:label>
+        <skos:example>cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*</skos:example>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Software"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/icon -->
+
+
+    <owl:AnnotationProperty rdf:about="https://mekanoid.io/ontology/icon">
+        <rdfs:label xml:lang="en">has icon</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#accessed-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#accessed-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#accesses -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#accesses"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by">
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property"/>
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+        <rdfs:label xml:lang="en">analyzed by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes">
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by">
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property"/>
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#connects"/>
+        <rdfs:label xml:lang="en">connected by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#connects -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#connects"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#contains -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#contains"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#created-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#created-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#creates -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#creates"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#enabled-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#enabled-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#enables -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#enables">
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#has-goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#executes -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#executes"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#has-goal -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#has-goal">
+        <rdfs:range rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UseCaseGoal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by">
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#identifies"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#identifies -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#identifies"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#invokes -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#invokes"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#isolated-by">
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property"/>
+        <rdfs:label xml:lang="en">isolated by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-contained-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-contained-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#may-contain -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#may-contain"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#modified-by -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#modified-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#produces -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#produces"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#providedBy">
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#d3fend-catalog-object-property"/>
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#provides"/>
+        <rdfs:label xml:lang="en">provided by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#provides -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#provides"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in">
+        <owl:inverseOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#records"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#records -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#records"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#updates -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#updates">
+        <owl:inverseOf rdf:resource="https://mekanoid.io/ontology/updated-by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#uses -->
+
+
+    <owl:ObjectProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+    
+
+
+    <!-- https://mekanoid.io/ontology/context -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/context"/>
+    
+
+
+    <!-- https://mekanoid.io/ontology/hasURL -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/hasURL">
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#File"/>
+        <rdfs:domain rdf:resource="https://mekanoid.io/ontology/Report"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/importBucketUrl -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/importBucketUrl">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/hasURL"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/indicatedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/indicatedBy">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/mayBeIndicatedBy"/>
+        <owl:inverseOf rdf:resource="https://mekanoid.io/ontology/indicates"/>
+        <rdfs:label xml:lang="en">indicated by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/indicates -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/indicates">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/mayIndicate"/>
+        <rdfs:label xml:lang="en">indicates</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/mayBeIndicatedBy -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/mayBeIndicatedBy">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/mekanoid-object-property"/>
+        <owl:inverseOf rdf:resource="https://mekanoid.io/ontology/mayIndicate"/>
+        <rdfs:label xml:lang="en">may be indicated by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/mayIndicate -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/mayIndicate">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/mekanoid-object-property"/>
+        <rdfs:label xml:lang="en">may indicate</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/mekanoid-object-property -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/mekanoid-object-property">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:comment xml:lang="en">Mekanoid object property</rdfs:comment>
+        <rdfs:label xml:lang="en">has relationship</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/reference -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/reference">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/hasURL"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/updated-by -->
+
+
+    <owl:ObjectProperty rdf:about="https://mekanoid.io/ontology/updated-by">
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+        <rdfs:subPropertyOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#modified-by"/>
+        <rdfs:label>updated by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#identifier -->
+
+
+    <owl:DatatypeProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#identifier">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#used-by -->
+
+
+    <owl:DatatypeProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#used-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#version -->
+
+
+    <owl:DatatypeProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#version">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/attackComplexity -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/attackComplexity">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>attack complexity</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/attackVector -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/attackVector">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>attack vector</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/availabilityImpact -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/availabilityImpact">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>availability impact</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/baseScore -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/baseScore">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>base score</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/baseSeverity -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/baseSeverity">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>base severity</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/confidentialityImpact -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/confidentialityImpact">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>confidentiality impact</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/dataProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/dataProperty">
+        <rdfs:comment xml:lang="en">Mekanoid Data Property</rdfs:comment>
+        <rdfs:label xml:lang="en">has property</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/dateTime -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/dateTime">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+        <rdfs:label xml:lang="en">has timestamp</rdfs:label>
+        <skos:definition xml:lang="en">A date and time associated with the entity</skos:definition>
+        <skos:example>2002-10-10T12:00:00-05:00</skos:example>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/dateTimeEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/dateTimeEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+        <rdfs:comment xml:lang="en">A Unix epoch timestamp associated with the entity</rdfs:comment>
+        <rdfs:label xml:lang="en">has epoch</rdfs:label>
+        <skos:definition xml:lang="en">A Unix epoch timestamp associated with the entity</skos:definition>
+        <skos:example rdf:datatype="http://www.w3.org/2001/XMLSchema#long">990577200</skos:example>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extCategory -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extCategory">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+        <rdfs:label>Category</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extClassification -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extClassification">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+        <rdfs:comment xml:lang="en">An external classification that may apply to the artifact. Typically provided by a 3rd party vendor.</rdfs:comment>
+        <rdfs:label xml:lang="en">Classification</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extPriority -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extPriority">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/extClassification"/>
+        <rdfs:comment xml:lang="en">Priority as defined by the 3rd party vendor responsible for creating the Artifact.</rdfs:comment>
+        <rdfs:label xml:lang="en">Priority</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extRisk -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extRisk">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/extClassification"/>
+        <rdfs:comment xml:lang="en">Risk as defined by the 3rd party vendor responsible for creating the Artifact.</rdfs:comment>
+        <rdfs:label xml:lang="en">Risk</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extSeverity -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extSeverity">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/extClassification"/>
+        <rdfs:comment xml:lang="en">Severity as defined by the 3rd party vendor responsible for creating the Artifact.</rdfs:comment>
+        <rdfs:label xml:lang="en">Severity</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extStatus -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extStatus">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+        <rdfs:comment xml:lang="en">Status of the Artifact as defined by the 3rd party vendor software responsible for generating it.</rdfs:comment>
+        <rdfs:label xml:lang="en">Status</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extThreat -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extThreat">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/extClassification"/>
+        <rdfs:comment xml:lang="en">Threat Level as defined by the 3rd party vendor responcible for creating the Artifact.</rdfs:comment>
+        <rdfs:label xml:lang="en">Threat Level</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extType -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extType">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+        <rdfs:label>Type</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/extUrgency -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/extUrgency">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/extClassification"/>
+        <rdfs:comment xml:lang="en">Urgency as defined by the 3rd party vendor responsible for generating the Artifact.</rdfs:comment>
+        <rdfs:label xml:lang="en">Urgency</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/external-id -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/external-id">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vendorProperty"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Host"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount"/>
+        <rdfs:label xml:lang="en">external ID</rdfs:label>
+        <skos:altLabel>vendor ID</skos:altLabel>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/firstSeen -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/firstSeen">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/timeSeen"/>
+        <rdfs:comment xml:lang="en">The first time the enity had been observed by the application.</rdfs:comment>
+        <rdfs:label xml:lang="en">first seen</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/firstSeenEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/firstSeenEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:label xml:lang="en">first seen</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/hasURL -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/hasURL">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/id -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/id">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">has id</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/importBucketName -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/importBucketName">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">S3 bucket</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/importBucketUrl -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/importBucketUrl"/>
+    
+
+
+    <!-- https://mekanoid.io/ontology/importFileName -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/importFileName">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">filename</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/importId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/importId">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">import ID</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/integrityImpact -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/integrityImpact">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>integrity impact</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastAccessedEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastAccessedEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:label xml:lang="en">last accessed</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastSeen -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastSeen">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/timeSeen"/>
+        <rdfs:comment xml:lang="en">The last time the entity had been observed by the application.</rdfs:comment>
+        <rdfs:label xml:lang="en">last seen</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastSeenEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastSeenEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:label xml:lang="en">last seen</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastStatusChangeEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastStatusChangeEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:label xml:lang="en">last status change</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastUpdated -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastUpdated">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/updated"/>
+        <rdfs:label>last updated at</rdfs:label>
+        <skos:altLabel>last modified at</skos:altLabel>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/lastUpdatedEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/lastUpdatedEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:label xml:lang="en">last modified</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/last_modified -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/last_modified">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/updated"/>
+        <rdfs:label>last modified</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/privilegesRequired -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/privilegesRequired">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>privileges required</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/reference -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/reference"/>
+    
+
+
+    <!-- https://mekanoid.io/ontology/scope -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/scope">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/size -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/size">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#File"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#byte"/>
+        <rdfs:label xml:lang="en">has size</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/stringValue -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/stringValue">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:domain rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">the object is represented by the following string value</rdfs:comment>
+        <rdfs:label xml:lang="en">is</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/teamId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/teamId">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">teamID</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/templateId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/templateId">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">templateId</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/timeCreated -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/timeCreated">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTime"/>
+        <rdfs:comment xml:lang="en">Time when the entity had been created at the point of origin.</rdfs:comment>
+        <rdfs:label xml:lang="en">created at</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/timeCreatedEpoch -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/timeCreatedEpoch">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTimeEpoch"/>
+        <rdfs:comment xml:lang="en">Time when the entity had been created at the point of origin.</rdfs:comment>
+        <rdfs:label xml:lang="en">created at</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/timeSeen -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/timeSeen">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTime"/>
+        <rdfs:comment xml:lang="en">A timestamp associated with a point in time when the entity had been observed by the application in some way.</rdfs:comment>
+        <rdfs:label xml:lang="en">seen at</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/updated -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/updated">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dateTime"/>
+        <rdfs:label>modified at</rdfs:label>
+        <rdfs:label>updated at</rdfs:label>
+        <skos:altLabel>modified at</skos:altLabel>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/userId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/userId">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label xml:lang="en">userID</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/userInteraction -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/userInteraction">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>user interaction</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/value -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/value">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+        <rdfs:comment xml:lang="en">A value parameter to be passed to Tasks</rdfs:comment>
+        <rdfs:label xml:lang="en">has value</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/vectorString -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/vectorString">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/vulnProperty"/>
+        <rdfs:label>vector</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/vendorProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/vendorProperty">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label>vendor property</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://mekanoid.io/ontology/vulnProperty -->
+
+
+    <owl:DatatypeProperty rdf:about="https://mekanoid.io/ontology/vulnProperty">
+        <rdfs:subPropertyOf rdf:resource="https://mekanoid.io/ontology/dataProperty"/>
+        <rdfs:label>vulnerability property</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Command -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Command">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#has-goal"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UseCaseGoal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationFile -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationFile"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName">
+        <icon>domain.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#EventLog -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#EventLog"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#enables"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#File -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#File">
+        <icon>file.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash">
+        <icon>file-hash.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Host -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Host">
+        <icon>computer.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress">
+        <icon>ip.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier">
+        <icon>text.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#InformationContentEntity -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#InformationContentEntity"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Log -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Log">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Record"/>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">log.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Organization -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Organization"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Person -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Person"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Record -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Record">
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">file.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Software -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Software">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#may-contain"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon>software.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine">
+        <owl:equivalentClass rdf:resource="https://mekanoid.io/ontology/Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#URL -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#URL">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#identifies"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Malware"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon>url.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#UseCaseGoal -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#UseCaseGoal"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#User -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#User">
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">employee.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Username"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon>user-account.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction">
+        <owl:disjointWith rdf:resource="https://mekanoid.io/ontology/MachineAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability -->
+
+
+    <owl:Class rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-contained-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Software"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">vulnerability.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/ASN -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/ASN">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Autonomous System Number</rdfs:comment>
+        <rdfs:label xml:lang="en">ASN</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/ActionableItem -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/ActionableItem">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Record"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:comment xml:lang="en">A foundational element for analyst workflows.</rdfs:comment>
+        <rdfs:label xml:lang="en">Actionable Item</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/AppUser -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/AppUser">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/ApplicationUserAccount"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#accessed-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#User"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#accesses"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Tenant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#creates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskPattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#executes"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/ManualTaskRun"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Mekanoid User Account</rdfs:comment>
+        <rdfs:label>Mekanoid User Account</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/ApplicationUserAccount -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/ApplicationUserAccount">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount"/>
+        <rdfs:label>Application User Account</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/AutomatedTaskRun -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/AutomatedTaskRun">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MachineAction"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/TaskRun"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by"/>
+                <owl:allValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskPattern"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Automated Task Run</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Connection -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Connection">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#enables"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Task"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#enables"/>
+                <owl:allValuesFrom rdf:resource="https://mekanoid.io/ontology/Integration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">connection.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Control -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Control">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/DataTemplate -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/DataTemplate">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:label>Data Template</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">file.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Detection -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Detection">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#created-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/DetectionRule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Detection</rdfs:label>
+        <skos:altLabel xml:lang="en">Alert</skos:altLabel>
+        <skos:altLabel xml:lang="en">Signal</skos:altLabel>
+        <icon>signal.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/DetectionRule -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/DetectionRule">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#creates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Detection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Detection Rule</rdfs:label>
+        <icon>rule.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/EmailAddress -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/EmailAddress">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:comment>An email address identifies an email box to which messages are delivered.</rdfs:comment>
+        <rdfs:label>Email Address</rdfs:label>
+        <icon>email-address.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/EmailSenderString -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/EmailSenderString">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:comment xml:lang="en">A string showing a combination of a name and the email address in angle brackets.</rdfs:comment>
+        <rdfs:label xml:lang="en">Email Sender</rdfs:label>
+        <skos:example>Britney Greenman &lt;mexragasu@gmail.com&gt;</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/EmailSubjectString -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/EmailSubjectString">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:label xml:lang="en">Email Subject</rdfs:label>
+        <skos:example>Fwd: Fwd: Re: RE: RE: LOL</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/FileName -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/FileName">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#used-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#File"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">File Name</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Function -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Function">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#enabled-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Function</rdfs:label>
+        <context rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63</context>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Hash -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Hash">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Verdict"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#hexBinary"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the &apos;hash&apos;) and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]</rdfs:comment>
+        <rdfs:label xml:lang="en">Hash</rdfs:label>
+        <icon>hash.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/IOCRule -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/IOCRule">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/DetectionRule"/>
+        <rdfs:label>IOC</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/IPv4 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/IPv4">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+        <rdfs:label xml:lang="en">IP Address v4</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/IPv6 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/IPv6">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+        <rdfs:label xml:lang="en">IP Address v6</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Incident -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Incident">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/ActionableItem"/>
+        <rdfs:label xml:lang="en">Incident</rdfs:label>
+        <skos:altLabel xml:lang="en">Case</skos:altLabel>
+        <icon>case.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Integration -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Integration">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#contains"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Task"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#enabled-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Connection"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/MACAddress -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/MACAddress">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:label xml:lang="en">MAC Address</rdfs:label>
+        <skos:example>00-1B-63-84-45-E6</skos:example>
+        <skos:example>00:1b:63:84:45:e6</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/MD5 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/MD5">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Hash"/>
+        <rdfs:comment xml:lang="en">MD5 cryptographic hash value</rdfs:comment>
+        <rdfs:label xml:lang="en">MD5 Hash</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/MachineAction -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/MachineAction">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:label>Machine Action</rdfs:label>
+        <skos:definition>An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Malware -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Malware">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Software"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#URL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Hash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/mayBeIndicatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/mayBeIndicatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/mayBeIndicatedBy"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/FileName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Malicious Software</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/ManualTaskRun -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/ManualTaskRun">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/TaskRun"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by"/>
+                <owl:allValuesFrom rdf:resource="https://mekanoid.io/ontology/AppUser"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Manual Task Run</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/MekaThing -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/MekaThing">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/timeSeen"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/firstSeen"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/firstSeenEpoch"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/lastSeen"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/timeCreated"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTimeStamp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Mekanoid Thing</rdfs:label>
+        <skos:altLabel>Mekanoid Ontology Item</skos:altLabel>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">mekanoid.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Observable -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Observable">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://mekanoid.io/ontology/value"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Observable</rdfs:label>
+        <skos:definition>A notable string value useful which may offer helpful hints to during cybersecurity investigations.</skos:definition>
+        <icon>pin.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Operation -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Operation">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:label xml:lang="en">Operation</rdfs:label>
+        <context rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63</context>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Path -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Path">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <d3fend:definition>A generic URI string pointing to location of a directory or file on one or multiple systems.</d3fend:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Payload -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Payload">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:label xml:lang="en">Payload</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/PrivateIPAddress -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/PrivateIPAddress">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/IP_address#Private_addresses</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Private IP Address</rdfs:label>
+        <skos:example>10.0.0.1</skos:example>
+        <skos:example>192.168.0.1</skos:example>
+        <icon>ip.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/PublicIPAddress -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/PublicIPAddress">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+        <rdfs:comment xml:lang="en">A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home&apos;s network by the ISP. In this case, it is also locally visible by logging into the router configuration.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/IP_address#Public_address</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Public IP Address</rdfs:label>
+        <skos:example>4.2.2.1</skos:example>
+        <skos:example>8.8.8.8</skos:example>
+        <icon>ip.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Report -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Report">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#InformationContentEntity"/>
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Record"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#URL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/EmailAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Hash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Socket"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#produces"/>
+                <owl:allValuesFrom rdf:resource="https://mekanoid.io/ontology/Verdict"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Analysis Report</rdfs:label>
+        <skos:definition>A document containing the results of an assessment or analysis of an artifact.</skos:definition>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">doc.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/SHA1 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/SHA1">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Hash"/>
+        <rdfs:comment xml:lang="en">SHA-1 cryptographic hash value</rdfs:comment>
+        <rdfs:label xml:lang="en">SHA-1 Hash</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/SHA256 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/SHA256">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Hash"/>
+        <rdfs:comment xml:lang="en">SHA-256 cryptographic hash value</rdfs:comment>
+        <rdfs:label xml:lang="en">SHA-256 Hash</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/SHA512 -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/SHA512">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Hash"/>
+        <rdfs:label xml:lang="en">SHA-512 Hash</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/SecurityPolicy -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/SecurityPolicy">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Control"/>
+        <rdfs:label>Security Policy</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">cube.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Sigma -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Sigma">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/DetectionRule"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#ConfigurationFile"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Sigma Rule</rdfs:label>
+        <icon>rule-sigma.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Signature -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Signature">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/DetectionRule"/>
+        <rdfs:label xml:lang="en">Signature</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Socket -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Socket">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:label xml:lang="en">Network Socket</rdfs:label>
+        <skos:example>51.89.163.40:443</skos:example>
+        <icon>network.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/SystemObject -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/SystemObject">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:comment>Mekanoid System Object</rdfs:comment>
+        <rdfs:label>Meka Object</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">mekanoid.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Task -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Task">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Integration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/DataTemplate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+                <owl:allValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskTemplate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>An abstract concept. Something to be done.</rdfs:comment>
+        <skos:altLabel>Atomic Task</skos:altLabel>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">task.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/TaskPattern -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/TaskPattern">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#created-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/AppUser"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#invokes"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/AutomatedTaskRun"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Task Pattern</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">flow.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/TaskRun -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/TaskRun">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#creates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskRunLog"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/DataTemplate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskTemplate"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Task Run</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">task.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/TaskRunLog -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/TaskRunLog">
+        <rdfs:subClassOf rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#EventLog"/>
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#created-by"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/TaskRun"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Task Run Log</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">log.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/TaskTemplate -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/TaskTemplate">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:label>Task Template</rdfs:label>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">file.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Tenant -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Tenant">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/SystemObject"/>
+        <rdfs:comment>Mekanoid Tenant</rdfs:comment>
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">biz-unit.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Ticket -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Ticket">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/ActionableItem"/>
+        <rdfs:label xml:lang="en">Ticket</rdfs:label>
+        <skos:altLabel xml:lang="en">Issue</skos:altLabel>
+        <skos:altLabel xml:lang="en">Task</skos:altLabel>
+        <icon xml:lang="en">ticket.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Username -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Username">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/Observable"/>
+        <rdfs:label xml:lang="en">Username</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Verdict -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Verdict">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/MekaThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#FileHash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#URL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/EmailAddress"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Hash"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#evaluates"/>
+                <owl:someValuesFrom rdf:resource="https://mekanoid.io/ontology/Socket"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://mekanoid.io/ontology/Report"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition>A summary of an assessment for an observable or an IoC.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Yara -->
+
+
+    <owl:Class rdf:about="https://mekanoid.io/ontology/Yara">
+        <rdfs:subClassOf rdf:resource="https://mekanoid.io/ontology/DetectionRule"/>
+        <rdfs:label xml:lang="en">YARA Rule</rdfs:label>
+        <icon>rule-yara.svg</icon>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation -->
+
+
+    <owl:NamedIndividual rdf:about="https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Organization"/>
+        <rdfs:label>Mekanoid</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mekanoid.io/ontology/Upload -->
+
+
+    <owl:NamedIndividual rdf:about="https://mekanoid.io/ontology/Upload">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#UseCaseGoal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mekanoid.io/ontology/0000-0001-7399-6740 -->
+
+
+    <owl:NamedIndividual rdf:about="https://mekanoid.io/ontology/0000-0001-7399-6740">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://mekanoid.io/ontology/1.1.1.1 -->
+
+
+    <owl:NamedIndividual rdf:about="https://mekanoid.io/ontology/1.1.1.1">
+        <rdf:type rdf:resource="https://mekanoid.io/ontology/PublicIPAddress"/>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Artifact">
+        <icon>class.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#BinaryLargeObject">
+        <icon>binary.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#BinarySegment">
+        <icon>binary.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ClientComputer">
+        <icon>screen.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DNSLookup">
+        <icon>dns.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DNSRecord">
+        <icon>dns.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Database">
+        <icon>database.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalObject">
+        <icon>cube.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Directory">
+        <icon>folder.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#DocumentFile">
+        <icon>doc.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Email">
+        <skos:altLabel xml:lang="en">Email Message</skos:altLabel>
+        <icon>email-message.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableFile">
+        <icon>code-file.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#HardwareDevice">
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">device.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#IntrusionDetectionSystem">
+        <icon>broken.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Link">
+        <icon>url.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#LogFile">
+        <icon>doc.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Network">
+        <icon>network.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkNode">
+        <icon>network.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTraffic">
+        <icon>network.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#OperatingSystem">
+        <icon rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">os.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Procedure">
+        <rdfs:label xml:lang="en">Procedure</rdfs:label>
+        <icon>procedure.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Process">
+        <icon>process.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Sensor">
+        <icon>broken.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Server">
+        <icon>server.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwareService">
+        <icon>software.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#Technique">
+        <icon>technique.svg</icon>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://mekanoid.io/ontology/context">
+        <rdfs:label xml:lang="en">context</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://mekanoid.io/ontology/hasURL">
+        <rdfs:label xml:lang="en">has URL</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://mekanoid.io/ontology/importBucketUrl">
+        <rdfs:label xml:lang="en">S3 bucket URL</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://mekanoid.io/ontology/reference">
+        <rdfs:label>has reference</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/ -->
+
+

@@ -1,0 +1,620 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:stix="http://purl.org/cyber/stix#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:d3fend="http://d3fend.mitre.org/ontologies/d3fend.owl#"
+     xmlns:mekanoid="https://schema.mekanoid.io/mekanoid.ttl#"
+     xmlns:ontology="https://mekanoid.io/ontology/">
+    <Ontology>
+        <imports rdf:resource="http://d3fend.mitre.org/ontologies/d3fend/0.12.0-BETA-1/d3fend.owl"/>
+        <imports rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#"/>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#contains -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#contains"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#name -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#name"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from"/>
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#uses -->
+
+
+    <AnnotationProperty rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#uses"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#URL -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#URL"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#id -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#id"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#indicatedBy -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#indicatedBy"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#indicates -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#indicates"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#platform -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#platform"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#subject -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#subject"/>
+    
+
+
+    <!-- http://purl.org/cyber/stix#value -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/cyber/stix#value"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#context -->
+
+
+    <AnnotationProperty rdf:about="https://schema.mekanoid.io/mekanoid.ttl#context"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#hasURL -->
+
+
+    <AnnotationProperty rdf:about="https://schema.mekanoid.io/mekanoid.ttl#hasURL"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#size -->
+
+
+    <AnnotationProperty rdf:about="https://schema.mekanoid.io/mekanoid.ttl#size"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#value -->
+
+
+    <AnnotationProperty rdf:about="https://schema.mekanoid.io/mekanoid.ttl#value"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#EmailAddress -->
+
+
+    <Class rdf:about="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#IPv4 -->
+
+
+    <Class rdf:about="https://schema.mekanoid.io/mekanoid.ttl#IPv4"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#Socket -->
+
+
+    <Class rdf:about="https://schema.mekanoid.io/mekanoid.ttl#Socket"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002 -->
+
+
+    <rdf:Description rdf:about="http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002">
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/meka.ttl#trickbot"/>
+    </rdf:Description>
+    
+
+
+    <!-- https://schema.mekanoid.io/meka.ttl#trickbot -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/meka.ttl#trickbot"/>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Email"/>
+        <rdfs:label>Tit.marina@gmail.com</rdfs:label>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <rdfs:label>alzholn@gmail.com</rdfs:label>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <rdfs:label>antongoncharov@gmail.com</rdfs:label>
+        <mekanoid:context>Delivered-To: antongoncharov@gmail.com</mekanoid:context>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <rdfs:label>cavadova.nastena.1991@gmail.com</rdfs:label>
+        <mekanoid:value>cavadova.nastena.1991@gmail.com</mekanoid:value>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname"/>
+        <d3fend:associated-with rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651871641903</dc:date>
+        <rdfs:label>mail-sor-f41.google.com</rdfs:label>
+        <mekanoid:context>Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Email"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#Tit_marina_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#alzholn_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#antongoncharov_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#cavadova_nastena_1991_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com"/>
+        <d3fend:has-recipient rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com"/>
+        <d3fend:has-sender rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com"/>
+        <d3fend:originates-from rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41"/>
+        <stix:id>CADH-WYBxVjvHkqT9-MXtSRCCh_jtA6TiUqjoZ8GwboKUg46Q5w@mail.gmail.com</stix:id>
+        <stix:subject>2 ONPZ TZ0 H CU46 WJ B</stix:subject>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651869201379</dc:date>
+        <rdfs:label>Email: &apos;2 ONPZ TZ0 H CU46 WJ B&apos;</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment"/>
+        <d3fend:contained-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#file_131_doc"/>
+        <stix:indicates rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <stix:platform>Windows</stix:platform>
+        <rdfs:label>trickbot.payload-3</rdfs:label>
+        <mekanoid:context>&quot;      &quot;&quot;dumped_file&quot;&quot;: &quot;&quot;extracted/trickbot.payload-3&quot;&quot;,
+      &quot;&quot;resource&quot;&quot;: &quot;&quot;behavioral1/memory/3212-19-0x0000000000A20000-0x0000000000A56000-memory.dmp&quot;&quot;,
+      &quot;&quot;config&quot;&quot;: {
+        &quot;&quot;family&quot;&quot;: &quot;&quot;trickbot&quot;&quot;,
+        &quot;&quot;rule&quot;&quot;: &quot;&quot;Trickbot2019&quot;&quot;,
+        &quot;&quot;c2&quot;&quot;: [
+          &quot;&quot;51.89.163.40:443&quot;&quot;,
+          &quot;&quot;89.223.126.186:443&quot;&quot;,
+          &quot;&quot;45.67.231.68:443&quot;&quot;,
+          &quot;&quot;148.251.185.165:443&quot;&quot;,&quot;</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#file_0TKpbITb_851532_pdf">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#EmailAttachment"/>
+        <d3fend:contained-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651869980282</dc:date>
+        <rdfs:label>0TKpbITb 851532.pdf</rdfs:label>
+        <mekanoid:context>Content-Type: application/pdf; name=&quot;0TKpbITb 851532.pdf&quot;
+Content-Disposition: attachment; filename=&quot;0TKpbITb 851532.pdf&quot;
+Content-Transfer-Encoding: base64
+X-Attachment-Id: file0</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#file_131_doc -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#file_131_doc">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#File"/>
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#OfficeApplicationFile"/>
+        <d3fend:associated-with rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3"/>
+        <rdfs:label>0TKpbITb_851532.pdf</rdfs:label>
+        <mekanoid:context>&quot;sample&quot;: {
+    &quot;id&quot;: &quot;200916-w52vg1yl1a&quot;,
+    &quot;target&quot;: &quot;0TKpbITb_851532.pdf&quot;,
+    &quot;size&quot;: 547328,
+    &quot;md5&quot;: &quot;3e241f5a1e7be77f25078560c8660351&quot;,
+    &quot;sha1&quot;: &quot;ba25c371e75d1a52c1f41c163dc8840626423948&quot;,
+    &quot;sha256&quot;: &quot;22d653dab4765e13c5fce0bf46a28a098d05582148fdf3101093f3687b42a5f1&quot;,
+    &quot;sha512&quot;: &quot;4f031f6a3e44687ca65ceec847aacf3053feec0882bd5c07febef85ba1a7570ec1f4357446dfc84226448e1d8eb342066eeb3e6e7394d53caadd66223a2ff345&quot;
+  }</mekanoid:context>
+        <mekanoid:size>547328</mekanoid:size>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#gmail_com">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com"/>
+        <rdfs:label>gmail.com</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#google_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#google_com">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651875647774</dc:date>
+        <rdfs:label>google.com</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#IPv4"/>
+        <d3fend:associated-with rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#email_2_ONPZ_TZ0_H_CU46_WJ_B"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651871342751</dc:date>
+        <rdfs:label>209.85.220.41</rdfs:label>
+        <mekanoid:context>ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+       Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+       Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#IPv4"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <rdfs:label>51.89.163.40</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#IPv4"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <rdfs:label>89.223.126.186</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#kalinin_p_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651872886439</dc:date>
+        <rdfs:label>kalinin.p@gmail.com</rdfs:label>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#localhost -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#localhost">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname"/>
+        <d3fend:name>localhost</d3fend:name>
+        <rdfs:label>localhost</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#mailserver_mail_sor_f41_google_com__209_85_220_41">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#MailServer"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#domain_mail_sor_f41_google_com"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_209_85_220_41"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651874057950</dc:date>
+        <rdfs:label>mail-sor-f41.google.com. [209.85.220.41]</rdfs:label>
+        <mekanoid:context>Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id q184-20020a8180c1000000b002f66583612bsor1276508ywf.65.2022.04.27.19.50.54
+        (Google Transport Security);
+        Wed, 27 Apr 2022 19:50:55 -0700 (PDT)</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#mett911_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651872550694</dc:date>
+        <rdfs:label>mett911@gmail.com</rdfs:label>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#mexragasu_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <d3fend:contains rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#gmail_com"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651872922823</dc:date>
+        <rdfs:label>mexragasu@gmail.com</rdfs:label>
+        <mekanoid:context>ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com ,
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=XBySdiXo;
+       spf=pass (google.com: domain of mexragasu@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=mexragasu@gmail.com;
+       dmarc=pass (p=none sp=quarantine dis=none) header.from=gmail.com  ,
+                            Return-Path: mexragasu@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#mx_google_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#mx_google_com">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"/>
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#google_com"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651873369851</dc:date>
+        <rdfs:label>mx.google.com</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#port_443 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#port_443">
+        <stix:value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">443</stix:value>
+        <rdfs:label>Port 443</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#s_game_00_gmail_com">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#long">1651872818641</dc:date>
+        <rdfs:label>s.game.00@gmail.com</rdfs:label>
+        <mekanoid:context>To: mett911@gmail.com, cavadova.nastena.1991@gmail.com, Tit.marina@gmail.com, antongoncharov@gmail.com, s.game.00@gmail.com, alzholn@gmail.com, kalinin.p@gmail.com</mekanoid:context>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#Socket"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#port_443"/>
+        <rdfs:label>51.89.163.40:443</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443 -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443">
+        <rdf:type rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#Socket"/>
+        <d3fend:employed-by rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#trickbot"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#port_443"/>
+        <rdfs:label>89.223.126.186:443</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://schema.mekanoid.io/mekanoid.ttl#trickbot -->
+
+
+    <NamedIndividual rdf:about="https://schema.mekanoid.io/mekanoid.ttl#trickbot">
+        <rdf:type rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#T1587.001"/>
+        <d3fend:uses rdf:resource="http://d3fend.mitre.org/ontologies/d3fend.owl#T1204.002"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_51_89_163_40"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#ip_89_223_126_186"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#tcpip_51_89_163_40_443"/>
+        <d3fend:uses rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#tcpip_89_223_126_186_443"/>
+        <stix:indicatedBy rdf:resource="https://schema.mekanoid.io/mekanoid.ttl#extracted_trickbot_payload_3"/>
+        <terms:description xml:lang="en">Developed in 2016, TrickBot is one of the more recent banking Trojans.</terms:description>
+        <rdfs:label>Trickbot</rdfs:label>
+        <mekanoid:hasURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://attack.mitre.org/software/S0266/</mekanoid:hasURL>
+    </NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/ -->
+
+

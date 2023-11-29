@@ -1,0 +1,868 @@
+<h2 id="crossreference" class="list">Cross-reference for [Ontology Name] classes, object properties and data properties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by [Ontology Name].
+<div xmlns:widoco="https://w3id.org/widoco/vocab#"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="classes">
+   <h3 id="classes-headline" class="list">Classes</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/ActionObject"
+            title="https://ontology.mekanoid.io/vulntology/ActionObject">Action</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/BarrierObject"
+            title="https://ontology.mekanoid.io/vulntology/BarrierObject">Barrier</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/ImpactObject"
+            title="https://ontology.mekanoid.io/vulntology/ImpactObject">Impact</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/ImpactMethodObject"
+            title="https://ontology.mekanoid.io/vulntology/ImpactMethodObject">Impact Method</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/ProductObject"
+            title="https://ontology.mekanoid.io/vulntology/ProductObject">Product</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/ScenarioObject"
+            title="https://ontology.mekanoid.io/vulntology/ScenarioObject">Scenario</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/VulnerabilityObject"
+            title="https://ontology.mekanoid.io/vulntology/VulnerabilityObject">Vulnerability</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/VulnerabilityIdentifierObject"
+            title="https://ontology.mekanoid.io/vulntology/VulnerabilityIdentifierObject">Vulnerability Identifier</a>
+      </li>
+   </ul>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/ActionObject">
+      <h3>Action<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/ActionObject</p>
+      <div class="comment">
+         <span class="markdown">An Action is what occurs within a given Scenario. Actions involve a high level impact method which occur in a specific context. Actions can result in impacts to the context referenced. If multiple contexts are affected there will be multiple actions each relating to a given context.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+         <dt>is in domain of</dt>
+         <dd>
+            <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole"
+               title="https://ontology.mekanoid.io/vulntology/hasEntityRole">has entity role</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/BarrierObject">
+      <h3>Barrier<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/BarrierObject</p>
+      <div class="comment">
+         <span class="markdown">This could be any characteristic inherent in the vulnerability that could impede the adversary from achieving successful exploitation or a protection mechanism that may limit the actions or impact that can be taken even if the vulnerability is able to be exploited. These are often part of the system in which the product is deployed or are inherent in how the product is used.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/ImpactObject">
+      <h3>Impact<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/ImpactObject</p>
+      <div class="comment">
+         <span class="markdown">An Impact is a recognized result of an Action for a given Vulnerability Scenario.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+         <dt>is in range of</dt>
+         <dd>
+            <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole"
+               title="https://ontology.mekanoid.io/vulntology/hasEntityRole">has entity role</a>
+            <sup class="type-op" title="object property">op</sup>
+         </dd>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/ImpactMethodObject">
+      <h3>Impact Method<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/ImpactMethodObject</p>
+      <div class="comment">
+         <span class="markdown">A description of the method used to exploit a vulnerability providing some additional information on the impact of exploitation. These are intended to be high level concepts that lead to more granular impacts as referenced in the logical and physical impact entities.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/ProductObject">
+      <h3>Product<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/ProductObject</p>
+      <div class="comment">
+         <span class="markdown">The software and/or hardware configurations that are known to be vulnerable to exploitation of the Vulnerability Scenario. Different Product configurations can be associated with different Scenarios to allow for description of varying impacts and exploitation mechanisms.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/ScenarioObject">
+      <h3>Scenario<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/ScenarioObject</p>
+      <div class="comment">
+         <span class="markdown">A scenario describes the conditions surrounding the possible use of a vulnerability. A Vulnerability must have a least one Scenario, with multiple possible Scenarios being common. A single Vulnerability can likely be exploited by many different approaches with possible varying impacts. Multiple Scenarios can be used to describe these variations. For example, a remote exploit could rely on user interaction to be downloaded whilst a local attacker could use the same vulnerability to obtain the same or similar impact.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/VulnerabilityObject">
+      <h3>Vulnerability<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/VulnerabilityObject</p>
+      <div class="comment">
+         <span class="markdown">A Vulnerability is any weakness in the computational logic found in products or devices that could be exploited by a threat source.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/VulnerabilityIdentifierObject">
+      <h3>Vulnerability Identifier<sup class="type-c" title="class">c</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/VulnerabilityIdentifierObject</p>
+      <div class="comment">
+         <span class="markdown">Examples include a knowledge base article number, patch number, a bug tracking database identifier or a common identifier such as a Common Vulnerabilities and Exposures (CVE) identifier. CVE is a widely adopted identifier used across many organizations.</span>
+      </div>
+      <dl class="description">
+         <dt>has super-classes</dt>
+         <dd/>
+      </dl>
+   </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="objectproperties">
+   <h3 id="properties" class="list">Object Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/doesNotResultInImpact"
+            title="https://ontology.mekanoid.io/vulntology/doesNotResultInImpact">
+            <span>does not result in impact</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole"
+            title="https://ontology.mekanoid.io/vulntology/hasEntityRole">
+            <span>has entity role</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasKnownChain"
+            title="https://ontology.mekanoid.io/vulntology/hasKnownChain">
+            <span>has known chain</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/resultsInImpact"
+            title="https://ontology.mekanoid.io/vulntology/resultsInImpact">
+            <span>results in impact</span>
+         </a>
+      </li>
+   </ul>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/doesNotResultInImpact">
+      <h3>does not result in impact<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/doesNotResultInImpact</p>
+      <div class="comment">
+         <span class="markdown">Impacts will not occur due to an Action.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasEntityRole">
+      <h3>has entity role<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasEntityRole</p>
+      <div class="description">
+         <p>
+            <strong>has characteristics:
+                </strong> functional</p>
+         <dl>
+            <dt>has domain</dt>
+            <dd>
+               <a href="#https://ontology.mekanoid.io/vulntology/ActionObject"
+                  title="https://ontology.mekanoid.io/vulntology/ActionObject">Action</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="#https://ontology.mekanoid.io/vulntology/ImpactObject"
+                  title="https://ontology.mekanoid.io/vulntology/ImpactObject">Impact</a>
+               <sup class="type-c" title="class">c</sup>
+            </dd>
+            <dt>is also defined as</dt>
+            <dd>
+               <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole">data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasKnownChain">
+      <h3>has known chain<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasKnownChain</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topObjectProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topObjectProperty">top object property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/resultsInImpact">
+      <h3>results in impact<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/resultsInImpact</p>
+      <div class="comment">
+         <span class="markdown">Impacts will occur due to an Action.</span>
+      </div>
+   </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     id="dataproperties">
+   <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+   <ul class="hlist">
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/affectsContext"
+            title="https://ontology.mekanoid.io/vulntology/affectsContext">
+            <span>affects context</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasCve5Product"
+            title="https://ontology.mekanoid.io/vulntology/hasCve5Product">CVE v5 Product</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/evidencedBySource"
+            title="https://ontology.mekanoid.io/vulntology/evidencedBySource">
+            <span>evidenced by source</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasBarrierType"
+            title="https://ontology.mekanoid.io/vulntology/hasBarrierType">
+            <span>has barrier type</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasCriticality"
+            title="https://ontology.mekanoid.io/vulntology/hasCriticality">
+            <span>has criticality</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasEngineeringMethod"
+            title="https://ontology.mekanoid.io/vulntology/hasEngineeringMethod">
+            <span>has engineering method</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole"
+            title="https://ontology.mekanoid.io/vulntology/hasEntityRole">
+            <span>has entity role</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasEscapeContext"
+            title="https://ontology.mekanoid.io/vulntology/hasEscapeContext">
+            <span>has escape context</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasExploitedWeakness"
+            title="https://ontology.mekanoid.io/vulntology/hasExploitedWeakness">
+            <span>has exploited weakness</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasGainedPrivilege"
+            title="https://ontology.mekanoid.io/vulntology/hasGainedPrivilege">
+            <span>has gained privilege</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasImpactMethod"
+            title="https://ontology.mekanoid.io/vulntology/hasImpactMethod">
+            <span>has impact method</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasImpactMethodType"
+            title="https://ontology.mekanoid.io/vulntology/hasImpactMethodType">
+            <span>has impact method type</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasLocation"
+            title="https://ontology.mekanoid.io/vulntology/hasLocation">
+            <span>has location</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasLogicalImpact"
+            title="https://ontology.mekanoid.io/vulntology/hasLogicalImpact">
+            <span>has logical impact</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasName" title="https://ontology.mekanoid.io/vulntology/hasName">
+            <span>has name</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasNeededPrivilege"
+            title="https://ontology.mekanoid.io/vulntology/hasNeededPrivilege">
+            <span>has needed privilege</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasPhysicalImpact"
+            title="https://ontology.mekanoid.io/vulntology/hasPhysicalImpact">
+            <span>has physical impact</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasProductEnumeration"
+            title="https://ontology.mekanoid.io/vulntology/hasProductEnumeration">
+            <span>has product enumeration</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasScope" title="https://ontology.mekanoid.io/vulntology/hasScope">
+            <span>has scope</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasSectorOfInterest"
+            title="https://ontology.mekanoid.io/vulntology/hasSectorOfInterest">
+            <span>has sector of interest</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/id" title="https://ontology.mekanoid.io/vulntology/id">
+            <span>id</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/hasNvdCpeApplicabilityStatement"
+            title="https://ontology.mekanoid.io/vulntology/hasNvdCpeApplicabilityStatement">NVD CPE Applicability Statement</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/relatesToContext"
+            title="https://ontology.mekanoid.io/vulntology/relatesToContext">
+            <span>relates to context</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/requiresAttackTheater"
+            title="https://ontology.mekanoid.io/vulntology/requiresAttackTheater">
+            <span>requires attack theater</span>
+         </a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/scheme" title="https://ontology.mekanoid.io/vulntology/scheme">Scheme</a>
+      </li>
+      <li>
+         <a href="#https://ontology.mekanoid.io/vulntology/value" title="https://ontology.mekanoid.io/vulntology/value">Value</a>
+      </li>
+   </ul>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/affectsContext">
+      <h3>affects context<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/affectsContext</p>
+      <div class="comment">
+         <span class="markdown">The conceptual entity where the impacts are realized from successful exploitation of a security vulnerability. Different impacts can be realized by multiple contexts from multiple scenarios.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasCve5Product">
+      <h3>CVE v5 Product<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasCve5Product</p>
+      <div class="comment">
+         <span class="markdown">This is to reference the CVE Program CVE 5 JSON's product section, which can communicate many complicated methods of string based product applicability.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/evidencedBySource">
+      <h3>evidenced by source<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/evidencedBySource</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasBarrierType">
+      <h3>has barrier type<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasBarrierType</p>
+      <div class="comment">
+         <span class="markdown">Identifies the kind of barrier. Based on the barrier's type, additional properties may be required.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasCriticality">
+      <h3>has criticality<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasCriticality</p>
+      <div class="comment">
+         <span class="markdown">A measure of the relative importance of the associated Scope.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasEngineeringMethod">
+      <h3>has engineering method<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasEngineeringMethod</p>
+      <div class="comment">
+         <span class="markdown">The method or mechanism used to manipulate a user into interacting with a malicious resource.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasEntityRole">
+      <h3>has entity role<sup class="type-op" title="object property">op</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasEntityRole</p>
+      <div class="description">
+         <p>
+            <strong>has characteristics:
+                </strong> functional</p>
+         <dl>
+            <dt>is also defined as</dt>
+            <dd>
+               <a href="#https://ontology.mekanoid.io/vulntology/hasEntityRole">object property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasEscapeContext">
+      <h3>has escape context<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasEscapeContext</p>
+      <div class="comment">
+         <span class="markdown">The association denotes where a sandbox breakout originated.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasExploitedWeakness">
+      <h3>has exploited weakness<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasExploitedWeakness</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasGainedPrivilege">
+      <h3>has gained privilege<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasGainedPrivilege</p>
+      <div class="comment">
+         <span class="markdown">Abstraction to assist in capturing relative privilege levels. The abstraction is only for the sake of discussing the vulnerability and is not intended to communicate the actual granular privileges that exist in most information system environments.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasImpactMethod">
+      <h3>has impact method<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasImpactMethod</p>
+      <div class="comment">
+         <span class="markdown">A description of the method used to exploit a vulnerability providing some additional information on the impact of exploitation.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasImpactMethodType">
+      <h3>has impact method type<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasImpactMethodType</p>
+      <div class="comment">
+         <span class="markdown">The nature of impact.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has range</dt>
+            <dd>
+               <a href="http://www.w3.org/2000/01/rdf-schema#Literal"
+                  target="_blank"
+                  title="http://www.w3.org/2000/01/rdf-schema#Literal">literal</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasLocation">
+      <h3>has location<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasLocation</p>
+      <div class="comment">
+         <span class="markdown">Designating the specific area or location impacted. Serves as supplemental information</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasLogicalImpact">
+      <h3>has logical impact<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasLogicalImpact</p>
+      <div class="comment">
+         <span class="markdown">Impacts that occur to the digital aspects of the software. These are considered for assessing traditional notions of confidentiality, integrity and availability.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasName">
+      <h3>has name<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasName</p>
+      <div class="comment">
+         <span class="markdown">A name or label to assist in identifying a given action in the context of the containing Vulnerability. This name should be unique across all sibling actions.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasNeededPrivilege">
+      <h3>has needed privilege<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasNeededPrivilege</p>
+      <div class="comment">
+         <span class="markdown">The privileges that are needed relative to the type of barrier being overcome.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasPhysicalImpact">
+      <h3>has physical impact<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasPhysicalImpact</p>
+      <div class="comment">
+         <span class="markdown">A tangible impact to a physical device, machinery, the surrounding environment, or people.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasProductEnumeration">
+      <h3>has product enumeration<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasProductEnumeration</p>
+      <div class="comment">
+         <span class="markdown">The enumeration of one or many products as dictated by the identification scheme. Contains a scheme and value pair. This is intended to be used for simple enumerations such as generic free text or common formats that identify explicit instances of products such as CPE or SWID.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasScope">
+      <h3>has scope<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasScope</p>
+      <div class="comment">
+         <span class="markdown">A coarse measure of the level of impact an exploit could have on a target</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasSectorOfInterest">
+      <h3>has sector of interest<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasSectorOfInterest</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/id">
+      <h3>id<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/id</p>
+      <div class="comment">
+         <span class="markdown">A globally unique identifier for the action that distinguishes it from other actions related to the same vulnerability.</span>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/hasNvdCpeApplicabilityStatement">
+      <h3>NVD CPE Applicability Statement<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/hasNvdCpeApplicabilityStatement</p>
+      <div class="comment">
+         <span class="markdown">This is to reference the NVD configurations section, which requires much more complex JSON than simple strings.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/relatesToContext">
+      <h3>relates to context<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/relatesToContext</p>
+      <div class="comment">
+         <span class="markdown">The context to which the privileges are related</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/requiresAttackTheater">
+      <h3>requires attack theater<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/requiresAttackTheater</p>
+      <div class="comment">
+         <span class="markdown">The Theatre or Attack Theater is the area or place from which an attack must occur. Each separate theater represents varying levels of implied trust and attack surface.</span>
+      </div>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/scheme">
+      <h3>Scheme<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/scheme</p>
+      <div class="description">
+         <p>
+            <strong>has characteristics:
+                </strong> functional</p>
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+            <dt>has range</dt>
+            <dd>
+               <a href="http://www.w3.org/2001/XMLSchema#anyURI"
+                  target="_blank"
+                  title="http://www.w3.org/2001/XMLSchema#anyURI">anyURI</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+   <div class="entity" id="https://ontology.mekanoid.io/vulntology/value">
+      <h3>Value<sup class="type-dp" title="data property">dp</sup>
+         <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a>
+         </span>
+      </h3>
+      <p>
+         <strong>IRI:</strong> https://ontology.mekanoid.io/vulntology/value</p>
+      <div class="description">
+         <dl>
+            <dt>has super-properties</dt>
+            <dd>
+               <a href="http://www.w3.org/2002/07/owl#topDataProperty"
+                  target="_blank"
+                  title="http://www.w3.org/2002/07/owl#topDataProperty">top data property</a>
+            </dd>
+         </dl>
+      </div>
+   </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+</div>
+</div>
