@@ -2,6 +2,7 @@ name: RDF data validation
 
 on:
   push:
+    branches: ["main"]
     paths:
       - '**.ttl'
       - '**.trig'
@@ -10,6 +11,9 @@ on:
       - '**.rdf'
       - '**.trix'
       - '**.jsonld'
+      
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   rdf-syntax-check:
