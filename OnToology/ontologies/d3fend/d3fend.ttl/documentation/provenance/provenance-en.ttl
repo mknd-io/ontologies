@@ -1,8 +1,0 @@
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix : <> .
-<http://d3fend.mitre.org/ontologies/d3fend/0.13.0-BETA-1/d3fend.owl> a prov:Entity;
-	 dc:title "D3FEND™ - A knowledge graph of cybersecurity countermeasures";
-	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
-.

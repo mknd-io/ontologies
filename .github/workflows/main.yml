@@ -1,4 +1,4 @@
-name: RDF data validation
+name: RDF Syntax Check
 
 on:
   push:
