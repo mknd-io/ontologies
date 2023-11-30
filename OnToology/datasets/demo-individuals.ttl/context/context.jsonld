@@ -1,0 +1,106 @@
+{
+  "@context" : {
+    "URL" : {
+      "@id" : "http://purl.org/cyber/stix#URL"
+    },
+    "Email" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#Email"
+    },
+    "employed-by" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#employed-by"
+    },
+    "IPv4" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#IPv4"
+    },
+    "EmailAttachment" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#EmailAttachment"
+    },
+    "ImageCodeSegment" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "File" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#File"
+    },
+    "contains" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contains"
+    },
+    "originates-from" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#originates-from"
+    },
+    "has-sender" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#has-sender"
+    },
+    "id" : {
+      "@id" : "http://purl.org/cyber/stix#id"
+    },
+    "hasURL" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#hasURL"
+    },
+    "Hostname" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#Hostname"
+    },
+    "name" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#name"
+    },
+    "value" : {
+      "@id" : "http://purl.org/cyber/stix#value"
+    },
+    "Socket" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Socket"
+    },
+    "associated-with" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with"
+    },
+    "context" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#context"
+    },
+    "OfficeApplicationFile" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#OfficeApplicationFile"
+    },
+    "subject" : {
+      "@id" : "http://purl.org/cyber/stix#subject"
+    },
+    "uses" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#uses"
+    },
+    "date" : {
+      "@id" : "http://purl.org/dc/elements/1.1/date"
+    },
+    "has-recipient" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#has-recipient"
+    },
+    "size" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#size"
+    },
+    "DomainName" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName"
+    },
+    "indicatedBy" : {
+      "@id" : "http://purl.org/cyber/stix#indicatedBy"
+    },
+    "platform" : {
+      "@id" : "http://purl.org/cyber/stix#platform"
+    },
+    "EmailAddress" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#EmailAddress"
+    },
+    "MailServer" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#MailServer"
+    },
+    "indicates" : {
+      "@id" : "http://purl.org/cyber/stix#indicates"
+    },
+    "contained-by" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/terms/description"
+    },
+    "T1587.001" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1587.001"
+    }
+  }
+}

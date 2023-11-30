@@ -1,0 +1,26 @@
+digraph ar2dtool_diagram { 
+rankdir=LR;
+size="1501"
+	"https://schema.mekanoid.io/mekanoid.ttl#1000013" -> "https://schema.mekanoid.io/mekanoid.ttl#1000011" [ label = "d3f:contained-by" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000018" -> "https://schema.mekanoid.io/mekanoid.ttl#1000016" [ label = "d3f:identifies" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000018" -> "d3f:Hash" [ label = "rdfs:type" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000011" -> "https://schema.mekanoid.io/mekanoid.ttl#1000016" [ label = "d3f:contains" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000011" -> "https://schema.mekanoid.io/mekanoid.ttl#1000015" [ label = "d3f:contains" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000011" -> "https://schema.mekanoid.io/mekanoid.ttl#1000014" [ label = "d3f:contains" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000011" -> "https://schema.mekanoid.io/mekanoid.ttl#1000013" [ label = "d3f:contains" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000016" -> "https://schema.mekanoid.io/mekanoid.ttl#1000019" [ label = "d3f:identified-by" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000016" -> "https://schema.mekanoid.io/mekanoid.ttl#1000018" [ label = "d3f:identified-by" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000016" -> "https://schema.mekanoid.io/mekanoid.ttl#1000017" [ label = "d3f:contained-by" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000016" -> "d3f:File" [ label = "rdfs:type" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000020" -> "https://schema.mekanoid.io/mekanoid.ttl#1000014" [ label = "d3f:associated-with" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000020" -> "mknd:PublicIPAddress" [ label = "rdfs:type" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000014" -> "https://schema.mekanoid.io/mekanoid.ttl#1000015" [ label = "d3f:uses" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000019" -> "https://schema.mekanoid.io/mekanoid.ttl#1000016" [ label = "d3f:identifies" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000019" -> "d3f:Hash" [ label = "rdfs:type" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000017" -> "https://schema.mekanoid.io/mekanoid.ttl#1000016" [ label = "d3f:contains" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000017" -> "d3f:Directory" [ label = "rdfs:type" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000015" -> "https://schema.mekanoid.io/mekanoid.ttl#1000020" [ label = "d3f:associated-with" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000015" -> "https://schema.mekanoid.io/mekanoid.ttl#1000014" [ label = "d3f:used-by" ];
+	"https://schema.mekanoid.io/mekanoid.ttl#1000015" -> "d3f:Hostname" [ label = "rdfs:type" ];
+
+}

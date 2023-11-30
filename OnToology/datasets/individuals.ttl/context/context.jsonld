@@ -1,0 +1,46 @@
+{
+  "@context" : {
+    "Procedure" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Procedure"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "Operation" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+    },
+    "T1003.001" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001"
+    },
+    "ExecutableBinary" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary"
+    },
+    "uses" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#uses"
+    },
+    "SubTechnique" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#SubTechnique"
+    },
+    "Function" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "enables" : {
+      "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#enables"
+    },
+    "FileName" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#FileName"
+    },
+    "indicatedBy" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#indicatedBy"
+    },
+    "indicates" : {
+      "@id" : "http://purl.org/cyber/stix#indicates"
+    },
+    "stringValue" : {
+      "@id" : "https://schema.mekanoid.io/mekanoid.ttl#stringValue"
+    }
+  }
+}

@@ -1,0 +1,405 @@
+[ {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Direct_Access_and_Read"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#T1003.001"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#SubTechnique"
+  } ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#enables",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#uses",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/cyber/stix#indicates",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.owl",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Command",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can be used to break out from restricted environments by running non-interactive system commands."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Command"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Direct_Access_and_Read",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#uses" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Access"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Enumeration"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Read"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Procedure"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Direct Access and Read"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#ExecutableBinary_000009",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://d3fend.mitre.org/ontologies/d3fend.owl#enables" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-read"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-write"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#limited-suid"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#non-interactive-bind-shell"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#non-interactive-reverse-shell"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#shell"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#sudo"
+  }, {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#suid"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "http://d3fend.mitre.org/ontologies/d3fend.owl#ExecutableBinary"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "Unix binary"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "awk"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#indicatedBy" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#awk"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#FileName",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Handle_Copy",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Handle Copy"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#LSASS_Handle_Duplication",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Procedure"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "LSASS Handle Duplication"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Procedure",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Access",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Process Access"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Create",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Process Create"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Enumerate",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Process Enumerate"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Enumeration",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Process Enumeration"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Process_Read",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Process Read"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Reverse_Shell",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can send back a reverse shell to a listening attacker to open a remote network access."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Reverse Shell"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Snapshot_Create",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Operation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Snapshot Create"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#SubTechnique",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#awk",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/cyber/stix#indicates" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#awk"
+  } ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#FileName"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@type" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "@value" : "awk"
+  } ],
+  "https://schema.mekanoid.io/mekanoid.ttl#stringValue" : [ {
+    "@value" : "awk"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#bind-shell",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can bind a shell to a local port to allow remote network access."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Bind shell"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#capabilities",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "If the binary has the Linux CAP_SETUID capability set or it is executed by another binary with the capability set, it can be used as a backdoor to maintain privileged access by manipulating its own process UID."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Capabilities"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-download",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can download remote files."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "File download"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-read",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It reads data from files, it may be used to do privileged reads or disclose files outside a restricted file system."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "File read"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-upload",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can exfiltrate files on the network."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "File upload"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#file-write",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It writes data to files, it may be used to do privileged writes or write files outside a restricted file system."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "File write"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#indicatedBy",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#library-load",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It loads shared libraries that may be used to run code in the binary execution context."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Library load"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#limited-suid",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "If the binary has the SUID bit set, it may be abused to access the file system, escalate or maintain access with elevated privileges working as a SUID backdoor. If it is used to run commands (e.g., via system()-like invocations) it only works on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.\n\nThis example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Limited SUID"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#non-interactive-bind-shell",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can bind a non-interactive shell to a local port to allow remote network access."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Non-interactive bind shell"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#non-interactive-reverse-shell",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can send back a non-interactive reverse shell to a listening attacker to open a remote network access."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Non-interactive reverse shell"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#shell",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "It can be used to break out from restricted environments by spawning an interactive system shell."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Shell"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#stringValue",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#sudo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "If the binary is allowed to run as superuser by sudo, it does not drop the elevated privileges and may be used to access the file system, escalate or maintain privileged access."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Sudo"
+  } ]
+}, {
+  "@id" : "https://schema.mekanoid.io/mekanoid.ttl#suid",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "https://schema.mekanoid.io/mekanoid.ttl#Function"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "If the binary has the SUID bit set, it does not drop the elevated privileges and may be abused to access the file system, escalate or maintain privileged access as a SUID backdoor. If it is used to run sh -p, omit the -p argument on systems like Debian (<= Stretch) that allow the default sh shell to run with SUID privileges.\n\nThis example creates a local SUID copy of the binary and runs it to maintain elevated privileges. To interact with an existing SUID binary skip the first command and run the program using its original path."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "SUID"
+  } ]
+} ]

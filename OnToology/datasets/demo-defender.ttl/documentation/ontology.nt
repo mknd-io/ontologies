@@ -1,0 +1,137 @@
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm
+<http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
+<http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by
+<http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#contains
+<http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by
+<http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#identifies
+<http://d3fend.mitre.org/ontologies/d3fend.owl#identifies> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#used-by
+<http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#uses
+<http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://www.w3.org/2000/01/rdf-schema#value
+<http://www.w3.org/2000/01/rdf-schema#value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#external-id
+<https://schema.mekanoid.io/mekanoid.ttl#external-id> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#last-seen
+<https://schema.mekanoid.io/mekanoid.ttl#last-seen> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#value
+<https://schema.mekanoid.io/mekanoid.ttl#value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://d3fend.mitre.org/ontologies/d3fend.owl#Host
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Host> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#Detection
+<https://schema.mekanoid.io/mekanoid.ttl#Detection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#Incident
+<https://schema.mekanoid.io/mekanoid.ttl#Incident> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Individuals
+# #
+# #################################################################
+# 
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#1000011
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#Incident> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#1000013> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#1000014> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#1000015> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#1000016> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000011> <http://www.w3.org/2000/01/rdf-schema#label> "Suspicious files incident including Ransomware on one endpoint"@en .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#1000013
+<https://schema.mekanoid.io/mekanoid.ttl#1000013> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000013> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.mekanoid.io/mekanoid.ttl#Detection> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000013> <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <https://schema.mekanoid.io/mekanoid.ttl#1000011> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000013> <http://www.w3.org/2000/01/rdf-schema#label> "'Seven' ransomware was prevented"@en .
+# 
+# https://schema.mekanoid.io/mekanoid.ttl#1000014
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://d3fend.mitre.org/ontologies/d3fend.owl#Host> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> <https://schema.mekanoid.io/mekanoid.ttl#1000015> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/2000/01/rdf-schema#comment> "OnboardingStatus: Onboarded" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/2000/01/rdf-schema#comment> "osFamily: Windows" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/2000/01/rdf-schema#comment> "osVersion: 21H1" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/2000/01/rdf-schema#comment> "type: Microsoft.SecurityInsights/Entities" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <http://www.w3.org/2000/01/rdf-schema#label> "testmachine13" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <https://schema.mekanoid.io/mekanoid.ttl#external-id> "e897e1e6-fb77-4ca1-f064-a57a45e5ddcb" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000014> <https://schema.mekanoid.io/mekanoid.ttl#last-seen> "2023-01-30T01:52:54.859Z" .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Annotations
+# #
+# #################################################################
+# 
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000015> <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <https://schema.mekanoid.io/mekanoid.ttl#1000020> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000015> <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> <https://schema.mekanoid.io/mekanoid.ttl#1000014> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000015> <http://www.w3.org/2000/01/rdf-schema#label> "testmachine13" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000015> <https://schema.mekanoid.io/mekanoid.ttl#value> "testmachine13" .
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000016> <http://d3fend.mitre.org/ontologies/d3fend.owl#contained-by> <https://schema.mekanoid.io/mekanoid.ttl#1000017> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000016> <http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by> <https://schema.mekanoid.io/mekanoid.ttl#1000018> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000016> <http://d3fend.mitre.org/ontologies/d3fend.owl#identified-by> <https://schema.mekanoid.io/mekanoid.ttl#1000019> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000016> <http://www.w3.org/2000/01/rdf-schema#label> "1db93ee81050da0ba413543f9fbc388499a466792f9a54ea6f1bbdb712ba9690.7z" .
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000017> <http://d3fend.mitre.org/ontologies/d3fend.owl#contains> <https://schema.mekanoid.io/mekanoid.ttl#1000016> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000017> <http://www.w3.org/2000/01/rdf-schema#label> "C:\\Users\\administrator1\\Downloads" .
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000018> <http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm> "SHA1" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000018> <http://d3fend.mitre.org/ontologies/d3fend.owl#identifies> <https://schema.mekanoid.io/mekanoid.ttl#1000016> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000018> <http://www.w3.org/2000/01/rdf-schema#label> "0864d8088fdaf859fa2ea72c9e0989d627b5f5e2(SHA1)" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000018> <https://schema.mekanoid.io/mekanoid.ttl#value> "0864d8088fdaf859fa2ea72c9e0989d627b5f5e2" .
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000019> <http://d3fend.mitre.org/ontologies/d3fend.owl#algorythm> "SHA256" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000019> <http://d3fend.mitre.org/ontologies/d3fend.owl#identifies> <https://schema.mekanoid.io/mekanoid.ttl#1000016> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000019> <http://www.w3.org/2000/01/rdf-schema#label> "5fd1bc2e17b58b15f0b215562c4b9830238ea2879ab0d3e562c49cf563dd920d(SHA256)" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000019> <https://schema.mekanoid.io/mekanoid.ttl#value> "5fd1bc2e17b58b15f0b215562c4b9830238ea2879ab0d3e562c49cf563dd920d" .
+# 
+<https://schema.mekanoid.io/mekanoid.ttl#1000020> <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> <https://schema.mekanoid.io/mekanoid.ttl#1000014> .
+<https://schema.mekanoid.io/mekanoid.ttl#1000020> <http://www.w3.org/2000/01/rdf-schema#label> "99.46.182.244" .
+<https://schema.mekanoid.io/mekanoid.ttl#1000020> <http://www.w3.org/2000/01/rdf-schema#value> "99.46.182.244" .
+# 
+# Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
