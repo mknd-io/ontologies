@@ -19,10 +19,10 @@ node [shape = rectangle, color="orange"]; "base:VulnerabilityIdentifierObject" "
 	"NULL" -> "base:ProductObject" [ label = "owl:allValuesFrom" ];
 	"NULL" -> "base:hasEscapeContext" [ label = "owl:onProperty" ];
 	"NULL" -> "base:doesNotResultInImpact" [ label = "owl:onProperty" ];
-	"NULL" -> "base:ImpactObject" [ label = "owl:onClass" ];
 	"NULL" -> "base:VulnerabilityIdentifierObject" [ label = "owl:someValuesFrom" ];
 	"NULL" -> "base:affectsProduct" [ label = "owl:onProperty" ];
 	"NULL" -> "base:hasBarrierType" [ label = "owl:onProperty" ];
+	"NULL" -> "base:ImpactObject" [ label = "owl:onClass" ];
 	"NULL" -> "base:hasNvdCpeApplicabilityStatement" [ label = "owl:onProperty" ];
 	"NULL" -> "base:ProductObject" [ label = "owl:onClass" ];
 	"NULL" -> "base:hasGainedPrivilege" [ label = "owl:onProperty" ];

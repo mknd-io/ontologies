@@ -116,10 +116,10 @@ node [shape = rectangle, color="black"]; "d3f:CWE-1062" "d3f:CWE-90" "d3f:EmailF
 	"d3f:CWE-1083" -> "d3f:CWE-1061" [ label = "rdfs:subClassOf" ];
 	"d3f:Density-basedClustering" -> "d3f:ClusterAnalysis" [ label = "rdfs:subClassOf" ];
 	"d3f:OpenSourceLicense" -> "d3f:License" [ label = "rdfs:subClassOf" ];
-	"d3f:T1078" -> "d3f:InitialAccessTechnique" [ label = "rdfs:subClassOf" ];
 	"d3f:T1078" -> "d3f:DefenseEvasionTechnique" [ label = "rdfs:subClassOf" ];
 	"d3f:T1078" -> "d3f:PersistenceTechnique" [ label = "rdfs:subClassOf" ];
 	"d3f:T1078" -> "d3f:PrivilegeEscalationTechnique" [ label = "rdfs:subClassOf" ];
+	"d3f:T1078" -> "d3f:InitialAccessTechnique" [ label = "rdfs:subClassOf" ];
 	"d3f:CWE-805" -> "d3f:CWE-119" [ label = "rdfs:subClassOf" ];
 	"d3f:CWE-799" -> "d3f:CWE-691" [ label = "rdfs:subClassOf" ];
 	"d3f:CWE-322" -> "d3f:CWE-306" [ label = "rdfs:subClassOf" ];

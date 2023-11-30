@@ -891,8 +891,8 @@ node [shape = rectangle, color="black"]; "d3f:CWE-1062" "d3f:CWE-90" "d3f:EmailF
 	"d3f:SystemConfigurationInitResource" -> "d3f:LocalResource" [ label = "rdfs:subClassOf" ];
 	"d3f:OutboundInternetMailTraffic" -> "d3f:OutboundInternetNetworkTraffic" [ label = "rdfs:subClassOf" ];
 	"d3f:CWE-644" -> "d3f:CWE-116" [ label = "rdfs:subClassOf" ];
-	"d3f:DefensiveTechnique" -> "d3f:D3FENDThing" [ label = "rdfs:subClassOf" ];
 	"d3f:DefensiveTechnique" -> "d3f:CapabilityFeature" [ label = "rdfs:subClassOf" ];
+	"d3f:DefensiveTechnique" -> "d3f:D3FENDThing" [ label = "rdfs:subClassOf" ];
 	"d3f:DefensiveTechnique" -> "d3f:Technique" [ label = "rdfs:subClassOf" ];
 	"d3f:CWE-1326" -> "d3f:CWE-693" [ label = "rdfs:subClassOf" ];
 	"d3f:T1204.002" -> "d3f:T1204" [ label = "rdfs:subClassOf" ];
