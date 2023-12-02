@@ -26,7 +26,7 @@
 
 <http://vocab.linkeddata.es/ontology/report#ENTRY1701555574963HOMEAHMADREPOSPREVCLONE-PYYQMEKANOIDTTL>
         a           <http://vocab.linkeddata.es/ontology/report#Entry> ;
-        rdfs:label  "Entry for vocab /home/ahmad/repos/prevclone-pYYQ/mekanoid.ttl" ;
+        rdfs:label  "Entry for vocab mekanoid.ttl" ;
         <http://vocab.linkeddata.es/ontology/report#entrySubject>
                 <http://vocab.linkeddata.es/ontology/report#/HOMEAHMADREPOSPREVCLONE-PYYQMEKANOID.TTL> ;
         <http://vocab.linkeddata.es/ontology/report#isEntryOfReport>
