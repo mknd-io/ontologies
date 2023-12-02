@@ -2,11 +2,9 @@
 
 # Mekanoid Ontology
 
-Mekanoid Knowledge Network Dictionary (MKND) is a public RDFS ontology for semantic knowledge graph applications, authored by [Anton Goncharov](https://github.com/ag0x00) for Neon Lane Co dba [Mekanoid Corporation](https://mekanoid.io).
+Mekanoid Knowledge Network Dictionary (MKND) is a public RDFS ontology for semantic knowledge graph applications. Its purpose is to make trusted and autonomous cybersecurity threat response possible for organizations of any size.
 
-Its purpose is to make trusted and autonomous cybersecurity threat response possible for organizations of any size.
-
-It is a superset of the [Mitre D3FEND](https://d3fend.mitre.org) ontology, and is designed to be used in conjunction with it.
+It represents a superset of the [Mitre D3FEND](https://d3fend.mitre.org) ontology, and is designed to be used in conjunction with it.
 
 MKND is a work in progress, and is subject to change. Use of the Mekanoid Ontology, and the associated references from this ontology are subject to the Terms of Use.
 
