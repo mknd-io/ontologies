@@ -14,13 +14,13 @@
 
 <https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
                                 owl:imports d3f: ;
-                                owl:versionIRI <https://mekanoid.io/ontology/0.2.1/> ;
+                                owl:versionIRI <https://mekanoid.io/ontology/0.2.2/> ;
                                 dct:created "2022-04-02"^^xsd:date ;
-                                dct:modified "2023-11-29"^^xsd:date ;
-                                dct:title "Mekanoid Ontology for Cybersecurity Automation" ;
-                                dct:description "Mekanoid Ontology is a public RDFS ontology for semantic knowledge graph applications. Its purpose is to make possible trusted and autonomous cybersecurity threat response for any organization. It is a superset of the D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change." ;
-                                rdfs:comment "Use of the Mekanoid Ontology, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation." ;
-                                owl:versionInfo "0.2.1" .
+                                dct:modified "2023-12-01"^^xsd:date ;
+                                dct:title "MKND" ;
+                                dct:description "Mekanoid Knowledge Network Dictionary (MKND)) is a public RDFS ontology for semantic knowledge graph applications. Its purpose is to make possible trusted and autonomous cybersecurity threat response for any organization. It is a superset of the D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change." ;
+                                rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation." ;
+                                owl:versionInfo "0.2.2" .
 
 #################################################################
 #    Annotation properties
