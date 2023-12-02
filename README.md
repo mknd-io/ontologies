@@ -1,8 +1,8 @@
 [![RDF Validation](https://github.com/ag0x00/mknd/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ag0x00/mknd/actions/workflows/main.yml)
 
-# Machine Knowledge Newtwork Dictionary
+# Machine Knowledge Network Dictionary
 
-Machine Knowledge Newtwork Dictionary (MKND) is a public RDFS ontology for semantic knowledge graph applications, authored by [Anton Goncharov](https://github.com/ag0x00) for Neon Lane Co dba [Mekanoid Corporation](https://mekanoid.io).
+Machine Knowledge Network Dictionary (MKND) is a public RDFS ontology for semantic knowledge graph applications, authored by [Anton Goncharov](https://github.com/ag0x00) for Neon Lane Co dba [Mekanoid Corporation](https://mekanoid.io).
 
 Its purpose is to make trusted and autonomous cybersecurity threat response possible for organizations of any size.
 
