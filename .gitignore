@@ -1,9 +1,0 @@
-node_modules
-.DS_Store
-mekanoid.properties
-ontologies/mekanoid/mekanoid-app.properties
-ontologies/mekanoid/mekanoid-d3fend.properties
-docs/mekanoid-d3fend.properties
-docs/catalog-v001.xml
-ontologies/mekanoid/d3fend-mknd.properties
-docs/.DS_Store
