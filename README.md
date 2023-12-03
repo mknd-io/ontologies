@@ -13,4 +13,3 @@ MKND is a work in progress, and is subject to change. Use of the Mekanoid Ontolo
 ## External Resources
 
 * "Ontology Development 101: A Guide to Creating Your First Ontology" ([PDF](https://protege.stanford.edu/publications/ontology_development/ontology101.pdf)) by Natalya F. Noy and Deborah L. McGuinness
-* "How to Publish Linked Data on the Web" ([blog](https://www.michelepasin.org/blog/2011/03/14/how-to-publish-linked-data-on-the-web/)) by Michele Pasin
