@@ -13,14 +13,14 @@
 @base <https://mekanoid.io/ontology/> .
 
 <https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
-                                owl:imports d3f: ;
                                 owl:versionIRI <https://mekanoid.io/ontology/0.2.2/> ;
+                                owl:imports d3f: ;
                                 dct:created "2022-04-02"^^xsd:date ;
-                                dct:modified "2023-12-01"^^xsd:date ;
-                                dct:title "MKND" ;
                                 dct:description "Mekanoid Knowledge Network Dictionary (MKND)) is a public RDFS ontology for semantic knowledge graph applications. Its purpose is to make possible trusted and autonomous cybersecurity threat response for any organization. It is a superset of the D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change." ;
+                                dct:modified "2023-12-28"^^xsd:date ;
+                                dct:title "MKND" ;
                                 rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation." ;
-                                owl:versionInfo "0.2.2" .
+                                owl:versionInfo "0.2.3" .
 
 #################################################################
 #    Annotation properties
@@ -36,6 +36,10 @@ dct:created rdf:type owl:AnnotationProperty .
 
 ###  http://purl.org/dc/terms/creator
 dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/license
@@ -329,37 +333,42 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/attackComplexity
 :attackComplexity rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf :vulnProperty ;
-                  rdfs:label "attack complexity" .
+                  rdfs:label "Attack Complexity" ;
+                  skos:altLabel "AC" .
 
 
 ###  https://mekanoid.io/ontology/attackVector
 :attackVector rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "attack vector" .
+              rdfs:label "Attack Vector" ;
+              skos:altLabel "AV" .
 
 
 ###  https://mekanoid.io/ontology/availabilityImpact
 :availabilityImpact rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf :vulnProperty ;
-                    rdfs:label "availability impact" .
+                    rdfs:range xsd:decimal ;
+                    rdfs:label "Availability" ;
+                    skos:altLabel "A" .
 
 
 ###  https://mekanoid.io/ontology/baseScore
 :baseScore rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :vulnProperty ;
-           rdfs:label "base score" .
+           rdfs:label "Base Score" .
 
 
 ###  https://mekanoid.io/ontology/baseSeverity
 :baseSeverity rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "base severity" .
+              rdfs:label "Base Severity" .
 
 
 ###  https://mekanoid.io/ontology/confidentialityImpact
 :confidentialityImpact rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf :vulnProperty ;
-                       rdfs:label "confidentiality impact" .
+                       rdfs:label "Confidentiality" ;
+                       skos:altLabel "C" .
 
 
 ###  https://mekanoid.io/ontology/dataProperty
@@ -388,6 +397,13 @@ d3f:version rdf:type owl:DatatypeProperty ;
                rdfs:label "has epoch"@en ;
                skos:definition "A Unix epoch timestamp associated with the entity"@en ;
                skos:example "990577200"^^xsd:long .
+
+
+###  https://mekanoid.io/ontology/exploitability
+:exploitability rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :vulnProperty ;
+                rdfs:range xsd:decimal ;
+                rdfs:label "Exploitability Score" .
 
 
 ###  https://mekanoid.io/ontology/extCategory
@@ -484,6 +500,12 @@ d3f:version rdf:type owl:DatatypeProperty ;
     rdfs:label "has id"@en .
 
 
+###  https://mekanoid.io/ontology/impact
+:impact rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :vulnProperty ;
+        rdfs:label "Impact Score" .
+
+
 ###  https://mekanoid.io/ontology/importBucketName
 :importBucketName rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf :dataProperty ;
@@ -509,7 +531,8 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/integrityImpact
 :integrityImpact rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :vulnProperty ;
-                 rdfs:label "integrity impact" .
+                 rdfs:label "Integrity" ;
+                 skos:altLabel "I" .
 
 
 ###  https://mekanoid.io/ontology/lastAccessedEpoch
@@ -559,7 +582,8 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/privilegesRequired
 :privilegesRequired rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf :vulnProperty ;
-                    rdfs:label "privileges required" .
+                    rdfs:label "Privileges Required" ;
+                    skos:altLabel "PR" .
 
 
 ###  https://mekanoid.io/ontology/reference
@@ -568,7 +592,9 @@ d3f:version rdf:type owl:DatatypeProperty ;
 
 ###  https://mekanoid.io/ontology/scope
 :scope rdf:type owl:DatatypeProperty ;
-       rdfs:subPropertyOf :vulnProperty .
+       rdfs:subPropertyOf :vulnProperty ;
+       rdfs:label "Scope" ;
+       skos:altLabel "S" .
 
 
 ###  https://mekanoid.io/ontology/size
@@ -639,7 +665,8 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/userInteraction
 :userInteraction rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :vulnProperty ;
-                 rdfs:label "user interaction" .
+                 rdfs:label "User Interaction" ;
+                 skos:altLabel "UI" .
 
 
 ###  https://mekanoid.io/ontology/value
@@ -654,7 +681,7 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/vectorString
 :vectorString rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :vulnProperty ;
-              rdfs:label "vector" .
+              rdfs:label "Vector" .
 
 
 ###  https://mekanoid.io/ontology/vendorProperty
@@ -666,7 +693,7 @@ d3f:version rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/vulnProperty
 :vulnProperty rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :dataProperty ;
-              rdfs:label "vulnerability property" .
+              rdfs:label "CVSS 3.x Vulnerability Property" .
 
 
 #################################################################
@@ -675,6 +702,10 @@ d3f:version rdf:type owl:DatatypeProperty ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule
 d3f:ApplicationRule rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#CWE-20
+d3f:CWE-20 rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Command
@@ -1433,6 +1464,29 @@ d3f:Vulnerability rdf:type owl:Class ;
 #################################################################
 #    Individuals
 #################################################################
+
+###  https://mekanoid.io/ontology/CVE-2020-0041
+:CVE-2020-0041 rdf:type owl:NamedIndividual ,
+                        d3f:CWE-20 ,
+                        d3f:Vulnerability ;
+               :attackComplexity "Low" ;
+               :attackVector "Local" ;
+               :availabilityImpact "High" ;
+               :baseScore 7.8 ;
+               :baseSeverity "High" ;
+               :confidentialityImpact "High" ;
+               :exploitability 1.8 ;
+               :impact 5.9 ;
+               :integrityImpact "High" ;
+               :privilegesRequired "Low" ;
+               :reference "https://source.android.com/security/bulletin/2020-03-01"^^xsd:anyURI ;
+               :scope "Unchanged" ;
+               :userInteraction "None" ;
+               :value "CVE-2020-0041" ;
+               :vectorString "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"^^rdfs:Literal ;
+               rdfs:label "Android Kernel Out-of-Bounds Write Vulnerability"@en ;
+               :cpe "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*" .
+
 
 ###  https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation
 :Neon_Lane_Co_DBA_Mekanoid_Corporation rdf:type owl:NamedIndividual ,
