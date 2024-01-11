@@ -1159,7 +1159,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                                                                                            owl:onProperty :baseScore ;
                                                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                 owl:onDatatype xsd:decimal ;
-                                                                                                                                owl:withRestrictions ( [ xsd:minInclusive 10.0
+                                                                                                                                owl:withRestrictions ( [ xsd:maxInclusive 10.0
                                                                                                                                                        ]
                                                                                                                                                      )
                                                                                                                               ]
