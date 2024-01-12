@@ -70,37 +70,9 @@ skos:definition rdf:type owl:AnnotationProperty .
 skos:example rdf:type owl:AnnotationProperty .
 
 
-###  https://mekanoid.io/ontology/attackVector
-:attackVector rdf:type owl:AnnotationProperty ;
-              rdfs:range :CVSS-3-1-AV .
-
-
-###  https://mekanoid.io/ontology/availabilityImpact
-:availabilityImpact rdf:type owl:AnnotationProperty ;
-                    rdfs:range :CVSS-3-1-A .
-
-
-###  https://mekanoid.io/ontology/baseScore
-:baseScore rdf:type owl:AnnotationProperty ;
-           rdfs:range xsd:decimal .
-
-
-###  https://mekanoid.io/ontology/baseSeverity
-:baseSeverity rdf:type owl:AnnotationProperty .
-
-
-###  https://mekanoid.io/ontology/confidentialityImpact
-:confidentialityImpact rdf:type owl:AnnotationProperty ;
-                       rdfs:range :CVSS-3-1-C .
-
-
 ###  https://mekanoid.io/ontology/context
 :context rdf:type owl:AnnotationProperty ;
          rdfs:subPropertyOf rdfs:comment .
-
-
-###  https://mekanoid.io/ontology/exploitability
-:exploitability rdf:type owl:AnnotationProperty .
 
 
 ###  https://mekanoid.io/ontology/icon
@@ -108,32 +80,6 @@ skos:example rdf:type owl:AnnotationProperty .
       rdfs:label "has icon"@en ;
       rdfs:range xsd:anyURI ;
       rdfs:domain owl:Thing .
-
-
-###  https://mekanoid.io/ontology/impact
-:impact rdf:type owl:AnnotationProperty ;
-        rdfs:label "Impact Score" .
-
-
-###  https://mekanoid.io/ontology/integrityImpact
-:integrityImpact rdf:type owl:AnnotationProperty ;
-                 rdfs:range :CVSS31Integrity .
-
-
-###  https://mekanoid.io/ontology/privilegesRequired
-:privilegesRequired rdf:type owl:AnnotationProperty ;
-                    rdfs:range :CVSSPrivilegesRequired .
-
-
-###  https://mekanoid.io/ontology/scope
-:scope rdf:type owl:AnnotationProperty ;
-       rdfs:range :CVSSScope .
-
-
-###  https://mekanoid.io/ontology/userInteraction
-:userInteraction rdf:type owl:AnnotationProperty ;
-                 rdfs:range :CVSS-3-1-UserInteraction ,
-                            :CVSSUserInteraction .
 
 
 #################################################################
@@ -333,8 +279,7 @@ d3f:uses rdf:type owl:ObjectProperty .
 ###  https://mekanoid.io/ontology/confidentialityImpact
 :confidentialityImpact rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf :hasCVSSMetric ;
-                       rdf:type owl:FunctionalProperty ;
-                       rdfs:range :CVSS-3-1-ConfidentialityImpact .
+                       rdf:type owl:FunctionalProperty .
 
 
 ###  https://mekanoid.io/ontology/exploitCodeMaturity
@@ -346,10 +291,8 @@ d3f:uses rdf:type owl:ObjectProperty .
 
 
 ###  https://mekanoid.io/ontology/hasCVSSMetric
-:hasCVSSMetric rdf:type owl:ObjectProperty ,
-                        owl:TransitiveProperty ;
+:hasCVSSMetric rdf:type owl:ObjectProperty ;
                rdfs:domain d3f:Vulnerability ;
-               rdfs:range :CVSS-3-1 ;
                rdfs:label "has CVSS metric" .
 
 
@@ -381,8 +324,7 @@ d3f:uses rdf:type owl:ObjectProperty .
 ###  https://mekanoid.io/ontology/integrityImpact
 :integrityImpact rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :hasCVSSMetric ;
-                 rdf:type owl:FunctionalProperty ;
-                 rdfs:range :CVSS-3-1-IntegrityImpact .
+                 rdf:type owl:FunctionalProperty .
 
 
 ###  https://mekanoid.io/ontology/mayBeIndicatedBy
@@ -399,8 +341,7 @@ d3f:uses rdf:type owl:ObjectProperty .
 ###  https://mekanoid.io/ontology/privilegesRequired
 :privilegesRequired rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :hasCVSSMetric ;
-                    rdf:type owl:FunctionalProperty ;
-                    rdfs:range :CVSS-3-1-PrivilegesRequired .
+                    rdf:type owl:FunctionalProperty .
 
 
 ###  https://mekanoid.io/ontology/reference
@@ -408,11 +349,26 @@ d3f:uses rdf:type owl:ObjectProperty .
            rdfs:subPropertyOf owl:topObjectProperty .
 
 
+###  https://mekanoid.io/ontology/remediationLevel
+:remediationLevel rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasCVSSMetric ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:range :CVSS-3-1-RemediationLevel ;
+                  rdfs:label "remediation level" .
+
+
+###  https://mekanoid.io/ontology/reportConfidence
+:reportConfidence rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasCVSSMetric ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:range :CVSS-3-1-ReportConfidence ;
+                  rdfs:label "report confidence" .
+
+
 ###  https://mekanoid.io/ontology/scope
 :scope rdf:type owl:ObjectProperty ;
        rdfs:subPropertyOf :hasCVSSMetric ;
-       rdf:type owl:FunctionalProperty ;
-       rdfs:range :CVSS-3-1-Scope .
+       rdf:type owl:FunctionalProperty .
 
 
 ###  https://mekanoid.io/ontology/severityRating
@@ -432,8 +388,7 @@ d3f:uses rdf:type owl:ObjectProperty .
 ###  https://mekanoid.io/ontology/userInteraction
 :userInteraction rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :hasCVSSMetric ;
-                 rdf:type owl:FunctionalProperty ;
-                 rdfs:range :CVSS-3-1-UserInteraction .
+                 rdf:type owl:FunctionalProperty .
 
 
 #################################################################
@@ -445,13 +400,6 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty .
 
 
-###  https://mekanoid.io/ontology/baseScore
-:baseScore rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
-           rdf:type owl:FunctionalProperty ;
-           rdfs:domain d3f:Vulnerability .
-
-
 ###  https://mekanoid.io/ontology/cpe
 :cpe rdf:type owl:DatatypeProperty ;
      rdfs:subPropertyOf d3f:identifier ;
@@ -459,6 +407,33 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
      rdfs:range xsd:string ;
      rdfs:label "CPE" ;
      skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" .
+
+
+###  https://mekanoid.io/ontology/cvssBaseScore
+:cvssBaseScore rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain d3f:Vulnerability ;
+               rdfs:range xsd:decimal ;
+               rdfs:label "base score" .
+
+
+###  https://mekanoid.io/ontology/cvssExploitabilityScore
+:cvssExploitabilityScore rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdf:type owl:FunctionalProperty ;
+                         rdfs:domain d3f:Vulnerability ;
+                         rdfs:range xsd:decimal ;
+                         rdfs:label "exploitability score" .
+
+
+###  https://mekanoid.io/ontology/cvssImpactScore
+:cvssImpactScore rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain d3f:Vulnerability ;
+                 rdfs:range xsd:decimal ;
+                 rdfs:label "impact score" .
 
 
 ###  https://mekanoid.io/ontology/dateTime
@@ -644,10 +619,6 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 :reference rdf:type owl:DatatypeProperty .
 
 
-###  https://mekanoid.io/ontology/score
-:score rdf:type owl:DatatypeProperty .
-
-
 ###  https://mekanoid.io/ontology/size
 :size rdf:type owl:DatatypeProperty ,
                owl:FunctionalProperty ;
@@ -721,7 +692,10 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/vectorString
 :vectorString rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf owl:topDataProperty ;
-              rdf:type owl:FunctionalProperty .
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain d3f:Vulnerability ;
+              rdfs:range xsd:string ;
+              rdfs:label "vector" .
 
 
 ###  https://mekanoid.io/ontology/vendorProperty
@@ -916,6 +890,11 @@ d3f:Vulnerability rdf:type owl:Class ;
                                     owl:onProperty :privilegesRequired ;
                                     owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onClass :CVSS-3-1-PrivilegesRequired
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :remediationLevel ;
+                                    owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :CVSS-3-1-RemediationLevel
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :scope ;
@@ -1224,7 +1203,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                        owl:equivalentClass [ owl:intersectionOf ( d3f:Vulnerability
                                                                   [ rdf:type owl:Class ;
                                                                     owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                           owl:onProperty :baseScore ;
+                                                                                                           owl:onProperty :cvssBaseScore ;
                                                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                 owl:onDatatype xsd:decimal ;
                                                                                                                                 owl:withRestrictions ( [ xsd:minInclusive 9.0
@@ -1233,7 +1212,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                                                                                                               ]
                                                                                                          ]
                                                                                                          [ rdf:type owl:Restriction ;
-                                                                                                           owl:onProperty :baseScore ;
+                                                                                                           owl:onProperty :cvssBaseScore ;
                                                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                 owl:onDatatype xsd:decimal ;
                                                                                                                                 owl:withRestrictions ( [ xsd:maxInclusive 10.0
@@ -1355,7 +1334,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                    owl:equivalentClass [ owl:intersectionOf ( d3f:Vulnerability
                                                               [ rdf:type owl:Class ;
                                                                 owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                       owl:onProperty :baseScore ;
+                                                                                                       owl:onProperty :cvssBaseScore ;
                                                                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                             owl:onDatatype xsd:decimal ;
                                                                                                                             owl:withRestrictions ( [ xsd:minInclusive 7.0
@@ -1364,7 +1343,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                                                                                                           ]
                                                                                                      ]
                                                                                                      [ rdf:type owl:Restriction ;
-                                                                                                       owl:onProperty :baseScore ;
+                                                                                                       owl:onProperty :cvssBaseScore ;
                                                                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                             owl:onDatatype xsd:decimal ;
                                                                                                                             owl:withRestrictions ( [ xsd:maxExclusive 9.0
@@ -1432,7 +1411,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                           owl:equivalentClass [ owl:intersectionOf ( d3f:Vulnerability
                                                                      [ rdf:type owl:Class ;
                                                                        owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                              owl:onProperty :baseScore ;
+                                                                                                              owl:onProperty :cvssBaseScore ;
                                                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                    owl:onDatatype xsd:decimal ;
                                                                                                                                    owl:withRestrictions ( [ xsd:minExclusive 0.0
@@ -1441,7 +1420,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                                                                                                                  ]
                                                                                                             ]
                                                                                                             [ rdf:type owl:Restriction ;
-                                                                                                              owl:onProperty :baseScore ;
+                                                                                                              owl:onProperty :cvssBaseScore ;
                                                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                    owl:onDatatype xsd:decimal ;
                                                                                                                                    owl:withRestrictions ( [ xsd:maxExclusive 4.0
@@ -1544,7 +1523,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                              owl:equivalentClass [ owl:intersectionOf ( d3f:Vulnerability
                                                                         [ rdf:type owl:Class ;
                                                                           owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                                                                 owl:onProperty :baseScore ;
+                                                                                                                 owl:onProperty :cvssBaseScore ;
                                                                                                                  owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                       owl:onDatatype xsd:decimal ;
                                                                                                                                       owl:withRestrictions ( [ xsd:minInclusive 4.0
@@ -1553,7 +1532,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                                                                                                                     ]
                                                                                                                ]
                                                                                                                [ rdf:type owl:Restriction ;
-                                                                                                                 owl:onProperty :baseScore ;
+                                                                                                                 owl:onProperty :cvssBaseScore ;
                                                                                                                  owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                                                                                                       owl:onDatatype xsd:decimal ;
                                                                                                                                       owl:withRestrictions ( [ xsd:maxExclusive 7.0
@@ -1913,22 +1892,16 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/CVE-2020-0041
 :CVE-2020-0041 rdf:type owl:NamedIndividual ,
-                        d3f:CWE-20 ,
                         d3f:Vulnerability ;
-               :attackComplexity :CVSS-3-1-AttackComplexity-Low ;
                :attackVector :CVSS-3-1-AttackVector-Local ;
-               :availabilityImpact :CVSS-3-1-AvailabilityImpact-High ;
-               :scope :CVSS-3-1-Scope-Unchanged ;
-               :severityRating :CVSS-3-1-SeverityType-High ;
-               :baseScore 7.8 ;
-               :reference "https://source.android.com/security/bulletin/2020-03-01"^^xsd:anyURI ;
-               :value "CVE-2020-0041" ;
-               :vectorString "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"^^rdfs:Literal ;
-               rdfs:label "Android Kernel Out-of-Bounds Write Vulnerability"@en ;
-               :confidentialityImpact "High" ;
-               :integrityImpact "High" ;
-               :privilegesRequired "Low" ;
-               :userInteraction "None" .
+               :cvssBaseScore 7.8 ;
+               :cvssExploitabilityScore 1.8 ;
+               :cvssImpactScore 5.9 ;
+               rdfs:comment """In binder_transaction of binder.c, there is a possible out of bounds write due to an incorrect bounds check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.
+Product: Android
+Versions: Android kernel
+Android ID: A-145988638
+References: Upstream kernel""" .
 
 
 ###  https://mekanoid.io/ontology/CVSS-3-1-AttackComplexity-High
@@ -2451,43 +2424,13 @@ d3f:SoftwareService :icon "software.svg" .
 d3f:Technique :icon "technique.svg" .
 
 
-:attackVector rdfs:label "attack vector" ;
-              skos:altLabel "AV" .
-
-
-:availabilityImpact rdfs:label "availability impact" ;
-                    skos:altLabel "A" .
-
-
-:baseScore rdfs:label "CVSS score" .
-
-
-:confidentialityImpact rdfs:label "confidentiality impact" ;
-                       skos:altLabel "C" .
-
-
 :hasURL rdfs:label "has URL"@en .
 
 
 :importBucketUrl rdfs:label "S3 bucket URL"@en .
 
 
-:integrityImpact rdfs:label "integrity impact" ;
-                 skos:altLabel "I" .
-
-
-:privilegesRequired rdfs:label "requires privileges" ;
-                    skos:altLabel "PR" .
-
-
 :reference rdfs:label "has reference" .
-
-
-:scope rdfs:label "scope" ;
-       skos:altLabel "S" .
-
-
-:userInteraction rdfs:label "user interaction" .
 
 
 #################################################################
@@ -2602,16 +2545,9 @@ d3f:Technique :icon "technique.svg" .
 
 
 [ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :attackComplexity
-                :attackVector
-                :availabilityImpact
-                :confidentialityImpact
-                :exploitCodeMaturity
-                :integrityImpact
-                :privilegesRequired
-                :scope
-                :severityRating
-                :userInteraction
+  owl:members ( :cvssBaseScore
+                :cvssExploitabilityScore
+                :cvssImpactScore
               )
 ] .
 
