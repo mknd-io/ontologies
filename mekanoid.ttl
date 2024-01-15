@@ -10,6 +10,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix prov-o: <http://www.w3.org/TR/prov-o/> .
 @base <https://mekanoid.io/ontology/> .
 
 <https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
@@ -25,6 +26,10 @@
 #################################################################
 #    Annotation properties
 #################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#cwe-id
+d3f:cwe-id rdfs:domain d3f:Vulnerability .
+
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#definition
 d3f:definition rdf:type owl:AnnotationProperty .
@@ -719,6 +724,10 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 d3f:ApplicationRule rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Assessment
+d3f:Assessment rdfs:subClassOf :Result .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#CWE-20
 d3f:CWE-20 rdf:type owl:Class .
 
@@ -766,6 +775,13 @@ d3f:FileHash rdf:type owl:Class ;
              :icon "file-hash.svg" .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#FileSection
+d3f:FileSection rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty d3f:may-be-contained-by ;
+                                  owl:someValuesFrom d3f:File
+                                ] .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Host
 d3f:Host rdf:type owl:Class ;
          :icon "computer.svg" .
@@ -779,6 +795,10 @@ d3f:IPAddress rdf:type owl:Class ;
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
 d3f:Identifier rdf:type owl:Class ;
                :icon "text.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ImageCodeSegment
+d3f:ImageCodeSegment owl:equivalentClass :Payload .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#InformationContentEntity
@@ -813,6 +833,18 @@ d3f:Software rdf:type owl:Class ;
              :icon "software.svg" .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwareService
+d3f:SoftwareService rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                      owl:onProperty d3f:has-implementation ;
+                                      owl:someValuesFrom d3f:DefensiveTactic
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty d3f:has-implementation ;
+                                      owl:someValuesFrom d3f:DefensiveTechnique
+                                    ] ;
+                    :icon "software.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
 d3f:Subroutine rdf:type owl:Class ;
                owl:equivalentClass :Function .
@@ -821,8 +853,8 @@ d3f:Subroutine rdf:type owl:Class ;
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#URL
 d3f:URL rdf:type owl:Class ;
         rdfs:subClassOf [ rdf:type owl:Restriction ;
-                          owl:onProperty d3f:identifies ;
-                          owl:someValuesFrom :Malware
+                          owl:onProperty :value ;
+                          owl:allValuesFrom xsd:anyURI
                         ] ;
         :icon "url.svg" .
 
@@ -852,9 +884,18 @@ d3f:UserAction rdf:type owl:Class ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
 d3f:Vulnerability rdf:type owl:Class ;
-                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                  rdfs:subClassOf :MekaThing ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty d3f:accessed-by ;
+                                    owl:someValuesFrom :CVSS
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
                                     owl:onProperty d3f:may-be-contained-by ;
                                     owl:someValuesFrom d3f:Software
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :reference ;
+                                    owl:someValuesFrom :Advisory
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :attackComplexity ;
@@ -935,6 +976,12 @@ d3f:Vulnerability rdf:type owl:Class ;
                 rdfs:label "Actionable Item"@en .
 
 
+###  https://mekanoid.io/ontology/Advisory
+:Advisory rdf:type owl:Class ;
+          rdfs:subClassOf d3f:Reference ,
+                          :MekaThing .
+
+
 ###  https://mekanoid.io/ontology/AppUser
 :AppUser rdf:type owl:Class ;
          rdfs:subClassOf :ApplicationUserAccount ,
@@ -978,8 +1025,13 @@ d3f:Vulnerability rdf:type owl:Class ;
 
 ###  https://mekanoid.io/ontology/CVSS
 :CVSS rdf:type owl:Class ;
+      rdfs:subClassOf :MekaThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :version ;
+                        owl:hasValue 3.1
+                      ] ;
       rdfs:isDefinedBy "https://www.first.org/cvss/v3.1/specification-document"^^xsd:anyURI ;
-      rdfs:label "CVSS Metric" .
+      rdfs:label "CVSS 3.1 Metric" .
 
 
 ###  https://mekanoid.io/ontology/CVSS-AttackComplexity
@@ -1468,45 +1520,6 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
 
 
-###  https://mekanoid.io/ontology/Malware
-:Malware rdf:type owl:Class ;
-         rdfs:subClassOf d3f:Software ,
-                         :MekaThing ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:associated-with ;
-                           owl:someValuesFrom d3f:DomainName
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:associated-with ;
-                           owl:someValuesFrom d3f:IPAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom d3f:FileHash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom d3f:URL
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:identified-by ;
-                           owl:someValuesFrom :Hash
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom d3f:DomainName
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom d3f:IPAddress
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :mayBeIndicatedBy ;
-                           owl:someValuesFrom :FileName
-                         ] ;
-         rdfs:label "Malicious Software" .
-
-
 ###  https://mekanoid.io/ontology/ManualTaskRun
 :ManualTaskRun rdf:type owl:Class ;
                rdfs:subClassOf d3f:UserAction ,
@@ -1587,6 +1600,16 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
            :icon "mekanoid.svg"^^xsd:anyURI .
 
 
+###  https://mekanoid.io/ontology/NPMPackage
+:NPMPackage rdf:type owl:Class ;
+            rdfs:subClassOf d3f:SoftwarePackage ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :external-id ;
+                              owl:allValuesFrom xsd:string
+                            ] ;
+            rdfs:label "NPM Package" .
+
+
 ###  https://mekanoid.io/ontology/Observable
 :Observable rdf:type owl:Class ;
             rdfs:subClassOf :MekaThing ,
@@ -1644,7 +1667,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 :Report rdf:type owl:Class ;
         rdfs:subClassOf d3f:InformationContentEntity ,
                         d3f:Record ,
-                        :MekaThing ,
+                        :Result ,
                         [ rdf:type owl:Restriction ;
                           owl:onProperty d3f:analyzes ;
                           owl:someValuesFrom d3f:DomainName
@@ -1680,6 +1703,11 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
         rdfs:label "Analysis Report"@en ;
         skos:definition "A document containing the results of an assessment or analysis of an artifact." ;
         :icon "doc.svg"^^xsd:anyURI .
+
+
+###  https://mekanoid.io/ontology/Result
+:Result rdf:type owl:Class ;
+        rdfs:subClassOf :MekaThing .
 
 
 ###  https://mekanoid.io/ontology/SHA1
@@ -1842,7 +1870,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/Verdict
 :Verdict rdf:type owl:Class ;
-         rdfs:subClassOf :MekaThing ,
+         rdfs:subClassOf d3f:Assessment ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:evaluates ;
                            owl:someValuesFrom d3f:DomainName
@@ -1876,7 +1904,8 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                            owl:onClass :Report
                          ] ;
-         skos:definition "A summary of an assessment for an observable or an IoC." .
+         rdfs:label "Verdict" ;
+         skos:definition "A summary of an assessment for an observable or an IoC, typically provided by a cybersecurity vendor or a research team." .
 
 
 ###  https://mekanoid.io/ontology/Yara
@@ -1909,6 +1938,24 @@ Product: Android
 Versions: Android kernel
 Android ID: A-145988638
 References: Upstream kernel""" .
+
+
+###  https://mekanoid.io/ontology/CVE-2023-35165
+:CVE-2023-35165 rdf:type owl:NamedIndividual ,
+                         d3f:CWE-863 ,
+                         d3f:Vulnerability ;
+                d3f:cited-by :GitHub_M ;
+                d3f:contained-by :GHSA-rx28-r23p-2qc3 ;
+                :cvssBaseScore 6.6 ;
+                :external-id "a0819718-46f1-4df5-94e2-005712e83aaa" ;
+                :id "CVE-2023-35165" ;
+                :vectorString "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:H/A:H" ;
+                :version 3.1 ;
+                d3f:description "AWS Cloud Development Kit (AWS CDK) is an open-source software development framework to define cloud infrastructure in code and provision it through AWS CloudFormation. In the packages `aws-cdk-lib` 2.0.0 until 2.80.0 and `@aws-cdk/aws-eks` 1.57.0 until 1.202.0, `eks.Cluster` and `eks.FargateCluster` constructs create two roles, `CreationRole` and `default MastersRole`, that have an overly permissive trust policy. \\n \\nThe first, referred to as the `CreationRole`, is used by lambda handlers to create the cluster and deploy Kubernetes resources (e.g `KubernetesManifest`, `HelmChart`, ...) onto it. Users with CDK version higher or equal to 1.62.0 (including v2 users) may be affected.\\n \\nThe second, referred to as the `default MastersRole`, is provisioned only if the `mastersRole` property isn't provided and has permissions to execute `kubectl` commands on the cluster. Users with CDK version higher or equal to 1.57.0 (including v2 users) may be affected.\\n\\nThe issue has been fixed in `@aws-cdk/aws-eks` v1.202.0 and `aws-cdk-lib` v2.80.0. These versions no longer use the account root principal. Instead, they restrict the trust policy to the specific roles of lambda handlers that need it. There is no workaround available for CreationRole. To avoid creating the `default MastersRole`, use the `mastersRole` property to explicitly provide a role."@en ;
+                dct:title "AWS CDK EKS overly permissive trust policies" ;
+                rdfs:isDefinedBy "https://github.com/aws/aws-cdk/issues/25674" ,
+                                 "https://github.com/aws/aws-cdk/security/advisories/GHSA-rx28-r23p-2qc3" ;
+                rdfs:label "AWS CDK EKS overly permissive trust policies" .
 
 
 ###  https://mekanoid.io/ontology/CVSS-AttackComplexity-High
@@ -2315,6 +2362,20 @@ References: Upstream kernel""" .
                                skos:definition "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited. For example, a successful exploit may only be possible during the installation of an application by a system administrator." .
 
 
+###  https://mekanoid.io/ontology/GHSA-rx28-r23p-2qc3
+:GHSA-rx28-r23p-2qc3 rdf:type owl:NamedIndividual ,
+                              :Advisory ;
+                     d3f:cited-by :GitHub_M ;
+                     :hasURL "https://github.com/aws/aws-cdk/security/advisories/GHSA-rx28-r23p-2qc3"^^xsd:anyURI ;
+                     :id "GHSA-rx28-r23p-2qc3" .
+
+
+###  https://mekanoid.io/ontology/GitHub_M
+:GitHub_M rdf:type owl:NamedIndividual ,
+                   d3f:Vendor ;
+          :external-id "a0819718-46f1-4df5-94e2-005712e83aaa" .
+
+
 ###  https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation
 :Neon_Lane_Co_DBA_Mekanoid_Corporation rdf:type owl:NamedIndividual ,
                                                 d3f:Organization ;
@@ -2325,6 +2386,50 @@ References: Upstream kernel""" .
 :UseCaseGoal-Upload rdf:type owl:NamedIndividual ,
                              d3f:UseCaseGoal ;
                     rdfs:label "Upload" .
+
+
+###  https://mekanoid.io/ontology/aws
+:aws rdf:type owl:NamedIndividual ,
+              d3f:Vendor ;
+     d3f:produces :aws-cdk ;
+     rdfs:label "Amazon Web Services" .
+
+
+###  https://mekanoid.io/ontology/aws-cdk
+:aws-cdk rdf:type owl:NamedIndividual ,
+                  d3f:SoftwareLibrary ;
+         d3f:contains :aws-cdk-lib ,
+                      :aws-eks ;
+         d3f:may-contain :CVE-2023-35165 ;
+         d3f:produced-by :aws ;
+         rdfs:comment "AWS Cloud Development Kit (AWS CDK) is an open-source software development framework to define cloud infrastructure in code and provision it through AWS CloudFormation." ;
+         rdfs:label "AWS Cloud Development Kit (AWS CDK)" .
+
+
+###  https://mekanoid.io/ontology/aws-cdk-lib
+:aws-cdk-lib rdf:type owl:NamedIndividual ,
+                      d3f:SoftwarePackage .
+
+
+###  https://mekanoid.io/ontology/aws-eks
+:aws-eks rdf:type owl:NamedIndividual ;
+         rdfs:label "@aws-cdk/aws-eks" .
+
+
+###  https://mekanoid.io/ontology/urlscan
+:urlscan rdf:type owl:NamedIndividual ,
+                  d3f:Vendor ;
+         d3f:produces :urlscan.io ;
+         rdfs:label "urlscan GmbH" .
+
+
+###  https://mekanoid.io/ontology/urlscan.io
+:urlscan.io rdf:type owl:NamedIndividual ,
+                     d3f:SoftwareService ,
+                     d3f:URLAnalysis ;
+            d3f:implements d3f:URLAnalysis ;
+            :hasURL "https://urlscan.io" ;
+            rdfs:label "urlscan.io" .
 
 
 ###  https://mekanoid.io/ontology/0000-0001-7399-6740
@@ -2425,9 +2530,6 @@ d3f:Sensor :icon "broken.svg" .
 
 
 d3f:Server :icon "server.svg" .
-
-
-d3f:SoftwareService :icon "software.svg" .
 
 
 d3f:Technique :icon "technique.svg" .
