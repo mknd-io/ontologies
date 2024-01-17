@@ -17,7 +17,7 @@
                                  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                  dct:created "2022-04-02"^^xsd:date ;
                                  dct:description "Mekanoid Knowledge Network Dictionary (MKND) is a public ontology for semantic knowledge graph applications. Its purpose is to make possible trusted and autonomous cybersecurity threat prevention and response. It is a superset of the D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
-                                 dct:modified "2024-01-11"^^xsd:date ;
+                                 dct:modified "2024-01-16"^^xsd:date ;
                                  dct:title "MKND" ;
                                  rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation." ;
                                  owl:versionInfo "0.3.0" .
