@@ -30,6 +30,10 @@
 d3f:definition rdf:type owl:AnnotationProperty .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#name
+d3f:name rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/created
 dct:created rdf:type owl:AnnotationProperty .
 
@@ -682,9 +686,15 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
         rdfs:label "user ID"@en .
 
 
+###  https://mekanoid.io/ontology/usesNetworkPort
+:usesNetworkPort rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:positiveInteger ;
+                 rdfs:comment "uses network port number" ;
+                 rdfs:label "uses port" .
+
+
 ###  https://mekanoid.io/ontology/value
-:value rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:value rdf:type owl:DatatypeProperty ;
        rdfs:comment "A value parameter to be passed to Tasks"@en ;
        rdfs:label "has value"@en .
 
@@ -773,7 +783,10 @@ d3f:Host rdf:type owl:Class ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
 d3f:IPAddress rdf:type owl:Class ;
-              :icon "ip.svg" .
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:used-by ;
+                                owl:someValuesFrom :Socket
+                              ] .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier
@@ -1179,6 +1192,30 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                       skos:definition "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component. This metric determines whether the vulnerability can be exploited solely at the will of the attacker, or whether a separate user (or user-initiated process) must participate in some manner. The Base Score is greatest when no user interaction is required." .
 
 
+###  https://mekanoid.io/ontology/CommunicationProtocol
+:CommunicationProtocol rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :ICMP
+                                                         :TCP
+                                                         :UDP
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :MekaThing ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty d3f:used-by ;
+                                         owl:someValuesFrom d3f:NetworkPackets
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty d3f:used-by ;
+                                         owl:someValuesFrom d3f:NetworkService
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty d3f:used-by ;
+                                         owl:someValuesFrom d3f:NetworkSession
+                                       ] ;
+                       rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Communication_protocol" .
+
+
 ###  https://mekanoid.io/ontology/Connection
 :Connection rdf:type owl:Class ;
             rdfs:subClassOf :SystemObject ,
@@ -1304,8 +1341,12 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 :Function rdf:type owl:Class ;
           rdfs:subClassOf :MekaThing ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty d3f:enabled-by ;
+                            owl:onProperty d3f:invoked-by ;
                             owl:someValuesFrom d3f:ExecutableBinary
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty d3f:uses ;
+                            owl:hasValue d3f:IPAddress
                           ] ;
           rdfs:label "Function"@en ;
           :context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
@@ -1587,6 +1628,12 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
            :icon "mekanoid.svg"^^xsd:anyURI .
 
 
+###  https://mekanoid.io/ontology/NetworkServiceProtocol
+:NetworkServiceProtocol rdf:type owl:Class ;
+                        rdfs:subClassOf :MekaThing ;
+                        rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Application_layer#Protocols" .
+
+
 ###  https://mekanoid.io/ontology/Observable
 :Observable rdf:type owl:Class ;
             rdfs:subClassOf :MekaThing ,
@@ -1730,7 +1777,19 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 ###  https://mekanoid.io/ontology/Socket
 :Socket rdf:type owl:Class ;
         rdfs:subClassOf d3f:Identifier ,
-                        :Observable ;
+                        :Observable ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:uses ;
+                          owl:someValuesFrom d3f:IPAddress
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:uses ;
+                          owl:allValuesFrom :CommunicationProtocol
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :usesNetworkPort ;
+                          owl:someValuesFrom xsd:positiveInteger
+                        ] ;
         rdfs:label "Network Socket"@en ;
         skos:example "51.89.163.40:443" ;
         :icon "network.svg" .
@@ -1889,6 +1948,13 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 #################################################################
 #    Individuals
 #################################################################
+
+###  https://mekanoid.io/ontology/CKZ5qK3CTEwMCAJpIi
+:CKZ5qK3CTEwMCAJpIi rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:records <https://mekanoid.io/ontology/10.1.12.101> ;
+                    :external-id "CKZ5qK3CTEwMCAJpIi" .
+
 
 ###  https://mekanoid.io/ontology/CVE-2020-0041
 :CVE-2020-0041 rdf:type owl:NamedIndividual ,
@@ -2315,16 +2381,90 @@ References: Upstream kernel""" .
                                skos:definition "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited. For example, a successful exploit may only be possible during the installation of an application by a system administrator." .
 
 
+###  https://mekanoid.io/ontology/CmXHCZ3b4RlraAFfdg
+:CmXHCZ3b4RlraAFfdg rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession .
+
+
+###  https://mekanoid.io/ontology/Coc5xh3dIfFS5k4Gdh
+:Coc5xh3dIfFS5k4Gdh rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession .
+
+
+###  https://mekanoid.io/ontology/CtVKme2wtPfUO03gW8
+:CtVKme2wtPfUO03gW8 rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:contains <https://mekanoid.io/ontology/10.1.12.1> ,
+                                 <https://mekanoid.io/ontology/10.1.12.101:59882> ;
+                    d3f:records <https://mekanoid.io/ontology/10.1.12.101> ,
+                                <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                    :external-id "CtVKme2wtPfUO03gW8" .
+
+
+###  https://mekanoid.io/ontology/CxRSbB3QLImGRarD51
+:CxRSbB3QLImGRarD51 rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:contained-by :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    :external-id "CxRSbB3QLImGRarD51"^^xsd:anyURI .
+
+
+###  https://mekanoid.io/ontology/Cy9RQD31jwWTNsvafg
+:Cy9RQD31jwWTNsvafg rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession .
+
+
+###  https://mekanoid.io/ontology/DNS-Service
+:DNS-Service rdf:type owl:NamedIndividual ,
+                      :NetworkServiceProtocol ;
+             rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Domain_Name_System" .
+
+
+###  https://mekanoid.io/ontology/HTTP-Service
+:HTTP-Service rdf:type owl:NamedIndividual ,
+                       :NetworkServiceProtocol .
+
+
+###  https://mekanoid.io/ontology/ICMP
+:ICMP rdf:type owl:NamedIndividual ,
+               :CommunicationProtocol .
+
+
 ###  https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation
 :Neon_Lane_Co_DBA_Mekanoid_Corporation rdf:type owl:NamedIndividual ,
                                                 d3f:Organization ;
                                        rdfs:label "Mekanoid Corporation" .
 
 
+###  https://mekanoid.io/ontology/SSL-Service
+:SSL-Service rdf:type owl:NamedIndividual ,
+                      :NetworkServiceProtocol .
+
+
+###  https://mekanoid.io/ontology/TCP
+:TCP rdf:type owl:NamedIndividual ,
+              :CommunicationProtocol .
+
+
+###  https://mekanoid.io/ontology/UDP
+:UDP rdf:type owl:NamedIndividual ,
+              :CommunicationProtocol ;
+     d3f:name "User Datagram Protocol"@en ;
+     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/User_Datagram_Protocol" .
+
+
 ###  https://mekanoid.io/ontology/UseCaseGoal-Upload
 :UseCaseGoal-Upload rdf:type owl:NamedIndividual ,
                              d3f:UseCaseGoal ;
                     rdfs:label "Upload" .
+
+
+###  https://mekanoid.io/ontology/file_377694aa1125aad7b09bbaafc3b6587d
+:file_377694aa1125aad7b09bbaafc3b6587d rdf:type owl:NamedIndividual ,
+                                                d3f:PacketLog ;
+                                       d3f:records :CtVKme2wtPfUO03gW8 ,
+                                                   :CxRSbB3QLImGRarD51 ;
+                                       :importFileName "conn.log"^^xsd:anyURI ;
+                                       rdfs:label "conn.log" .
 
 
 ###  https://mekanoid.io/ontology/0000-0001-7399-6740
@@ -2336,6 +2476,68 @@ References: Upstream kernel""" .
 ###  https://mekanoid.io/ontology/1.1.1.1
 <https://mekanoid.io/ontology/1.1.1.1> rdf:type owl:NamedIndividual ,
                                                 :PublicIPAddress .
+
+
+###  https://mekanoid.io/ontology/10.1.12.1
+<https://mekanoid.io/ontology/10.1.12.1> rdf:type owl:NamedIndividual ,
+                                                  :IPv4 ,
+                                                  :PrivateIPAddress ;
+                                         d3f:used-by <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                                         :value "10.1.12.1" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.101
+<https://mekanoid.io/ontology/10.1.12.101> rdf:type owl:NamedIndividual ,
+                                                    :IPv4 ,
+                                                    :PrivateIPAddress ;
+                                           d3f:used-by <https://mekanoid.io/ontology/10.1.12.101:59882> ;
+                                           :value "10.1.12.101" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.101:59882
+<https://mekanoid.io/ontology/10.1.12.101:59882> rdf:type owl:NamedIndividual ,
+                                                          :Socket ;
+                                                 d3f:contained-by :CtVKme2wtPfUO03gW8 ;
+                                                 d3f:uses <https://mekanoid.io/ontology/10.1.12.101> ;
+                                                 :usesNetworkPort 59882 ;
+                                                 :value "10.1.12.101:59882" ;
+                                                 rdfs:comment "has type: UDP" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.1:53
+<https://mekanoid.io/ontology/10.1.12.1:53> rdf:type owl:NamedIndividual ,
+                                                     :Socket ;
+                                            d3f:contained-by :CtVKme2wtPfUO03gW8 ;
+                                            d3f:provides :DNS-Service ;
+                                            d3f:uses <https://mekanoid.io/ontology/10.1.12.1> ;
+                                            :usesNetworkPort "53"^^xsd:positiveInteger ;
+                                            :value "10.1.12.101:53" ;
+                                            rdfs:comment "has type: UDP" .
+
+
+###  https://mekanoid.io/ontology/162.248.51.100
+<https://mekanoid.io/ontology/162.248.51.100> rdf:type owl:NamedIndividual ,
+                                                       :IPv4 ,
+                                                       :PublicIPAddress ;
+                                              d3f:used-by <https://mekanoid.io/ontology/162.248.51.100> ;
+                                              :value "162.248.51.100" .
+
+
+###  https://mekanoid.io/ontology/162.248.51.100:443
+<https://mekanoid.io/ontology/162.248.51.100:443> rdf:type owl:NamedIndividual ,
+                                                           :Socket ;
+                                                  d3f:provides :SSL-Service ;
+                                                  d3f:uses :TCP ,
+                                                           <https://mekanoid.io/ontology/162.248.51.100> ;
+                                                  :usesNetworkPort "443"^^xsd:positiveInteger ;
+                                                  :value "162.248.51.100:443" .
+
+
+###  https://mekanoid.io/ontology/46.4.205.200
+<https://mekanoid.io/ontology/46.4.205.200> rdf:type owl:NamedIndividual ,
+                                                     :IPv4 ,
+                                                     :PublicIPAddress ;
+                                            :value "46.4.205.200" .
 
 
 ###  https://mekanoid.io/ontology/cpe:2.3:o:google:android:-:*:*:*:*:*:*:*
@@ -2391,6 +2593,9 @@ d3f:ExecutableFile :icon "code-file.svg" .
 
 
 d3f:HardwareDevice :icon "device.svg"^^xsd:anyURI .
+
+
+d3f:IPAddress :icon "ip.svg" .
 
 
 d3f:IntrusionDetectionSystem :icon "broken.svg" .
@@ -2549,6 +2754,14 @@ d3f:Technique :icon "technique.svg" .
                         :CVSS-SeverityType-Low
                         :CVSS-SeverityType-Medium
                         :CVSS-SeverityType-None
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ICMP
+                        :TCP
+                        :UDP
                       )
 ] .
 
