@@ -525,8 +525,6 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 :external-id rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf d3f:identifier ,
                                 :vendorProperty ;
-             rdfs:domain d3f:Host ,
-                         d3f:UserAccount ;
              rdfs:label "external ID"@en ;
              skos:altLabel "vendor ID" .
 
@@ -804,8 +802,24 @@ d3f:Log rdf:type owl:Class ;
         :icon "log.svg"^^xsd:anyURI .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkPackets
+d3f:NetworkPackets rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkService
+d3f:NetworkService rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkSession
+d3f:NetworkSession rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Organization
 d3f:Organization rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#PacketLog
+d3f:PacketLog rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Person
@@ -1949,10 +1963,15 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 #    Individuals
 #################################################################
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+d3f:IPAddress rdf:type owl:NamedIndividual .
+
+
 ###  https://mekanoid.io/ontology/CKZ5qK3CTEwMCAJpIi
 :CKZ5qK3CTEwMCAJpIi rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession ;
-                    d3f:records <https://mekanoid.io/ontology/10.1.12.101> ;
+                    d3f:contains <https://mekanoid.io/ontology/10.1.12.101> ;
+                    d3f:uses :ICMP ;
                     :external-id "CKZ5qK3CTEwMCAJpIi" .
 
 
@@ -2395,22 +2414,24 @@ References: Upstream kernel""" .
 :CtVKme2wtPfUO03gW8 rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession ;
                     d3f:contains <https://mekanoid.io/ontology/10.1.12.1> ,
-                                 <https://mekanoid.io/ontology/10.1.12.101:59882> ;
-                    d3f:records <https://mekanoid.io/ontology/10.1.12.101> ,
-                                <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                                 <https://mekanoid.io/ontology/10.1.12.101> ,
+                                 <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
                     :external-id "CtVKme2wtPfUO03gW8" .
 
 
 ###  https://mekanoid.io/ontology/CxRSbB3QLImGRarD51
 :CxRSbB3QLImGRarD51 rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession ;
-                    d3f:contained-by :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
                     :external-id "CxRSbB3QLImGRarD51"^^xsd:anyURI .
 
 
 ###  https://mekanoid.io/ontology/Cy9RQD31jwWTNsvafg
 :Cy9RQD31jwWTNsvafg rdf:type owl:NamedIndividual ,
-                             d3f:NetworkSession .
+                             d3f:NetworkSession ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    :external-id "Cy9RQD31jwWTNsvafg" .
 
 
 ###  https://mekanoid.io/ontology/DNS-Service
@@ -2475,7 +2496,9 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/1.1.1.1
 <https://mekanoid.io/ontology/1.1.1.1> rdf:type owl:NamedIndividual ,
-                                                :PublicIPAddress .
+                                                :IPv4 ,
+                                                :PublicIPAddress ;
+                                       :value "1.1.1.1" .
 
 
 ###  https://mekanoid.io/ontology/10.1.12.1
@@ -2490,18 +2513,7 @@ References: Upstream kernel""" .
 <https://mekanoid.io/ontology/10.1.12.101> rdf:type owl:NamedIndividual ,
                                                     :IPv4 ,
                                                     :PrivateIPAddress ;
-                                           d3f:used-by <https://mekanoid.io/ontology/10.1.12.101:59882> ;
                                            :value "10.1.12.101" .
-
-
-###  https://mekanoid.io/ontology/10.1.12.101:59882
-<https://mekanoid.io/ontology/10.1.12.101:59882> rdf:type owl:NamedIndividual ,
-                                                          :Socket ;
-                                                 d3f:contained-by :CtVKme2wtPfUO03gW8 ;
-                                                 d3f:uses <https://mekanoid.io/ontology/10.1.12.101> ;
-                                                 :usesNetworkPort 59882 ;
-                                                 :value "10.1.12.101:59882" ;
-                                                 rdfs:comment "has type: UDP" .
 
 
 ###  https://mekanoid.io/ontology/10.1.12.1:53
@@ -2509,17 +2521,35 @@ References: Upstream kernel""" .
                                                      :Socket ;
                                             d3f:contained-by :CtVKme2wtPfUO03gW8 ;
                                             d3f:provides :DNS-Service ;
-                                            d3f:uses <https://mekanoid.io/ontology/10.1.12.1> ;
+                                            d3f:uses :UDP ,
+                                                     <https://mekanoid.io/ontology/10.1.12.1> ;
                                             :usesNetworkPort "53"^^xsd:positiveInteger ;
                                             :value "10.1.12.101:53" ;
                                             rdfs:comment "has type: UDP" .
+
+
+###  https://mekanoid.io/ontology/109.107.181.33
+<https://mekanoid.io/ontology/109.107.181.33> rdf:type owl:NamedIndividual ,
+                                                       :IPv4 ,
+                                                       :PublicIPAddress .
+
+
+###  https://mekanoid.io/ontology/109.107.181.33:80
+<https://mekanoid.io/ontology/109.107.181.33:80> rdf:type owl:NamedIndividual ,
+                                                          :Socket ;
+                                                 d3f:contained-by :Cy9RQD31jwWTNsvafg ;
+                                                 d3f:provides :HTTP-Service ;
+                                                 d3f:uses :TCP ,
+                                                          <https://mekanoid.io/ontology/109.107.181.33> ;
+                                                 :usesNetworkPort "80"^^xsd:positiveInteger ;
+                                                 :value "109.107.181.33:80" .
 
 
 ###  https://mekanoid.io/ontology/162.248.51.100
 <https://mekanoid.io/ontology/162.248.51.100> rdf:type owl:NamedIndividual ,
                                                        :IPv4 ,
                                                        :PublicIPAddress ;
-                                              d3f:used-by <https://mekanoid.io/ontology/162.248.51.100> ;
+                                              d3f:used-by <https://mekanoid.io/ontology/162.248.51.100:443> ;
                                               :value "162.248.51.100" .
 
 
@@ -2538,6 +2568,17 @@ References: Upstream kernel""" .
                                                      :IPv4 ,
                                                      :PublicIPAddress ;
                                             :value "46.4.205.200" .
+
+
+###  https://mekanoid.io/ontology/46.4.205.200:80
+<https://mekanoid.io/ontology/46.4.205.200:80> rdf:type owl:NamedIndividual ,
+                                                        :Socket ;
+                                               d3f:contained-by :CxRSbB3QLImGRarD51 ;
+                                               d3f:provides :HTTP-Service ;
+                                               d3f:uses :TCP ,
+                                                        <https://mekanoid.io/ontology/46.4.205.200> ;
+                                               :usesNetworkPort "80"^^xsd:positiveInteger ;
+                                               :value "46.4.205.200:80" .
 
 
 ###  https://mekanoid.io/ontology/cpe:2.3:o:google:android:-:*:*:*:*:*:*:*
