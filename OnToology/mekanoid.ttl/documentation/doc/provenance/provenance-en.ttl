@@ -1,9 +1,0 @@
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix : <> .
-<https://mekanoid.io/ontology/0.2.1/> a prov:Entity;
-	 dc:title "Mekanoid Ontology for Cybersecurity Automation";
-	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
-	 prov:wasGeneratedAt "2022-04-02";
-.
