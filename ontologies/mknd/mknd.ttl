@@ -129,8 +129,7 @@ d3f:analyzes rdf:type owl:ObjectProperty .
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
 d3f:associated-with rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf d3f:may-be-associated-with ;
-                    rdfs:range d3f:SoftwareService .
+                    rdfs:subPropertyOf d3f:may-be-associated-with .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
@@ -1425,7 +1424,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                                 owl:someValuesFrom :Task
                               ] ;
               rdfs:label "Data Template" ;
-              :icon "file.svg"^^xsd:anyURI .
+              :icon "file.svg" .
 
 
 ###  https://mekanoid.io/ontology/Detection
@@ -2066,10 +2065,6 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:created-by ;
                               owl:someValuesFrom :TaskRun
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :importBucketUrl ;
-                              owl:someValuesFrom xsd:string
                             ] ;
             rdfs:label "Task Run Log" ;
             :icon "log.svg"^^xsd:anyURI .
