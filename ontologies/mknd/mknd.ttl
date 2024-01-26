@@ -129,7 +129,8 @@ d3f:analyzes rdf:type owl:ObjectProperty .
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
 d3f:associated-with rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf d3f:may-be-associated-with .
+                    rdfs:subPropertyOf d3f:may-be-associated-with ;
+                    rdfs:range d3f:SoftwareService .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#connected-by
@@ -396,6 +397,11 @@ d3f:uses rdf:type owl:ObjectProperty .
                 rdfs:label "severity" .
 
 
+###  https://mekanoid.io/ontology/supports
+:supports rdf:type owl:ObjectProperty ;
+          skos:example "Integration x supports product or service y." .
+
+
 ###  https://mekanoid.io/ontology/updated-by
 :updated-by rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf d3f:modified-by ;
@@ -420,7 +426,6 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/cpe
 :cpe rdf:type owl:DatatypeProperty ;
      rdfs:subPropertyOf d3f:identifier ;
-     rdfs:domain d3f:Software ;
      rdfs:range xsd:string ;
      rdfs:label "CPE" ;
      skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" .
@@ -560,7 +565,8 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 
 
 ###  https://mekanoid.io/ontology/hasURL
-:hasURL rdf:type owl:DatatypeProperty .
+:hasURL rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf d3f:identifier .
 
 
 ###  https://mekanoid.io/ontology/id
@@ -577,6 +583,8 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 
 ###  https://mekanoid.io/ontology/importBucketUrl
 :importBucketUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasURL ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:range xsd:anyURI .
 
 
@@ -660,12 +668,15 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/teamId
 :teamId rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf d3f:identifier ;
+        rdf:type owl:FunctionalProperty ;
+        owl:propertyDisjointWith :userId ;
         rdfs:label "team ID"@en .
 
 
 ###  https://mekanoid.io/ontology/templateId
 :templateId rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf d3f:identifier ;
+            rdf:type owl:FunctionalProperty ;
             rdfs:label "template ID"@en .
 
 
@@ -701,6 +712,7 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/userId
 :userId rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf d3f:identifier ;
+        rdf:type owl:FunctionalProperty ;
         rdfs:label "user ID"@en .
 
 
@@ -910,6 +922,10 @@ d3f:SoftwarePackage rdf:type owl:Class .
 d3f:SoftwareProduct rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwareService
+d3f:SoftwareService :icon "software.svg" .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
 d3f:Subroutine rdf:type owl:Class ;
                rdfs:subClassOf :MekaThing ,
@@ -942,7 +958,7 @@ d3f:User rdf:type owl:Class ;
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
 d3f:UserAccount rdf:type owl:Class ;
                 rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty d3f:uses ;
+                                  owl:onProperty d3f:identified-by ;
                                   owl:someValuesFrom :Username
                                 ] ;
                 :icon "user-account.svg" .
@@ -1061,8 +1077,8 @@ d3f:WebServerApplication rdf:type owl:Class .
                            owl:someValuesFrom d3f:User
                          ] ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty d3f:accesses ;
-                           owl:someValuesFrom :Tenant
+                           owl:onProperty d3f:creates ;
+                           owl:someValuesFrom :Filter
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:creates ;
@@ -1071,6 +1087,14 @@ d3f:WebServerApplication rdf:type owl:Class .
                          [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:executes ;
                            owl:someValuesFrom :ManualTaskRun
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:may-access ;
+                           owl:someValuesFrom :Tenant
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :userId ;
+                           owl:someValuesFrom xsd:string
                          ] ;
          rdfs:comment "Mekanoid User Account" ;
          rdfs:label "Mekanoid User Account" .
@@ -1328,6 +1352,14 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                               owl:someValuesFrom :Task
                             ] ,
                             [ rdf:type owl:Restriction ;
+                              owl:onProperty :supports ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( d3f:SoftwareProduct
+                                                                 d3f:SoftwareService
+                                                               )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:enables ;
                               owl:allValuesFrom :Integration
                             ] ;
@@ -1379,7 +1411,19 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/DataTemplate
 :DataTemplate rdf:type owl:Class ;
-              rdfs:subClassOf :SystemObject ;
+              rdfs:subClassOf :SystemObject ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:invoked-by ;
+                                owl:someValuesFrom :TaskRun
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:maps ;
+                                owl:someValuesFrom d3f:WebAPIResource
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty d3f:used-by ;
+                                owl:someValuesFrom :Task
+                              ] ;
               rdfs:label "Data Template" ;
               :icon "file.svg"^^xsd:anyURI .
 
@@ -1448,7 +1492,15 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/Filter
 :Filter rdf:type owl:Class ;
-        rdfs:subClassOf :SystemObject ;
+        rdfs:subClassOf :SystemObject ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:used-by ;
+                          owl:someValuesFrom :TaskPattern
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:created-by ;
+                          owl:allValuesFrom :AppUser
+                        ] ;
         skos:definition "A logical statement specifying scope for a Report or a Task Pattern. Identifies one or more Artifacts with or without specific relationships between them, essentially a subgraph. e.g. a FILTER statement within a SPARQL query." .
 
 
@@ -1528,7 +1580,11 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/Incident
 :Incident rdf:type owl:Class ;
-          rdfs:subClassOf :ActionableItem ;
+          rdfs:subClassOf :ActionableItem ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty d3f:records ;
+                            owl:allValuesFrom :IncidentStatus
+                          ] ;
           rdfs:comment "A ticket or a case associated with a cybersecurity incident." ;
           rdfs:label "Incident"@en ;
           skos:altLabel "Case"@en ;
@@ -1537,7 +1593,9 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/IncidentStatus
 :IncidentStatus rdf:type owl:Class ;
-                rdfs:subClassOf :MekaThing .
+                rdfs:subClassOf :MekaThing ;
+                rdfs:label "Incident Status" ;
+                skos:definition "Normalized status of an Incident" .
 
 
 ###  https://mekanoid.io/ontology/Integration
@@ -1550,6 +1608,14 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:enabled-by ;
                                owl:someValuesFrom :Connection
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:enables ;
+                               owl:someValuesFrom d3f:DefensiveTactic
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty d3f:implements ;
+                               owl:someValuesFrom d3f:DefensiveTechnique
                              ] .
 
 
@@ -1925,8 +1991,8 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 ###  https://mekanoid.io/ontology/SystemObject
 :SystemObject rdf:type owl:Class ;
               rdfs:subClassOf :MekaThing ;
-              rdfs:comment "Mekanoid System Object" ;
-              rdfs:label "Meka Object" ;
+              rdfs:label "Mekanoid Object" ;
+              skos:definition "A foundational class in the Mekanoid ontology representing the core system objects. It serves as a superclass for various entities including integrations, app users, task patterns, templates, connections, task runs, tenants, task run logs, data templates, and tasks. This class is integral to organizing and defining the structure and relationships of system objects within the Mekanoid framework."@en ;
               :icon "mekanoid.svg"^^xsd:anyURI .
 
 
@@ -1934,12 +2000,16 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 :Task rdf:type owl:Class ;
       rdfs:subClassOf :SystemObject ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty d3f:contained-by ;
-                        owl:someValuesFrom :Integration
+                        owl:onProperty d3f:accesses ;
+                        owl:someValuesFrom d3f:NetworkResource
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty d3f:uses ;
                         owl:someValuesFrom :DataTemplate
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty d3f:contained-by ;
+                        owl:allValuesFrom :Integration
                       ] ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty d3f:uses ;
@@ -1974,6 +2044,10 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                            owl:someValuesFrom :TaskRunLog
                          ] ,
                          [ rdf:type owl:Restriction ;
+                           owl:onProperty d3f:executes ;
+                           owl:someValuesFrom d3f:DefensiveTechnique
+                         ] ,
+                         [ rdf:type owl:Restriction ;
                            owl:onProperty d3f:uses ;
                            owl:someValuesFrom :DataTemplate
                          ] ,
@@ -1992,6 +2066,10 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:created-by ;
                               owl:someValuesFrom :TaskRun
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :importBucketUrl ;
+                              owl:someValuesFrom xsd:string
                             ] ;
             rdfs:label "Task Run Log" ;
             :icon "log.svg"^^xsd:anyURI .
@@ -1999,14 +2077,26 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  https://mekanoid.io/ontology/TaskTemplate
 :TaskTemplate rdf:type owl:Class ;
-              rdfs:subClassOf :SystemObject ;
+              rdfs:subClassOf :SystemObject ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :templateId ;
+                                owl:allValuesFrom xsd:string
+                              ] ;
               rdfs:label "Task Template" ;
               :icon "file.svg"^^xsd:anyURI .
 
 
 ###  https://mekanoid.io/ontology/Tenant
 :Tenant rdf:type owl:Class ;
-        rdfs:subClassOf :SystemObject ;
+        rdfs:subClassOf :SystemObject ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty d3f:may-be-accessed-by ;
+                          owl:someValuesFrom :AppUser
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :teamId ;
+                          owl:allValuesFrom xsd:string
+                        ] ;
         rdfs:comment "Mekanoid Tenant" ;
         :icon "biz-unit.svg"^^xsd:anyURI .
 
@@ -2518,12 +2608,6 @@ References: Upstream kernel""" .
                                skos:definition "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited. For example, a successful exploit may only be possible during the installation of an application by a system administrator." .
 
 
-###  https://mekanoid.io/ontology/Closed
-:Closed rdf:type owl:NamedIndividual ,
-                 :IncidentStatus ;
-        owl:differentFrom :Open .
-
-
 ###  https://mekanoid.io/ontology/CmXHCZ3b4RlraAFfdg
 :CmXHCZ3b4RlraAFfdg rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession .
@@ -2588,15 +2672,28 @@ References: Upstream kernel""" .
                :CommunicationProtocol .
 
 
+###  https://mekanoid.io/ontology/IncidentStatus-Closed
+:IncidentStatus-Closed rdf:type owl:NamedIndividual ,
+                                :IncidentStatus ;
+                       rdfs:label "Closed" .
+
+
+###  https://mekanoid.io/ontology/IncidentStatus-Open
+:IncidentStatus-Open rdf:type owl:NamedIndividual ,
+                              :IncidentStatus ;
+                     rdfs:label "Open" .
+
+
+###  https://mekanoid.io/ontology/IncidentStatus-Unknown
+:IncidentStatus-Unknown rdf:type owl:NamedIndividual ,
+                                 :IncidentStatus ;
+                        rdfs:label "Unknown" .
+
+
 ###  https://mekanoid.io/ontology/Neon_Lane_Co_DBA_Mekanoid_Corporation
 :Neon_Lane_Co_DBA_Mekanoid_Corporation rdf:type owl:NamedIndividual ,
                                                 d3f:Organization ;
                                        rdfs:label "Mekanoid Corporation" .
-
-
-###  https://mekanoid.io/ontology/Open
-:Open rdf:type owl:NamedIndividual ,
-               :IncidentStatus .
 
 
 ###  https://mekanoid.io/ontology/SSH-Service
@@ -2927,9 +3024,6 @@ d3f:Sensor :icon "broken.svg" .
 d3f:Server :icon "server.svg" .
 
 
-d3f:SoftwareService :icon "software.svg" .
-
-
 d3f:Technique :icon "technique.svg" .
 
 
@@ -3070,6 +3164,14 @@ d3f:stage skos:definition "Represents a distinct phase in the lifecycle of cyber
   owl:distinctMembers ( :ICMP
                         :TCP
                         :UDP
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :IncidentStatus-Closed
+                        :IncidentStatus-Open
+                        :IncidentStatus-Unknown
                       )
 ] .
 
