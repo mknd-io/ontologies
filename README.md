@@ -1,1 +1,1 @@
-Mekanoid Ontologies Repository
+# Ontologies used by Mekanoid Corporation
