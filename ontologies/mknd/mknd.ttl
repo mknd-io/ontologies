@@ -30,8 +30,24 @@
 d3f:definition rdf:type owl:AnnotationProperty .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#has-link
+d3f:has-link rdf:type owl:AnnotationProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#implements
+d3f:implements rdf:type owl:AnnotationProperty .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#name
 d3f:name rdf:type owl:AnnotationProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#publisher
+d3f:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#publishes
+d3f:publishes rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/created
@@ -218,6 +234,10 @@ d3f:may-contain rdf:type owl:ObjectProperty .
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#modified-by
 d3f:modified-by rdf:type owl:ObjectProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#produced-by
+d3f:produced-by rdf:type owl:ObjectProperty .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#produces
@@ -529,7 +549,8 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf d3f:identifier ,
                                 :vendorProperty ;
              rdfs:label "external ID"@en ;
-             skos:altLabel "vendor ID" .
+             skos:altLabel "vendor ID" ;
+             skos:definition "Mekanoid data property that represents an identifier assigned by an external system or vendor. It is applicable to entities such as hosts and user accounts, providing a unique string-based identifier that aligns with external records or systems. This property facilitates the integration and mapping of internal entities with external references, enhancing cross-system data coherence and identification." .
 
 
 ###  https://mekanoid.io/ontology/firstSeen
@@ -552,21 +573,24 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 ###  https://mekanoid.io/ontology/id
 :id rdf:type owl:DatatypeProperty ;
     rdfs:subPropertyOf d3f:identifier ;
-    rdfs:label "ID"@en .
+    rdfs:label "ID"@en ;
+    skos:definition "Mekanoid ID" .
 
 
 ###  https://mekanoid.io/ontology/importBucketName
 :importBucketName rdf:type owl:DatatypeProperty ;
-                  rdfs:label "S3 bucket"@en .
+                  rdfs:label "S3 bucket name"@en .
 
 
 ###  https://mekanoid.io/ontology/importBucketUrl
-:importBucketUrl rdf:type owl:DatatypeProperty .
+:importBucketUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:anyURI .
 
 
 ###  https://mekanoid.io/ontology/importFileName
 :importFileName rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:range xsd:anyURI ;
                 rdfs:label "filename"@en .
 
 
@@ -696,6 +720,7 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 
 ###  https://mekanoid.io/ontology/value
 :value rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
        rdfs:comment "A value parameter to be passed to Tasks"@en ;
        rdfs:label "has value"@en .
 
@@ -734,6 +759,14 @@ d3f:ApplicationRule rdf:type owl:Class ;
                                     ] .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Assessment
+d3f:Assessment rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Browser
+d3f:Browser rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#CWE-20
 d3f:CWE-20 rdf:type owl:Class .
 
@@ -752,6 +785,10 @@ d3f:ConfigurationFile rdf:type owl:Class .
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent
 d3f:DigitalEvent rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Document
+d3f:Document rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#DomainName
@@ -800,15 +837,7 @@ d3f:Identifier rdf:type owl:Class ;
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#InformationContentEntity
-d3f:InformationContentEntity rdf:type owl:Class ;
-                             owl:equivalentClass [ owl:intersectionOf ( d3f:Software
-                                                                        [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty d3f:has-goal ;
-                                                                          owl:someValuesFrom d3f:OffensiveTechnique
-                                                                        ]
-                                                                      ) ;
-                                                   rdf:type owl:Class
-                                                 ] .
+d3f:InformationContentEntity rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Log
@@ -829,8 +858,21 @@ d3f:NetworkService rdf:type owl:Class .
 d3f:NetworkSession rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficAnalysisSoftware
+d3f:NetworkTrafficAnalysisSoftware rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTechnique
+d3f:OffensiveTechnique rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Open-sourceDeveloper
+d3f:Open-sourceDeveloper rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#OperatingSystem
-d3f:OperatingSystem :icon "os.svg"^^xsd:anyURI .
+d3f:OperatingSystem rdf:type owl:Class ;
+                    :icon "os.svg"^^xsd:anyURI .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Organization
@@ -845,6 +887,14 @@ d3f:PacketLog rdf:type owl:Class .
 d3f:Person rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ProductDeveloper
+d3f:ProductDeveloper rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Proposition
+d3f:Proposition rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Record
 d3f:Record rdf:type owl:Class ;
            :icon "file.svg"^^xsd:anyURI .
@@ -857,6 +907,14 @@ d3f:Software rdf:type owl:Class ;
                                owl:someValuesFrom d3f:Vulnerability
                              ] ;
              :icon "software.svg" .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwarePackage
+d3f:SoftwarePackage rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwareProduct
+d3f:SoftwareProduct rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
@@ -968,6 +1026,10 @@ d3f:Vulnerability rdf:type owl:Class ;
                                     owl:onClass :CVSS-UserInteraction
                                   ] ;
                   :icon "vulnerability.svg"^^xsd:anyURI .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#WebServerApplication
+d3f:WebServerApplication rdf:type owl:Class .
 
 
 ###  https://mekanoid.io/ontology/ASN
@@ -1608,7 +1670,8 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
                            owl:onProperty :mayBeIndicatedBy ;
                            owl:someValuesFrom :FileName
                          ] ;
-         rdfs:label "Malicious Software" .
+         rdfs:label "Malicious Software" ;
+         skos:altLabel "Malware" .
 
 
 ###  https://mekanoid.io/ontology/ManualTaskRun
@@ -2600,7 +2663,8 @@ References: Upstream kernel""" .
 :file_377694aa1125aad7b09bbaafc3b6587d rdf:type owl:NamedIndividual ,
                                                 d3f:PacketLog ;
                                        d3f:records :CtVKme2wtPfUO03gW8 ,
-                                                   :CxRSbB3QLImGRarD51 ;
+                                                   :CxRSbB3QLImGRarD51 ,
+                                                   :Cy9RQD31jwWTNsvafg ;
                                        :importFileName "conn.log"^^xsd:anyURI ;
                                        rdfs:label "conn.log" .
 
@@ -2678,18 +2742,18 @@ References: Upstream kernel""" .
 :wireshark rdf:type owl:NamedIndividual ,
                     d3f:NetworkTrafficAnalysisSoftware ,
                     d3f:SoftwareProduct ;
+           d3f:has-link "https://www.wireshark.org/" ;
            d3f:implements d3f:NetworkTrafficAnalysis ;
            d3f:publisher :wiresharkfoundation ;
-           d3f:has-link "https://www.wireshark.org/" ;
            rdfs:label "Wireshark" .
 
 
 ###  https://mekanoid.io/ontology/wiresharkfoundation
 :wiresharkfoundation rdf:type owl:NamedIndividual ,
                               d3f:Open-sourceDeveloper ;
-                     d3f:publishes :wireshark ;
                      d3f:has-link "https://wiresharkfoundation.org/"^^xsd:anyURI ;
                      d3f:name "Wireshark Foundation" ;
+                     d3f:publishes :wireshark ;
                      rdfs:label "Wireshark Foundation" .
 
 
@@ -2878,6 +2942,9 @@ d3f:SoftwareService :icon "software.svg" .
 
 
 d3f:Technique :icon "technique.svg" .
+
+
+d3f:stage skos:definition "Represents a distinct phase in the lifecycle of cybersecurity operations or activities. It is a conceptual categorization used to classify and organize various processes, techniques, tools, or actions according to their role or function in the broader context of cybersecurity defense strategies. Each stage reflects a specific aspect or phase of cybersecurity practice, such as detection, prevention, response, recovery, or analysis, providing a structured framework for understanding and implementing effective cybersecurity measures." .
 
 
 :hasURL rdfs:label "has URL"@en .
