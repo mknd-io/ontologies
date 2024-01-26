@@ -26,69 +26,6 @@
 #    Annotation properties
 #################################################################
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#definition
-d3f:definition rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#has-link
-d3f:has-link rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#implements
-d3f:implements rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#name
-d3f:name rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#publisher
-d3f:publisher rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#publishes
-d3f:publishes rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/created
-dct:created rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/creator
-dct:creator rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/description
-dct:description rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/license
-dct:license rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/modified
-dct:modified rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/title
-dct:title rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2002/07/owl#qualifiedCardinality
-owl:qualifiedCardinality rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#altLabel
-skos:altLabel rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#definition
-skos:definition rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#example
-skos:example rdf:type owl:AnnotationProperty .
-
 
 ###  https://mekanoid.io/ontology/context
 :context rdf:type owl:AnnotationProperty ;
@@ -103,24 +40,18 @@ skos:example rdf:type owl:AnnotationProperty .
 
 
 #################################################################
-#    Datatypes
-#################################################################
-
-###  http://www.w3.org/2001/XMLSchema#date
-xsd:date rdf:type rdfs:Datatype .
-
-
-#################################################################
 #    Object Properties
 #################################################################
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#accessed-by
 d3f:accessed-by rdf:type owl:ObjectProperty ;
-                owl:inverseOf d3f:accesses .
+                owl:inverseOf d3f:accesses ;
+                rdfs:label "accessed by"@en .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#accesses
-d3f:accesses rdf:type owl:ObjectProperty .
+d3f:accesses rdf:type owl:ObjectProperty ;
+                owl:inverseOf d3f:accessed-by .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
@@ -2028,7 +1959,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
         rdfs:label "Ticket"@en ;
         skos:altLabel "Issue"@en ,
                       "Task"@en ;
-        :icon "ticket.svg"@en .
+        :icon "ticket.svg" .
 
 
 ###  https://mekanoid.io/ontology/Username
