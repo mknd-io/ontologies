@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 *.properties
 catalog-*.xml
+ontologies/mknd/catalog-v001.xml
