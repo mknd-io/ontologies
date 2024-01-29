@@ -1,0 +1,11 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix : <> .
+<https://mekanoid.io/ontology/0.3.0/> a prov:Entity;
+	 dc:title "Mekanoid Ontology";
+	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
+	 prov:specializationOf <https://mekanoid.io/ontology/>;
+	 prov:wasRevisionOf <https://mekanoid.io/ontology/0.2.2/>;
+	 prov:wasGeneratedAt "2022-04-02";
+.

@@ -322,7 +322,8 @@ d3f:uses rdf:type owl:ObjectProperty .
 
 ###  https://mekanoid.io/ontology/importBucketUrl
 :importBucketUrl rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf :hasURL .
+                 rdfs:subPropertyOf :hasURL ;
+                 rdf:type owl:FunctionalProperty .
 
 
 ###  https://mekanoid.io/ontology/indicatedBy
@@ -353,6 +354,11 @@ d3f:uses rdf:type owl:ObjectProperty .
 ###  https://mekanoid.io/ontology/mayIndicate
 :mayIndicate rdf:type owl:ObjectProperty ;
              rdfs:label "may indicate"@en .
+
+
+###  https://mekanoid.io/ontology/mkndObjectProperty
+:mkndObjectProperty rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :supports .
 
 
 ###  https://mekanoid.io/ontology/privilegesRequired
@@ -581,9 +587,8 @@ d3f:identifier rdf:type owl:DatatypeProperty ;
 
 
 ###  https://mekanoid.io/ontology/importBucketUrl
-:importBucketUrl rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :hasURL ;
-                 rdf:type owl:FunctionalProperty ;
+:importBucketUrl rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
                  rdfs:range xsd:anyURI .
 
 
@@ -1064,7 +1069,10 @@ d3f:WebServerApplication rdf:type owl:Class .
 ###  https://mekanoid.io/ontology/Advisory
 :Advisory rdf:type owl:Class ;
           rdfs:subClassOf d3f:Document ,
-                          :MekaThing .
+                          :MekaThing ;
+          rdfs:isDefinedBy "https://csrc.nist.gov/glossary/term/advisory"^^xsd:anyURI ;
+          rdfs:label "Advisory"@en ;
+          skos:definition "Notification of significant new trends or developments regarding the threat to the information systems of an organization. This notification may include analytical insights into trends, intentions, technologies, or tactics of an adversary targeting information systems. Rationale: General definition of a commonly understood term."@en .
 
 
 ###  https://mekanoid.io/ontology/AppUser
@@ -2175,7 +2183,8 @@ d3f:IPAddress rdf:type owl:NamedIndividual .
                              d3f:NetworkSession ;
                     d3f:contains <https://mekanoid.io/ontology/10.1.12.101> ;
                     d3f:uses :ICMP ;
-                    :external-id "CKZ5qK3CTEwMCAJpIi" .
+                    :external-id "CKZ5qK3CTEwMCAJpIi" ;
+                    rdfs:label "CKZ5qK3CTEwMCAJpIi" .
 
 
 ###  https://mekanoid.io/ontology/CVE-2020-0041
@@ -2605,12 +2614,14 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/CmXHCZ3b4RlraAFfdg
 :CmXHCZ3b4RlraAFfdg rdf:type owl:NamedIndividual ,
-                             d3f:NetworkSession .
+                             d3f:NetworkSession ;
+                    rdfs:label "CmXHCZ3b4RlraAFfdg" .
 
 
 ###  https://mekanoid.io/ontology/Coc5xh3dIfFS5k4Gdh
 :Coc5xh3dIfFS5k4Gdh rdf:type owl:NamedIndividual ,
-                             d3f:NetworkSession .
+                             d3f:NetworkSession ;
+                    rdfs:label "Coc5xh3dIfFS5k4Gdh" .
 
 
 ###  https://mekanoid.io/ontology/CtVKme2wtPfUO03gW8
@@ -2620,32 +2631,37 @@ References: Upstream kernel""" .
                                  <https://mekanoid.io/ontology/10.1.12.101> ,
                                  <https://mekanoid.io/ontology/10.1.12.1:53> ;
                     d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
-                    :external-id "CtVKme2wtPfUO03gW8" .
+                    :external-id "CtVKme2wtPfUO03gW8" ;
+                    rdfs:label "CtVKme2wtPfUO03gW8" .
 
 
 ###  https://mekanoid.io/ontology/CxRSbB3QLImGRarD51
 :CxRSbB3QLImGRarD51 rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession ;
                     d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
-                    :external-id "CxRSbB3QLImGRarD51" .
+                    :external-id "CxRSbB3QLImGRarD51" ;
+                    rdfs:label "CxRSbB3QLImGRarD51" .
 
 
 ###  https://mekanoid.io/ontology/Cy9RQD31jwWTNsvafg
 :Cy9RQD31jwWTNsvafg rdf:type owl:NamedIndividual ,
                              d3f:NetworkSession ;
                     d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
-                    :external-id "Cy9RQD31jwWTNsvafg" .
+                    :external-id "Cy9RQD31jwWTNsvafg" ;
+                    rdfs:label "Cy9RQD31jwWTNsvafg" .
 
 
 ###  https://mekanoid.io/ontology/DNS-Service
 :DNS-Service rdf:type owl:NamedIndividual ,
                       :NetworkServiceProtocol ;
-             rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Domain_Name_System" .
+             rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Domain_Name_System" ;
+             rdfs:label "DNS Service"@en .
 
 
 ###  https://mekanoid.io/ontology/FTP-Service
 :FTP-Service rdf:type owl:NamedIndividual ,
-                      :NetworkServiceProtocol .
+                      :NetworkServiceProtocol ;
+             rdfs:label "FTP Service"@en .
 
 
 ###  https://mekanoid.io/ontology/GHSA-wg2x-rv86-mmpx
@@ -2659,12 +2675,14 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/HTTP-Service
 :HTTP-Service rdf:type owl:NamedIndividual ,
-                       :NetworkServiceProtocol .
+                       :NetworkServiceProtocol ;
+              rdfs:label "HTTP Service" .
 
 
 ###  https://mekanoid.io/ontology/ICMP
 :ICMP rdf:type owl:NamedIndividual ,
-               :CommunicationProtocol .
+               :CommunicationProtocol ;
+      rdfs:label "ICMP" .
 
 
 ###  https://mekanoid.io/ontology/IncidentStatus-Closed
@@ -2693,24 +2711,29 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/SSH-Service
 :SSH-Service rdf:type owl:NamedIndividual ,
-                      :NetworkServiceProtocol .
+                      :NetworkServiceProtocol ;
+             rdfs:label "SSH Service"@en .
 
 
 ###  https://mekanoid.io/ontology/SSL-Service
 :SSL-Service rdf:type owl:NamedIndividual ,
-                      :NetworkServiceProtocol .
+                      :NetworkServiceProtocol ;
+             rdfs:label "SSL Service" ;
+             skos:altLabel "HTTPS Service" .
 
 
 ###  https://mekanoid.io/ontology/TCP
 :TCP rdf:type owl:NamedIndividual ,
-              :CommunicationProtocol .
+              :CommunicationProtocol ;
+     rdfs:label "TCP" .
 
 
 ###  https://mekanoid.io/ontology/UDP
 :UDP rdf:type owl:NamedIndividual ,
               :CommunicationProtocol ;
      d3f:name "User Datagram Protocol"@en ;
-     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/User_Datagram_Protocol" .
+     rdfs:isDefinedBy "https://en.wikipedia.org/wiki/User_Datagram_Protocol" ;
+     rdfs:label "UDP" .
 
 
 ###  https://mekanoid.io/ontology/UseCaseGoal-Upload
@@ -2732,12 +2755,14 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/docker
 :docker rdf:type owl:NamedIndividual ,
-                 d3f:ProductDeveloper .
+                 d3f:ProductDeveloper ;
+        rdfs:label "Docker, Inc." .
 
 
 ###  https://mekanoid.io/ontology/docker-software
 :docker-software rdf:type owl:NamedIndividual ,
-                          d3f:SoftwareProduct .
+                          d3f:SoftwareProduct ;
+                 rdfs:label "Docker" .
 
 
 ###  https://mekanoid.io/ontology/file_377694aa1125aad7b09bbaafc3b6587d
@@ -2752,13 +2777,15 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/google
 :google rdf:type owl:NamedIndividual ,
-                 d3f:ProductDeveloper .
+                 d3f:ProductDeveloper ;
+        rdfs:label "Google" .
 
 
 ###  https://mekanoid.io/ontology/http_server
 :http_server rdf:type owl:NamedIndividual ,
                       d3f:SoftwareProduct ,
-                      d3f:WebServerApplication .
+                      d3f:WebServerApplication ;
+             rdfs:label "HTTP server application"@en .
 
 
 ###  https://mekanoid.io/ontology/intel
@@ -2786,7 +2813,8 @@ References: Upstream kernel""" .
 
 ###  https://mekanoid.io/ontology/microsoft
 :microsoft rdf:type owl:NamedIndividual ,
-                    d3f:ProductDeveloper .
+                    d3f:ProductDeveloper ;
+           rdfs:label "Microsoft" .
 
 
 ###  https://mekanoid.io/ontology/network_connections
@@ -2816,7 +2844,8 @@ References: Upstream kernel""" .
 :windows_11 rdf:type owl:NamedIndividual ,
                      d3f:OperatingSystem ,
                      d3f:SoftwareProduct ;
-            d3f:publisher :microsoft .
+            d3f:publisher :microsoft ;
+            rdfs:label "Windows 11" .
 
 
 ###  https://mekanoid.io/ontology/wireshark
