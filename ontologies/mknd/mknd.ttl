@@ -15,11 +15,10 @@
 <https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
                                  owl:versionIRI <https://mekanoid.io/ontology/0.3.0/> ;
                                  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
-                                 dct:created "2022-04-02"^^xsd:date ;
                                  dct:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
-                                 dct:modified "2024-01-23"^^xsd:date ;
-                                 dct:title "MKND" ;
-                                 rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation." ;
+                                 dct:modified "2024-01-28"^^xsd:date ;
+                                 dct:title "Mekanoid Ontology (MKND)" ;
+                                 rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation."@en ;
                                  owl:versionInfo "0.3.0" .
 
 #################################################################
@@ -209,6 +208,18 @@ d3f:invokes rdf:type owl:ObjectProperty .
 d3f:isolated-by rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
                 rdfs:label "isolated by"@en .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#maps
+d3f:maps rdf:type owl:ObjectProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-access
+d3f:may-access rdf:type owl:ObjectProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-accessed-by
+d3f:may-be-accessed-by rdf:type owl:ObjectProperty .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#may-be-associated-with
@@ -792,6 +803,14 @@ d3f:Command rdf:type owl:Class ;
 d3f:ConfigurationFile rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#DefensiveTactic
+d3f:DefensiveTactic rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#DefensiveTechnique
+d3f:DefensiveTechnique rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent
 d3f:DigitalEvent rdf:type owl:Class .
 
@@ -857,6 +876,10 @@ d3f:Log rdf:type owl:Class ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkPackets
 d3f:NetworkPackets rdf:type owl:Class .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkResource
+d3f:NetworkResource rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkService
@@ -927,7 +950,8 @@ d3f:SoftwareProduct rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#SoftwareService
-d3f:SoftwareService :icon "software.svg" .
+d3f:SoftwareService rdf:type owl:Class ;
+                    :icon "software.svg" .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#Subroutine
@@ -1035,6 +1059,10 @@ d3f:Vulnerability rdf:type owl:Class ;
                                     owl:onClass :CVSS-UserInteraction
                                   ] ;
                   :icon "vulnerability.svg"^^xsd:anyURI .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#WebAPIResource
+d3f:WebAPIResource rdf:type owl:Class .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#WebServerApplication
