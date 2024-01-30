@@ -16,7 +16,7 @@
                                  owl:versionIRI <https://mekanoid.io/ontology/0.3.0/> ;
                                  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
                                  dct:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
-                                 dct:modified "2024-01-28"^^xsd:date ;
+                                 dct:modified "2024-01-30"^^xsd:date ;
                                  dct:title "Mekanoid Ontology (MKND)" ;
                                  rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation."@en ;
                                  owl:versionInfo "0.3.0" .
@@ -24,30 +24,6 @@
 #################################################################
 #    Annotation properties
 #################################################################
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#definition
-d3f:definition rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#has-link
-d3f:has-link rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#implements
-d3f:implements rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#name
-d3f:name rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#publisher
-d3f:publisher rdf:type owl:AnnotationProperty .
-
-
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#publishes
-d3f:publishes rdf:type owl:AnnotationProperty .
-
 
 ###  http://purl.org/dc/terms/created
 dct:created rdf:type owl:AnnotationProperty .
@@ -115,15 +91,9 @@ d3f:accessed-by rdf:type owl:ObjectProperty ;
 d3f:accesses rdf:type owl:ObjectProperty .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzed-by
-d3f:analyzed-by rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
-                owl:inverseOf d3f:analyzes ;
-                rdfs:label "analyzed by"@en .
-
-
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#analyzes
-d3f:analyzes rdf:type owl:ObjectProperty .
+d3f:analyzes rdf:type owl:ObjectProperty ;
+             owl:inverseOf :analyzed-by .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with
@@ -195,6 +165,10 @@ d3f:identified-by rdf:type owl:ObjectProperty ;
 d3f:identifies rdf:type owl:ObjectProperty .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#implements
+d3f:implements rdf:type owl:ObjectProperty .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by
 d3f:invoked-by rdf:type owl:ObjectProperty ;
                owl:inverseOf d3f:invokes .
@@ -259,6 +233,14 @@ d3f:providedBy rdf:type owl:ObjectProperty ;
 d3f:provides rdf:type owl:ObjectProperty .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#publisher
+d3f:publisher rdf:type owl:ObjectProperty .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#publishes
+d3f:publishes rdf:type owl:ObjectProperty .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#recorded-in
 d3f:recorded-in rdf:type owl:ObjectProperty ;
                 owl:inverseOf d3f:records .
@@ -280,6 +262,11 @@ d3f:used-by rdf:type owl:ObjectProperty ;
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#uses
 d3f:uses rdf:type owl:ObjectProperty .
+
+
+###  https://mekanoid.io/ontology/analyzed-by
+:analyzed-by rdf:type owl:ObjectProperty ;
+             rdfs:label "analyzed by"@en .
 
 
 ###  https://mekanoid.io/ontology/attackComplexity
@@ -433,6 +420,10 @@ d3f:uses rdf:type owl:ObjectProperty .
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#has-link
+d3f:has-link rdf:type owl:DatatypeProperty .
+
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#identifier
 d3f:identifier rdf:type owl:DatatypeProperty ;
@@ -890,8 +881,16 @@ d3f:NetworkService rdf:type owl:Class .
 d3f:NetworkSession rdf:type owl:Class .
 
 
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficAnalysis
+d3f:NetworkTrafficAnalysis rdf:type owl:Class .
+
+
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficAnalysisSoftware
-d3f:NetworkTrafficAnalysisSoftware rdf:type owl:Class .
+d3f:NetworkTrafficAnalysisSoftware rdf:type owl:Class ;
+                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                     owl:onProperty d3f:implements ;
+                                                     owl:someValuesFrom d3f:NetworkTrafficAnalysis
+                                                   ] .
 
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#OffensiveTechnique
@@ -1885,7 +1884,7 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 ###  https://mekanoid.io/ontology/Path
 :Path rdf:type owl:Class ;
       rdfs:subClassOf :Observable ;
-      d3f:definition "A generic URI string pointing to location of a directory or file on one or multiple systems." .
+      skos:definition "A generic URI string pointing to location of a directory or file on one or multiple systems." .
 
 
 ###  https://mekanoid.io/ontology/Payload
@@ -2204,6 +2203,10 @@ Note that the Confidentiality Requirement will not affect the Environmental scor
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
 d3f:IPAddress rdf:type owl:NamedIndividual .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkTrafficAnalysis
+d3f:NetworkTrafficAnalysis rdf:type owl:NamedIndividual .
 
 
 ###  https://mekanoid.io/ontology/CKZ5qK3CTEwMCAJpIi
@@ -2682,6 +2685,7 @@ References: Upstream kernel""" .
 ###  https://mekanoid.io/ontology/DNS-Service
 :DNS-Service rdf:type owl:NamedIndividual ,
                       :NetworkServiceProtocol ;
+             d3f:providedBy <https://mekanoid.io/ontology/10.1.12.1:53> ;
              rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Domain_Name_System" ;
              rdfs:label "DNS Service"@en .
 
@@ -2759,7 +2763,7 @@ References: Upstream kernel""" .
 ###  https://mekanoid.io/ontology/UDP
 :UDP rdf:type owl:NamedIndividual ,
               :CommunicationProtocol ;
-     d3f:name "User Datagram Protocol"@en ;
+     skos:altLabel "User Datagram Protocol"@en ;
      rdfs:isDefinedBy "https://en.wikipedia.org/wiki/User_Datagram_Protocol" ;
      rdfs:label "UDP" .
 
@@ -2824,7 +2828,6 @@ References: Upstream kernel""" .
 ###  https://mekanoid.io/ontology/keep-network-tbtc-v2
 :keep-network-tbtc-v2 rdf:type owl:NamedIndividual ,
                                :NPMPackage ;
-                      d3f:analyzed-by :GHSA-wg2x-rv86-mmpx ;
                       :external-id "@keep-network/tbtc-v2" ;
                       rdfs:label "@keep-network/tbtc-v2" .
 
@@ -2880,18 +2883,17 @@ References: Upstream kernel""" .
 :wireshark rdf:type owl:NamedIndividual ,
                     d3f:NetworkTrafficAnalysisSoftware ,
                     d3f:SoftwareProduct ;
-           d3f:has-link "https://www.wireshark.org/" ;
            d3f:implements d3f:NetworkTrafficAnalysis ;
            d3f:publisher :wiresharkfoundation ;
+           d3f:has-link "https://www.wireshark.org/" ;
            rdfs:label "Wireshark" .
 
 
 ###  https://mekanoid.io/ontology/wiresharkfoundation
 :wiresharkfoundation rdf:type owl:NamedIndividual ,
                               d3f:Open-sourceDeveloper ;
-                     d3f:has-link "https://wiresharkfoundation.org/"^^xsd:anyURI ;
-                     d3f:name "Wireshark Foundation" ;
                      d3f:publishes :wireshark ;
+                     d3f:has-link "https://wiresharkfoundation.org/"^^xsd:anyURI ;
                      rdfs:label "Wireshark Foundation" .
 
 
@@ -2904,7 +2906,7 @@ References: Upstream kernel""" .
 ###  https://mekanoid.io/ontology/0000-0001-7399-6740
 <https://mekanoid.io/ontology/0000-0001-7399-6740> rdf:type owl:NamedIndividual ,
                                                             d3f:Person ;
-                                                   d3f:name "Anton Goncharov" .
+                                                   rdfs:label "Anton Goncharov" .
 
 
 ###  https://mekanoid.io/ontology/10.1.12.1
@@ -2912,7 +2914,8 @@ References: Upstream kernel""" .
                                                   :IPv4 ,
                                                   :PrivateIPAddress ;
                                          d3f:used-by <https://mekanoid.io/ontology/10.1.12.1:53> ;
-                                         :value "10.1.12.1" .
+                                         :value "10.1.12.1" ;
+                                         rdfs:label "10.1.12.1" .
 
 
 ###  https://mekanoid.io/ontology/10.1.12.101
