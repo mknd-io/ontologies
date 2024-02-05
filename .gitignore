@@ -3,3 +3,4 @@ node_modules
 *.properties
 catalog-*.xml
 ontologies/mknd/catalog-v001.xml
+ontologies/mitre-d3fend
