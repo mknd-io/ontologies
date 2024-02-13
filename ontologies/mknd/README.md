@@ -8,8 +8,4 @@ It represents a superset of the [Mitre D3FEND](https://d3fend.mitre.org) ontolog
 
 MKND is a work in progress, and is subject to change. Use of the Mekanoid Ontology, and the associated references from this ontology are subject to the Terms of Use.
 
----------
-
-## External Resources
-
-* "Ontology Development 101: A Guide to Creating Your First Ontology" ([PDF](https://protege.stanford.edu/publications/ontology_development/ontology101.pdf)) by Natalya F. Noy and Deborah L. McGuinness
+--------------------
