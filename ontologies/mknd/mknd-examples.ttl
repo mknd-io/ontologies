@@ -1,0 +1,308 @@
+@prefix : <https://mekanoid.io/ontology/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@base <https://mekanoid.io/ontology/> .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://mekanoid.io/ontology/CKZ5qK3CTEwMCAJpIi
+:CKZ5qK3CTEwMCAJpIi rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:contains <https://mekanoid.io/ontology/10.1.12.101> ;
+                    d3f:uses :ICMP ;
+                    :external-id "CKZ5qK3CTEwMCAJpIi" ;
+                    rdfs:label "CKZ5qK3CTEwMCAJpIi" .
+
+
+###  https://mekanoid.io/ontology/CVE-2020-0041
+:CVE-2020-0041 rdf:type owl:NamedIndividual ,
+                        d3f:Vulnerability ;
+               :attackComplexity :CVSS-AttackComplexity-Low ;
+               :attackVector :CVSS-AttackVector-Local ;
+               :availabilityImpact :CVSS-AvailabilityImpact-High ;
+               :confidentialityImpact :CVSS-ConfidentialityImpact-High ;
+               :integrityImpact :CVSS-IntegrityImpact-High ;
+               :privilegesRequired :CVSS-PrivilegesRequired-Low ;
+               :scope :CVSS-Scope-Unchanged ;
+               :userInteraction :CVSS-UserInteraction-None ;
+               :cvssBaseScore 7.8 ;
+               :cvssExploitabilityScore 1.8 ;
+               :cvssImpactScore 5.9 ;
+               rdfs:comment """In binder_transaction of binder.c, there is a possible out of bounds write due to an incorrect bounds check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.
+Product: Android
+Versions: Android kernel
+Android ID: A-145988638
+References: Upstream kernel""" .
+
+###  https://mekanoid.io/ontology/CmXHCZ3b4RlraAFfdg
+:CmXHCZ3b4RlraAFfdg rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    rdfs:label "CmXHCZ3b4RlraAFfdg" .
+
+
+###  https://mekanoid.io/ontology/Coc5xh3dIfFS5k4Gdh
+:Coc5xh3dIfFS5k4Gdh rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    rdfs:label "Coc5xh3dIfFS5k4Gdh" .
+
+
+###  https://mekanoid.io/ontology/CtVKme2wtPfUO03gW8
+:CtVKme2wtPfUO03gW8 rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:contains <https://mekanoid.io/ontology/10.1.12.1> ,
+                                 <https://mekanoid.io/ontology/10.1.12.101> ,
+                                 <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    :external-id "CtVKme2wtPfUO03gW8" ;
+                    rdfs:label "CtVKme2wtPfUO03gW8" .
+
+
+###  https://mekanoid.io/ontology/CxRSbB3QLImGRarD51
+:CxRSbB3QLImGRarD51 rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    :external-id "CxRSbB3QLImGRarD51" ;
+                    rdfs:label "CxRSbB3QLImGRarD51" .
+
+
+###  https://mekanoid.io/ontology/Cy9RQD31jwWTNsvafg
+:Cy9RQD31jwWTNsvafg rdf:type owl:NamedIndividual ,
+                             d3f:NetworkSession ;
+                    d3f:recorded-in :file_377694aa1125aad7b09bbaafc3b6587d ;
+                    :external-id "Cy9RQD31jwWTNsvafg" ;
+                    rdfs:label "Cy9RQD31jwWTNsvafg" .
+
+###  https://mekanoid.io/ontology/GHSA-wg2x-rv86-mmpx
+:GHSA-wg2x-rv86-mmpx rdf:type owl:NamedIndividual ,
+                              :Advisory ;
+                     d3f:analyzes :keep-network-tbtc-v2 ;
+                     :extSeverity "High" ;
+                     :hasURL "https://github.com/advisories/GHSA-wg2x-rv86-mmpx"^^xsd:anyURI ;
+                     rdfs:label "SPV Merkle proof malleability allows the maintainer to prove invalid transactions" .
+
+
+###  https://mekanoid.io/ontology/apache
+:apache rdf:type owl:NamedIndividual ,
+                 d3f:ProductDeveloper .
+
+
+###  https://mekanoid.io/ontology/chrome
+:chrome rdf:type owl:NamedIndividual ,
+                 d3f:Browser ,
+                 d3f:SoftwareProduct .
+
+
+###  https://mekanoid.io/ontology/docker
+:docker rdf:type owl:NamedIndividual ,
+                 d3f:ProductDeveloper ;
+        rdfs:label "Docker, Inc." .
+
+
+###  https://mekanoid.io/ontology/docker-software
+:docker-software rdf:type owl:NamedIndividual ,
+                          d3f:SoftwareProduct ;
+                 rdfs:label "Docker" .
+
+
+###  https://mekanoid.io/ontology/file_377694aa1125aad7b09bbaafc3b6587d
+:file_377694aa1125aad7b09bbaafc3b6587d rdf:type owl:NamedIndividual ,
+                                                d3f:PacketLog ;
+                                       d3f:records :CtVKme2wtPfUO03gW8 ,
+                                                   :CxRSbB3QLImGRarD51 ,
+                                                   :Cy9RQD31jwWTNsvafg ;
+                                       :importFileName "conn.log"^^xsd:anyURI ;
+                                       rdfs:label "conn.log" .
+
+
+###  https://mekanoid.io/ontology/google
+:google rdf:type owl:NamedIndividual ,
+                 d3f:ProductDeveloper ;
+        rdfs:label "Google" .
+
+###  https://mekanoid.io/ontology/intel
+:intel rdf:type owl:NamedIndividual ,
+                d3f:ProductDeveloper .
+
+
+###  https://mekanoid.io/ontology/keep-network-tbtc-v2
+:keep-network-tbtc-v2 rdf:type owl:NamedIndividual ,
+                               :NPMPackage ;
+                      :external-id "@keep-network/tbtc-v2" ;
+                      rdfs:label "@keep-network/tbtc-v2" .
+
+
+###  https://mekanoid.io/ontology/kubernetes
+:kubernetes rdf:type owl:NamedIndividual ,
+                     d3f:ProductDeveloper .
+
+
+###  https://mekanoid.io/ontology/kubernetes-software
+:kubernetes-software rdf:type owl:NamedIndividual ,
+                              d3f:SoftwareProduct .
+
+
+###  https://mekanoid.io/ontology/microsoft
+:microsoft rdf:type owl:NamedIndividual ,
+                    d3f:ProductDeveloper ;
+           rdfs:label "Microsoft" .
+
+
+###  https://mekanoid.io/ontology/network_connections
+:network_connections rdf:type owl:NamedIndividual ,
+                              d3f:SoftwareProduct .
+
+
+###  https://mekanoid.io/ontology/python
+:python rdf:type owl:NamedIndividual ,
+                 d3f:ProductDeveloper .
+
+
+###  https://mekanoid.io/ontology/python-software
+:python-software rdf:type owl:NamedIndividual ,
+                          d3f:SoftwareProduct .
+
+
+###  https://mekanoid.io/ontology/windows_10_1607
+:windows_10_1607 rdf:type owl:NamedIndividual ,
+                          d3f:OperatingSystem ,
+                          d3f:SoftwareProduct ;
+                 owl:differentFrom :windows_11 ;
+                 d3f:publisher :microsoft .
+
+
+###  https://mekanoid.io/ontology/windows_11
+:windows_11 rdf:type owl:NamedIndividual ,
+                     d3f:OperatingSystem ,
+                     d3f:SoftwareProduct ;
+            d3f:publisher :microsoft ;
+            rdfs:label "Windows 11" .
+
+
+###  https://mekanoid.io/ontology/wireshark
+:wireshark rdf:type owl:NamedIndividual ,
+                    d3f:NetworkTrafficAnalysisSoftware ,
+                    d3f:SoftwareProduct ;
+           d3f:implements d3f:NetworkTrafficAnalysis ;
+           d3f:publisher :wiresharkfoundation ;
+           d3f:has-link "https://www.wireshark.org/" ;
+           rdfs:label "Wireshark" .
+
+
+###  https://mekanoid.io/ontology/wiresharkfoundation
+:wiresharkfoundation rdf:type owl:NamedIndividual ,
+                              d3f:Open-sourceDeveloper ;
+                     d3f:publishes :wireshark ;
+                     d3f:has-link "https://wiresharkfoundation.org/"^^xsd:anyURI ;
+                     rdfs:label "Wireshark Foundation" .
+
+
+###  https://mekanoid.io/ontology/.net_framework
+<https://mekanoid.io/ontology/.net_framework> rdf:type owl:NamedIndividual ,
+                                                       d3f:SoftwareProduct ;
+                                              d3f:publisher :microsoft .
+
+
+###  https://mekanoid.io/ontology/0000-0001-7399-6740
+<https://mekanoid.io/ontology/0000-0001-7399-6740> rdf:type owl:NamedIndividual ,
+                                                            d3f:Person ;
+                                                   rdfs:label "Anton Goncharov" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.1
+<https://mekanoid.io/ontology/10.1.12.1> rdf:type owl:NamedIndividual ,
+                                                  :IPv4 ,
+                                                  :PrivateIPAddress ;
+                                         d3f:used-by <https://mekanoid.io/ontology/10.1.12.1:53> ;
+                                         :value "10.1.12.1" ;
+                                         rdfs:label "10.1.12.1" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.101
+<https://mekanoid.io/ontology/10.1.12.101> rdf:type owl:NamedIndividual ,
+                                                    :IPv4 ,
+                                                    :PrivateIPAddress ;
+                                           :value "10.1.12.101" .
+
+
+###  https://mekanoid.io/ontology/10.1.12.1:53
+<https://mekanoid.io/ontology/10.1.12.1:53> rdf:type owl:NamedIndividual ,
+                                                     :Socket ;
+                                            d3f:contained-by :CtVKme2wtPfUO03gW8 ;
+                                            d3f:provides :DNS-Service ;
+                                            d3f:uses :UDP ,
+                                                     <https://mekanoid.io/ontology/10.1.12.1> ;
+                                            :usesNetworkPort "53"^^xsd:positiveInteger ;
+                                            :value "10.1.12.101:53" ;
+                                            rdfs:comment "has type: UDP" .
+
+
+###  https://mekanoid.io/ontology/109.107.181.33
+<https://mekanoid.io/ontology/109.107.181.33> rdf:type owl:NamedIndividual ,
+                                                       :IPv4 ,
+                                                       :PublicIPAddress .
+
+
+###  https://mekanoid.io/ontology/109.107.181.33:80
+<https://mekanoid.io/ontology/109.107.181.33:80> rdf:type owl:NamedIndividual ,
+                                                          :Socket ;
+                                                 d3f:contained-by :Cy9RQD31jwWTNsvafg ;
+                                                 d3f:provides :HTTP-Service ;
+                                                 d3f:uses :TCP ,
+                                                          <https://mekanoid.io/ontology/109.107.181.33> ;
+                                                 :usesNetworkPort "80"^^xsd:positiveInteger ;
+                                                 :value "109.107.181.33:80" .
+
+
+###  https://mekanoid.io/ontology/162.248.51.100
+<https://mekanoid.io/ontology/162.248.51.100> rdf:type owl:NamedIndividual ,
+                                                       :IPv4 ,
+                                                       :PublicIPAddress ;
+                                              d3f:used-by <https://mekanoid.io/ontology/162.248.51.100:443> ;
+                                              :value "162.248.51.100" .
+
+
+###  https://mekanoid.io/ontology/162.248.51.100:443
+<https://mekanoid.io/ontology/162.248.51.100:443> rdf:type owl:NamedIndividual ,
+                                                           :Socket ;
+                                                  d3f:provides :SSL-Service ;
+                                                  d3f:uses :TCP ,
+                                                           <https://mekanoid.io/ontology/162.248.51.100> ;
+                                                  :usesNetworkPort "443"^^xsd:positiveInteger ;
+                                                  :value "162.248.51.100:443" .
+
+
+###  https://mekanoid.io/ontology/46.4.205.200
+<https://mekanoid.io/ontology/46.4.205.200> rdf:type owl:NamedIndividual ,
+                                                     :IPv4 ,
+                                                     :PublicIPAddress ;
+                                            :value "46.4.205.200" .
+
+
+###  https://mekanoid.io/ontology/46.4.205.200:80
+<https://mekanoid.io/ontology/46.4.205.200:80> rdf:type owl:NamedIndividual ,
+                                                        :Socket ;
+                                               d3f:contained-by :CxRSbB3QLImGRarD51 ;
+                                               d3f:provides :HTTP-Service ;
+                                               d3f:uses :TCP ,
+                                                        <https://mekanoid.io/ontology/46.4.205.200> ;
+                                               :usesNetworkPort "80"^^xsd:positiveInteger ;
+                                               :value "46.4.205.200:80" .
+
+
+###  https://mekanoid.io/ontology/cpe:2.3:o:google:android:-:*:*:*:*:*:*:*
+<https://mekanoid.io/ontology/cpe:2.3:o:google:android:-:*:*:*:*:*:*:*> rdf:type owl:NamedIndividual ,
+                                                                                 d3f:Software ;
+                                                                        d3f:may-contain :CVE-2020-0041 ;
+                                                                        :cpe "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*" ;
+                                                                        rdfs:label "Android" .
