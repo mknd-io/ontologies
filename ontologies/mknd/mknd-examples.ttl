@@ -11,8 +11,12 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 
-<https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
-                                 owl:versionIRI <https://mekanoid.io/ontology/0.3.1/> .
+<https://mekanoid.io/ontology/examples> rdf:type owl:Ontology ;
+                                 owl:versionIRI <https://mekanoid.io/ontology/examples/0.0.1/> ;
+                                 owl:imports <https://mekanoid.io/ontology/> ;
+                                 owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
+                                 dct:modified "2024-02-13"^^xsd:date ;
+                                 dct:title "Example individuals for Mekanoid ontology (MKND)" .
 
 #################################################################
 #    Individuals
