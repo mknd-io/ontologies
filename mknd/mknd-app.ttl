@@ -1,5 +1,4 @@
-@prefix : <https://app.mekanoid.ai/> .
-@prefix mknd-app: <https://app.mekanoid.ai/> .
+@prefix : <https://mekanoid.io/ontology/> .
 @prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -7,14 +6,114 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix mknd: <https://mekanoid.io/ontology/> .
+@prefix td: <http://www.w3.org/ns/td#> .
 
-<https://app.mekanoid.ai/> rdf:type owl:Ontology ;
-  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl>, <https://mekanoid.io/ontology/> ;
-  dcterms:creator "Mekanoid Corporation" ;
-  dcterms:title "Mekanoid Application" .
+:Task  rdf:type      owl:Class;
+  skos:definition  "A task is a single unit of work that enables the automation of defensive techniques."@en;
+  rdfs:subClassOf  :SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:implements;
+    owl:someValuesFrom  d3f:DefensiveTechnique;
+    rdfs:comment    "A task implements defensive techniques."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:may-produce;
+    owl:someValuesFrom  d3f:DigitalArtifact;
+    rdfs:comment    "A task may produce digital artifacts as a result of its execution."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:enables;
+    owl:someValuesFrom  td:InteractionAffordance;
+    rdfs:comment    "A task enables interaction affordances to individual digital artifacts."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:records;
+    owl:someValuesFrom  :TaskRun ;
+    rdfs:comment    "A task records metadata about its execution in a task run."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:accesses;    
+    owl:someValuesFrom  d3f:WebAPIResource ;
+    rdfs:comment    "A task accesses web API resources."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  :TaskTemplate;
+    rdfs:comment    "A task uses task templates to define the parameters of a task."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  :DataTemplate;
+    rdfs:comment    "A task uses data templates to map the output of a task to digital artifacts."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  :Connection;
+    rdfs:comment    "A task uses a connection to authenticate third party software services or APIs."@en
+    ];
+  rdfs:label       "Task"@en;
+  skos:altLabel    "Task" .
 
+:TaskRun a owl:Class ;
+  rdfs:label "Task Run"@en;
+  skos:definition "A task run records information about the execution of a task.";
+  rdfs:subClassOf  :SystemObject , d3f:EventLog ;
+  :icon "task.svg" .
 
+:DataTemplate  rdf:type  owl:Class;
+  skos:definition  "A data template maps the output of a task to digital artifacts."@en;
+  rdfs:label       "Data Template";
+  rdfs:subClassOf  :SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:maps;
+    owl:someValuesFrom  d3f:WebAPIResource ;
+    rdfs:comment    "A data template maps the output of a task to web API resources."@en
+    ] .
+
+:TaskTemplate  rdf:type  owl:Class;
+  skos:definition  "A task template is a blueprint for the parameters of a task."@en;
+  rdfs:label       "Task Template";
+  skos:related     td:InteractionAffordance ;
+  rdfs:subClassOf  :SystemObject ;
+  :icon "file.svg" .
+
+:TaskPattern  rdf:type  owl:Class;
+  skos:definition  "A task pattern is a rule that triggers the execution of automated task runs. Initially task patterns are implemented as conjunctive clauses using triple-based patterns of [subject, predicate, object] or [entity attribute value] querying the digital artifacts in your knowledge graph using the D3FEND ontology. The vision is that task patterns could be implemented using machine learning, and statistical methods, in addition to symbolic logic in order to capture complex requirements which may be difficult to encode using triple-based patterns." ;  
+  rdfs:label       "Task Pattern";
+  rdfs:subClassOf  :SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:filters ;
+    owl:someValuesFrom  d3f:Database ;
+    rdfs:comment    "A task pattern filters knowledge graphs to identify digital artifacts which may conditionally trigger the execution of automated task runs."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:may-invoke ;
+    owl:someValuesFrom  :AutomatedTaskRun ;
+    rdfs:comment    "A task pattern may invoke automated task runs when its filters are satisfied."@en
+    ] .
+
+:ManualTaskRun  rdf:type  owl:Class;
+  rdfs:label       "Manual Task Run";
+  rdfs:subClassOf  :TaskRun , d3f:UserAction .
+
+###  https://mekanoid.io/ontology/Connection
+
+:Connection  rdf:type  owl:Class;
+  skos:definition  "A configuration enabling integration with a third party software service or API, used to enable the automation of defensive techniques." ;
+  rdfs:label       "Connection"@en;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:enables;
+    owl:someValuesFrom  :Task ;
+    rdfs:comment    "A connection enables tasks to be executed."@en
+    ] ;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:contains;
+    owl:someValuesFrom  d3f:AccessToken ;
+    rdfs:comment    "A connection is configured with access tokens that must be protected."@en
+    ] ;      
+  :icon  "connection.svg" ;
+  rdfs:subClassOf :SystemObject .
+                          
 
 ###  https://mekanoid.io/ontology/AppUser
 :AppUser rdf:type owl:Class ;
@@ -39,30 +138,15 @@
 
 
 ###  https://mekanoid.io/ontology/AutomatedTaskRun
-:AutomatedTaskRun rdf:type owl:Class ;
-                  rdfs:subClassOf :MachineAction ,
-                                  :TaskRun ,
-                                  :SystemObject ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by> ;
-                                    owl:allValuesFrom :TaskPattern
-                                  ] .
 
-
-
-###  https://mekanoid.io/ontology/Connection
-:Connection rdf:type owl:Class ;
-            rdfs:subClassOf :SystemObject ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#enables> ;
-                              owl:someValuesFrom :Task
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#enables> ;
-                              owl:allValuesFrom :Integration
-                            ] .
-
-
+:AutomatedTaskRun
+  rdf:type         owl:Class;
+  rdfs:label       "Automated Task Run";
+  rdfs:subClassOf  :TaskRun , :MachineAction;
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  :TaskPattern;
+    owl:onProperty     d3f:invoked-by
+    ] .
 
 ###  https://mekanoid.io/ontology/DataTemplate
 :DataTemplate rdf:type owl:Class ;
@@ -70,152 +154,150 @@
 
 ###  https://mekanoid.io/ontology/teamId
 :teamId rdf:type owl:DatatypeProperty ;
-        rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+        rdfs:subPropertyOf d3f:identifier .
 
 
 ###  https://mekanoid.io/ontology/templateId
 :templateId rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+            rdfs:subPropertyOf d3f:identifier .
 
 
-mknd-app:Tenant  rdf:type    owl:Class ;
+:Tenant  rdf:type    owl:Class ;
   rdfs:label       "Tenant";
   rdfs:comment     "A Mekanoid tenant is a private instance of the Mekanoid application, with its own data and users. It is a logical grouping of users and their data, and is the primary unit of multi-tenancy in Mekanoid.";
-  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  :SystemObject;
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:may-be-accessed-by;
-    owl:someValuesFrom  mknd-app:User
+    owl:someValuesFrom  :User
     ] ;
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:contains;
-    owl:someValuesFrom  mknd-app:Team
+    owl:someValuesFrom  :Team
     ] .
 
-mknd-app:Team  rdf:type    owl:Class ;
+:Team  rdf:type    owl:Class ;
   rdfs:label       "Team";
   rdfs:comment     "A Mekanoid team is a logical grouping of users within a tenant. It is a primary unit of access control and collaboration within a tenant.";
-  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  :SystemObject;
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:contains;
-    owl:someValuesFrom  mknd-app:User
+    owl:someValuesFrom  :User
     ] .
 
-mknd-app:User  rdf:type   owl:Class;
+:User  rdf:type   owl:Class;
   rdfs:comment     "Mekanoid User Account";
   rdfs:label       "Mekanoid User Account";
-  rdfs:subClassOf  mknd:SystemObject , d3f:UserAccount;
+  rdfs:subClassOf  :SystemObject , d3f:UserAccount;
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:accessed-by;
     owl:someValuesFrom  d3f:User
     ];
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:creates;
-    owl:someValuesFrom  mknd:TaskPattern
+    owl:someValuesFrom  :TaskPattern
     ];
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:executes;
-    owl:someValuesFrom  mknd:ManualTaskRun
+    owl:someValuesFrom  :ManualTaskRun
     ];
   rdfs:subClassOf  [ rdf:type            owl:Restriction;
     owl:onProperty      d3f:may-access;
-    owl:someValuesFrom  mknd-app:Tenant
+    owl:someValuesFrom  :Tenant
     ] .
 
-mknd-app:Admin  rdf:type  owl:Class ;
+:Admin  rdf:type  owl:Class ;
   rdfs:label       "Admin";
   rdfs:comment     "A Mekanoid admin is a user with administrative privileges within a tenant. Admins have the ability to manage users, teams, and other administrative functions within a tenant.";
-  rdfs:subClassOf  mknd-app:User .
+  rdfs:subClassOf  :User .
 
-mknd-app:TestUser  rdf:type  owl:Class ;
+:TestUser  rdf:type  owl:Class ;
   rdfs:label       "Test User";
   rdfs:comment     "A Mekanoid test user is a user account used for testing purposes. Test users are not counted against the licensed user count for a tenant.";
-  rdfs:subClassOf  mknd-app:User .
+  rdfs:subClassOf  :User .
 
-mknd-app:email  rdf:type  owl:InverseFunctionalProperty , owl:DatatypeProperty;
-  rdfs:domain  mknd-app:User;
+:email  rdf:type  owl:InverseFunctionalProperty , owl:DatatypeProperty;
+  rdfs:domain  :User;
   rdfs:range   xsd:string;
   rdfs:label   "email address";
   rdfs:comment "The email address identifying a Mekanoid user." .
 
-mknd-app:icon rdf:type owl:AnnotationProperty ;
+:icon rdf:type owl:AnnotationProperty ;
   rdfs:label "has relative link to icon" ;
   rdfs:range xsd:string .
 
-# mknd-app:AIState  rdf:type  owl:Class ;
+# :AIState  rdf:type  owl:Class ;
 #   rdfs:label       "AI State";
 #   rdfs:comment     "A Mekanoid AI state is a snapshot of the AI model at a given point in time. It is used to restore the AI model to a previous state.";
-#   rdfs:subClassOf  mknd:SystemObject .
+#   rdfs:subClassOf  :SystemObject .
 
-# mknd-app:UIState  rdf:type  owl:Class ;
-#   rdfs:label       "UI State";
-#   rdfs:comment     "A Mekanoid UI state is a snapshot of the user interface at a given point in time. It is used to restore the user interface to a previous state.";
-#   rdfs:subClassOf  mknd:SystemObject .
+:UIState  rdf:type  owl:Class ;
+  rdfs:label       "UI State";
+  rdfs:comment     "A Mekanoid UI state is a snapshot of the user interface at a given point in time. It is used to restore the user interface to a previous state.";
+  rdfs:subClassOf  :SystemObject .
 
-# mknd:AIState rdf:type        owl:Class ;
-#   rdfs:label                 "AIState" ;
-#   skos:definition            "A representation of all the context required by the language model to maintain the state of the interaction."@en ;
-#   rdfs:subClassOf            mknd:SystemObject ;
-#   rdfs:subClassOf            [ rdf:type            owl:Restriction ;
-#                                owl:onProperty      d3f:records ;
-#                                owl:allValuesFrom   mknd:Message ;
-#                                rdfs:comment        "AIState contains messages that are part of the interaction history."@en
-#                              ] ;
-#   rdfs:subClassOf            [ rdf:type            owl:Restriction ;
-#                                owl:onProperty      mknd:hasUserAction ;
-#                                owl:allValuesFrom   mknd:UserAction ;
-#                                rdfs:comment        "AIState includes actions performed by the user."@en
-#                              ] ;
-#   rdfs:subClassOf            [ rdf:type            owl:Restriction ;
-#                                owl:onProperty      mknd:hasSystemPrompt ;
-#                                owl:allValuesFrom   mknd:SystemPrompt ;
-#                                rdfs:comment        "AIState includes system prompts that guide the interaction."@en
-#                              ] ;
-#   rdfs:subClassOf            [ rdf:type            owl:Restriction ;
-#                                owl:onProperty      dcterms:created ;
-#                                owl:hasValue        xsd:dateTime ;
-#                                rdfs:comment        "AIState records the creation time of each state change."@en
-#                              ] .
+:AIState rdf:type        owl:Class ;
+  rdfs:label                 "AIState" ;
+  skos:definition            "A representation of all the context required by the language model to maintain the state of the interaction."@en ;
+  rdfs:subClassOf            :SystemObject ;
+  rdfs:subClassOf            [ rdf:type            owl:Restriction ;
+                               owl:onProperty      d3f:records ;
+                               owl:allValuesFrom   :Message ;
+                               rdfs:comment        "AIState contains messages that are part of the interaction history."@en
+                             ] ;
+  rdfs:subClassOf            [ rdf:type            owl:Restriction ;
+                               owl:onProperty      :hasUserAction ;
+                               owl:allValuesFrom   :UserAction ;
+                               rdfs:comment        "AIState includes actions performed by the user."@en
+                             ] ;
+  rdfs:subClassOf            [ rdf:type            owl:Restriction ;
+                               owl:onProperty      :hasSystemPrompt ;
+                               owl:allValuesFrom   :SystemPrompt ;
+                               rdfs:comment        "AIState includes system prompts that guide the interaction."@en
+                             ] ;
+  rdfs:subClassOf            [ rdf:type            owl:Restriction ;
+                               owl:onProperty      dcterms:created ;
+                               owl:hasValue        xsd:dateTime ;
+                               rdfs:comment        "AIState records the creation time of each state change."@en
+                             ] .
 
-# mknd:Message rdf:type         owl:Class ;
+# :Message rdf:type         owl:Class ;
 #   rdfs:label                  "Message" ;
 #   skos:definition             "A unit of communication that is part of an AIState."@en ;
-#   rdfs:subClassOf             mknd:SystemObject .
+#   rdfs:subClassOf             :SystemObject .
 
-# mknd:UserAction rdf:type      owl:Class ;
+# :UserAction rdf:type      owl:Class ;
 #   rdfs:label                  "UserAction" ;
 #   skos:definition             "An action performed by the user, captured within the AIState."@en ;
-#   rdfs:subClassOf             mknd:SystemObject .
+#   rdfs:subClassOf             :SystemObject .
 
-# mknd:SystemPrompt rdf:type    owl:Class ;
+# :SystemPrompt rdf:type    owl:Class ;
 #   rdfs:label                  "SystemPrompt" ;
 #   skos:definition             "A system-generated message or action prompt within the AIState."@en ;
-#   rdfs:subClassOf             mknd:SystemObject .
+#   rdfs:subClassOf             :SystemObject .
 
-# mknd:hasMessage rdf:type      owl:ObjectProperty ;
+# :hasMessage rdf:type      owl:ObjectProperty ;
 #   rdfs:label                  "has message" ;
-#   rdfs:domain                 mknd:AIState ;
-#   rdfs:range                  mknd:Message ;
+#   rdfs:domain                 :AIState ;
+#   rdfs:range                  :Message ;
 #   skos:definition             "Relates an AIState to its contained messages."@en .
 
-# mknd:hasUserAction rdf:type   owl:ObjectProperty ;
+# :hasUserAction rdf:type   owl:ObjectProperty ;
 #   rdfs:label                  "has user action" ;
-#   rdfs:domain                 mknd:AIState ;
-#   rdfs:range                  mknd:UserAction ;
+#   rdfs:domain                 :AIState ;
+#   rdfs:range                  :UserAction ;
 #   skos:definition             "Links an AIState to the user actions it includes."@en .
 
-# mknd:hasSystemPrompt rdf:type owl:ObjectProperty ;
+# :hasSystemPrompt rdf:type owl:ObjectProperty ;
 #   rdfs:label                  "has system prompt" ;
-#   rdfs:domain                 mknd:AIState ;
-#   rdfs:range                  mknd:SystemPrompt ;
+#   rdfs:domain                 :AIState ;
+#   rdfs:range                  :SystemPrompt ;
 #   skos:definition             "Associates an AIState with system prompts that have been presented to the user."@en .
 
 d3f:URL :icon "url.svg" .
 
-mknd:EmailAddress :icon "email-address.svg" .
+:EmailAddress :icon "email-address.svg" .
 
-mknd:TaskRun :icon "task.svg" .
-
-mknd:PublicIPAddress :icon "ip.svg" .
+:PublicIPAddress :icon "ip.svg" .
 
 d3f:LogFile :icon  "doc.svg" .
 
@@ -223,7 +305,7 @@ d3f:Log :icon  "log.svg" .
 
 d3f:OperatingSystem :icon  "os.svg" .
 
-mknd:Observable :icon  "pin.svg" .
+:Observable :icon  "pin.svg" .
 
 d3f:HardwareDevice  :icon  "device.svg" .
 
@@ -237,31 +319,29 @@ d3f:Artifact  :icon  "class.svg" .
 
 d3f:Record :icon  "file.svg" .
 
-mknd:Task :icon "task.svg" .
+:Task :icon "task.svg" .
 
-mknd:DataTemplate :icon        "file.svg" .
+:DataTemplate :icon        "file.svg" .
 
 d3f:IntrusionDetectionSystem :icon  "broken.svg" .
 
-mknd:TaskRunLog :icon  "log.svg" .
+:TaskRunLog :icon  "log.svg" .
 
-mknd:Hash :icon  "hash.svg" .
+:Hash :icon  "hash.svg" .
 
-mknd:Report :icon  "doc.svg" .
+:Report :icon  "doc.svg" .
 
 d3f:Database :icon  "database.svg" .
 
-mknd:Detection :icon  "signal.svg" .
+:Detection :icon  "signal.svg" .
 
 d3f:NetworkTraffic  :icon  "network.svg" .
 
 d3f:Identifier :icon  "text.svg" .
 
-mknd:Connection :icon  "connection.svg" .
-
 d3f:Software :icon        "software.svg" .
 
-mknd:Socket :icon  "network.svg" .
+:Socket :icon  "network.svg" .
 
 d3f:DocumentFile  :icon  "doc.svg" .
 
@@ -273,13 +353,11 @@ d3f:DomainName :icon  "domain.svg" .
 
 d3f:ExecutableFile  :icon  "code-file.svg" .
 
-mknd:SecurityPolicy  :icon        "cube.svg" .
+:SecurityPolicy  :icon        "cube.svg" .
 
 d3f:Email :icon "email-message.svg" .
 
 d3f:DNSLookup  :icon  "dns.svg" .
-
-mknd:TaskTemplate :icon "file.svg" .
 
 d3f:Directory  :icon  "folder.svg" .
 
@@ -297,32 +375,32 @@ d3f:ClientComputer  :icon  "screen.svg" .
 
 d3f:BinarySegment  :icon  "binary.svg" .
 
-mknd:DetectionRule :icon  "rule.svg" .
+:DetectionRule :icon  "rule.svg" .
 
-mknd:Sigma :icon "rule-sigma.svg" .
+:Sigma :icon "rule-sigma.svg" .
 
 d3f:UserAccount :icon        "user-account.svg" .
 
 d3f:NetworkNode  :icon  "network.svg" .
 
-mknd:Yara :icon "rule-yara.svg" .
+:Yara :icon "rule-yara.svg" .
 
 mknd:PrivateIPAddress :icon "ip.svg" .
 
 d3f:Procedure :icon   "procedure.svg" .
 
-mknd:Tenant :icon "biz-unit.svg" .
+:Tenant :icon "biz-unit.svg" .
 
 d3f:DigitalObject  :icon  "cube.svg" .
 
-mknd:SystemObject :icon "mekanoid.svg" .
+:SystemObject :icon "mekanoid.svg" .
 
 d3f:IPAddress :icon  "ip.svg" .
 
-mknd:Ticket :icon "ticket.svg" .
+:Ticket :icon "ticket.svg" .
 
 d3f:Link  :icon  "url.svg" .
 
 d3f:Process  :icon  "process.svg" .
 
-mknd:TaskPattern :icon "flow.svg" .
+:TaskPattern :icon "flow.svg" .
