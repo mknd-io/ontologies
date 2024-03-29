@@ -1,0 +1,801 @@
+@prefix : <https://mekanoid.io/ontology/cvss/> .
+@prefix d3f:  <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix mknd: <https://mekanoid.io/ontology/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+mknd:CVSS-ExploitCodeMaturity-NotDefined
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
+  rdfs:label       "Not Defined (X)";
+  skos:altLabel    "E:X";
+  skos:definition  "Assigning this value indicates there is insufficient information to choose one of the other values, and has no impact on the overall Temporal Score, i.e., it has the same effect on scoring as assigning High.";
+  mknd:value       "X" .
+
+mknd:CVSS-AttackComplexity
+  rdf:type             owl:Class;
+  rdfs:label           "Attack Complexity";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-AttackComplexity-High mknd:CVSS-AttackComplexity-Low )
+    ];
+  skos:altLabel        "AC";
+  skos:definition      "This metric describes the conditions beyond the attacker’s control that must exist in order to exploit the vulnerability. As described below, such conditions may require the collection of more information about the target, or computational exceptions. Importantly, the assessment of this metric excludes any requirements for user interaction in order to exploit the vulnerability (such conditions are captured in the User Interaction metric). If a specific configuration is required for an attack to succeed, the Base metrics should be scored assuming the vulnerable component is in that configuration. The Base Score is greatest for the least complex attacks." .
+
+mknd:CVSS-SecurityRequirement-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-SecurityRequirement;
+  rdfs:label       "High";
+  skos:definition  "Loss of [Confidentiality | Integrity | Availability] is likely to have a catastrophic adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)." .
+
+mknd:CVSS-SeverityType
+  rdf:type             owl:Class;
+  rdfs:comment         "Qualitative Severity Rating";
+  rdfs:label           "Severity Type";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-SeverityType-Critical mknd:CVSS-SeverityType-High mknd:CVSS-SeverityType-Low mknd:CVSS-SeverityType-Medium mknd:CVSS-SeverityType-None )
+    ];
+  skos:definition      "Specifies the CVSS base, temporal, threat, or environmental severity type." .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-RemediationLevel-NotDefined mknd:CVSS-RemediationLevel-OfficialFix mknd:CVSS-RemediationLevel-TemporaryFix mknd:CVSS-RemediationLevel-Unavailable mknd:CVSS-RemediationLevel-Workaround )
+    ] .
+
+mknd:CVSS-ReportConfidence
+  rdf:type             owl:Class;
+  rdfs:label           "Report Confidence";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-ReportConfidence-Confirmed mknd:CVSS-ReportConfidence-NotDefined mknd:CVSS-ReportConfidence-Reasonable mknd:CVSS-ReportConfidence-Unknown )
+    ];
+  skos:altLabel        "RC";
+  skos:definition      "This metric measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details. Sometimes only the existence of vulnerabilities is publicized, but without specific details. For example, an impact may be recognized as undesirable, but the root cause may not be known. The vulnerability may later be corroborated by research which suggests where the vulnerability may lie, though the research may not be certain. Finally, a vulnerability may be confirmed through acknowledgment by the author or vendor of the affected technology. The urgency of a vulnerability is higher when a vulnerability is known to exist with certainty. This metric also suggests the level of technical knowledge available to would-be attackers. The more a vulnerability is validated by the vendor or other reputable sources, the higher the score." .
+
+mknd:CVSS-PrivilegesRequired
+  rdf:type             owl:Class;
+  rdfs:label           "Privileges Required";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-PrivilegesRequired-High mknd:CVSS-PrivilegesRequired-Low mknd:CVSS-PrivilegesRequired-None )
+    ];
+  skos:altLabel        "PR";
+  skos:definition      "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability. The Base Score is greatest if no privileges are required." .
+
+mknd:LowSeverityVulnerability
+  rdf:type             owl:Class;
+  rdfs:label           "Low Severity Vulnerability";
+  rdfs:subClassOf      d3f:Vulnerability;
+  owl:equivalentClass  [ rdf:type            owl:Class;
+    owl:intersectionOf  ( d3f:Vulnerability
+      [ rdf:type     owl:Class;
+        owl:unionOf  ( [ rdf:type            owl:Class;
+            owl:intersectionOf  ( [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#minExclusive>
+                      0.0 ]
+                    )
+                  ]
+                ]
+              [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#maxExclusive>
+                      4.0 ]
+                    )
+                  ]
+                ]
+              )
+            ]
+          [ rdf:type        owl:Restriction;
+            owl:hasValue    mknd:CVSS-AttackComplexity-Low;
+            owl:onProperty  mknd:severityRating
+            ]
+          )
+        ]
+      )
+    ] .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-AttackVector-Adjacent mknd:CVSS-AttackVector-Local mknd:CVSS-AttackVector-Network mknd:CVSS-AttackVector-Physical )
+    ] .
+
+# d3f:Vulnerability  rdf:type  owl:Class;
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-AttackVector;
+#     owl:onProperty               mknd:attackVector
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-Scope;
+#     owl:onProperty               mknd:scope
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-AvailabilityImpact;
+#     owl:onProperty               mknd:availabilityImpact
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-SeverityType;
+#     owl:onProperty               mknd:severityRating
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-ConfidentialityImpact;
+#     owl:onProperty               mknd:confidentialityImpact
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-ExploitCodeMaturity;
+#     owl:onProperty               mknd:exploitCodeMaturity
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-IntegrityImpact;
+#     owl:onProperty               mknd:integrityImpact
+#     ];
+#   rdfs:subClassOf  [ rdf:type            owl:Restriction;
+#     owl:onProperty      d3f:may-be-contained-by;
+#     owl:someValuesFrom  d3f:Software
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-UserInteraction;
+#     owl:onProperty               mknd:userInteraction
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-PrivilegesRequired;
+#     owl:onProperty               mknd:privilegesRequired
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-AttackComplexity;
+#     owl:onProperty               mknd:attackComplexity
+#     ];
+#   rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+#     owl:maxQualifiedCardinality  "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger>;
+#     owl:onClass                  mknd:CVSS-RemediationLevel;
+#     owl:onProperty               mknd:remediationLevel
+#     ];
+#   mknd:icon        "vulnerability.svg"^^<http://www.w3.org/2001/XMLSchema#anyURI> .
+
+mknd:CVSS-ReportConfidence-Reasonable
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ReportConfidence;
+  rdfs:label       "Reasonable (R)";
+  skos:altLabel    "RC:R";
+  skos:definition  "Significant details are published, but researchers either do not have full confidence in the root cause, or do not have access to source code to fully confirm all of the interactions that may lead to the result. Reasonable confidence exists, however, that the bug is reproducible and at least one impact is able to be verified (proof-of-concept exploits may provide this). An example is a detailed write-up of research into a vulnerability with an explanation (possibly obfuscated or “left as an exercise to the reader”) that gives assurances on how to reproduce the results.";
+  mknd:value       "R" .
+  
+mknd:CVSS-ExploitCodeMaturity-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
+  rdfs:label       "High";
+  skos:altLabel    "E:H";
+  skos:definition  "Functional autonomous code exists, or no exploit is required (manual trigger) and details are widely available. Exploit code works in every situation, or is actively being delivered via an autonomous agent (such as a worm or virus). Network-connected systems are likely to encounter scanning or exploitation attempts. Exploit development has reached the level of reliable, widely available, easy-to-use automated tools.";
+  mknd:value       "HIGH" .
+
+mknd:CVSS-ExploitCodeMaturity-ProofOfConcept
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
+  rdfs:label       "Proof-of-Concept";
+  skos:altLabel    "E:P";
+  skos:definition  "Proof-of-concept exploit code is available, or an attack demonstration is not practical for most systems. The code or technique is not functional in all situations and may require substantial modification by a skilled attacker.";
+  mknd:value       "P" .
+
+mknd:CVSS-ExploitCodeMaturity-Unproven
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
+  rdfs:label       "Unproven (U)";
+  skos:altLabel    "E:U";
+  skos:definition  "No exploit code is available, or an exploit is theoretical.";
+  mknd:value       "U" .
+
+mknd:privilegesRequired
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-RemediationLevel
+  rdf:type             owl:Class;
+  rdfs:label           "Remediation Level";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-RemediationLevel-NotDefined mknd:CVSS-RemediationLevel-OfficialFix mknd:CVSS-RemediationLevel-TemporaryFix mknd:CVSS-RemediationLevel-Unavailable mknd:CVSS-RemediationLevel-Workaround )
+    ];
+  skos:altLabel        "RL";
+  skos:definition      "The Remediation Level of a vulnerability is an important factor for prioritization. The typical vulnerability is unpatched when initially published. Workarounds or hotfixes may offer interim remediation until an official patch or upgrade is issued. Each of these respective stages adjusts the Temporal Score downwards, reflecting the decreasing urgency as remediation becomes final. The list of possible values is presented in Table 10. The less official and permanent a fix, the higher the vulnerability score." .
+
+mknd:CVSS-PrivilegesRequired-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-PrivilegesRequired;
+  rdfs:label       "Low";
+  skos:altLabel    "PR:L";
+  skos:definition  "The attacker requires privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources.";
+  mknd:value       "LOW" .
+
+mknd:attackVector  rdf:type  owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:range          mknd:CVSS-AttackVector;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-AvailabilityImpact
+  rdf:type             owl:Class;
+  rdfs:label           "Availability Impact";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-AvailabilityImpact-High mknd:CVSS-AvailabilityImpact-Low mknd:CVSS-AvailabilityImpact-None )
+    ];
+  skos:altLabel        "A";
+  skos:definition      "This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability. While the Confidentiality and Integrity impact metrics apply to the loss of confidentiality or integrity of data (e.g., information, files) used by the impacted component, this metric refers to the loss of availability of the impacted component itself, such as a networked service (e.g., web, database, email). Since availability refers to the accessibility of information resources, attacks that consume network bandwidth, processor cycles, or disk space all impact the availability of an impacted component. The Base Score is greatest when the consequence to the impacted component is highest." .
+
+mknd:reportConfidence
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:label          "report confidence";
+  rdfs:range          mknd:CVSS-ReportConfidence;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-UserInteraction-None
+  rdf:type           owl:NamedIndividual , mknd:CVSS-UserInteraction;
+  rdfs:label         "None";
+  owl:differentFrom  mknd:CVSS-UserInteraction-Required;
+  skos:altLabel      "UI:N";
+  skos:definition    "The vulnerable system can be exploited without interaction from any user.";
+  mknd:value         "NONE" .
+
+mknd:CVSS-AttackVector-Adjacent
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AttackVector;
+  rdfs:label       "Adjacent";
+  skos:altLabel    "AV:A";
+  skos:definition  "The vulnerable component is bound to the network stack, but the attack is limited at the protocol level to a logically adjacent topology. This can mean an attack must be launched from the same shared physical (e.g., Bluetooth or IEEE 802.11) or logical (e.g., local IP subnet) network, or from within a secure or otherwise limited administrative domain (e.g., MPLS, secure VPN to an administrative network zone). One example of an Adjacent attack would be an ARP (IPv4) or neighbor discovery (IPv6) flood leading to a denial of service on the local LAN segment (e.g., CVE‑2013‑6014).";
+  mknd:value       "ADJACENT";
+  mknd:version     3.1 .
+
+mknd:HighVulnerability
+  rdf:type             owl:Class;
+  rdfs:label           "High Severity Vulnerability";
+  rdfs:subClassOf      d3f:Vulnerability;
+  owl:equivalentClass  [ rdf:type            owl:Class;
+    owl:intersectionOf  ( d3f:Vulnerability
+      [ rdf:type     owl:Class;
+        owl:unionOf  ( [ rdf:type            owl:Class;
+            owl:intersectionOf  ( [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#minInclusive>
+                      7.0 ]
+                    )
+                  ]
+                ]
+              [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#maxExclusive>
+                      9.0 ]
+                    )
+                  ]
+                ]
+              )
+            ]
+          [ rdf:type        owl:Restriction;
+            owl:hasValue    mknd:CVSS-AvailabilityImpact-High;
+            owl:onProperty  mknd:severityRating
+            ]
+          )
+        ]
+      )
+    ] .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-SeverityType-Critical mknd:CVSS-SeverityType-High mknd:CVSS-SeverityType-Low mknd:CVSS-SeverityType-Medium mknd:CVSS-SeverityType-None )
+    ] .
+
+mknd:CVSS-IntegrityImpact-None
+  rdf:type         owl:NamedIndividual , mknd:CVSS-IntegrityImpact;
+  rdfs:label       "None";
+  skos:altLabel    "I:N";
+  skos:definition  "There is no loss of integrity within the impacted component.";
+  mknd:value       "NONE" .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-IntegrityImpact-High mknd:CVSS-IntegrityImpact-Low mknd:CVSS-IntegrityImpact-None )
+    ] .
+
+mknd:CVSS-RemediationLevel-Unavailable
+  rdf:type         owl:NamedIndividual , mknd:CVSS-RemediationLevel;
+  rdfs:label       "Unavailable (U)";
+  skos:altLabel    "RL:U";
+  skos:definition  "There is either no solution available or it is impossible to apply.";
+  mknd:value       "U" .
+
+mknd:cvssExploitabilityScore
+  rdf:type            owl:DatatypeProperty , owl:FunctionalProperty;
+  rdfs:domain         d3f:Vulnerability;
+  rdfs:label          "exploitability score";
+  rdfs:range          <http://www.w3.org/2001/XMLSchema#decimal>;
+  rdfs:subPropertyOf  owl:topDataProperty .
+
+mknd:CVSS-RemediationLevel-OfficialFix
+  rdf:type         owl:NamedIndividual , mknd:CVSS-RemediationLevel;
+  rdfs:label       "Official Fix (O)";
+  skos:altLabel    "RL:O";
+  skos:definition  "A complete vendor solution is available. Either the vendor has issued an official patch, or an upgrade is available.";
+  mknd:value       "O" .
+
+mknd:CVSS-SeverityType-Low
+  rdf:type    owl:NamedIndividual , mknd:CVSS-SeverityType;
+  rdfs:label  "Low";
+  mknd:value  "LOW" .
+
+mknd:CVSS-AttackVector-Local
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AttackVector;
+  rdfs:label       "Local";
+  skos:altLabel    "AV:L";
+  skos:definition  "The vulnerable component is not bound to the network stack and the attacker’s path is via read/write/execute capabilities. Either:\n- the attacker exploits the vulnerability by accessing the target system locally (e.g., keyboard, console), or remotely (e.g., SSH); or\n- the attacker relies on User Interaction by another person to perform actions required to exploit the vulnerability (e.g., using social engineering techniques to trick a legitimate user into opening a malicious document).";
+  mknd:value       "LOCAL";
+  mknd:version     3.1 .
+
+mknd:CVSS-UserInteraction-Required
+  rdf:type         owl:NamedIndividual , mknd:CVSS-UserInteraction;
+  rdfs:label       "Required";
+  skos:altLabel    "UI:R";
+  skos:definition  "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited. For example, a successful exploit may only be possible during the installation of an application by a system administrator.";
+  mknd:value       "REQUIRED" .
+
+mknd:availabilityImpact
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:range          mknd:CVSS-AvailabilityImpact;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-RemediationLevel-TemporaryFix
+  rdf:type         owl:NamedIndividual , mknd:CVSS-RemediationLevel;
+  rdfs:label       "Temporary Fix (T)";
+  skos:altLabel    "RL:T";
+  skos:definition  "There is an official but temporary fix available. This includes instances where the vendor issues a temporary hotfix, tool, or workaround.";
+  mknd:value       "T" .
+
+mknd:CVSS-SecurityRequirement-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-SecurityRequirement;
+  rdfs:label       "Low";
+  skos:definition  "Loss of [Confidentiality | Integrity | Availability] is likely to have only a limited adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)." .
+
+d3f:Technique  mknd:icon  "technique.svg" .
+mknd:CVSS-IntegrityImpact-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-IntegrityImpact;
+  rdfs:label       "High";
+  skos:altLabel    "I:H";
+  skos:definition  "There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the impacted component. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the impacted component.";
+  mknd:value       "HIGH" .
+
+[ rdf:type     owl:AllDisjointClasses;
+    owl:members  ( mknd:CVSS-AttackComplexity mknd:CVSS-AttackVector mknd:CVSS-AvailabilityImpact mknd:CVSS-ConfidentialityImpact mknd:CVSS-ExploitCodeMaturity mknd:CVSS-IntegrityImpact mknd:CVSS-PrivilegesRequired mknd:CVSS-RemediationLevel mknd:CVSS-ReportConfidence mknd:CVSS-Scope mknd:CVSS-SecurityRequirement mknd:CVSS-SeverityType mknd:CVSS-UserInteraction )
+    ] .
+
+mknd:CVSS-SeverityType-None
+  rdf:type    owl:NamedIndividual , mknd:CVSS-SeverityType;
+  rdfs:label  "None";
+  mknd:value  "NONE" .
+
+mknd:CVSS-AttackComplexity-High
+  rdf:type           owl:NamedIndividual , mknd:CVSS-AttackComplexity;
+  rdfs:label         "High";
+  owl:differentFrom  mknd:CVSS-AttackComplexity-Low;
+  skos:altLabel      "AC:H";
+  skos:definition    "A successful attack depends on conditions beyond the attacker's control. That is, a successful attack cannot be accomplished at will, but requires the attacker to invest in some measurable amount of effort in preparation or execution against the vulnerable component before a successful attack can be expected. For example, a successful attack may depend on an attacker overcoming any of the following conditions:\n- The attacker must gather knowledge about the environment in which the vulnerable target/component exists. For example, a requirement to collect details on target configuration settings, sequence numbers, or shared secrets.\n- The attacker must prepare the target environment to improve exploit reliability. For example, repeated exploitation to win a race condition, or overcoming advanced exploit mitigation techniques.\n- The attacker must inject themselves into the logical network path between the target and the resource requested by the victim in order to read and/or modify network communications (e.g., a man in the middle attack).";
+  mknd:value         "HIGH";
+  mknd:version       3.1 .
+
+mknd:extStatus  rdf:type    owl:DatatypeProperty;
+  rdfs:comment        "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en;
+  rdfs:label          "status"@en;
+  rdfs:subPropertyOf  mknd:vendorProperty .
+
+mknd:CVSS-ConfidentialityImpact-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ConfidentialityImpact;
+  rdfs:label       "High";
+  skos:altLabel    "C:H";
+  skos:definition  "There is a total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server.";
+  mknd:value       "HIGH" .
+
+mknd:cvssBaseScore  rdf:type  owl:DatatypeProperty , owl:FunctionalProperty;
+  rdfs:domain         d3f:Vulnerability;
+  rdfs:label          "base score";
+  rdfs:range          <http://www.w3.org/2001/XMLSchema#decimal>;
+  rdfs:subPropertyOf  owl:topDataProperty .
+
+mknd:CVSS-SeverityType-Medium
+  rdf:type    owl:NamedIndividual , mknd:CVSS-SeverityType;
+  rdfs:label  "Medium";
+  mknd:value  "MEDIUM" .
+
+mknd:extPriority  rdf:type  owl:DatatypeProperty , owl:FunctionalProperty;
+  rdfs:comment        "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en;
+  rdfs:label          "Priority"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:CVSS-Scope  rdf:type    owl:Class;
+  rdfs:label           "Scope";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-Scope-Changed mknd:CVSS-Scope-Unchanged )
+    ];
+  skos:altLabel        "S";
+  skos:definition      "The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.\n\nFormally, a security authority is a mechanism (e.g., an application, an operating system, firmware, a sandbox environment) that defines and enforces access control in terms of how certain subjects/actors (e.g., human users, processes) can access certain restricted objects/resources (e.g., files, CPU, memory) in a controlled manner. All the subjects and objects under the jurisdiction of a single security authority are considered to be under one security scope. If a vulnerability in a vulnerable component can affect a component which is in a different security scope than the vulnerable component, a Scope change occurs. Intuitively, whenever the impact of a vulnerability breaches a security/trust boundary and impacts components outside the security scope in which vulnerable component resides, a Scope change occurs.\n\nThe security scope of a component encompasses other components that provide functionality solely to that component, even if these other components have their own security authority. For example, a database used solely by one application is considered part of that application’s security scope even if the database has its own security authority, e.g., a mechanism controlling access to database records based on database users and associated database privileges.\n\nThe Base Score is greatest when a scope change occurs." .
+
+mknd:CVSS  rdf:type       owl:Class;
+  rdfs:isDefinedBy  "https://www.first.org/cvss/v3.1/specification-document"^^<http://www.w3.org/2001/XMLSchema#anyURI>;
+  rdfs:label        "CVSS Metric" .
+
+mknd:integrityImpact  rdf:type  owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-ExploitCodeMaturity-Functional mknd:CVSS-ExploitCodeMaturity-High mknd:CVSS-ExploitCodeMaturity-NotDefined mknd:CVSS-ExploitCodeMaturity-ProofOfConcept mknd:CVSS-ExploitCodeMaturity-Unproven )
+    ] .
+
+mknd:CVSS-AvailabilityImpact-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AvailabilityImpact;
+  rdfs:label       "High";
+  skos:altLabel    "A:H";
+  skos:definition  "There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed). Alternatively, the attacker has the ability to deny some availability, but the loss of availability presents a direct, serious consequence to the impacted component (e.g., the attacker cannot disrupt existing connections, but can prevent new connections; the attacker can repeatedly exploit a vulnerability that, in each instance of a successful attack, leaks a only small amount of memory, but after repeated exploitation causes a service to become completely unavailable).";
+  mknd:value       "HIGH";
+  mknd:version     3.1 .
+
+mknd:CVSS-AttackComplexity-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AttackComplexity;
+  rdfs:label       "Low";
+  skos:altLabel    "AC:L";
+  skos:definition  "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success when attacking the vulnerable component.";
+  mknd:value       "LOW";
+  mknd:version     3.1 .
+
+mknd:CVSS-SeverityType-High
+  rdf:type    owl:NamedIndividual , mknd:CVSS-SeverityType;
+  rdfs:label  "High";
+  mknd:value  "HIGH" .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-AvailabilityImpact-High mknd:CVSS-AvailabilityImpact-Low mknd:CVSS-AvailabilityImpact-None )
+    ] .
+
+mknd:CVSS-IntegrityImpact
+  rdf:type             owl:Class;
+  rdfs:label           "Integrity Impact";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-IntegrityImpact-High mknd:CVSS-IntegrityImpact-Low mknd:CVSS-IntegrityImpact-None )
+    ];
+  skos:altLabel        "I";
+  skos:definition      "This metric measures the impact to integrity of a successfully exploited vulnerability. Integrity refers to the trustworthiness and veracity of information. The Base Score is greatest when the consequence to the impacted component is highest." .
+
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-ReportConfidence-Confirmed mknd:CVSS-ReportConfidence-NotDefined mknd:CVSS-ReportConfidence-Reasonable mknd:CVSS-ReportConfidence-Unknown )
+    ] .
+
+mknd:CVSS-PrivilegesRequired-High
+  rdf:type         owl:NamedIndividual , mknd:CVSS-PrivilegesRequired;
+  rdfs:label       "High";
+  skos:altLabel    "PR:H";
+  skos:definition  "The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable component allowing access to component-wide settings and files.";
+  mknd:value       "HIGH" .
+
+mknd:MediumSeverityVulnerability
+  rdf:type             owl:Class;
+  rdfs:label           "Medium Severity Vulnerability";
+  rdfs:subClassOf      d3f:Vulnerability;
+  owl:equivalentClass  [ rdf:type            owl:Class;
+    owl:intersectionOf  ( d3f:Vulnerability
+      [ rdf:type     owl:Class;
+        owl:unionOf  ( [ rdf:type            owl:Class;
+            owl:intersectionOf  ( [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#minInclusive>
+                      4.0 ]
+                    )
+                  ]
+                ]
+              [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#maxExclusive>
+                      7.0 ]
+                    )
+                  ]
+                ]
+              )
+            ]
+          [ rdf:type        owl:Restriction;
+            owl:hasValue    mknd:CVSS-SeverityType-Medium;
+            owl:onProperty  mknd:severityRating
+            ]
+          )
+        ]
+      )
+    ] .
+
+mknd:mayIndicate  rdf:type  owl:ObjectProperty;
+  rdfs:label  "may indicate"@en .
+
+mknd:CVSS-ExploitCodeMaturity-Functional
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
+  rdfs:label       "Functional";
+  skos:altLabel    "E:F";
+  skos:definition  "Functional exploit code is available. The code works in most situations where the vulnerability exists.";
+  mknd:value       "FUNCTIONAL" .
+
+mknd:attackComplexity
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:label          "attack complexity";
+  rdfs:range          mknd:CVSS-AttackComplexity;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-SecurityRequirement
+  rdf:type             owl:Class;
+  rdfs:label           "Security Requirement";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-SecurityRequirement-High mknd:CVSS-SecurityRequirement-Low mknd:CVSS-SecurityRequirement-Medium mknd:CVSS-SecurityRequirement-NotDefined )
+    ];
+  skos:definition      "These metrics enable the analyst to customize the CVSS score depending on the importance of the affected IT asset to a user’s organization, measured in terms of Confidentiality, Integrity, and Availability. That is, if an IT asset supports a business function for which Availability is most important, the analyst can assign a greater value to Availability relative to Confidentiality and Integrity. Each Security Requirement has three possible values: Low, Medium, or High.\n\nThe full effect on the environmental score is determined by the corresponding Modified Base Impact metrics. That is, these metrics modify the environmental score by reweighting the Modified Confidentiality, Integrity, and Availability impact metrics. For example, the Modified Confidentiality impact (MC) metric has increased weight if the Confidentiality Requirement (CR) is High. Likewise, the Modified Confidentiality impact metric has decreased weight if the Confidentiality Requirement is Low. The Modified Confidentiality impact metric weighting is neutral if the Confidentiality Requirement is Medium. This same process is applied to the Integrity and Availability requirements.\n\nNote that the Confidentiality Requirement will not affect the Environmental score if the (Modified Base) confidentiality impact is set to None. Also, increasing the Confidentiality Requirement from Medium to High will not change the Environmental score when the (Modified Base) impact metrics are set to High. This is because the Modified Impact Sub-Score (part of the Modified Base Score that calculates impact) is already at a maximum value of 10." .
+
+[ rdf:type     owl:AllDisjointProperties;
+    owl:members  ( mknd:cvssBaseScore mknd:cvssExploitabilityScore mknd:cvssImpactScore )
+    ] .
+
+mknd:CVSS-ReportConfidence-NotDefined
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ReportConfidence;
+  rdfs:label       "Not Defined (X)";
+  skos:altLabel    "RC:X";
+  skos:definition  "Assigning this value indicates there is insufficient information to choose one of the other values, and has no impact on the overall Temporal Score, i.e., it has the same effect on scoring as assigning Confirmed.";
+  mknd:value       "X" .
+
+mknd:exploitCodeMaturity
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:label          "exploit code maturity";
+  rdfs:range          mknd:CVSS-ExploitCodeMaturity;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-ExploitCodeMaturity
+  rdf:type             owl:Class;
+  rdfs:label           "Exploit Code Maturity";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-ExploitCodeMaturity-Functional mknd:CVSS-ExploitCodeMaturity-High mknd:CVSS-ExploitCodeMaturity-NotDefined mknd:CVSS-ExploitCodeMaturity-ProofOfConcept mknd:CVSS-ExploitCodeMaturity-Unproven )
+    ];
+  skos:altLabel        "E";
+  skos:definition      "This metric measures the likelihood of the vulnerability being attacked, and is typically based on the current state of exploit techniques, exploit code availability, or active, “in-the-wild” exploitation. Public availability of easy-to-use exploit code increases the number of potential attackers by including those who are unskilled, thereby increasing the severity of the vulnerability. Initially, real-world exploitation may only be theoretical. Publication of proof-of-concept code, functional exploit code, or sufficient technical details necessary to exploit the vulnerability may follow. Furthermore, the exploit code available may progress from a proof-of-concept demonstration to exploit code that is successful in exploiting the vulnerability consistently. In severe cases, it may be delivered as the payload of a network-based worm or virus or other automated attack tools." .
+
+mknd:CVSS-Scope-Changed
+  rdf:type           owl:NamedIndividual , mknd:CVSS-Scope;
+  rdfs:label         "Changed";
+  owl:differentFrom  mknd:CVSS-Scope-Unchanged;
+  skos:altLabel      "S:C";
+  skos:definition    "An exploited vulnerability can affect resources beyond the security scope managed by the security authority of the vulnerable component. In this case, the vulnerable component and the impacted component are different and managed by different security authorities.";
+  mknd:value         "CHANGED";
+  mknd:version       3.1 .
+
+mknd:confidentialityImpact
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-AttackVector
+  rdf:type             owl:Class;
+  rdfs:label           "Attack Vector";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-AttackVector-Adjacent mknd:CVSS-AttackVector-Local mknd:CVSS-AttackVector-Network mknd:CVSS-AttackVector-Physical )
+    ];
+  skos:altLabel        "AV";
+  skos:definition      "This metric reflects the context by which vulnerability exploitation is possible. This metric value (and consequently the Base Score) will be larger the more remote (logically, and physically) an attacker can be in order to exploit the vulnerable component. The assumption is that the number of potential attackers for a vulnerability that could be exploited from across a network is larger than the number of potential attackers that could exploit a vulnerability requiring physical access to a device, and therefore warrants a greater Base Score." .
+
+mknd:CVSS-SecurityRequirement-NotDefined
+  rdf:type         owl:NamedIndividual , mknd:CVSS-SecurityRequirement;
+  rdfs:label       "Not Defined (X)";
+  skos:definition  "Assigning this value indicates there is insufficient information to choose one of the other values, and has no impact on the overall Environmental Score, i.e., it has the same effect on scoring as assigning Medium." .
+
+mknd:CVSS-AttackVector-Physical
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AttackVector;
+  rdfs:label       "Physical";
+  skos:altLabel    "AV:P";
+  skos:definition  "The attack requires the attacker to physically touch or manipulate the vulnerable component. Physical interaction may be brief (e.g., evil maid attack1) or persistent. An example of such an attack is a cold boot attack in which an attacker gains access to disk encryption keys after physically accessing the target system. Other examples include peripheral attacks via FireWire/USB Direct Memory Access (DMA).";
+  mknd:value       "PHYSICAL";
+  mknd:version     3.1 .
+
+mknd:hasCVSSMetric  rdf:type  owl:ObjectProperty;
+  rdfs:domain  d3f:Vulnerability;
+  rdfs:label   "has CVSS metric" .
+
+mknd:CVSS-ConfidentialityImpact-None
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ConfidentialityImpact;
+  rdfs:label       "None";
+  skos:altLabel    "C:N";
+  skos:definition  "There is no loss of confidentiality within the impacted component.";
+  mknd:value       "NONE" .
+
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-ConfidentialityImpact-High mknd:CVSS-ConfidentialityImpact-Low mknd:CVSS-ConfidentialityImpact-None )
+    ] .
+
+mknd:CVSS-ReportConfidence-Unknown
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ReportConfidence;
+  rdfs:label       "Unknown (U)";
+  skos:altLabel    "RC:U";
+  skos:definition  "There are reports of impacts that indicate a vulnerability is present. The reports indicate that the cause of the vulnerability is unknown, or reports may differ on the cause or impacts of the vulnerability. Reporters are uncertain of the true nature of the vulnerability, and there is little confidence in the validity of the reports or whether a static Base Score can be applied given the differences described. An example is a bug report which notes that an intermittent but non-reproducible crash occurs, with evidence of memory corruption suggesting that denial of service, or possible more serious impacts, may result.";
+  mknd:value       "U" .
+
+mknd:CVSS-SeverityType-Critical
+  rdf:type    owl:NamedIndividual , mknd:CVSS-SeverityType;
+  rdfs:label  "Critical";
+  mknd:value  "CRITICAL" .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:CVSS-PrivilegesRequired-High mknd:CVSS-PrivilegesRequired-Low mknd:CVSS-PrivilegesRequired-None )
+    ] .
+
+mknd:remediationLevel
+  rdf:type            owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:label          "remediation level";
+  rdfs:range          mknd:CVSS-RemediationLevel;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-UserInteraction
+  rdf:type             owl:Class;
+  rdfs:label           "User Interaction";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-UserInteraction-None mknd:CVSS-UserInteraction-Required )
+    ];
+  skos:altLabel        "UI";
+  skos:definition      "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component. This metric determines whether the vulnerability can be exploited solely at the will of the attacker, or whether a separate user (or user-initiated process) must participate in some manner. The Base Score is greatest when no user interaction is required." .
+
+mknd:CVSS-Scope-Unchanged
+  rdf:type         owl:NamedIndividual , mknd:CVSS-Scope;
+  rdfs:label       "Unchanged";
+  skos:altLabel    "S:U";
+  skos:definition  "An exploited vulnerability can only affect resources managed by the same security authority. In this case, the vulnerable component and the impacted component are either the same, or both are managed by the same security authority.";
+  mknd:value       "UNCHANGED" .
+
+mknd:CVSS-IntegrityImpact-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-IntegrityImpact;
+  rdfs:label       "Low";
+  skos:altLabel    "I:L";
+  skos:definition  "Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact on the impacted component.";
+  mknd:value       "LOW" .
+
+mknd:CVSS-AvailabilityImpact-None
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AvailabilityImpact;
+  rdfs:label       "None";
+  skos:altLabel    "A:N";
+  skos:definition  "There is no impact to availability within the impacted component.";
+  mknd:value       "NONE" .
+
+mknd:severityRating  rdf:type  owl:ObjectProperty , owl:FunctionalProperty;
+  rdfs:label          "severity";
+  rdfs:range          mknd:CVSS-SeverityType;
+  rdfs:subPropertyOf  mknd:hasCVSSMetric .
+
+mknd:CVSS-ReportConfidence-Confirmed
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ReportConfidence;
+  rdfs:label       "Confirmed";
+  skos:altLabel    "RC:C";
+  skos:definition  "Detailed reports exist, or functional reproduction is possible (functional exploits may provide this). Source code is available to independently verify the assertions of the research, or the author or vendor of the affected code has confirmed the presence of the vulnerability.";
+  mknd:value       "CONFIRMED";
+  mknd:version     3.1 .
+
+mknd:CVSS-ConfidentialityImpact-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-ConfidentialityImpact;
+  rdfs:label       "Low";
+  skos:altLabel    "C:L";
+  skos:definition  "There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the impacted component.";
+  mknd:value       "LOW" .
+
+mknd:CVSS-RemediationLevel-NotDefined
+  rdf:type         owl:NamedIndividual , mknd:CVSS-RemediationLevel;
+  rdfs:label       "Not Defined (X)";
+  skos:altLabel    "RL:X";
+  skos:definition  "Assigning this value indicates there is insufficient information to choose one of the other values, and has no impact on the overall Temporal Score, i.e., it has the same effect on scoring as assigning Unavailable.";
+  mknd:value       "X" .
+
+mknd:CVSS-RemediationLevel-Workaround
+  rdf:type         owl:NamedIndividual , mknd:CVSS-RemediationLevel;
+  rdfs:label       "Workaround (W)";
+  skos:altLabel    "RL:W";
+  skos:definition  "There is an unofficial, non-vendor solution available. In some cases, users of the affected technology will create a patch of their own or provide steps to work around or otherwise mitigate the vulnerability.";
+  mknd:value       "W" .
+
+mknd:CVSS-PrivilegesRequired-None
+  rdf:type         owl:NamedIndividual , mknd:CVSS-PrivilegesRequired;
+  rdfs:label       "None";
+  skos:altLabel    "PR:N";
+  skos:definition  "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the vulnerable system to carry out an attack.";
+  mknd:value       "NONE" .
+
+mknd:cvssImpactScore  rdf:type  owl:DatatypeProperty , owl:FunctionalProperty;
+  rdfs:domain         d3f:Vulnerability;
+  rdfs:label          "impact score";
+  rdfs:range          <http://www.w3.org/2001/XMLSchema#decimal>;
+  rdfs:subPropertyOf  owl:topDataProperty .
+
+mknd:CVSS-ConfidentialityImpact
+  rdf:type             owl:Class;
+  rdfs:label           "Confidentiality Impact";
+  rdfs:subClassOf      mknd:CVSS;
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:CVSS-ConfidentialityImpact-High mknd:CVSS-ConfidentialityImpact-Low mknd:CVSS-ConfidentialityImpact-None )
+    ];
+  skos:altLabel        "C";
+  skos:definition      "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability. Confidentiality refers to limiting information access and disclosure to only authorized users, as well as preventing access by, or disclosure to, unauthorized ones. The Base Score is greatest when the loss to the impacted component is highest." .
+
+mknd:CVSS-SecurityRequirement-Medium
+  rdf:type         owl:NamedIndividual , mknd:CVSS-SecurityRequirement;
+  rdfs:label       "Medium";
+  skos:definition  "Loss of [Confidentiality | Integrity | Availability] is likely to have a serious adverse effect on the organization or individuals associated with the organization (e.g., employees, customers)." .
+
+mknd:CVSS-AvailabilityImpact-Low
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AvailabilityImpact;
+  rdfs:label       "Low";
+  skos:altLabel    "A:L";
+  skos:definition  "Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the impacted component are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the impacted component.";
+  mknd:value       "LOW" .
+
+mknd:CriticalVulnerability
+  rdf:type             owl:Class;
+  rdfs:label           "Critical Severity Vulnerability";
+  rdfs:subClassOf      d3f:Vulnerability;
+  owl:equivalentClass  [ rdf:type            owl:Class;
+    owl:intersectionOf  ( d3f:Vulnerability
+      [ rdf:type     owl:Class;
+        owl:unionOf  ( [ rdf:type            owl:Class;
+            owl:intersectionOf  ( [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#minInclusive>
+                      9.0 ]
+                    )
+                  ]
+                ]
+              [ rdf:type            owl:Restriction;
+                owl:onProperty      mknd:cvssBaseScore;
+                owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                  owl:onDatatype        <http://www.w3.org/2001/XMLSchema#decimal>;
+                  owl:withRestrictions  ( [ <http://www.w3.org/2001/XMLSchema#maxInclusive>
+                      10.0 ]
+                    )
+                  ]
+                ]
+              )
+            ]
+          [ rdf:type        owl:Restriction;
+            owl:hasValue    mknd:CVSS-SeverityType-Critical;
+            owl:onProperty  mknd:severityRating
+            ]
+          )
+        ]
+      )
+    ] .
+
+mknd:Path  rdf:type      owl:Class;
+  rdfs:subClassOf  mknd:Observable;
+  skos:definition  "A generic URI string pointing to location of a directory or file on one or multiple systems." .
+
+mknd:CVSS-AttackVector-Network
+  rdf:type         owl:NamedIndividual , mknd:CVSS-AttackVector;
+  rdfs:label       "Network";
+  skos:altLabel    "AV:N";
+  skos:definition  "The vulnerable component is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet. Such a vulnerability is often termed “remotely exploitable” and can be thought of as an attack being exploitable at the protocol level one or more network hops away (e.g., across one or more routers). An example of a network attack is an attacker causing a denial of service (DoS) by sending a specially crafted TCP packet across a wide area network (e.g., CVE‑2004‑0230).";
+  mknd:value       "NETWORK";
+  mknd:version     3.1 .
+
+mknd:vectorString  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:domain         d3f:Vulnerability;
+  rdfs:label          "vector";
+  rdfs:range          xsd:string;
+  rdfs:subPropertyOf  owl:topDataProperty .
