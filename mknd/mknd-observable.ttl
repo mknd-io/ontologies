@@ -1,0 +1,136 @@
+@prefix d3f:  <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix mknd: <https://mekanoid.io/ontology/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+mknd:Observable  rdf:type  owl:Class;
+  rdfs:label       "Observable"@en;
+  rdfs:subClassOf  mknd:MekaThing;
+  rdfs:subClassOf  [ rdf:type                  owl:Restriction;
+    owl:onDataRange           xsd:string;
+    owl:onProperty            mknd:value;
+    owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:associated-with;
+    owl:someValuesFrom  mknd:Incident
+    ];
+  skos:definition  "A notable string value useful which may offer helpful hints to during cybersecurity investigations.";
+  rdfs:isDefinedBy <https://schema.ocsf.io/1.1.0/objects/observable> ;
+  mknd:icon        "pin.svg" .
+
+mknd:Path  rdf:type      owl:Class;
+  rdfs:subClassOf  mknd:Observable;
+  skos:definition  "A generic URI string pointing to location of a directory or file on one or multiple systems." .
+
+mknd:EmailSubjectString
+  rdf:type         owl:Class;
+  rdfs:label       "Email Subject"@en;
+  rdfs:subClassOf  mknd:Observable;
+  skos:example     "Fwd: Fwd: Re: RE: RE: LOL" .
+
+mknd:EmailAddress  rdf:type  owl:Class;
+  rdfs:comment     "An email address identifies an email box to which messages are delivered.";
+  rdfs:label       "Email Address";
+  rdfs:subClassOf  mknd:Observable .
+
+mknd:Username  rdf:type  owl:Class;
+  rdfs:label       "Username"@en;
+  rdfs:subClassOf  mknd:Observable .
+
+mknd:FileName  rdf:type  owl:Class;
+  rdfs:label       "File Name"@en;
+  rdfs:subClassOf  mknd:Observable;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:File
+    ] .
+
+mknd:Socket  rdf:type    owl:Class;
+  rdfs:label       "Network Socket"@en;
+  rdfs:subClassOf  mknd:Observable , d3f:Identifier;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      mknd:usesNetworkPort;
+    owl:someValuesFrom  xsd:positiveInteger
+    ];
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  mknd:CommunicationProtocol;
+    owl:onProperty     d3f:uses
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;
+    owl:someValuesFrom  d3f:IPAddress
+    ];
+  skos:example     "51.89.163.40:443" .
+
+mknd:EmailSenderString
+  rdf:type         owl:Class;
+  rdfs:comment     "A string showing a combination of a name and the email address in angle brackets."@en;
+  rdfs:label       "Email Sender"@en;
+  rdfs:subClassOf  mknd:Observable;
+  skos:example     "Britney Greenman <mexragasu@gmail.com>" .
+
+mknd:MACAddress  rdf:type  owl:Class;
+  rdfs:label       "MAC Address"@en;
+  rdfs:subClassOf  mknd:Observable , d3f:Identifier;
+  skos:example     "00:1b:63:84:45:e6" , "00-1B-63-84-45-E6" .
+
+mknd:stringValue  rdf:type  owl:DatatypeProperty;
+  rdfs:comment  "the object is represented by the following string value"@en;
+  rdfs:domain   mknd:Observable;
+  rdfs:label    "is"@en;
+  rdfs:range    xsd:string .
+
+# OCSF Observable types
+
+# The observable value type identifier.
+# 0	Unknown
+# Unknown observable data type.
+# 1	Hostname
+# Unique name assigned to a device connected to a computer network. A domain name in general is an Internet address that can be resolved through the Domain Name System (DNS). For example: r2-d2.example.com.
+# 2	IP Address
+# Internet Protocol address (IP address), in either IPv4 or IPv6 format. For example, 192.168.200.24 or 2001:0db8:85a3:0000:0000:8a2e:0370:7334.
+# 3	MAC Address
+# Media Access Control (MAC) address. For example: 18:36:F3:98:4F:9A.
+# 4	User Name
+# User name. For example: john_doe.
+# 5	Email Address
+# Email address. For example: john_doe@example.com.
+# 6	URL String
+# Uniform Resource Locator (URL) string. For example: http://www.example.com/download/trouble.exe.
+# 7	File Name
+# File name. For example: text-file.txt.
+# 8	Hash
+# Hash. A unique value that corresponds to the content of the file, image, ja3_hash or hassh found in the schema. For example MD5: 3172ac7e2b55cbb81f04a6e65855a628.
+# 9	Process Name
+# Process name. For example: Notepad.
+# 10	Resource UID
+# Resource unique identifier. For example, S3 Bucket name or EC2 Instance ID.
+# 20	Endpoint
+# The Endpoint object describes a physical or virtual device that connects to and exchanges information with a computer network. Some examples of endpoints are mobile devices, desktop computers, virtual machines, embedded devices, and servers. Internet-of-Things devices—like cameras, lighting, refrigerators, security systems, smart speakers, and thermostats—are also endpoints.
+# 21	User
+# The User object describes the characteristics of a user/person or a security principal. Defined by D3FEND d3f:UserAccount.
+# 22	Email
+# The Email object describes the email metadata such as sender, recipients, and direction. Defined by D3FEND d3f:Email.
+# 23	Uniform Resource Locator
+# The Uniform Resource Locator(URL) object describes the characteristics of a URL. Defined in RFC 1738 and by D3FEND d3f:URL.
+# 24	File
+# The File object represents the metadata associated with a file stored in a computer system. It encompasses information about the file itself, including its attributes, properties, and organizational details. Defined by D3FEND d3f:File.
+# 25	Process
+# The Process object describes a running instance of a launched program. Defined by D3FEND d3f:Process.
+# 26	Geo Location
+# The Geo Location object describes a geographical location, usually associated with an IP address. Defined by D3FEND d3f:PhysicalLocation.
+# 27	Container
+# The Container object describes an instance of a specific container. A container is a prepackaged, portable system image that runs isolated on an existing system using a container runtime like containerd.
+# 28	Registry Key
+# The registry key object describes a Windows registry key. Defined by D3FEND d3f:WindowsRegistryKey.
+# 29	Registry Value
+# The registry value object describes a Windows registry value.
+# 30	Fingerprint
+# The Fingerprint object provides detailed information about a digital fingerprint, which is a compact representation of data used to identify a longer piece of information, such as a public key or file content. It contains the algorithm and value of the fingerprint, enabling efficient and reliable identification of the associated data.
+# 99	Other
+# The observable data type is not mapped. See the type attribute, which may contain data source specific value.

@@ -1,0 +1,762 @@
+@prefix d3f:  <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix mknd: <https://mekanoid.io/ontology/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix td: <https://www.w3.org/2019/wot/td#> .
+
+<https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
+  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
+  dcterms:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
+  dcterms:title "Mekanoid Ontology (MKND)" .  
+
+mknd:Task  rdf:type      owl:Class;
+  skos:definition  "A task is a single unit of work that enables the automation of defensive techniques."@en;
+  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:implements;
+    owl:someValuesFrom  d3f:DefensiveTechnique;
+    rdfs:comment    "A task implements defensive techniques."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:may-produce;
+    owl:someValuesFrom  d3f:DigitalArtifact;
+    rdfs:comment    "A task may produce digital artifacts as a result of its execution."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:enables;
+    owl:someValuesFrom  td:InteractionAffordance;
+    rdfs:comment    "A task enables interaction affordances to individual digital artifacts."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:records;
+    owl:someValuesFrom  mknd:TaskRun ;
+    rdfs:comment    "A task records metadata about its execution in a task run."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:accesses;    
+    owl:someValuesFrom  d3f:WebAPIResource ;
+    rdfs:comment    "A task accesses web API resources."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  mknd:TaskTemplate;
+    rdfs:comment    "A task uses task templates to define the parameters of a task."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  mknd:DataTemplate;
+    rdfs:comment    "A task uses data templates to map the output of a task to digital artifacts."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:uses;    
+    owl:someValuesFrom  mknd:Connection;
+    rdfs:comment    "A task uses a connection to authenticate third party software services or APIs."@en
+    ];
+  rdfs:label       "Task"@en;
+  skos:altLabel    "Task" .
+
+mknd:TaskRun  rdf:type   owl:Class;
+  rdfs:label       "Task Run"@en;
+  skos:definition "A task run records information about the execution of a task."@en;
+  rdfs:subClassOf  mknd:SystemObject , d3f:EventLog .
+
+mknd:DataTemplate  rdf:type  owl:Class;
+  skos:definition  "A data template maps the output of a task to digital artifacts."@en;
+  rdfs:label       "Data Template";
+  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:maps;
+    owl:someValuesFrom  d3f:WebAPIResource ;
+    rdfs:comment    "A data template maps the output of a task to web API resources."@en
+    ] .
+
+mknd:TaskTemplate  rdf:type  owl:Class;
+  skos:definition  "A task template is a blueprint for the parameters of a task."@en;
+  rdfs:label       "Task Template";
+  skos:related     td:InteractionAffordance ;
+  rdfs:subClassOf  mknd:SystemObject .
+
+mknd:TaskPattern  rdf:type  owl:Class;
+  skos:definition  "A task pattern is a rule that triggers the execution of automated task runs. Initially task patterns are implemented as conjunctive clauses using triple-based patterns of [subject, predicate, object] or [entity attribute value] querying the digital artifacts in your knowledge graph using the D3FEND ontology. The vision is that task patterns could be implemented using machine learning, and statistical methods, in addition to symbolic logic in order to capture complex requirements which may be difficult to encode using triple-based patterns." ;  
+  rdfs:label       "Task Pattern";
+  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:filters ;
+    owl:someValuesFrom  d3f:Database ;
+    rdfs:comment    "A task pattern filters knowledge graphs to identify digital artifacts which may conditionally trigger the execution of automated task runs."@en
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:may-invoke ;
+    owl:someValuesFrom  mknd:AutomatedTaskRun ;
+    rdfs:comment    "A task pattern may invoke automated task runs when its filters are satisfied."@en
+    ] .
+
+mknd:ManualTaskRun  rdf:type  owl:Class;
+  rdfs:label       "Manual Task Run";
+  rdfs:subClassOf  mknd:TaskRun , d3f:UserAction .
+
+mknd:AutomatedTaskRun
+  rdf:type         owl:Class;
+  rdfs:label       "Automated Task Run";
+  rdfs:subClassOf  mknd:TaskRun , mknd:MachineAction;
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  mknd:TaskPattern;
+    owl:onProperty     d3f:invoked-by
+    ] .
+
+mknd:Connection  rdf:type  owl:Class;
+  skos:definition  "A third party software service or API used to enable the automation of defensive techniques." ;
+  rdfs:label       "Connection"@en;
+  rdfs:subClassOf  mknd:SystemObject;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:enables;
+    owl:someValuesFrom  mknd:Task ;
+    rdfs:comment    "A connection enables tasks to be executed."@en
+    ] ;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:contains;
+    owl:someValuesFrom  d3f:AccessToken ;
+    rdfs:comment    "A connection is configured with access tokens that must be protected."@en
+    ] .
+
+mknd:supports  rdf:type  owl:ObjectProperty;
+  rdfs:label          "supports"@en;
+  rdfs:domain         mknd:Connection;
+  rdfs:range          [ rdf:type     owl:Class;
+    owl:unionOf  ( d3f:SoftwareProduct d3f:SoftwareService )
+    ];
+  skos:example  "Connection x supports product or service y." .
+
+[ rdf:type     owl:AllDisjointClasses;
+    owl:members  ( mknd:Task mknd:TaskPattern mknd:TaskRun mknd:TaskTemplate )
+    ] .
+
+mknd:Payload  rdf:type   owl:Class;
+  rdfs:label       "Payload"@en;
+  rdfs:subClassOf  mknd:MekaThing .
+
+mknd:IOCRule  rdf:type   owl:Class;
+  rdfs:label       "IOC";
+  rdfs:subClassOf  mknd:DetectionRule .
+
+mknd:value  rdf:type        owl:FunctionalProperty, owl:DatatypeProperty;
+  rdfs:domain         mknd:MekaThing;
+  rdfs:range          xsd:string;
+  rdfs:comment        "A value parameter to be passed to Tasks"@en;
+  rdfs:label          "has value"@en .
+
+mknd:indicatedBy  rdf:type  owl:ObjectProperty;
+  rdfs:label          "indicated by"@en;
+  rdfs:subPropertyOf  mknd:mayBeIndicatedBy;
+  owl:inverseOf       mknd:indicates .
+
+mknd:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
+                  owl:inverseOf mknd:mayIndicate ;
+                  rdfs:label "may be indicated by"@en .
+
+mknd:UDP  rdf:type        mknd:CommunicationProtocol , owl:NamedIndividual;
+  rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/User_Datagram_Protocol";
+  rdfs:label        "UDP";
+  skos:altLabel     "User Datagram Protocol"@en .
+
+mknd:lastStatusChangeEpoch
+  rdf:type            owl:DatatypeProperty;
+  rdfs:subPropertyOf  mknd:dateTimeEpoch ;
+  rdfs:label          "last status change"@en .
+  
+
+mknd:SHA256  rdf:type    owl:Class;
+  rdfs:comment     "SHA-256 cryptographic hash value"@en;
+  rdfs:label       "SHA-256 Hash"@en;
+  rdfs:subClassOf  mknd:Hash .
+
+mknd:PublicIPAddress  rdf:type  owl:Class;
+  rdfs:comment      "A public IP address is a globally routable unicast IP address, meaning that the address is not an address reserved for use in private networks, such as those reserved by RFC 1918, or the various IPv6 address formats of local scope or site-local scope, for example for link-local addressing. Public IP addresses may be used for communication between hosts on the global Internet. In a home situation, a public IP address is the IP address assigned to the home's network by the ISP. In this case, it is also locally visible by logging into the router configuration."@en;
+  rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/IP_address#Public_address"^^xsd:anyURI;
+  rdfs:label        "Public IP Address"@en;
+  rdfs:subClassOf   d3f:IPAddress;
+  skos:example      "8.8.8.8" , "4.2.2.1" .
+
+mknd:firstSeen  rdf:type    owl:DatatypeProperty;
+  rdfs:comment        "The first time the enity had been observed by the application."@en;
+  rdfs:label          "first seen"@en;
+  rdfs:subPropertyOf  mknd:timeSeen .
+
+mknd:SSL-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
+  rdfs:label     "SSL Service";
+  skos:altLabel  "HTTPS Service" .
+
+mknd:extRisk  rdf:type      owl:DatatypeProperty;
+  rdfs:comment        "Risk as defined by the 3rd party vendor responsible for creating the Artifact."@en;
+  rdfs:label          "Risk"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:Hash  rdf:type      owl:Class;
+  rdfs:comment     "A hash is a grouping of characteristics unique to the result of applying a mathematical algorithm that maps data of arbitrary size to a bit string (the 'hash') and is a one-way function, that is, a function which is practically infeasible to invert. This is commonly used for integrity checking of data. [based on https://en.wikipedia.org/wiki/Cryptographic_hash_function]"@en;
+  rdfs:label       "Hash"@en;
+  rdfs:subClassOf  mknd:MekaThing , d3f:Identifier;
+  rdfs:subClassOf  [ rdf:type                  owl:Restriction;
+    owl:onDataRange           xsd:hexBinary;
+    owl:onProperty            mknd:value;
+    owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:associated-with;
+    owl:someValuesFrom  mknd:Verdict
+    ] .
+    
+mknd:lastSeenEpoch  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "last seen"@en;
+  rdfs:subPropertyOf  mknd:dateTimeEpoch .
+
+mknd:Report  rdf:type    owl:Class;
+  rdfs:label       "Analysis Report"@en;
+  rdfs:subClassOf  mknd:MekaThing , d3f:Document;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  d3f:DomainName
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  mknd:EmailAddress
+    ];
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  mknd:Verdict;
+    owl:onProperty     d3f:produces
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  d3f:IPAddress
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  d3f:FileHash
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  mknd:Socket
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  d3f:URL
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:analyzes;
+    owl:someValuesFrom  mknd:Hash
+    ];
+  skos:definition  "A document containing the results of an assessment or analysis of an artifact." .
+
+mknd:extThreat  rdf:type    owl:DatatypeProperty;
+  rdfs:comment        "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en;
+  rdfs:label          "Threat Level"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:IncidentStatus-Unknown
+  rdf:type    mknd:IncidentStatus , owl:NamedIndividual;
+  rdfs:label  "Unknown" .
+
+mknd:lastAccessedEpoch
+  rdf:type            owl:DatatypeProperty;
+  rdfs:label          "last accessed"@en;
+  rdfs:subPropertyOf  mknd:dateTimeEpoch .
+
+mknd:ICMP  rdf:type  mknd:CommunicationProtocol , owl:NamedIndividual;
+  rdfs:label  "ICMP" .
+
+mknd:IncidentStatus-Open
+  rdf:type    mknd:IncidentStatus , owl:NamedIndividual;
+  rdfs:label  "Open" .
+
+mknd:id  rdf:type     owl:InverseFunctionalProperty , owl:DatatypeProperty;
+  rdfs:domain         mknd:MekaThing;
+  rdfs:range          xsd:string;
+  rdfs:label          "ID"@en;
+  rdfs:subPropertyOf  d3f:identifier;
+  skos:definition     "Mekanoid ID" .
+
+mknd:Detection  rdf:type  owl:Class;
+  rdfs:label       "Finding";
+  rdfs:subClassOf  d3f:DigitalEvent;
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  mknd:DetectionRule;
+    owl:onProperty     d3f:created-by
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:produces;
+    owl:someValuesFrom  mknd:ActionableItem
+    ];
+  skos:altLabel    "Signal"@en , "Detection"@en , "Alert"@en .
+
+mknd:SHA512  rdf:type    owl:Class;
+  rdfs:label       "SHA-512 Hash"@en;
+  rdfs:subClassOf  mknd:Hash .
+
+mknd:SHA1  rdf:type      owl:Class;
+  rdfs:comment     "SHA-1 cryptographic hash value"@en;
+  rdfs:label       "SHA-1 Hash"@en;
+  rdfs:subClassOf  mknd:Hash .
+
+mknd:IncidentStatus  rdf:type  owl:Class;
+  rdfs:label       "Incident Status";
+  rdfs:subClassOf  mknd:MekaThing;
+  skos:definition  "Normalized status of an Incident" .
+
+mknd:FTP-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
+  rdfs:label  "FTP Service"@en .
+
+mknd:importId  rdf:type     owl:DeprecatedProperty, owl:DatatypeProperty;
+  rdfs:label          "import ID"@en;
+  rdfs:subPropertyOf  d3f:identifier .
+
+mknd:userId  rdf:type     owl:DeprecatedProperty, owl:DatatypeProperty;
+  rdfs:label          "user ID"@en;
+  rdfs:subPropertyOf  d3f:identifier .
+
+mknd:teamId  rdf:type     owl:DeprecatedProperty, owl:DatatypeProperty;
+  rdfs:label          "team ID"@en;
+  rdfs:subPropertyOf  d3f:identifier .
+
+mknd:templateId  rdf:type     owl:DeprecatedProperty, owl:DatatypeProperty;
+  rdfs:label          "template ID"@en;
+  rdfs:subPropertyOf  d3f:identifier .
+
+mknd:Operation  rdf:type  owl:Class;
+  rdfs:label       "Operation"@en;
+  rdfs:subClassOf  mknd:MekaThing;
+  mknd:context     "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+
+mknd:usesNetworkPort  rdf:type  owl:DatatypeProperty;
+  rdfs:comment  "uses network port number";
+  rdfs:label    "uses port";
+  rdfs:range    xsd:positiveInteger .
+
+mknd:Malware  rdf:type       owl:Class;
+  rdfs:label           "Malicious Software";
+  rdfs:subClassOf      mknd:MekaThing , d3f:Software;
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      mknd:mayBeIndicatedBy;
+    owl:someValuesFrom  d3f:IPAddress
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:associated-with;
+    owl:someValuesFrom  d3f:DomainName
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:associated-with;
+    owl:someValuesFrom  d3f:IPAddress
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:identified-by;
+    owl:someValuesFrom  d3f:URL
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:identified-by;
+    owl:someValuesFrom  d3f:FileHash
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      mknd:mayBeIndicatedBy;
+    owl:someValuesFrom  d3f:DomainName
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:identified-by;
+    owl:someValuesFrom  mknd:Hash
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      mknd:mayBeIndicatedBy;
+    owl:someValuesFrom  mknd:FileName
+    ];
+  owl:equivalentClass  [ rdf:type            owl:Class;
+    owl:intersectionOf  ( d3f:Software
+      [ rdf:type            owl:Restriction;
+        owl:onProperty      d3f:has-goal;
+        owl:someValuesFrom  d3f:OffensiveTechnique
+        ]
+      )
+    ];
+  skos:altLabel        "Malware" .
+
+mknd:CommunicationProtocol
+  rdf:type             owl:Class;
+  rdfs:isDefinedBy     "https://en.wikipedia.org/wiki/Communication_protocol";
+  rdfs:subClassOf      mknd:MekaThing;
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkSession
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkService
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkPackets
+    ];
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:ICMP mknd:TCP mknd:UDP )
+    ] .
+
+mknd:lastUpdatedEpoch
+  rdf:type            owl:DatatypeProperty;
+  rdfs:label          "last modified"@en;
+  rdfs:subPropertyOf  mknd:dateTimeEpoch .
+
+mknd:Advisory  rdf:type   owl:Class;
+  rdfs:isDefinedBy  "https://csrc.nist.gov/glossary/term/advisory"^^xsd:anyURI;
+  rdfs:label        "Advisory"@en;
+  rdfs:subClassOf   mknd:MekaThing , d3f:Document;
+  skos:definition   "Notification of significant new trends or developments regarding the threat to the information systems of an organization. This notification may include analytical insights into trends, intentions, technologies, or tactics of an adversary targeting information systems. Rationale: General definition of a commonly understood term."@en .
+
+mknd:HTTP-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
+  rdfs:label  "HTTP Service" .
+
+mknd:importBucketName
+  rdf:type    owl:DatatypeProperty;
+  rdfs:label  "S3 bucket name"@en .
+
+mknd:Incident  rdf:type  owl:Class;
+  rdfs:comment     "A ticket or a case associated with a cybersecurity incident.";
+  rdfs:label       "Incident"@en;
+  rdfs:subClassOf  mknd:ActionableItem;
+  rdfs:subClassOf  [ rdf:type           owl:Restriction;
+    owl:allValuesFrom  mknd:IncidentStatus;
+    owl:onProperty     d3f:records
+    ];
+  skos:altLabel    "Case"@en;
+  mknd:icon        "case.svg" .
+
+mknd:extStatus  rdf:type    owl:DatatypeProperty;
+  rdfs:comment        "Status of the Artifact as defined by the 3rd party vendor software responsible for generating it."@en;
+  rdfs:label          "status"@en;
+  rdfs:subPropertyOf  mknd:vendorProperty .
+
+mknd:MD5  rdf:type       owl:Class;
+  rdfs:comment     "MD5 cryptographic hash value"@en;
+  rdfs:label       "MD5 Hash"@en;
+  rdfs:subClassOf  mknd:Hash .
+
+mknd:IncidentStatus-Closed
+  rdf:type    mknd:IncidentStatus , owl:NamedIndividual;
+  rdfs:label  "Closed" .
+
+mknd:indicates  rdf:type    owl:ObjectProperty;
+  rdfs:label          "indicates"@en;
+  rdfs:subPropertyOf  mknd:mayIndicate .
+
+mknd:ActionableItem  rdf:type  owl:Class;
+  rdfs:comment     "A foundational element for analyst workflows."@en;
+  rdfs:label       "Actionable Item"@en;
+  rdfs:subClassOf  mknd:MekaThing ;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:created-by;
+    owl:someValuesFrom  d3f:ApplicationRule
+    ] .
+
+mknd:extPriority  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:comment        "Priority as defined by the 3rd party vendor responsible for creating the Artifact."@en;
+  rdfs:label          "Priority"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:extCategory  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "category";
+  rdfs:subPropertyOf  mknd:vendorProperty .
+
+mknd:SecurityPolicy  rdf:type  owl:Class;
+  rdfs:label       "Security Policy";
+  rdfs:subClassOf  mknd:Control , d3f:ApplicationRule .
+
+mknd:updated  rdf:type      owl:DatatypeProperty;
+  rdfs:label          "updated at" , "modified at";
+  rdfs:subPropertyOf  mknd:dateTime;
+  skos:altLabel       "modified at" .
+
+mknd:timeSeen  rdf:type     owl:DatatypeProperty;
+  rdfs:comment        "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en;
+  rdfs:label          "seen at"@en;
+  rdfs:subPropertyOf  mknd:dateTime .
+
+mknd:lastSeen  rdf:type     owl:DatatypeProperty;
+  rdfs:comment        "The last time the entity had been observed by the application."@en;
+  rdfs:label          "last seen"@en;
+  rdfs:subPropertyOf  mknd:timeSeen .
+
+mknd:updated-by  rdf:type   owl:ObjectProperty;
+  rdfs:label          "updated by";
+  rdfs:subPropertyOf  d3f:modified-by .
+
+mknd:extType  rdf:type      owl:DatatypeProperty;
+  rdfs:label          "type";
+  rdfs:subPropertyOf  mknd:vendorProperty .
+
+mknd:last_modified  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "last modified";
+  rdfs:subPropertyOf  mknd:updated .
+
+mknd:size  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:domain  d3f:File;
+  rdfs:label   "has size"@en;
+  rdfs:range   xsd:byte .
+
+mknd:mayIndicate  rdf:type  owl:ObjectProperty;
+  rdfs:label  "may indicate"@en .
+
+mknd:timeCreated  rdf:type  owl:DatatypeProperty;
+  rdfs:comment        "Time when the entity had been created at the point of origin."@en;
+  rdfs:label          "created at"@en;
+  rdfs:subPropertyOf  mknd:dateTime .
+
+mknd:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf mknd:dateTimeEpoch ;
+  rdfs:comment "Time when the entity had been created at the point of origin." ;
+  rdfs:label "created at" .
+
+mknd:dateTime  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:domain      mknd:MekaThing;
+  rdfs:label       "has timestamp"@en;
+  rdfs:range       xsd:dateTimeStamp;
+  skos:definition  "A date and time associated with the entity"@en;
+  skos:example     "2002-10-10T12:00:00-05:00" .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:ICMP mknd:TCP mknd:UDP )
+    ] .
+
+mknd:external-id  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "external ID"@en;
+  rdfs:subPropertyOf  mknd:vendorProperty , d3f:identifier;
+  skos:altLabel       "vendor ID";
+  skos:definition     "Mekanoid data property that represents an identifier assigned by an external system or vendor. It is applicable to entities such as hosts and user accounts, providing a unique string-based identifier that aligns with external records or systems. This property facilitates the integration and mapping of internal entities with external references, enhancing cross-system data coherence and identification." .
+
+mknd:DetectionRule  rdf:type  owl:Class;
+  rdfs:label       "Detection Rule"@en;
+  rdfs:subClassOf  d3f:ApplicationRule;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:creates;
+    owl:someValuesFrom  mknd:Detection
+    ] .
+
+mknd:importFileName  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "filename"@en;
+  rdfs:range          xsd:anyURI .
+
+mknd:firstSeenEpoch  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "first seen"@en;
+  rdfs:subPropertyOf  mknd:dateTimeEpoch .
+
+mknd:Sigma  rdf:type     owl:Class;
+  rdfs:label       "Sigma Rule"@en;
+  rdfs:subClassOf  mknd:DetectionRule;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:contained-by;
+    owl:someValuesFrom  d3f:ConfigurationFile
+    ] .
+
+mknd:MachineAction owl:disjointWith d3f:UserAction .
+
+mknd:IPv6  rdf:type      owl:Class;
+  rdfs:label       "IP Address v6"@en;
+  rdfs:subClassOf  d3f:IPAddress .
+
+mknd:Verdict  rdf:type   owl:Class;
+  rdfs:subClassOf  mknd:MekaThing , d3f:Proposition;
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:produced-by;
+    owl:someValuesFrom  d3f:Assessment
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  d3f:URL
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  mknd:Socket
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  mknd:Hash
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  mknd:EmailAddress
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  d3f:IPAddress
+    ];
+  rdfs:subClassOf  [ rdf:type                  owl:Restriction;
+    owl:onClass               mknd:Report;
+    owl:onProperty            d3f:recorded-in;
+    owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  d3f:FileHash
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:evaluates;
+    owl:someValuesFrom  d3f:DomainName
+    ];
+  skos:definition  "A summary of an assessment for an observable or an IoC." .
+
+mknd:SSH-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
+  rdfs:label  "SSH Service"@en .
+
+mknd:TCP  rdf:type  mknd:CommunicationProtocol , owl:NamedIndividual;
+  rdfs:label  "TCP" .
+
+mknd:lastUpdated  rdf:type  owl:DatatypeProperty;
+  rdfs:label          "last updated at";
+  rdfs:subPropertyOf  mknd:updated;
+  skos:altLabel       "last modified at" .
+
+mknd:Yara  rdf:type      owl:Class;
+  rdfs:label       "YARA Rule"@en;
+  rdfs:subClassOf  mknd:DetectionRule .
+
+mknd:PrivateIPAddress
+  rdf:type          owl:Class;
+  rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI;
+  rdfs:label        "Private IP Address"@en;
+  rdfs:subClassOf   d3f:IPAddress;
+  skos:example      "192.168.0.1" , "10.0.0.1" .
+
+[ rdf:type             owl:AllDifferent;
+    owl:distinctMembers  ( mknd:IncidentStatus-Closed mknd:IncidentStatus-Open mknd:IncidentStatus-Unknown )
+    ] .
+
+mknd:mkndObjectProperty
+  rdf:type            owl:ObjectProperty;
+  rdfs:subPropertyOf  mknd:supports .
+
+mknd:Signature  rdf:type  owl:Class;
+  rdfs:label       "Signature"@en;
+  rdfs:subClassOf  mknd:DetectionRule .
+
+mknd:extClassification
+  rdf:type            owl:DatatypeProperty;
+  rdfs:comment        "An external classification that may apply to the artifact. Typically provided by a 3rd party vendor."@en;
+  rdfs:label          "classification"@en;
+  rdfs:subPropertyOf  mknd:vendorProperty .
+
+mknd:hasURL  rdf:type       owl:DatatypeProperty , owl:ObjectProperty;
+  rdfs:domain         mknd:Report , d3f:File;
+  rdfs:label          "has URL"@en;
+  rdfs:subPropertyOf  d3f:identifier .
+
+mknd:NPMPackage  rdf:type  owl:Class;
+  rdfs:label       "NPM Package";
+  rdfs:subClassOf  mknd:MekaThing , d3f:SoftwarePackage .
+
+mknd:MekaThing  rdf:type  owl:Class;
+  rdfs:label       "Mekanoid Thing"@en;
+  rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+    owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger;
+    owl:onDataRange              xsd:dateTimeStamp;
+    owl:onProperty               mknd:timeCreated
+    ];
+  rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+    owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger;
+    owl:onDataRange              xsd:dateTimeStamp;
+    owl:onProperty               mknd:lastSeen
+    ];
+  rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+    owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger;
+    owl:onDataRange              xsd:long;
+    owl:onProperty               mknd:firstSeenEpoch
+    ];
+  rdfs:subClassOf  [ rdf:type                     owl:Restriction;
+    owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger;
+    owl:onDataRange              xsd:dateTimeStamp;
+    owl:onProperty               mknd:firstSeen
+    ];
+  rdfs:subClassOf  [ rdf:type            owl:Restriction;
+    owl:onProperty      mknd:timeSeen;
+    owl:someValuesFrom  xsd:dateTimeStamp
+    ];
+  skos:altLabel    "Mekanoid Ontology Item";
+  mknd:icon        "mekanoid.svg"^^xsd:anyURI .
+
+mknd:ASN  rdf:type       owl:Class;
+  rdfs:comment     "Autonomous System Number"@en;
+  rdfs:label       "ASN"@en;
+  rdfs:subClassOf  mknd:MekaThing , d3f:Identifier;
+  rdfs:subClassOf  [ rdf:type                  owl:Restriction;
+    owl:onDataRange           xsd:string;
+    owl:onProperty            mknd:value;
+    owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+    ] .
+
+mknd:MachineAction  rdf:type  owl:Class;
+  rdfs:label       "Machine Action";
+  rdfs:subClassOf  mknd:MekaThing , d3f:DigitalEvent;
+  skos:definition  "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
+
+mknd:importBucketUrl  rdf:type  owl:DatatypeProperty , owl:FunctionalProperty , owl:ObjectProperty;
+  rdfs:label          "S3 bucket URL"@en;
+  rdfs:range          xsd:anyURI;
+  rdfs:subPropertyOf  mknd:hasURL .
+
+mknd:DNS-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
+  rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/Domain_Name_System";
+  rdfs:label        "DNS Service"@en .
+
+mknd:http_server  rdf:type  d3f:WebServerApplication , d3f:SoftwareProduct , owl:NamedIndividual;
+  rdfs:label  "HTTP server application"@en .
+
+mknd:UseCaseGoal-Upload
+  rdf:type    d3f:UseCaseGoal , owl:NamedIndividual;
+  rdfs:label  "Upload" .
+  
+mknd:SystemObject  rdf:type  owl:Class;
+  rdfs:label       "Mekanoid Object";
+  rdfs:subClassOf  mknd:MekaThing;
+  skos:definition  "A foundational class in the Mekanoid ontology representing the core system objects. It serves as a superclass for various entities including integrations, app users, task patterns, templates, connections, task runs, tenants, task run logs, data templates, and tasks. This class is integral to organizing and defining the structure and relationships of system objects within the Mekanoid framework." .
+  
+mknd:IPv4  rdf:type      owl:Class;
+  rdfs:label       "IP Address v4"@en;
+  rdfs:subClassOf  d3f:IPAddress .
+
+mknd:extUrgency  rdf:type   owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:comment        "Urgency as defined by the 3rd party vendor responsible for generating the Artifact."@en;
+  rdfs:label          "Urgency"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:Ticket  rdf:type    owl:Class;
+  rdfs:label       "Ticket"@en;
+  rdfs:subClassOf  mknd:ActionableItem;
+  skos:altLabel    "Task"@en , "Issue"@en .
+
+mknd:NetworkServiceProtocol
+  rdf:type          owl:Class;
+  rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/Application_layer#Protocols";
+  rdfs:label        "Network Service";
+  rdfs:subClassOf   mknd:MekaThing .
+
+mknd:extSeverity  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
+  rdfs:comment        "Severity as defined by the 3rd party vendor responsible for creating the Artifact."@en;
+  rdfs:label          "Severity"@en;
+  rdfs:subPropertyOf  mknd:extClassification .
+
+mknd:vendorProperty rdf:type owl:DatatypeProperty ;
+  rdfs:label "vendor property" .
+
+mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:range xsd:long ;
+               rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
+               rdfs:label "has epoch"@en ;
+               skos:definition "A Unix epoch timestamp associated with the entity"@en ;
+               skos:example "990577200"^^xsd:long .
+
+mknd:Control rdf:type owl:Class ;
+  rdfs:subClassOf mknd:MekaThing .
+
+mknd:cpe  rdf:type          owl:DatatypeProperty;
+  rdfs:label          "CPE";
+  rdfs:range          <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf  d3f:identifier;
+  skos:example        "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" .
