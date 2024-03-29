@@ -1,3 +1,5 @@
+# version 2024-03-29
+
 @prefix : <https://mekanoid.io/ontology/cvss/> .
 @prefix d3f:  <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
 @prefix mknd: <https://mekanoid.io/ontology/> .
@@ -6,6 +8,150 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+###  https://mekanoid.io/ontology/CriticalVulnerability
+:CriticalVulnerability rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability>
+                                                                  [ rdf:type owl:Class ;
+                                                                    owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :cvssBaseScore ;
+                                                                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                owl:onDatatype xsd:decimal ;
+                                                                                                                                owl:withRestrictions ( [ xsd:minInclusive 9.0
+                                                                                                                                                       ]
+                                                                                                                                                     )
+                                                                                                                              ]
+                                                                                                         ]
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :cvssBaseScore ;
+                                                                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                owl:onDatatype xsd:decimal ;
+                                                                                                                                owl:withRestrictions ( [ xsd:maxInclusive 10.0
+                                                                                                                                                       ]
+                                                                                                                                                     )
+                                                                                                                              ]
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ]
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty :severityRating ;
+                                                                                    owl:hasValue :CVSS-SeverityType-Critical
+                                                                                  ]
+                                                                                )
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> .
+
+
+###  https://mekanoid.io/ontology/HighVulnerability
+:HighVulnerability rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability>
+                                                              [ rdf:type owl:Class ;
+                                                                owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty :cvssBaseScore ;
+                                                                                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                            owl:onDatatype xsd:decimal ;
+                                                                                                                            owl:withRestrictions ( [ xsd:minInclusive 7.0
+                                                                                                                                                   ]
+                                                                                                                                                 )
+                                                                                                                          ]
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty :cvssBaseScore ;
+                                                                                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                            owl:onDatatype xsd:decimal ;
+                                                                                                                            owl:withRestrictions ( [ xsd:maxExclusive 9.0
+                                                                                                                                                   ]
+                                                                                                                                                 )
+                                                                                                                          ]
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :severityRating ;
+                                                                                owl:hasValue :CVSS-AvailabilityImpact-High
+                                                                              ]
+                                                                            )
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] ;
+                   rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> .
+
+
+
+###  https://mekanoid.io/ontology/cpe
+:cpe rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> ;
+     rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Software> ;
+     rdfs:range xsd:string .
+
+
+###  https://mekanoid.io/ontology/cvssBaseScore
+:cvssBaseScore rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> ;
+               rdfs:range xsd:decimal .
+
+
+###  https://mekanoid.io/ontology/cvssExploitabilityScore
+:cvssExploitabilityScore rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdf:type owl:FunctionalProperty ;
+                         rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> ;
+                         rdfs:range xsd:decimal .
+
+
+###  https://mekanoid.io/ontology/cvssImpactScore
+:cvssImpactScore rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> ;
+                 rdfs:range xsd:decimal .
+
+###  https://mekanoid.io/ontology/attackComplexity
+:attackComplexity rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasCVSSMetric ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:range :CVSS-AttackComplexity .
+
+
+###  https://mekanoid.io/ontology/attackVector
+:attackVector rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasCVSSMetric ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:range :CVSS-AttackVector .
+
+
+###  https://mekanoid.io/ontology/availabilityImpact
+:availabilityImpact rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCVSSMetric ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:range :CVSS-AvailabilityImpact .
+
+
+###  https://mekanoid.io/ontology/confidentialityImpact
+:confidentialityImpact rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasCVSSMetric ;
+                       rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/exploitCodeMaturity
+:exploitCodeMaturity rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :hasCVSSMetric ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:range :CVSS-ExploitCodeMaturity .
+
+
+###  https://mekanoid.io/ontology/hasCVSSMetric
+:hasCVSSMetric rdf:type owl:ObjectProperty ;
+               rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> .
+
 
 mknd:CVSS-ExploitCodeMaturity-NotDefined
   rdf:type         owl:NamedIndividual , mknd:CVSS-ExploitCodeMaturity;
@@ -799,3 +945,210 @@ mknd:vectorString  rdf:type  owl:FunctionalProperty , owl:DatatypeProperty;
   rdfs:label          "vector";
   rdfs:range          xsd:string;
   rdfs:subPropertyOf  owl:topDataProperty .
+
+###  https://mekanoid.io/ontology/CVSS-AttackComplexity
+:CVSS-AttackComplexity rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :CVSS-AttackComplexity-High
+                                                         :CVSS-AttackComplexity-Low
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-AttackVector
+:CVSS-AttackVector rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( :CVSS-AttackVector-Adjacent
+                                                     :CVSS-AttackVector-Local
+                                                     :CVSS-AttackVector-Network
+                                                     :CVSS-AttackVector-Physical
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-AvailabilityImpact
+:CVSS-AvailabilityImpact rdf:type owl:Class ;
+                         owl:equivalentClass [ rdf:type owl:Class ;
+                                               owl:oneOf ( :CVSS-AvailabilityImpact-High
+                                                           :CVSS-AvailabilityImpact-Low
+                                                           :CVSS-AvailabilityImpact-None
+                                                         )
+                                             ] ;
+                         rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-ConfidentialityImpact
+:CVSS-ConfidentialityImpact rdf:type owl:Class ;
+                            owl:equivalentClass [ rdf:type owl:Class ;
+                                                  owl:oneOf ( :CVSS-ConfidentialityImpact-High
+                                                              :CVSS-ConfidentialityImpact-Low
+                                                              :CVSS-ConfidentialityImpact-None
+                                                            )
+                                                ] ;
+                            rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-ExploitCodeMaturity
+:CVSS-ExploitCodeMaturity rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:oneOf ( :CVSS-ExploitCodeMaturity-Functional
+                                                            :CVSS-ExploitCodeMaturity-High
+                                                            :CVSS-ExploitCodeMaturity-NotDefined
+                                                            :CVSS-ExploitCodeMaturity-ProofOfConcept
+                                                            :CVSS-ExploitCodeMaturity-Unproven
+                                                          )
+                                              ] ;
+                          rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-IntegrityImpact
+:CVSS-IntegrityImpact rdf:type owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Class ;
+                                            owl:oneOf ( :CVSS-IntegrityImpact-High
+                                                        :CVSS-IntegrityImpact-Low
+                                                        :CVSS-IntegrityImpact-None
+                                                      )
+                                          ] ;
+                      rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-PrivilegesRequired
+:CVSS-PrivilegesRequired rdf:type owl:Class ;
+                         owl:equivalentClass [ rdf:type owl:Class ;
+                                               owl:oneOf ( :CVSS-PrivilegesRequired-High
+                                                           :CVSS-PrivilegesRequired-Low
+                                                           :CVSS-PrivilegesRequired-None
+                                                         )
+                                             ] ;
+                         rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-RemediationLevel
+:CVSS-RemediationLevel rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :CVSS-RemediationLevel-NotDefined
+                                                         :CVSS-RemediationLevel-OfficialFix
+                                                         :CVSS-RemediationLevel-TemporaryFix
+                                                         :CVSS-RemediationLevel-Unavailable
+                                                         :CVSS-RemediationLevel-Workaround
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-ReportConfidence
+:CVSS-ReportConfidence rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :CVSS-ReportConfidence-Confirmed
+                                                         :CVSS-ReportConfidence-NotDefined
+                                                         :CVSS-ReportConfidence-Reasonable
+                                                         :CVSS-ReportConfidence-Unknown
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-Scope
+:CVSS-Scope rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:oneOf ( :CVSS-Scope-Changed
+                                              :CVSS-Scope-Unchanged
+                                            )
+                                ] ;
+            rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-SecurityRequirement
+:CVSS-SecurityRequirement rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:oneOf ( :CVSS-SecurityRequirement-High
+                                                            :CVSS-SecurityRequirement-Low
+                                                            :CVSS-SecurityRequirement-Medium
+                                                            :CVSS-SecurityRequirement-NotDefined
+                                                          )
+                                              ] ;
+                          rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-SeverityType
+:CVSS-SeverityType rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( :CVSS-SeverityType-Critical
+                                                     :CVSS-SeverityType-High
+                                                     :CVSS-SeverityType-Low
+                                                     :CVSS-SeverityType-Medium
+                                                     :CVSS-SeverityType-None
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf :CVSS .
+
+
+###  https://mekanoid.io/ontology/CVSS-UserInteraction
+:CVSS-UserInteraction rdf:type owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Class ;
+                                            owl:oneOf ( :CVSS-UserInteraction-None
+                                                        :CVSS-UserInteraction-Required
+                                                      )
+                                          ] ;
+                      rdfs:subClassOf :CVSS .
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability
+<http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> rdf:type owl:Class ;
+                                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :attackComplexity ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-AttackComplexity
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :attackVector ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-AttackVector
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :availabilityImpact ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-AvailabilityImpact
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :confidentialityImpact ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-ConfidentialityImpact
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :exploitCodeMaturity ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-ExploitCodeMaturity
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :integrityImpact ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-IntegrityImpact
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :privilegesRequired ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-PrivilegesRequired
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :remediationLevel ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-RemediationLevel
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :scope ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-Scope
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :severityRating ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-SeverityType
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :userInteraction ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :CVSS-UserInteraction
+                                                                              ] .

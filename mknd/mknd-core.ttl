@@ -12,7 +12,329 @@
 <https://mekanoid.io/ontology/> rdf:type owl:Ontology ;
   owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ;
   dcterms:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
-  dcterms:title "Mekanoid Ontology (MKND)" .  
+  dcterms:title "Mekanoid Ontology (MKND)" ;
+  owl:versionIRI <https://mekanoid.io/ontology/0.3.3/> ;
+  owl:imports <http://d3fend.mitre.org/ontologies/d3fend.owl> ,
+    "./mknd-cvss.ttl" ,
+    "./mknd-observable.ttl" ;
+  dct:modified "2024-03-29"^^xsd:date ;
+  owl:versionInfo "0.3.3" .
+
+
+###  https://mekanoid.io/ontology/extCategory
+:extCategory rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :vendorProperty .
+
+
+###  https://mekanoid.io/ontology/extClassification
+:extClassification rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :vendorProperty .
+
+
+###  https://mekanoid.io/ontology/extPriority
+:extPriority rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :extClassification ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/extRisk
+:extRisk rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :extClassification .
+
+
+###  https://mekanoid.io/ontology/extSeverity
+:extSeverity rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :extClassification ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/extStatus
+:extStatus rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :vendorProperty .
+
+
+###  https://mekanoid.io/ontology/extThreat
+:extThreat rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :extClassification .
+
+
+###  https://mekanoid.io/ontology/extType
+:extType rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :vendorProperty .
+
+
+###  https://mekanoid.io/ontology/extUrgency
+:extUrgency rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :extClassification ;
+            rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/external-id
+:external-id rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> ,
+                                :vendorProperty .
+
+
+###  https://mekanoid.io/ontology/firstSeen
+:firstSeen rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :dateTime ,
+                              :timeSeen ;
+           rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/firstSeenEpoch
+:firstSeenEpoch rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :dateTimeEpoch ;
+                rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/hasURL
+:hasURL rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :reference .
+
+
+###  https://mekanoid.io/ontology/id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+
+
+###  https://mekanoid.io/ontology/importBucketUrl
+:importBucketUrl rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :hasURL ;
+                 rdfs:range xsd:anyURI .
+
+
+###  https://mekanoid.io/ontology/importFileName
+:importFileName rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:range xsd:anyURI .
+
+
+###  https://mekanoid.io/ontology/importId
+:importId rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+
+
+###  https://mekanoid.io/ontology/lastAccessedEpoch
+:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :dateTimeEpoch ;
+                   rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/lastSeen
+:lastSeen rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dateTime ,
+                             :timeSeen ;
+          rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/lastSeenEpoch
+:lastSeenEpoch rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :dateTimeEpoch ;
+               rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/lastStatusChangeEpoch
+:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :dateTimeEpoch ;
+                       rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/lastUpdated
+:lastUpdated rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :updated ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/lastUpdatedEpoch
+:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :dateTimeEpoch ;
+                  rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/last_modified
+:last_modified rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :updated ;
+               rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/size
+:size rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
+      rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#File> ;
+      rdfs:range xsd:byte .
+
+
+###  https://mekanoid.io/ontology/stringValue
+:stringValue rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Observable ;
+             rdfs:range xsd:string .
+
+
+###  https://mekanoid.io/ontology/dateTime
+:dateTime rdf:type owl:DatatypeProperty ;
+          owl:equivalentProperty :timeSeen ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :MekaThing ;
+          rdfs:range xsd:dateTimeStamp .
+
+
+###  https://mekanoid.io/ontology/dateTimeEpoch
+:dateTimeEpoch rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:range xsd:long .
+
+
+
+###  https://mekanoid.io/ontology/hasURL
+:hasURL rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :reference ;
+        rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#File> ,
+                    :Report .
+
+
+###  https://mekanoid.io/ontology/importBucketUrl
+:importBucketUrl rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasURL .
+
+
+###  https://mekanoid.io/ontology/indicatedBy
+:indicatedBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :mayBeIndicatedBy ,
+                                [ owl:inverseOf :mayIndicate
+                                ] ;
+             owl:inverseOf :indicates .
+
+
+###  https://mekanoid.io/ontology/indicates
+:indicates rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :mayIndicate ,
+                              [ owl:inverseOf :mayBeIndicatedBy
+                              ] .
+
+
+###  https://mekanoid.io/ontology/integrityImpact
+:integrityImpact rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasCVSSMetric ;
+                 rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/mayBeIndicatedBy
+:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :mayIndicate .
+
+
+###  https://mekanoid.io/ontology/mayIndicate
+:mayIndicate rdf:type owl:ObjectProperty .
+
+
+###  https://mekanoid.io/ontology/privilegesRequired
+:privilegesRequired rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCVSSMetric ;
+                    rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/reference
+:reference rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  https://mekanoid.io/ontology/remediationLevel
+:remediationLevel rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasCVSSMetric ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:range :CVSS-RemediationLevel .
+
+
+###  https://mekanoid.io/ontology/reportConfidence
+:reportConfidence rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasCVSSMetric ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:range :CVSS-ReportConfidence .
+
+
+###  https://mekanoid.io/ontology/scope
+:scope rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :hasCVSSMetric ;
+       rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/severityRating
+:severityRating rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasCVSSMetric ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:range :CVSS-SeverityType .
+
+
+###  https://mekanoid.io/ontology/updated-by
+:updated-by rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#modified-by> .
+
+
+###  https://mekanoid.io/ontology/userInteraction
+:userInteraction rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :hasCVSSMetric ;
+                 rdf:type owl:FunctionalProperty .
+
+
+
+###  https://mekanoid.io/ontology/timeCreated
+:timeCreated rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dateTime ,
+                                :timeSeen ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/timeCreatedEpoch
+:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :dateTimeEpoch ;
+                  rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/timeSeen
+:timeSeen rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dateTime ;
+          rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/updated
+:updated rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :dateTime ,
+                            :timeSeen ;
+         rdf:type owl:FunctionalProperty .
+
+
+###  https://mekanoid.io/ontology/userId
+:userId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+
+
+###  https://mekanoid.io/ontology/usesNetworkPort
+:usesNetworkPort rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:positiveInteger .
+
+
+###  https://mekanoid.io/ontology/value
+:value rdf:type owl:DatatypeProperty .
+
+
+###  https://mekanoid.io/ontology/vectorString
+:vectorString rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain <http://d3fend.mitre.org/ontologies/d3fend.owl#Vulnerability> ;
+              rdfs:range xsd:string .
+
+
+###  https://mekanoid.io/ontology/vendorProperty
+:vendorProperty rdf:type owl:DatatypeProperty .
+
+
+###  https://mekanoid.io/ontology/version
+:version rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:range xsd:decimal .
 
 mknd:Task  rdf:type      owl:Class;
   skos:definition  "A task is a single unit of work that enables the automation of defensive techniques."@en;
@@ -380,25 +702,7 @@ mknd:Malware  rdf:type       owl:Class;
     ];
   skos:altLabel        "Malware" .
 
-mknd:CommunicationProtocol
-  rdf:type             owl:Class;
-  rdfs:isDefinedBy     "https://en.wikipedia.org/wiki/Communication_protocol";
-  rdfs:subClassOf      mknd:MekaThing;
-  rdfs:subClassOf      [ rdf:type            owl:Restriction;
-    owl:onProperty      d3f:used-by;
-    owl:someValuesFrom  d3f:NetworkSession
-    ];
-  rdfs:subClassOf      [ rdf:type            owl:Restriction;
-    owl:onProperty      d3f:used-by;
-    owl:someValuesFrom  d3f:NetworkService
-    ];
-  rdfs:subClassOf      [ rdf:type            owl:Restriction;
-    owl:onProperty      d3f:used-by;
-    owl:someValuesFrom  d3f:NetworkPackets
-    ];
-  owl:equivalentClass  [ rdf:type   owl:Class;
-    owl:oneOf  ( mknd:ICMP mknd:TCP mknd:UDP )
-    ] .
+
 
 mknd:lastUpdatedEpoch
   rdf:type            owl:DatatypeProperty;
@@ -704,6 +1008,49 @@ mknd:DNS-Service  rdf:type  mknd:NetworkServiceProtocol , owl:NamedIndividual;
   rdfs:isDefinedBy  "https://en.wikipedia.org/wiki/Domain_Name_System";
   rdfs:label        "DNS Service"@en .
 
+
+###  https://mekanoid.io/ontology/CommunicationProtocol
+:CommunicationProtocol rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :ICMP
+                                                         :TCP
+                                                         :UDP
+                                                       )
+                                           ] ;
+                       rdfs:subClassOf :MekaThing ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> ;
+                                         owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkPackets>
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> ;
+                                         owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkService>
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> ;
+                                         owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#NetworkSession>
+                                       ] .
+
+mknd:CommunicationProtocol
+  rdf:type             owl:Class;
+  rdfs:isDefinedBy     "https://en.wikipedia.org/wiki/Communication_protocol";
+  rdfs:subClassOf      mknd:MekaThing ;
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkSession
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkService
+    ];
+  rdfs:subClassOf      [ rdf:type            owl:Restriction;
+    owl:onProperty      d3f:used-by;
+    owl:someValuesFrom  d3f:NetworkPackets
+    ];
+  owl:equivalentClass  [ rdf:type   owl:Class;
+    owl:oneOf  ( mknd:ICMP mknd:TCP mknd:UDP )
+    ] .
+
 mknd:http_server  rdf:type  d3f:WebServerApplication , d3f:SoftwareProduct , owl:NamedIndividual;
   rdfs:label  "HTTP server application"@en .
 
@@ -760,3 +1107,160 @@ mknd:cpe  rdf:type          owl:DatatypeProperty;
   rdfs:range          <http://www.w3.org/2001/XMLSchema#string>;
   rdfs:subPropertyOf  d3f:identifier;
   skos:example        "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule
+<http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule> rdf:type owl:Class ;
+                                                                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#creates> ;
+                                                                                  owl:someValuesFrom :ActionableItem
+                                                                                ] .
+
+
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress
+<http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> rdf:type owl:Class ;
+                                                          rdfs:subClassOf :CommunicationProtocol ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> ;
+                                                                            owl:someValuesFrom :Socket
+                                                                          ] .
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
+<http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount> rdf:type owl:Class ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#uses> ;
+                                                                              owl:someValuesFrom :Username
+                                                                            ] .
+
+###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction
+<http://d3fend.mitre.org/ontologies/d3fend.owl#UserAction> rdf:type owl:Class ;
+                                                           owl:disjointWith :MachineAction .
+
+
+
+###  https://mekanoid.io/ontology/Control
+:Control rdf:type owl:Class ;
+         rdfs:subClassOf :MekaThing .                                                          
+
+###  https://mekanoid.io/ontology/ASN
+:ASN rdf:type owl:Class ;
+     rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ,
+                     :MekaThing ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :value ;
+                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                       owl:onDataRange xsd:string
+                     ] .
+
+
+
+###  https://mekanoid.io/ontology/ActionableItem
+:ActionableItem rdf:type owl:Class ;
+                rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Record> ,
+                                :MekaThing ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#created-by> ;
+                                  owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule>
+                                ] .
+
+
+###  https://mekanoid.io/ontology/Advisory
+:Advisory rdf:type owl:Class ;
+          rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Document> ,
+                          :MekaThing .
+
+
+
+###  https://mekanoid.io/ontology/Detection
+:Detection rdf:type owl:Class ;
+           rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#DigitalEvent> ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#produces> ;
+                             owl:someValuesFrom :ActionableItem
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#created-by> ;
+                             owl:allValuesFrom :DetectionRule
+                           ] .
+
+
+###  https://mekanoid.io/ontology/DetectionRule
+:DetectionRule rdf:type owl:Class ;
+               rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#ApplicationRule> ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#creates> ;
+                                 owl:someValuesFrom :Detection
+                               ] .
+
+
+###  https://mekanoid.io/ontology/EmailAddress
+:EmailAddress rdf:type owl:Class ;
+              rdfs:subClassOf :Observable .
+
+
+###  https://mekanoid.io/ontology/EmailSenderString
+:EmailSenderString rdf:type owl:Class ;
+                   rdfs:subClassOf :Observable .
+
+
+###  https://mekanoid.io/ontology/EmailSubjectString
+:EmailSubjectString rdf:type owl:Class ;
+                    rdfs:subClassOf :Observable .
+
+
+###  https://mekanoid.io/ontology/FileName
+:FileName rdf:type owl:Class ;
+          rdfs:subClassOf :Observable ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#used-by> ;
+                            owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#File>
+                          ] .
+
+
+###  https://mekanoid.io/ontology/Filter
+:Filter rdf:type owl:Class ;
+        rdfs:subClassOf :SystemObject .
+
+
+###  https://mekanoid.io/ontology/Hash
+:Hash rdf:type owl:Class ;
+      rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#Identifier> ,
+                      :MekaThing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#associated-with> ;
+                        owl:someValuesFrom :Verdict
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :value ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:hexBinary
+                      ] .
+
+###  https://mekanoid.io/ontology/IOCRule
+:IOCRule rdf:type owl:Class ;
+         rdfs:subClassOf :DetectionRule .
+
+
+###  https://mekanoid.io/ontology/IPv4
+:IPv4 rdf:type owl:Class ;
+      rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> .
+
+
+###  https://mekanoid.io/ontology/IPv6
+:IPv6 rdf:type owl:Class ;
+      rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#IPAddress> .
+
+
+###  https://mekanoid.io/ontology/Incident
+:Incident rdf:type owl:Class ;
+          rdfs:subClassOf :ActionableItem .
+
+
+###  https://mekanoid.io/ontology/IncidentStatus
+:IncidentStatus rdf:type owl:Class ;
+                rdfs:subClassOf :MekaThing .
+
+
+
+###  https://mekanoid.io/ontology/ApplicationUserAccount
+:ApplicationUserAccount rdf:type owl:Class ;
+                        rdfs:subClassOf <http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount> .

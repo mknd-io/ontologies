@@ -14,6 +14,70 @@
   dcterms:creator "Mekanoid Corporation" ;
   dcterms:title "Mekanoid Application" .
 
+
+
+###  https://mekanoid.io/ontology/AppUser
+:AppUser rdf:type owl:Class ;
+         rdfs:subClassOf :ApplicationUserAccount ,
+                         :SystemObject ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#accessed-by> ;
+                           owl:someValuesFrom <http://d3fend.mitre.org/ontologies/d3fend.owl#User>
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#accesses> ;
+                           owl:someValuesFrom :Tenant
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#creates> ;
+                           owl:someValuesFrom :TaskPattern
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#executes> ;
+                           owl:someValuesFrom :ManualTaskRun
+                         ] .
+
+
+###  https://mekanoid.io/ontology/AutomatedTaskRun
+:AutomatedTaskRun rdf:type owl:Class ;
+                  rdfs:subClassOf :MachineAction ,
+                                  :TaskRun ,
+                                  :SystemObject ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#invoked-by> ;
+                                    owl:allValuesFrom :TaskPattern
+                                  ] .
+
+
+
+###  https://mekanoid.io/ontology/Connection
+:Connection rdf:type owl:Class ;
+            rdfs:subClassOf :SystemObject ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#enables> ;
+                              owl:someValuesFrom :Task
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty <http://d3fend.mitre.org/ontologies/d3fend.owl#enables> ;
+                              owl:allValuesFrom :Integration
+                            ] .
+
+
+
+###  https://mekanoid.io/ontology/DataTemplate
+:DataTemplate rdf:type owl:Class ;
+              rdfs:subClassOf :SystemObject .
+
+###  https://mekanoid.io/ontology/teamId
+:teamId rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+
+
+###  https://mekanoid.io/ontology/templateId
+:templateId rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <http://d3fend.mitre.org/ontologies/d3fend.owl#identifier> .
+
+
 mknd-app:Tenant  rdf:type    owl:Class ;
   rdfs:label       "Tenant";
   rdfs:comment     "A Mekanoid tenant is a private instance of the Mekanoid application, with its own data and users. It is a logical grouping of users and their data, and is the primary unit of multi-tenancy in Mekanoid.";
