@@ -1,0 +1,275 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mknd: <https://w3id.org/mknd/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+d3f:ApplicationRule rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:creates ;
+            owl:someValuesFrom mknd:ActionableItem ] .
+
+d3f:Artifact mknd:icon "class.svg" .
+
+d3f:BinaryLargeObject mknd:icon "binary.svg" .
+
+d3f:BinarySegment mknd:icon "binary.svg" .
+
+d3f:ClientComputer mknd:icon "screen.svg" .
+
+d3f:Command rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:has-goal ;
+            owl:someValuesFrom d3f:UseCaseGoal ] .
+
+d3f:DNSLookup mknd:icon "dns.svg" .
+
+d3f:DNSRecord mknd:icon "dns.svg" .
+
+d3f:Database mknd:icon "database.svg" .
+
+d3f:DigitalObject mknd:icon "cube.svg" .
+
+d3f:Directory mknd:icon "folder.svg" .
+
+d3f:DocumentFile mknd:icon "doc.svg" .
+
+d3f:DomainName mknd:icon "domain.svg" .
+
+d3f:Email skos:altLabel "Email Message"@en ;
+    mknd:icon "email-message.svg" .
+
+d3f:ExecutableFile mknd:icon "code-file.svg" .
+
+d3f:File mknd:icon "file.svg" .
+
+d3f:FileHash mknd:icon "file-hash.svg" .
+
+d3f:HardwareDevice mknd:icon "device.svg"^^xsd:anyURI .
+
+d3f:Host mknd:icon "computer.svg" .
+
+d3f:Identifier mknd:icon "text.svg" .
+
+d3f:IntrusionDetectionSystem mknd:icon "broken.svg" .
+
+d3f:Link mknd:icon "url.svg" .
+
+d3f:Log rdfs:subClassOf d3f:Record ;
+    mknd:icon "log.svg"^^xsd:anyURI .
+
+d3f:LogFile mknd:icon "doc.svg" .
+
+d3f:Network mknd:icon "network.svg" .
+
+d3f:NetworkNode mknd:icon "network.svg" .
+
+d3f:NetworkTraffic mknd:icon "network.svg" .
+
+d3f:NetworkTrafficAnalysisSoftware rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:implements ;
+            owl:someValuesFrom d3f:NetworkTrafficAnalysis ] .
+
+d3f:OperatingSystem mknd:icon "os.svg"^^xsd:anyURI .
+
+d3f:Procedure rdfs:label "Procedure"@en ;
+    mknd:icon "procedure.svg" .
+
+d3f:Process mknd:icon "process.svg" .
+
+d3f:Sensor mknd:icon "broken.svg" .
+
+d3f:Server mknd:icon "server.svg" .
+
+d3f:SoftwareService mknd:icon "software.svg" .
+
+d3f:Technique mknd:icon "technique.svg" .
+
+d3f:URL mknd:icon "url.svg" .
+
+d3f:User mknd:icon "employee.svg"^^xsd:anyURI .
+
+d3f:UserAccount rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:identified-by ;
+            owl:someValuesFrom mknd:Username ] ;
+    mknd:icon "user-account.svg" .
+
+d3f:UserAction owl:disjointWith mknd:MachineAction .
+
+d3f:accessed-by rdfs:label "accessed by"@en .
+
+d3f:analyzes owl:inverseOf mknd:analyzed-by .
+
+d3f:identifier rdfs:subPropertyOf owl:topDataProperty .
+
+d3f:may-be-associated-with a owl:SymmetricProperty .
+
+d3f:recorded-in owl:inverseOf d3f:records .
+
+d3f:stage skos:definition "Represents a distinct phase in the lifecycle of cybersecurity operations or activities. It is a conceptual categorization used to classify and organize various processes, techniques, tools, or actions according to their role or function in the broader context of cybersecurity defense strategies. Each stage reflects a specific aspect or phase of cybersecurity practice, such as detection, prevention, response, recovery, or analysis, providing a structured framework for understanding and implementing effective cybersecurity measures." .
+
+d3f:updates owl:inverseOf mknd:updated-by .
+
+<https://w3id.org/mknd/alignment/d3fend> a owl:Ontology ;
+    dcterms:creator <https://orcid.org/0000-0001-7399-6740> ;
+    dcterms:description "Every MKND statement about a MITRE D3FEND term: subclass links, restrictions and inverses on D3FEND classes and properties, and icon annotations. Imports a pinned D3FEND release; upgrading D3FEND touches this module only. No terms are minted in the D3FEND namespace."@en ;
+    dcterms:license <https://opensource.org/license/mit> ;
+    dcterms:modified "2026-10-29"^^xsd:date ;
+    dcterms:publisher <https://mekanoid.io> ;
+    dcterms:title "MKND alignment to MITRE D3FEND"@en ;
+    owl:imports <http://d3fend.mitre.org/ontologies/d3fend/0.14.0/d3fend.owl> ;
+    owl:versionIRI <https://w3id.org/mknd/alignment/d3fend/0.4.0> ;
+    owl:versionInfo "0.4.0" .
+
+mknd:context a owl:AnnotationProperty .
+
+mknd:icon a owl:AnnotationProperty .
+
+d3f:ExecutableBinary rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:enables ;
+            owl:someValuesFrom d3f:Subroutine ] .
+
+d3f:IPAddress rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:used-by ;
+            owl:someValuesFrom mknd:Socket ] ;
+    mknd:icon "ip.svg" .
+
+d3f:Record mknd:icon "file.svg"^^xsd:anyURI .
+
+d3f:Software rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:may-contain ;
+            owl:someValuesFrom d3f:Vulnerability ] ;
+    mknd:icon "software.svg" .
+
+d3f:Subroutine rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:invoked-by ;
+            owl:someValuesFrom d3f:ExecutableBinary ],
+        [ a owl:Restriction ;
+            owl:onProperty d3f:uses ;
+            owl:someValuesFrom d3f:IPAddress ],
+        mknd:MekaThing ;
+    skos:altLabel "Function"@en ;
+    mknd:context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
+
+d3f:Vulnerability rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty d3f:may-be-contained-by ;
+            owl:someValuesFrom d3f:Software ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-AttackComplexity ;
+            owl:onProperty mknd:attackComplexity ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-AttackVector ;
+            owl:onProperty mknd:attackVector ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-AvailabilityImpact ;
+            owl:onProperty mknd:availabilityImpact ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-ConfidentialityImpact ;
+            owl:onProperty mknd:confidentialityImpact ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-ExploitCodeMaturity ;
+            owl:onProperty mknd:exploitCodeMaturity ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-IntegrityImpact ;
+            owl:onProperty mknd:integrityImpact ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-PrivilegesRequired ;
+            owl:onProperty mknd:privilegesRequired ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-RemediationLevel ;
+            owl:onProperty mknd:remediationLevel ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-Scope ;
+            owl:onProperty mknd:scope ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-SeverityType ;
+            owl:onProperty mknd:severityRating ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onClass mknd:CVSS-UserInteraction ;
+            owl:onProperty mknd:userInteraction ] ;
+    mknd:icon "vulnerability.svg"^^xsd:anyURI .
+
+d3f:has-goal rdfs:range d3f:UseCaseGoal .
+
+d3f:identified-by owl:inverseOf d3f:identifies .
+
+mknd:ActionableItem a owl:Class .
+
+mknd:CVSS-AttackComplexity a owl:Class .
+
+mknd:CVSS-AttackVector a owl:Class .
+
+mknd:CVSS-AvailabilityImpact a owl:Class .
+
+mknd:CVSS-ConfidentialityImpact a owl:Class .
+
+mknd:CVSS-ExploitCodeMaturity a owl:Class .
+
+mknd:CVSS-IntegrityImpact a owl:Class .
+
+mknd:CVSS-PrivilegesRequired a owl:Class .
+
+mknd:CVSS-RemediationLevel a owl:Class .
+
+mknd:CVSS-Scope a owl:Class .
+
+mknd:CVSS-SeverityType a owl:Class .
+
+mknd:CVSS-UserInteraction a owl:Class .
+
+mknd:MachineAction a owl:Class .
+
+mknd:MekaThing a owl:Class .
+
+mknd:Socket a owl:Class .
+
+mknd:Username a owl:Class .
+
+mknd:analyzed-by a owl:ObjectProperty .
+
+mknd:attackComplexity a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:attackVector a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:availabilityImpact a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:confidentialityImpact a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:exploitCodeMaturity a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:integrityImpact a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:privilegesRequired a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:remediationLevel a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:scope a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:severityRating a owl:FunctionalProperty,
+        owl:ObjectProperty .
+
+mknd:updated-by a owl:ObjectProperty .
+
+mknd:userInteraction a owl:FunctionalProperty,
+        owl:ObjectProperty .
+

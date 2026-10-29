@@ -1,0 +1,14 @@
+# Two MKND terms with the same label. Adapted from D3FEND src/queries/duplicate-labels.rq;
+# enumeration values of different CVSS metrics ("High", "Low") are exempt.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?entity ?property ?value WHERE {
+  VALUES ?property { rdfs:label }
+  ?entity ?property ?value .
+  ?entity2 ?property ?value .
+  FILTER(?entity != ?entity2)
+  FILTER(STRSTARTS(STR(?entity), "https://w3id.org/mknd/") && STRSTARTS(STR(?entity2), "https://w3id.org/mknd/"))
+  FILTER NOT EXISTS { ?entity a owl:NamedIndividual . ?entity2 a owl:NamedIndividual }
+  FILTER NOT EXISTS { ?entity owl:deprecated true }
+}
+ORDER BY ?value

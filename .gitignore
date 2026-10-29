@@ -1,6 +1,8 @@
-node_modules
 .DS_Store
+bin/
+build/
+.venv/
+.tdb/
+src/.catalog-drift.xml
+# Protégé
 *.properties
-catalog-*.xml
-ontologies/mknd/catalog-v001.xml
-ontologies/mitre-d3fend

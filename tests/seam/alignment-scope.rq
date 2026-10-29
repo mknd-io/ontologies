@@ -1,0 +1,11 @@
+# SEAM: the alignment only talks about D3FEND terms. MKND IRIs may appear there as
+# subjects only to declare their type (OWL needs it to parse the module on its own).
+# Run against: src/mknd-d3fend.ttl.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+SELECT DISTINCT ?subject ?predicate ?object WHERE {
+  ?subject ?predicate ?object .
+  FILTER(isIRI(?subject) && STRSTARTS(STR(?subject), "https://w3id.org/mknd/"))
+  FILTER(?predicate != rdf:type)
+  FILTER NOT EXISTS { ?subject a owl:Ontology }
+}

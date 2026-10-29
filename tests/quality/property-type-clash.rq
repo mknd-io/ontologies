@@ -1,0 +1,12 @@
+# A property must be exactly one of object / datatype / annotation property.
+# Adapted from D3FEND src/queries/property-duplication-across-property-types.rq.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?property ?type1 ?type2 WHERE {
+  VALUES (?type1 ?type2) {
+    (owl:ObjectProperty owl:DatatypeProperty)
+    (owl:ObjectProperty owl:AnnotationProperty)
+    (owl:DatatypeProperty owl:AnnotationProperty)
+  }
+  ?property a ?type1, ?type2 .
+  FILTER(STRSTARTS(STR(?property), "https://w3id.org/mknd/"))
+}

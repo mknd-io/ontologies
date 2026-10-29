@@ -1,0 +1,237 @@
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mknd: <https://w3id.org/mknd/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/mknd/.net_framework> a d3f:SoftwareProduct,
+        owl:NamedIndividual ;
+    d3f:publisher mknd:microsoft .
+
+mknd:0000-0001-7399-6740 a d3f:Person,
+        owl:NamedIndividual ;
+    rdfs:label "Anton Goncharov" .
+
+<https://w3id.org/mknd/109.107.181.33:80> a owl:NamedIndividual,
+        mknd:Socket ;
+    d3f:contained-by mknd:Cy9RQD31jwWTNsvafg ;
+    d3f:provides mknd:HTTP-Service ;
+    d3f:uses mknd:109.107.181.33,
+        mknd:TCP ;
+    mknd:usesNetworkPort "80"^^xsd:positiveInteger ;
+    mknd:value "109.107.181.33:80" .
+
+<https://w3id.org/mknd/46.4.205.200:80> a owl:NamedIndividual,
+        mknd:Socket ;
+    d3f:contained-by mknd:CxRSbB3QLImGRarD51 ;
+    d3f:provides mknd:HTTP-Service ;
+    d3f:uses mknd:46.4.205.200,
+        mknd:TCP ;
+    mknd:usesNetworkPort "80"^^xsd:positiveInteger ;
+    mknd:value "46.4.205.200:80" .
+
+mknd:CKZ5qK3CTEwMCAJpIi a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "CKZ5qK3CTEwMCAJpIi" ;
+    d3f:contains mknd:10.1.12.101 ;
+    d3f:uses mknd:ICMP ;
+    mknd:external-id "CKZ5qK3CTEwMCAJpIi" .
+
+mknd:CmXHCZ3b4RlraAFfdg a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "CmXHCZ3b4RlraAFfdg" .
+
+mknd:Coc5xh3dIfFS5k4Gdh a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "Coc5xh3dIfFS5k4Gdh" .
+
+mknd:GHSA-wg2x-rv86-mmpx a owl:NamedIndividual,
+        mknd:Advisory ;
+    rdfs:label "SPV Merkle proof malleability allows the maintainer to prove invalid transactions" ;
+    d3f:analyzes mknd:keep-network-tbtc-v2 ;
+    mknd:extSeverity "High" ;
+    mknd:hasURL "https://github.com/advisories/GHSA-wg2x-rv86-mmpx"^^xsd:anyURI .
+
+mknd:apache a d3f:ProductDeveloper,
+        owl:NamedIndividual .
+
+mknd:chrome a d3f:Browser,
+        d3f:SoftwareProduct,
+        owl:NamedIndividual .
+
+<https://w3id.org/mknd/cpe:2.3:o:google:android:-:*:*:*:*:*:*:*> a d3f:Software,
+        owl:NamedIndividual ;
+    rdfs:label "Android" ;
+    d3f:may-contain mknd:CVE-2020-0041 ;
+    mknd:cpe "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*" .
+
+mknd:docker a d3f:ProductDeveloper,
+        owl:NamedIndividual ;
+    rdfs:label "Docker, Inc." .
+
+mknd:docker-software a d3f:SoftwareProduct,
+        owl:NamedIndividual ;
+    rdfs:label "Docker" .
+
+mknd:examples a owl:Ontology ;
+    dcterms:creator <https://orcid.org/0000-0001-7399-6740> ;
+    dcterms:description "Illustrative individuals (hosts, sockets, sessions, vulnerabilities, software products) for MKND. Not part of the ontology; also used as a consistency test fixture."@en ;
+    dcterms:license <https://opensource.org/license/mit> ;
+    dcterms:modified "2026-10-29"^^xsd:date ;
+    dcterms:publisher <https://mekanoid.io> ;
+    dcterms:title "MKND example individuals"@en ;
+    owl:imports mknd: ;
+    owl:versionIRI <https://w3id.org/mknd/examples/0.4.0> ;
+    owl:versionInfo "0.4.0" .
+
+mknd:google a d3f:ProductDeveloper,
+        owl:NamedIndividual ;
+    rdfs:label "Google" .
+
+mknd:intel a d3f:ProductDeveloper,
+        owl:NamedIndividual .
+
+mknd:kubernetes a d3f:ProductDeveloper,
+        owl:NamedIndividual .
+
+mknd:kubernetes-software a d3f:SoftwareProduct,
+        owl:NamedIndividual .
+
+mknd:network_connections a d3f:SoftwareProduct,
+        owl:NamedIndividual .
+
+mknd:python a d3f:ProductDeveloper,
+        owl:NamedIndividual .
+
+mknd:python-software a d3f:SoftwareProduct,
+        owl:NamedIndividual .
+
+mknd:windows_10_1607 a d3f:OperatingSystem,
+        d3f:SoftwareProduct,
+        owl:NamedIndividual ;
+    d3f:publisher mknd:microsoft ;
+    owl:differentFrom mknd:windows_11 .
+
+mknd:109.107.181.33 a owl:NamedIndividual,
+        mknd:IPv4,
+        mknd:PublicIPAddress .
+
+mknd:162.248.51.100 a owl:NamedIndividual,
+        mknd:IPv4,
+        mknd:PublicIPAddress ;
+    d3f:used-by <https://w3id.org/mknd/162.248.51.100:443> ;
+    mknd:value "162.248.51.100" .
+
+<https://w3id.org/mknd/162.248.51.100:443> a owl:NamedIndividual,
+        mknd:Socket ;
+    d3f:provides mknd:SSL-Service ;
+    d3f:uses mknd:162.248.51.100,
+        mknd:TCP ;
+    mknd:usesNetworkPort "443"^^xsd:positiveInteger ;
+    mknd:value "162.248.51.100:443" .
+
+mknd:46.4.205.200 a owl:NamedIndividual,
+        mknd:IPv4,
+        mknd:PublicIPAddress ;
+    mknd:value "46.4.205.200" .
+
+mknd:CVE-2020-0041 a d3f:Vulnerability,
+        owl:NamedIndividual ;
+    rdfs:comment """In binder_transaction of binder.c, there is a possible out of bounds write due to an incorrect bounds check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.
+Product: Android
+Versions: Android kernel
+Android ID: A-145988638
+References: Upstream kernel""" ;
+    mknd:attackComplexity mknd:CVSS-AttackComplexity-Low ;
+    mknd:attackVector mknd:CVSS-AttackVector-Local ;
+    mknd:availabilityImpact mknd:CVSS-AvailabilityImpact-High ;
+    mknd:confidentialityImpact mknd:CVSS-ConfidentialityImpact-High ;
+    mknd:cvssBaseScore 7.8 ;
+    mknd:cvssExploitabilityScore 1.8 ;
+    mknd:cvssImpactScore 5.9 ;
+    mknd:integrityImpact mknd:CVSS-IntegrityImpact-High ;
+    mknd:privilegesRequired mknd:CVSS-PrivilegesRequired-Low ;
+    mknd:scope mknd:CVSS-Scope-Unchanged ;
+    mknd:userInteraction mknd:CVSS-UserInteraction-None .
+
+mknd:keep-network-tbtc-v2 a owl:NamedIndividual,
+        mknd:NPMPackage ;
+    rdfs:label "@keep-network/tbtc-v2" ;
+    mknd:external-id "@keep-network/tbtc-v2" .
+
+mknd:windows_11 a d3f:OperatingSystem,
+        d3f:SoftwareProduct,
+        owl:NamedIndividual ;
+    rdfs:label "Windows 11" ;
+    d3f:publisher mknd:microsoft .
+
+mknd:wireshark a d3f:NetworkTrafficAnalysisSoftware,
+        d3f:SoftwareProduct,
+        owl:NamedIndividual ;
+    rdfs:label "Wireshark" ;
+    d3f:has-link "https://www.wireshark.org/"^^xsd:anyURI ;
+    d3f:implements d3f:NetworkTrafficAnalysis ;
+    d3f:publisher mknd:wiresharkfoundation .
+
+mknd:wiresharkfoundation a d3f:Open-sourceDeveloper,
+        owl:NamedIndividual ;
+    rdfs:label "Wireshark Foundation" ;
+    d3f:has-link "https://wiresharkfoundation.org/"^^xsd:anyURI ;
+    d3f:publishes mknd:wireshark .
+
+mknd:10.1.12.1 a owl:NamedIndividual,
+        mknd:IPv4,
+        mknd:PrivateIPAddress ;
+    rdfs:label "10.1.12.1" ;
+    d3f:used-by <https://w3id.org/mknd/10.1.12.1:53> ;
+    mknd:value "10.1.12.1" .
+
+mknd:10.1.12.101 a owl:NamedIndividual,
+        mknd:IPv4,
+        mknd:PrivateIPAddress ;
+    mknd:value "10.1.12.101" .
+
+<https://w3id.org/mknd/10.1.12.1:53> a owl:NamedIndividual,
+        mknd:Socket ;
+    d3f:contained-by mknd:CtVKme2wtPfUO03gW8 ;
+    d3f:provides mknd:DNS-Service ;
+    d3f:uses mknd:10.1.12.1,
+        mknd:UDP ;
+    rdfs:comment "has type: UDP" ;
+    mknd:usesNetworkPort "53"^^xsd:positiveInteger ;
+    mknd:value "10.1.12.101:53" .
+
+mknd:CtVKme2wtPfUO03gW8 a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "CtVKme2wtPfUO03gW8" ;
+    d3f:contains mknd:10.1.12.1,
+        mknd:10.1.12.101,
+        <https://w3id.org/mknd/10.1.12.1:53> ;
+    d3f:recorded-in mknd:file_377694aa1125aad7b09bbaafc3b6587d ;
+    mknd:external-id "CtVKme2wtPfUO03gW8" .
+
+mknd:CxRSbB3QLImGRarD51 a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "CxRSbB3QLImGRarD51" ;
+    d3f:recorded-in mknd:file_377694aa1125aad7b09bbaafc3b6587d ;
+    mknd:external-id "CxRSbB3QLImGRarD51" .
+
+mknd:Cy9RQD31jwWTNsvafg a d3f:NetworkSession,
+        owl:NamedIndividual ;
+    rdfs:label "Cy9RQD31jwWTNsvafg" ;
+    d3f:recorded-in mknd:file_377694aa1125aad7b09bbaafc3b6587d ;
+    mknd:external-id "Cy9RQD31jwWTNsvafg" .
+
+mknd:file_377694aa1125aad7b09bbaafc3b6587d a d3f:PacketLog,
+        owl:NamedIndividual ;
+    rdfs:label "conn.log" ;
+    d3f:records mknd:CtVKme2wtPfUO03gW8,
+        mknd:CxRSbB3QLImGRarD51,
+        mknd:Cy9RQD31jwWTNsvafg ;
+    mknd:importFileName "conn.log"^^xsd:anyURI .
+
+mknd:microsoft a d3f:ProductDeveloper,
+        owl:NamedIndividual ;
+    rdfs:label "Microsoft" .
+

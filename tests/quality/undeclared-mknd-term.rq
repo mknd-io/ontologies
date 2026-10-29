@@ -1,0 +1,11 @@
+# Every MKND IRI an MKND module uses must be declared somewhere (catches typos and dangling
+# references). Ontology and version IRIs are exempt. Run with --use-graphs true.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?term ?module WHERE {
+  GRAPH ?module { { ?term ?p ?o } UNION { ?s ?term ?o } UNION { ?s ?p ?term } }
+  FILTER(STRSTARTS(STR(?module), "https://w3id.org/mknd/"))
+  FILTER(isIRI(?term) && STRSTARTS(STR(?term), "https://w3id.org/mknd/"))
+  FILTER NOT EXISTS { ?term a ?type }
+  FILTER NOT EXISTS { ?x owl:versionIRI|owl:imports|owl:priorVersion ?term }
+}
+ORDER BY ?term

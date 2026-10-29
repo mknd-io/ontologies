@@ -1,0 +1,20 @@
+# Every MKND module carries release metadata, and the versionIRI ends with versionInfo.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?ontology ?problem WHERE {
+  ?ontology a owl:Ontology .
+  FILTER(STRSTARTS(STR(?ontology), "https://w3id.org/mknd/"))
+  {
+    FILTER NOT EXISTS { ?ontology owl:versionIRI ?v } BIND("missing owl:versionIRI" AS ?problem)
+  } UNION {
+    FILTER NOT EXISTS { ?ontology owl:versionInfo ?i } BIND("missing owl:versionInfo" AS ?problem)
+  } UNION {
+    FILTER NOT EXISTS { ?ontology dcterms:title ?t } BIND("missing dcterms:title" AS ?problem)
+  } UNION {
+    FILTER NOT EXISTS { ?ontology dcterms:license ?l } BIND("missing dcterms:license" AS ?problem)
+  } UNION {
+    ?ontology owl:versionIRI ?v ; owl:versionInfo ?i .
+    FILTER(!REGEX(STR(?v), CONCAT("/", REPLACE(STR(?i), "\\.", "\\\\."), "/?$")))
+    BIND("versionIRI does not match versionInfo" AS ?problem)
+  }
+}
