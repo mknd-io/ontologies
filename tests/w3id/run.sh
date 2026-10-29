@@ -16,18 +16,20 @@ trap 'kill $(cat "$ROOT/httpd.pid" 2>/dev/null) 2>/dev/null || true; rm -rf "$RO
 mkdir -p "$ROOT/docs/mknd"
 cp w3id/.htaccess "$ROOT/docs/mknd/.htaccess"
 PORT=${PORT:-18080}
+# Load what this build doesn't have compiled in (Ubuntu builds in unixd, authz_core, ...).
+BUILTIN=$("$HTTPD" -l)
+load_modules() {
+  for m in mpm_prefork authz_core unixd dir rewrite env; do
+    grep -q "mod_$m.c" <<<"$BUILTIN" || echo "LoadModule ${m}_module $MODS/mod_$m.so"
+  done
+}
 cat > "$ROOT/httpd.conf" <<EOF
 ServerRoot "$ROOT"
 ServerName localhost
 Listen 127.0.0.1:$PORT
 PidFile "$ROOT/httpd.pid"
 ErrorLog "$ROOT/error.log"
-LoadModule mpm_prefork_module $MODS/mod_mpm_prefork.so
-LoadModule authz_core_module $MODS/mod_authz_core.so
-LoadModule unixd_module $MODS/mod_unixd.so
-LoadModule dir_module $MODS/mod_dir.so
-LoadModule rewrite_module $MODS/mod_rewrite.so
-LoadModule env_module $MODS/mod_env.so
+$(load_modules)
 DocumentRoot "$ROOT/docs"
 <Directory "$ROOT/docs">
   AllowOverride All
