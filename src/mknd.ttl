@@ -95,10 +95,6 @@ xsd:date rdf:type rdfs:Datatype .
 d3f:connects owl:inverseOf mknd:connected-by .
 
 
-###  http://d3fend.mitre.org/ontologies/d3fend.owl#provides
-d3f:provides owl:inverseOf mknd:provided-by .
-
-
 ###  https://w3id.org/mknd/analyzed-by
 mknd:analyzed-by rdf:type owl:ObjectProperty ;
                  rdfs:label "analyzed by"@en .
@@ -137,7 +133,7 @@ mknd:confidentialityImpact rdf:type owl:ObjectProperty ;
 
 ###  https://w3id.org/mknd/connected-by
 mknd:connected-by rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                  rdfs:subPropertyOf d3f:associated-with ;
                   rdfs:label "connected by"@en .
 
 
@@ -177,7 +173,7 @@ mknd:integrityImpact rdf:type owl:ObjectProperty ;
 
 ###  https://w3id.org/mknd/isolated-by
 mknd:isolated-by rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                 rdfs:subPropertyOf d3f:associated-with ;
                  rdfs:label "isolated by"@en .
 
 
@@ -207,8 +203,16 @@ mknd:privilegesRequired rdf:type owl:ObjectProperty ;
 
 ###  https://w3id.org/mknd/provided-by
 mknd:provided-by rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf d3f:d3fend-catalog-object-property ;
+                 rdfs:subPropertyOf d3f:associated-with ;
+                 owl:inverseOf mknd:provides ;
                  rdfs:label "provided by"@en .
+
+
+###  https://w3id.org/mknd/provides
+mknd:provides rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf d3f:associated-with ;
+              rdfs:label "provides"@en ;
+              skos:definition "x provides y: x makes the service or capability y available, e.g. a socket provides a network service. Replaces d3f:provides, which D3FEND removed after 0.14.0."@en .
 
 
 ###  https://w3id.org/mknd/remediationLevel
@@ -632,7 +636,7 @@ mknd:ActionableItem rdf:type owl:Class ;
 
 ###  https://w3id.org/mknd/Advisory
 mknd:Advisory rdf:type owl:Class ;
-              rdfs:subClassOf d3f:Document ,
+              rdfs:subClassOf d3f:DigitalDocument ,
                               mknd:MekaThing ;
               rdfs:isDefinedBy "https://csrc.nist.gov/glossary/term/advisory"^^xsd:anyURI ;
               rdfs:label "Advisory"@en ;
@@ -675,6 +679,14 @@ mknd:AppUser rdf:type owl:Class ;
 mknd:ApplicationUserAccount rdf:type owl:Class ;
                             rdfs:subClassOf d3f:UserAccount ;
                             rdfs:label "Application User Account" .
+
+
+###  https://w3id.org/mknd/Assessment
+mknd:Assessment rdf:type owl:Class ;
+                rdfs:subClassOf d3f:Action ;
+                rdfs:isDefinedBy "http://wordnet-rdf.princeton.edu/id/05741528-n"^^xsd:anyURI ;
+                rdfs:label "Assessment"@en ;
+                skos:definition "The classification of someone or something with respect to its worth. Replaces mknd:Assessment, which D3FEND removed after 0.14.0."@en .
 
 
 ###  https://w3id.org/mknd/AutomatedTaskRun
@@ -902,11 +914,11 @@ mknd:CommunicationProtocol rdf:type owl:Class ;
                            rdfs:subClassOf mknd:MekaThing ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty d3f:used-by ;
-                                             owl:someValuesFrom d3f:NetworkPackets
+                                             owl:someValuesFrom d3f:NetworkPacket
                                            ] ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty d3f:used-by ;
-                                             owl:someValuesFrom d3f:NetworkService
+                                             owl:someValuesFrom d3f:NetworkServiceApplicationProcess
                                            ] ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty d3f:used-by ;
@@ -926,8 +938,8 @@ mknd:Connection rdf:type owl:Class ;
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty mknd:supports ;
                                   owl:someValuesFrom [ rdf:type owl:Class ;
-                                                       owl:unionOf ( d3f:SoftwareProduct
-                                                                     d3f:SoftwareService
+                                                       owl:unionOf ( mknd:SoftwareProduct
+                                                                     mknd:SoftwareService
                                                                    )
                                                      ]
                                 ] ,
@@ -1253,6 +1265,7 @@ mknd:MD5 rdf:type owl:Class ;
 mknd:MachineAction rdf:type owl:Class ;
                    rdfs:subClassOf d3f:DigitalEvent ,
                                    mknd:MekaThing ;
+                   owl:disjointWith mknd:ManualTaskRun ;
                    rdfs:label "Machine Action" ;
                    skos:definition "An action performed by an automapted process, script, or an application following a high level objective. May contain a single or miple Commands. Managing systems and application resources by interacting with API endpoints are examples of machine actions." .
 
@@ -1261,7 +1274,7 @@ mknd:MachineAction rdf:type owl:Class ;
 mknd:Malware rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( d3f:Software
                                                         [ rdf:type owl:Restriction ;
-                                                          owl:onProperty d3f:has-goal ;
+                                                          owl:onProperty d3f:implements ;
                                                           owl:someValuesFrom d3f:OffensiveTechnique
                                                         ]
                                                       ) ;
@@ -1307,7 +1320,7 @@ mknd:Malware rdf:type owl:Class ;
 
 ###  https://w3id.org/mknd/ManualTaskRun
 mknd:ManualTaskRun rdf:type owl:Class ;
-                   rdfs:subClassOf d3f:UserAction ,
+                   rdfs:subClassOf d3f:Action ,
                                    mknd:TaskRun ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty d3f:invoked-by ;
@@ -1446,6 +1459,14 @@ mknd:PrivateIPAddress rdf:type owl:Class ;
                       mknd:icon "ip.svg" .
 
 
+###  https://w3id.org/mknd/Proposition
+mknd:Proposition rdf:type owl:Class ;
+                 rdfs:subClassOf d3f:DigitalInformation ;
+                 rdfs:isDefinedBy "http://semanticscience.org/resource/SIO_000256"^^xsd:anyURI ;
+                 rdfs:label "Proposition"@en ;
+                 skos:definition "A statement that expresses something that is either true or false, such as a verdict about an observable. Replaces mknd:Proposition, which D3FEND removed after 0.14.0."@en .
+
+
 ###  https://w3id.org/mknd/PublicIPAddress
 mknd:PublicIPAddress rdf:type owl:Class ;
                      rdfs:subClassOf d3f:IPAddress ;
@@ -1459,7 +1480,7 @@ mknd:PublicIPAddress rdf:type owl:Class ;
 
 ###  https://w3id.org/mknd/Report
 mknd:Report rdf:type owl:Class ;
-            rdfs:subClassOf d3f:Document ,
+            rdfs:subClassOf d3f:DigitalDocument ,
                             d3f:Record ,
                             mknd:MekaThing ,
                             [ rdf:type owl:Restriction ;
@@ -1563,6 +1584,23 @@ mknd:Socket rdf:type owl:Class ;
             rdfs:label "Network Socket"@en ;
             skos:example "51.89.163.40:443" ;
             mknd:icon "network.svg" .
+
+
+###  https://w3id.org/mknd/SoftwareProduct
+mknd:SoftwareProduct rdf:type owl:Class ;
+                     rdfs:subClassOf d3f:Software ;
+                     rdfs:label "Software Product"@en ;
+                     skos:altLabel "SaaP"@en ;
+                     skos:definition "Software released as a named product by a publisher (a vendor or an open-source developer), such as Windows 11 or Wireshark. Replaces mknd:SoftwareProduct, which D3FEND removed after 0.14.0."@en .
+
+
+###  https://w3id.org/mknd/SoftwareService
+mknd:SoftwareService rdf:type owl:Class ;
+                     rdfs:subClassOf d3f:ServiceApplication ;
+                     rdfs:label "Software Service"@en ;
+                     skos:altLabel "SaaS"@en ;
+                     skos:definition "Software offered to clients as a hosted service rather than installed as a product (software as a service). Replaces mknd:SoftwareService, which D3FEND removed after 0.14.0."@en ;
+                     mknd:icon "software.svg" .
 
 
 ###  https://w3id.org/mknd/SystemObject
@@ -1693,8 +1731,8 @@ mknd:Username rdf:type owl:Class ;
 
 ###  https://w3id.org/mknd/Verdict
 mknd:Verdict rdf:type owl:Class ;
-             rdfs:subClassOf d3f:Proposition ,
-                             mknd:MekaThing ,
+             rdfs:subClassOf mknd:MekaThing ,
+                             mknd:Proposition ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:evaluates ;
                                owl:someValuesFrom d3f:DomainName
@@ -1725,7 +1763,7 @@ mknd:Verdict rdf:type owl:Class ;
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:produced-by ;
-                               owl:someValuesFrom d3f:Assessment
+                               owl:someValuesFrom mknd:Assessment
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:recorded-in ;
@@ -2229,8 +2267,8 @@ mknd:UseCaseGoal-Upload rdf:type owl:NamedIndividual ,
 
 ###  https://w3id.org/mknd/http_server
 mknd:http_server rdf:type owl:NamedIndividual ,
-                          d3f:SoftwareProduct ,
-                          d3f:WebServerApplication ;
+                          d3f:WebServerApplication ,
+                          mknd:SoftwareProduct ;
                  rdfs:label "HTTP server application"@en .
 
 

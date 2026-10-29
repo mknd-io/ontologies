@@ -6,7 +6,7 @@ MKND is an OWL ontology for cybersecurity knowledge graphs. It covers observable
 
 - **Namespace:** `https://w3id.org/mknd/` (prefix `mknd:`)
 - **Documentation:** <https://mknd-io.github.io/ontologies/>
-- **Current release:** 0.4.0, built on D3FEND 0.14.0. See [CHANGELOG.md](CHANGELOG.md).
+- **Current release:** 0.4.0, built on D3FEND 1.6.0. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Using it
 
@@ -29,7 +29,7 @@ Every IRI resolves through [w3id.org](https://w3id.org/mknd/). Browsers get the 
 
 MKND treats D3FEND as a read-only dependency:
 
-1. **No copies of D3FEND in this repo.** The alignment imports a specific release by version IRI (`http://d3fend.mitre.org/ontologies/d3fend/0.14.0/d3fend.owl`). The build downloads it; it is never committed or edited.
+1. **No copies of D3FEND in this repo.** The alignment imports a specific release by version IRI (`http://d3fend.mitre.org/ontologies/d3fend/1.6.0/d3fend.owl`). The build downloads it; it is never committed or edited.
 2. **New terms go in the MKND namespace.** MKND never mints a `d3f:` IRI. If D3FEND lacks a property, MKND defines it (`mknd:provided-by`, `mknd:connected-by`, …) and links it to D3FEND with `rdfs:subPropertyOf` or `owl:inverseOf`.
 3. **Everything MKND says about a D3FEND term lives in one module.** That means subclass links, restrictions, inverses, labels and icons attached to `d3f:` terms. The core only describes MKND terms. Upgrading D3FEND therefore only touches `src/mknd-d3fend.ttl`.
 
