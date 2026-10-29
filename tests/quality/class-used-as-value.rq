@@ -1,0 +1,7 @@
+# owl:hasValue (and plain object assertions) must point at individuals, not classes;
+# pointing at a class silently puns it into an individual.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?restriction ?class WHERE {
+  ?restriction owl:hasValue ?class .
+  ?class a owl:Class .
+}

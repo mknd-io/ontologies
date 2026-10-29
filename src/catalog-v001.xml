@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Resolves MKND imports to local files (Protégé and ROBOT).
+     The D3FEND entry points at the copy `make imports` downloads; without it,
+     tools fetch the pinned versionIRI from d3fend.mitre.org. -->
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri name="https://w3id.org/mknd/" uri="mknd.ttl"/>
+    <uri name="https://w3id.org/mknd/alignment/d3fend" uri="mknd-d3fend.ttl"/>
+    <uri name="http://d3fend.mitre.org/ontologies/d3fend/0.14.0/d3fend.owl" uri="../build/imports/d3fend-0.14.0.ttl"/>
+</catalog>

@@ -1,0 +1,11 @@
+# SEAM: the alignment may add axioms to D3FEND terms, but must never mint one: every D3FEND
+# entity the alignment declares must also be declared by D3FEND itself. New terms go in the
+# MKND namespace. Run against: src/mknd-d3fend.ttl with --use-graphs true.
+PREFIX d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?entity ?type WHERE {
+  VALUES ?type { owl:Class owl:ObjectProperty owl:DatatypeProperty owl:AnnotationProperty owl:NamedIndividual }
+  GRAPH <https://w3id.org/mknd/alignment/d3fend> { ?entity a ?type }
+  FILTER(STRSTARTS(STR(?entity), STR(d3f:)))
+  FILTER NOT EXISTS { GRAPH <http://d3fend.mitre.org/ontologies/d3fend.owl> { ?entity a ?type } }
+}

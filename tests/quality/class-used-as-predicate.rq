@@ -1,0 +1,8 @@
+# A class used as a predicate (e.g. `x d3f:OperatingSystem "Unix"`) is a modelling error.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT ?predicate (COUNT(*) AS ?uses) WHERE {
+  ?s ?predicate ?o .
+  ?predicate a owl:Class .
+}
+GROUP BY ?predicate
+ORDER BY DESC(?uses)

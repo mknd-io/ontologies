@@ -1,0 +1,16 @@
+# DRIFT: every D3FEND term an MKND module references must exist in the pinned D3FEND release.
+# The declaration must come from a non-MKND graph (i.e. D3FEND): OWL parsers add declarations
+# for any entity a module uses, so declarations in MKND graphs prove nothing.
+# Catches renamed/removed upstream terms when the pin moves.
+# Run with --use-graphs true (one named graph per ontology in the import closure).
+PREFIX d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>
+SELECT DISTINCT ?term ?module WHERE {
+  GRAPH ?module { { ?term ?p ?o } UNION { ?s ?term ?o } UNION { ?s ?p ?term } }
+  FILTER(STRSTARTS(STR(?module), "https://w3id.org/mknd/"))
+  FILTER(isIRI(?term) && STRSTARTS(STR(?term), STR(d3f:)))
+  FILTER NOT EXISTS {
+    GRAPH ?source { ?term a ?type }
+    FILTER(!STRSTARTS(STR(?source), "https://w3id.org/mknd/"))
+  }
+}
+ORDER BY ?term

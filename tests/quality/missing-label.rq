@@ -1,0 +1,11 @@
+# Every MKND class and property has an rdfs:label. Adapted from D3FEND src/queries/missing-rdfs-label.rq.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?entity ?property ?value WHERE {
+  VALUES ?type { owl:Class owl:ObjectProperty owl:DatatypeProperty owl:AnnotationProperty }
+  VALUES ?property { rdfs:label }
+  ?entity a ?type .
+  FILTER(isIRI(?entity) && STRSTARTS(STR(?entity), "https://w3id.org/mknd/"))
+  FILTER NOT EXISTS { ?entity rdfs:label ?l . FILTER(STR(?l) != "") }
+}
+ORDER BY ?entity

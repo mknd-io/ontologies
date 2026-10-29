@@ -1,0 +1,13 @@
+# SEAM: modules other than the D3FEND alignment must not say anything about a D3FEND term.
+# Statements whose subject is a d3f: IRI belong in src/mknd-d3fend.ttl.
+# Symmetric axioms that link a D3FEND term to an MKND term (owl:inverseOf etc.) are about the
+# MKND term; OWL tools may write them in either direction, so they are allowed.
+# Run against: src/mknd.ttl, examples/*.ttl (own axioms only, no imports).
+PREFIX d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?subject ?predicate ?object WHERE {
+  ?subject ?predicate ?object .
+  FILTER(isIRI(?subject) && STRSTARTS(STR(?subject), STR(d3f:)))
+  FILTER(!(?predicate IN (owl:inverseOf, owl:equivalentClass, owl:equivalentProperty, owl:disjointWith, owl:propertyDisjointWith)
+           && isIRI(?object) && STRSTARTS(STR(?object), "https://w3id.org/mknd/")))
+}
