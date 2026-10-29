@@ -183,6 +183,7 @@ docs: $(WIDOCO_JAR) $(PY)
 	java $(JAVA_OPTS) -jar $(WIDOCO_JAR) -ontFile build/doc/mknd.ttl -outFolder build/doc/out \
 	  -confFile build/doc/widoco.conf -rewriteAll -webVowl -uniteSections -lang en \
 	  -includeAnnotationProperties -noPlaceHolderText
+	$(PY) scripts/light_theme.py build/doc/out/doc
 	cp -R build/doc/out/doc/. $(SITE)/
 	cp $(SITE)/index-en.html $(SITE)/index.html
 	rm -f $(SITE)/readme.md   # Widoco's own serializations are replaced by `serializations`
