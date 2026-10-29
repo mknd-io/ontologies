@@ -11,14 +11,14 @@
 @base <https://w3id.org/mknd/alignment/d3fend> .
 
 <https://w3id.org/mknd/alignment/d3fend> rdf:type owl:Ontology ;
-                                          owl:versionIRI <https://w3id.org/mknd/alignment/d3fend/0.4.0> ;
-                                          owl:imports <http://d3fend.mitre.org/ontologies/d3fend/0.14.0/d3fend.owl> ;
+                                          owl:versionIRI <https://w3id.org/mknd/alignment/d3fend/0.5.0> ;
+                                          owl:imports <http://d3fend.mitre.org/ontologies/d3fend/1.6.0/d3fend.owl> ;
                                           dcterms:creator <https://orcid.org/0000-0001-7399-6740> ;
                                           dcterms:description "Every MKND statement about a MITRE D3FEND term: subclass links, restrictions and inverses on D3FEND classes and properties, and icon annotations. Imports a pinned D3FEND release; upgrading D3FEND touches this module only. No terms are minted in the D3FEND namespace."@en ;
                                           dcterms:license <https://opensource.org/license/mit> ;
                                           dcterms:modified "2026-10-29"^^xsd:date ;
                                           dcterms:title "MKND alignment to MITRE D3FEND"@en ;
-                                          owl:versionInfo "0.4.0" .
+                                          owl:versionInfo "0.5.0" .
 
 #################################################################
 #    Annotation properties
@@ -391,7 +391,7 @@ d3f:DNSRecord mknd:icon "dns.svg" .
 d3f:Database mknd:icon "database.svg" .
 
 
-d3f:DigitalObject mknd:icon "cube.svg" .
+d3f:DigitalArtifact mknd:icon "cube.svg" .
 
 
 d3f:Directory mknd:icon "folder.svg" .
@@ -457,9 +457,6 @@ d3f:Sensor mknd:icon "broken.svg" .
 
 
 d3f:Server mknd:icon "server.svg" .
-
-
-d3f:SoftwareService mknd:icon "software.svg" .
 
 
 d3f:Technique mknd:icon "technique.svg" .

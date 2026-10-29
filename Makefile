@@ -3,6 +3,7 @@
 #   make test     seam, quality and reasoning checks (default)
 #   make site     publishable site in build/site (docs + every serialization + versioned copy)
 #   make drift D3FEND_NEXT=1.6.0   which D3FEND terms MKND uses that a newer release lacks
+#   make data                      regenerate data/*.ttl from the upstream revisions in scripts/data/sources.json
 #   make data-report               non-blocking quality report for data/*.ttl
 #   make test-w3id                 check w3id/.htaccess redirects on a local Apache
 #
@@ -49,11 +50,16 @@ $(WIDOCO_JAR):
 
 $(PY):
 	python3 -m venv .venv
-	.venv/bin/pip install -q rdflib==7.*
+	.venv/bin/pip install -q rdflib==7.* pyyaml==6.*
 
 build/imports/d3fend-%.ttl:
 	mkdir -p $(@D)
 	curl -fsSL -o $@ $(call D3FEND_URL,$*)
+
+# pyyaml joined the venv for `make data`; add it to venvs made before that
+.venv/.pyyaml: $(PY)
+	.venv/bin/pip install -q pyyaml==6.*
+	touch $@
 
 .PHONY: tools imports
 tools: $(ROBOT_JAR) $(WIDOCO_JAR) $(PY)
@@ -128,8 +134,15 @@ drift: $(ROBOT_JAR) build/imports/d3fend-$(D3FEND_NEXT).ttl
 	rm src/.catalog-drift.xml
 	@echo "D3FEND terms MKND uses that $(D3FEND_NEXT) lacks:"; cat $(REPORTS)/drift-$(D3FEND_NEXT).tsv
 
-# GTFOBins/LOLBAS are generated data with known problems (classes used as predicates, literals
-# on object properties); this report tracks them without blocking the build.
+# ---------------------------------------------------------------------------- data
+# data/*.ttl are generated: the upstream GTFOBins/LOLBAS revisions are pinned in
+# scripts/data/sources.json and ATT&CK techniques resolve against the pinned D3FEND release.
+# Downloads the upstream tarballs into build/upstream on first run (network needed).
+.PHONY: data
+data: .venv/.pyyaml $(D3FEND_TTL)
+	$(PY) scripts/data/generate.py --d3fend $(D3FEND_TTL) --cache build/upstream --out data
+
+# Non-blocking quality report for the generated data.
 DATA_GRAPH_QUERIES := tests/quality/class-used-as-predicate.rq tests/quality/undeclared-mknd-term.rq \
                       tests/seam/undeclared-third-party-term.rq
 data-report: $(ROBOT_JAR) $(D3FEND_TTL)

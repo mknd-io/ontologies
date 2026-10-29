@@ -6,7 +6,7 @@ MKND is an OWL ontology for cybersecurity knowledge graphs. It covers observable
 
 - **Namespace:** `https://w3id.org/mknd/` (prefix `mknd:`)
 - **Documentation:** <https://mknd-io.github.io/ontologies/>
-- **Current release:** 0.4.0, built on D3FEND 0.14.0. See [CHANGELOG.md](CHANGELOG.md).
+- **Current release:** 0.5.0, built on D3FEND 1.6.0. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Using it
 
@@ -16,7 +16,7 @@ Import the core ontology. It brings in the D3FEND alignment and the pinned D3FEN
 <https://example.org/my-ontology> owl:imports <https://w3id.org/mknd/> .
 ```
 
-Every IRI resolves through [w3id.org](https://w3id.org/mknd/). Browsers get the documentation; RDF clients get the format they ask for (`text/turtle`, `application/rdf+xml`, `application/ld+json`, `application/n-triples`). To pin a release, use its version IRI, e.g. `https://w3id.org/mknd/0.4.0/`.
+Every IRI resolves through [w3id.org](https://w3id.org/mknd/). Browsers get the documentation; RDF clients get the format they ask for (`text/turtle`, `application/rdf+xml`, `application/ld+json`, `application/n-triples`). To pin a release, use its version IRI, e.g. `https://w3id.org/mknd/0.5.0/`.
 
 | Module | IRI | Source | Contents |
 |---|---|---|---|
@@ -29,9 +29,9 @@ Every IRI resolves through [w3id.org](https://w3id.org/mknd/). Browsers get the 
 
 MKND treats D3FEND as a read-only dependency:
 
-1. **No copies of D3FEND in this repo.** The alignment imports a specific release by version IRI (`http://d3fend.mitre.org/ontologies/d3fend/0.14.0/d3fend.owl`). The build downloads it; it is never committed or edited.
+1. **No copies of D3FEND in this repo.** The alignment imports a specific release by version IRI (`http://d3fend.mitre.org/ontologies/d3fend/1.6.0/d3fend.owl`). The build downloads it; it is never committed or edited.
 2. **New terms go in the MKND namespace.** MKND never mints a `d3f:` IRI. If D3FEND lacks a property, MKND defines it (`mknd:provided-by`, `mknd:connected-by`, …) and links it to D3FEND with `rdfs:subPropertyOf` or `owl:inverseOf`.
-3. **Everything MKND says about a D3FEND term lives in one module.** That means subclass links, restrictions, inverses, labels and icons attached to `d3f:` terms. The core only describes MKND terms. Upgrading D3FEND therefore only touches `src/mknd-d3fend.ttl`.
+3. **Everything MKND says about a D3FEND term lives in one module.** That means subclass links, restrictions, inverses, labels and icons attached to `d3f:` terms. The core only describes MKND terms. A D3FEND upgrade changes the alignment and, where D3FEND renames or removes a term, the MKND references to it; `make drift` lists exactly those.
 
 `make test` enforces all three rules (see [`tests/seam/`](tests/seam)).
 
@@ -72,19 +72,35 @@ Edit in Protégé by opening `src/mknd.ttl`. `src/catalog-v001.xml` resolves the
 | ELK / HermiT | unsatisfiable classes; inconsistency of core + alignment + examples + D3FEND |
 | `tests/w3id/run.sh` | `w3id/.htaccess` redirects, on a throwaway local Apache |
 
-The datasets have known modelling problems (D3FEND classes used as predicates, plain strings on object properties). They are tracked by `make data-report`, which does not fail the build.
+### Datasets
+
+`data/gtfobins.ttl` and `data/lolbas.ttl` are generated; don't edit them by hand.
+
+```sh
+make data          # regenerate both from the pinned upstream revisions (needs network on first run)
+make data-report   # quality report for the datasets (does not fail the build)
+```
+
+[`scripts/data/generate.py`](scripts/data/generate.py) reads the GTFOBins and LOLBAS revisions pinned in [`scripts/data/sources.json`](scripts/data/sources.json) and writes each one into its file header as `dcterms:source`. It takes the version and `dcterms:modified` from `src/mknd.ttl`. ATT&CK technique IDs are resolved against the pinned D3FEND release, and a deprecated technique is replaced by its successor. So run `make data` after changing the MKND version or the D3FEND pin. The output is deterministic. To move to newer upstream data, change the revision and date in `sources.json` and run `make data`. The generator reads the GTFOBins page format used until December 2025 (`_gtfobins/*.md`). Newer GTFOBins revisions use a different format and need generator changes.
+
+How the data is modelled:
+
+- Commands, executables, files and directories are D3FEND individuals: `mknd:command_<command>`, `mknd:executable_<name>` and so on.
+- Plain-text facts use datatype properties: `mknd:operating-system`, `mknd:required-privileges`, `mknd:use-case`, `mknd:extCategory` (the LOLBAS category) and `mknd:extType` (the LOLBAS type, or the kind of detection resource).
+- A GTFOBins function is a `d3f:Subroutine` individual (`mknd:function_<name>`) that commands and executables `mknd:provides`.
+- An ATT&CK technique is an individual `mknd:technique_<ID>` typed with the D3FEND technique class, for example `a d3f:T1218`. Commands point to it with `d3f:enables`, so the D3FEND class itself is never used as an individual.
 
 ### Upgrading D3FEND
 
 ```sh
-make drift D3FEND_NEXT=1.6.0   # D3FEND terms MKND uses that the new release lacks
+make drift D3FEND_NEXT=<version>   # D3FEND terms MKND uses that the new release lacks
 ```
 
-Fix what it reports, then change the version in the `owl:imports` of `src/mknd-d3fend.ttl` and in `src/catalog-v001.xml`. `make test` fails if the two disagree.
+Fix what it reports, then change the version in the `owl:imports` of `src/mknd-d3fend.ttl` and in `src/catalog-v001.xml` (`make test` fails if the two disagree), and run `make data` so the datasets pick up renamed ATT&CK techniques. Watch the reasoner checks: D3FEND 1.x made its top-level classes disjoint, which can leave MKND classes unsatisfiable.
 
 ### Releasing
 
-1. Set the new version in `owl:versionInfo` and `owl:versionIRI` of every module (core, alignment, examples, data), and update `dcterms:modified`. `make test` fails if a module is left behind.
+1. Set the new version in `owl:versionInfo` and `owl:versionIRI` of core, alignment and examples, update `dcterms:modified`, and point `owl:priorVersion` at the previous release. Run `make data` to stamp the datasets. `make test` fails if a module is left behind.
 2. Add a CHANGELOG entry and merge to `main`.
 3. Tag the merge commit `v<version>` and push the tag. CI attaches the `/<version>/` snapshot to a GitHub Release.
 
