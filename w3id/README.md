@@ -11,9 +11,7 @@ Requests are redirected (303) to GitHub Pages with content negotiation: HTML for
 This space is administered by:
 
 **Anton Goncharov**
-[Mekanoid Corporation](https://mekanoid.io)
-San Francisco, California, USA
-<anton.goncharov@mekanoid.io>
+<anton.goncharov@gmail.com>
 
 ORCID: [0000-0001-7399-6740](https://orcid.org/0000-0001-7399-6740) \
 GitHub: [ag0x00](https://github.com/ag0x00/)

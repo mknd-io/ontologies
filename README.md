@@ -90,6 +90,10 @@ Fix what it reports, then change the version in the `owl:imports` of `src/mknd-d
 
 Every deploy republishes the snapshots of all GitHub Releases, so old version IRIs keep resolving.
 
+## Maintainer
+
+Anton Goncharov ([@ag0x00](https://github.com/ag0x00), <anton.goncharov@gmail.com>, ORCID [0000-0001-7399-6740](https://orcid.org/0000-0001-7399-6740)). Issues and pull requests are welcome.
+
 ## License
 
 [MIT](LICENSE). D3FEND is © The MITRE Corporation and is subject to its [terms of use](https://d3fend.mitre.org/about/).

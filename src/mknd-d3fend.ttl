@@ -17,7 +17,6 @@
                                           dcterms:description "Every MKND statement about a MITRE D3FEND term: subclass links, restrictions and inverses on D3FEND classes and properties, and icon annotations. Imports a pinned D3FEND release; upgrading D3FEND touches this module only. No terms are minted in the D3FEND namespace."@en ;
                                           dcterms:license <https://opensource.org/license/mit> ;
                                           dcterms:modified "2026-10-29"^^xsd:date ;
-                                          dcterms:publisher <https://mekanoid.io> ;
                                           dcterms:title "MKND alignment to MITRE D3FEND"@en ;
                                           owl:versionInfo "0.4.0" .
 

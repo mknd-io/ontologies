@@ -19,11 +19,10 @@
                           dcterms:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
                           dcterms:license <https://opensource.org/license/mit> ;
                           dcterms:modified "2026-10-29"^^xsd:date ;
-                          dcterms:publisher <https://mekanoid.io> ;
                           dcterms:title "Mekanoid Ontology (MKND)"@en ;
                           vann:preferredNamespacePrefix "mknd" ;
                           vann:preferredNamespaceUri "https://w3id.org/mknd/"^^xsd:anyURI ;
-                          rdfs:comment "Use of the MKND, and the associated references from this ontology are subject to the Terms of Use. Copyright 2021 Neon Lane Co DBA Mekanoid Corporation."@en ;
+                          rdfs:comment "Maintained by Anton Goncharov <anton.goncharov@gmail.com>. Released under the MIT License."@en ;
                           owl:priorVersion <https://mekanoid.io/ontology/0.3.0/> ;
                           owl:versionInfo "0.4.0" .
 
@@ -2193,12 +2192,6 @@ mknd:IncidentStatus-Open rdf:type owl:NamedIndividual ,
 mknd:IncidentStatus-Unknown rdf:type owl:NamedIndividual ,
                                      mknd:IncidentStatus ;
                             rdfs:label "Unknown" .
-
-
-###  https://w3id.org/mknd/Neon_Lane_Co_DBA_Mekanoid_Corporation
-mknd:Neon_Lane_Co_DBA_Mekanoid_Corporation rdf:type owl:NamedIndividual ,
-                                                    d3f:Organization ;
-                                           rdfs:label "Mekanoid Corporation" .
 
 
 ###  https://w3id.org/mknd/SSH-Service

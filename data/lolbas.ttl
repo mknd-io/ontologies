@@ -10,7 +10,6 @@
     dcterms:description "Windows living-off-the-land binaries, scripts and libraries from the LOLBAS project (https://lolbas-project.github.io), as MKND/D3FEND individuals."@en ;
     dcterms:license <https://opensource.org/license/mit> ;
     dcterms:modified "2026-10-29"^^xsd:date ;
-    dcterms:publisher <https://mekanoid.io> ;
     dcterms:title "LOLBAS dataset for MKND"@en ;
     owl:imports mknd: ;
     owl:versionIRI <https://w3id.org/mknd/data/lolbas/0.4.0> ;

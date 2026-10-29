@@ -10,7 +10,6 @@
     dcterms:description "Unix binaries and the commands from GTFOBins (https://gtfobins.github.io) that can be abused with them, as MKND/D3FEND individuals."@en ;
     dcterms:license <https://opensource.org/license/mit> ;
     dcterms:modified "2026-10-29"^^xsd:date ;
-    dcterms:publisher <https://mekanoid.io> ;
     dcterms:title "GTFOBins dataset for MKND"@en ;
     owl:imports mknd: ;
     owl:versionIRI <https://w3id.org/mknd/data/gtfobins/0.4.0> ;
