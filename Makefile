@@ -15,6 +15,7 @@ SHELL := bash
 # Single sources of truth: the MKND version lives in src/mknd.ttl, the D3FEND pin in the
 # alignment's owl:imports.
 VERSION        := $(shell sed -n 's/.*owl:versionInfo "\([^"]*\)".*/\1/p' src/mknd.ttl | head -1)
+MODIFIED       := $(shell sed -n 's/.*dcterms:modified "\([^"]*\)".*/\1/p' src/mknd.ttl | head -1)
 D3FEND_VERSION := $(shell grep -o 'd3fend/[0-9][^/]*/d3fend.owl' src/mknd-d3fend.ttl | cut -d/ -f2)
 D3FEND_URL      = https://d3fend.mitre.org/ontologies/d3fend/$(1)/d3fend.ttl
 
@@ -136,6 +137,7 @@ data-report: $(ROBOT_JAR) $(D3FEND_TTL)
 # ---------------------------------------------------------------------------- site
 .PHONY: site docs serializations
 site: docs serializations
+	rm -rf $(SITE)/icons $(SITE)/$(VERSION)
 	cp -R assets/icons $(SITE)/icons
 	mkdir -p $(SITE)/$(VERSION)
 	cd $(SITE) && cp -R mknd.* alignment examples.* data $(VERSION)/
@@ -151,15 +153,16 @@ serializations: $(PY)
 	$(PY) scripts/serialize.py $(SITE)/mknd.ttl $(SITE)/alignment/d3fend.ttl $(SITE)/examples.ttl $(addprefix $(SITE)/data/,$(notdir $(DATA)))
 
 docs: $(WIDOCO_JAR) $(PY)
+	rm -rf build/doc
 	mkdir -p build/doc $(SITE)
 	$(PY) scripts/doc_input.py build/doc/mknd.ttl
-	sed 's/@VERSION@/$(VERSION)/g; s/@D3FEND_VERSION@/$(D3FEND_VERSION)/g' src/widoco.conf > build/doc/widoco.conf
+	sed 's/@VERSION@/$(VERSION)/g; s/@D3FEND_VERSION@/$(D3FEND_VERSION)/g; s/@MODIFIED@/$(MODIFIED)/g' src/widoco.conf > build/doc/widoco.conf
 	java $(JAVA_OPTS) -jar $(WIDOCO_JAR) -ontFile build/doc/mknd.ttl -outFolder build/doc/out \
 	  -confFile build/doc/widoco.conf -rewriteAll -webVowl -uniteSections -lang en \
 	  -includeAnnotationProperties -noPlaceHolderText
-	cp -R build/doc/out/. $(SITE)/
+	cp -R build/doc/out/doc/. $(SITE)/
 	cp $(SITE)/index-en.html $(SITE)/index.html
-	rm -f $(SITE)/.htaccess $(SITE)/406.html $(SITE)/ontology.*
+	rm -f $(SITE)/readme.md   # Widoco's own serializations are replaced by `serializations`
 
 # ---------------------------------------------------------------------------- misc
 .PHONY: clean
