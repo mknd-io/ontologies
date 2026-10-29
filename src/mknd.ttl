@@ -496,10 +496,26 @@ mknd:last_modified rdf:type owl:DatatypeProperty ;
                    rdfs:label "last modified" .
 
 
+###  https://w3id.org/mknd/operating-system
+mknd:operating-system rdf:type owl:DatatypeProperty ;
+                      rdfs:range xsd:string ;
+                      rdfs:label "operating system"@en ;
+                      skos:definition "The operating systems the entity applies to, as stated by the source: an OS family such as Unix or Windows, or a list of versions."@en ;
+                      skos:example "Windows 10, Windows 11" .
+
+
 ###  https://w3id.org/mknd/reference
 mknd:reference rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
                rdfs:label "has reference" .
+
+
+###  https://w3id.org/mknd/required-privileges
+mknd:required-privileges rdf:type owl:DatatypeProperty ;
+                         rdfs:range xsd:string ;
+                         rdfs:label "required privileges"@en ;
+                         skos:definition "The privileges needed to use the entity, e.g. to run a command, as stated by the source."@en ;
+                         skos:example "Administrator" .
 
 
 ###  https://w3id.org/mknd/size
@@ -560,6 +576,14 @@ mknd:updated rdf:type owl:DatatypeProperty ;
              rdfs:label "modified at" ,
                         "updated at" ;
              skos:altLabel "modified at" .
+
+
+###  https://w3id.org/mknd/use-case
+mknd:use-case rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string ;
+              rdfs:label "use case"@en ;
+              skos:definition "What the entity can be used for, in the words of the source."@en ;
+              skos:example "Download file from Internet" .
 
 
 ###  https://w3id.org/mknd/userId

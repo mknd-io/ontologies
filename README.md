@@ -72,7 +72,23 @@ Edit in Protégé by opening `src/mknd.ttl`. `src/catalog-v001.xml` resolves the
 | ELK / HermiT | unsatisfiable classes; inconsistency of core + alignment + examples + D3FEND |
 | `tests/w3id/run.sh` | `w3id/.htaccess` redirects, on a throwaway local Apache |
 
-The datasets have known modelling problems (D3FEND classes used as predicates, plain strings on object properties). They are tracked by `make data-report`, which does not fail the build.
+### Datasets
+
+`data/gtfobins.ttl` and `data/lolbas.ttl` are generated; don't edit them by hand.
+
+```sh
+make data          # regenerate both from the pinned upstream revisions (needs network on first run)
+make data-report   # quality report for the datasets (does not fail the build)
+```
+
+[`scripts/data/generate.py`](scripts/data/generate.py) reads the GTFOBins and LOLBAS revisions pinned in [`scripts/data/sources.json`](scripts/data/sources.json) and writes each one into its file header as `dcterms:source`. It takes the version and `dcterms:modified` from `src/mknd.ttl`. ATT&CK technique IDs are resolved against the pinned D3FEND release, and a deprecated technique is replaced by its successor. So run `make data` after changing the MKND version or the D3FEND pin. The output is deterministic. To move to newer upstream data, change the revision and date in `sources.json` and run `make data`. The generator reads the GTFOBins page format used until December 2025 (`_gtfobins/*.md`). Newer GTFOBins revisions use a different format and need generator changes.
+
+How the data is modelled:
+
+- Commands, executables, files and directories are D3FEND individuals: `mknd:command_<command>`, `mknd:executable_<name>` and so on.
+- Plain-text facts use datatype properties: `mknd:operating-system`, `mknd:required-privileges`, `mknd:use-case`, `mknd:extCategory` (the LOLBAS category) and `mknd:extType` (the LOLBAS type, or the kind of detection resource).
+- A GTFOBins function is a `d3f:Subroutine` individual (`mknd:function_<name>`) that commands and executables `mknd:provides`.
+- An ATT&CK technique is an individual `mknd:technique_<ID>` typed with the D3FEND technique class, for example `a d3f:T1218`. Commands point to it with `d3f:enables`, so the D3FEND class itself is never used as an individual.
 
 ### Upgrading D3FEND
 

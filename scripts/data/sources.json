@@ -1,0 +1,12 @@
+{
+  "gtfobins": {
+    "repo": "GTFOBins/GTFOBins.github.io",
+    "rev": "d1d30414fe6d609059bba4794501fcd397e7d3e3",
+    "date": "2023-02-11"
+  },
+  "lolbas": {
+    "repo": "LOLBAS-Project/LOLBAS",
+    "rev": "ded90467a86850b64f86ccfeae5595056a4b8eb2",
+    "date": "2022-12-29"
+  }
+}
