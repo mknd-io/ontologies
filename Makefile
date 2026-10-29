@@ -4,6 +4,7 @@
 #   make site     publishable site in build/site (docs + every serialization + versioned copy)
 #   make drift D3FEND_NEXT=1.6.0   which D3FEND terms MKND uses that a newer release lacks
 #   make data-report               non-blocking quality report for data/*.ttl
+#   make test-w3id                 check w3id/.htaccess redirects on a local Apache
 #
 # Needs: java 17+, python3, curl. Tools are downloaded into bin/ and .venv/.
 
@@ -59,8 +60,8 @@ tools: $(ROBOT_JAR) $(WIDOCO_JAR) $(PY)
 imports: $(D3FEND_TTL)
 
 # ---------------------------------------------------------------------------- tests
-.PHONY: test test-pins test-seam test-quality test-reason
-test: test-pins test-seam test-quality test-reason
+.PHONY: test test-pins test-seam test-quality test-reason test-w3id
+test: test-pins test-seam test-quality test-reason test-w3id
 
 # the D3FEND pin and MKND version must agree everywhere they are written down
 test-pins:
@@ -111,6 +112,10 @@ test-reason: $(ROBOT_JAR) $(D3FEND_TTL)
 	  || { echo "FAIL HermiT: inconsistent"; cat $(REPORTS)/inconsistency.md; exit 1; }
 	@echo "ok   HermiT: consistent"
 
+# w3id.org redirect rules against a local Apache (skipped when httpd is not installed)
+test-w3id:
+	@tests/w3id/run.sh 2>&1 | grep -v AH00558
+
 # ---------------------------------------------------------------------------- reports
 .PHONY: drift data-report
 D3FEND_NEXT ?= $(D3FEND_VERSION)
@@ -123,15 +128,20 @@ drift: $(ROBOT_JAR) build/imports/d3fend-$(D3FEND_NEXT).ttl
 	rm src/.catalog-drift.xml
 	@echo "D3FEND terms MKND uses that $(D3FEND_NEXT) lacks:"; cat $(REPORTS)/drift-$(D3FEND_NEXT).tsv
 
+# GTFOBins/LOLBAS are generated data with known problems (classes used as predicates, literals
+# on object properties); this report tracks them without blocking the build.
+DATA_GRAPH_QUERIES := tests/quality/class-used-as-predicate.rq tests/quality/undeclared-mknd-term.rq \
+                      tests/seam/undeclared-third-party-term.rq
 data-report: $(ROBOT_JAR) $(D3FEND_TTL)
 	@mkdir -p $(REPORTS)
 	@for f in $(DATA); do n=$$(basename $$f .ttl); \
-	  $(ROBOT) query $(CATALOG) --use-graphs true -i $$f \
-	    --query tests/quality/class-used-as-predicate.rq $(REPORTS)/data-$$n-class-as-predicate.tsv \
-	    --query tests/seam/third-party-subject.rq $(REPORTS)/data-$$n-d3f-subject.tsv \
-	    --query tests/quality/undeclared-mknd-term.rq $(REPORTS)/data-$$n-undeclared-mknd.tsv \
-	    --query tests/seam/undeclared-third-party-term.rq $(REPORTS)/data-$$n-undeclared-d3f.tsv; \
-	  for r in $(REPORTS)/data-$$n-*.tsv; do echo "$$r: $$(($$(wc -l < $$r) - 1)) rows"; done; \
+	  $(ROBOT) query $(CATALOG) -i $$f --query tests/seam/third-party-subject.rq \
+	    $(REPORTS)/data-$$n-third-party-subject.tsv > /dev/null 2>&1; \
+	  for q in $(DATA_GRAPH_QUERIES); do \
+	    $(ROBOT) query $(CATALOG) --use-graphs true -i $$f --query $$q \
+	      $(REPORTS)/data-$$n-$$(basename $$q .rq).tsv > /dev/null 2>&1; \
+	  done; \
+	  for r in $(REPORTS)/data-$$n-*.tsv; do $(ASSERT_EMPTY) $$r "$$(basename $$r .tsv)" --report; done; \
 	done
 
 # ---------------------------------------------------------------------------- site
@@ -165,6 +175,9 @@ docs: $(WIDOCO_JAR) $(PY)
 	rm -f $(SITE)/readme.md   # Widoco's own serializations are replaced by `serializations`
 
 # ---------------------------------------------------------------------------- misc
-.PHONY: clean
+.PHONY: clean print-version
+print-version:
+	@echo $(VERSION)
+
 clean:
 	rm -rf build
