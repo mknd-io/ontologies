@@ -28,13 +28,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Not .venv: a virtualenv links to the runner's Python, so a cached one breaks when a later run
+      # gets a different interpreter path, and `make` then fails to recreate it over the dangling links.
       - name: Cache tools and the pinned D3FEND release
         uses: actions/cache@v4
         with:
           path: |
             bin
             build/imports
-            .venv
           key: tools-${{ hashFiles('Makefile', 'src/mknd-d3fend.ttl') }}
 
       - name: Test (seam, quality, reasoning)
