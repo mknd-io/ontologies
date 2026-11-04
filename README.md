@@ -106,6 +106,10 @@ Fix what it reports, then change the version in the `owl:imports` of `src/mknd-d
 
 Every deploy republishes the snapshots of all GitHub Releases, so old version IRIs keep resolving.
 
+### Pull requests
+
+`main` takes changes only through pull requests that pass Build and have one approval. Claude Code gives that approval in place of a second maintainer ([`claude-review.yml`](.github/workflows/claude-review.yml)). When a PR is opened, or a draft is marked ready, Claude reviews it once, comments on each finding, pushes one commit with the fixes it can make, and approves. The PR then squash-merges by itself when Build passes. A modelling choice with more than one defensible answer is left to the author. If a problem remains that Claude couldn't fix and the checks can't catch, it doesn't approve, and the PR waits for a maintainer. PRs from forks don't get a Claude review (the workflow's secrets aren't shared with forks); a maintainer reviews them.
+
 ## Maintainer
 
 Anton Goncharov ([@ag0x00](https://github.com/ag0x00), <anton.goncharov@gmail.com>, ORCID [0000-0001-7399-6740](https://orcid.org/0000-0001-7399-6740)). Issues and pull requests are welcome.
