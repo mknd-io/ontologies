@@ -1,0 +1,125 @@
+# Claude Code reviews each PR in place of a second human reviewer: one review, one round of fixes, then an approval and
+# auto-merge (squash) once the required checks pass. Claude withholds the approval only for a problem it can't fix and
+# that would leave main wrong in a way the checks can't catch; then the PR waits for a human.
+#
+# Runs once per PR: when it's opened, or when a draft is marked ready. Later pushes (including Claude's own fix commit)
+# don't start another review. Needs the Claude GitHub App on this repo and the CLAUDE_CODE_OAUTH_TOKEN secret
+# (`claude setup-token`). The App only issues its token when this file matches the one on main, so a PR that changes
+# this file gets no Claude review and waits for a maintainer.
+name: Claude review
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+
+jobs:
+  review:
+    if: ${{ !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      # The same toolchain as Build, so Claude can run `make test` on its fixes.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache tools and the pinned D3FEND release
+        uses: actions/cache@v4
+        with:
+          path: |
+            bin
+            build/imports
+          key: tools-${{ hashFiles('Makefile', 'src/mknd-d3fend.ttl') }}
+
+      - id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+            BASE: ${{ github.event.pull_request.base.ref }}
+
+            You review this pull request in place of a second human reviewer, then fix what you found. You get one
+            review and one round of fixes; after that the PR merges by itself once its checks pass, so be thorough
+            the first time. The PR branch is checked out in the working directory.
+
+            The repo is MKND, an OWL ontology that extends MITRE D3FEND. Read README.md first: the module layout, the
+            rules (no copies of D3FEND; MKND says nothing about D3FEND terms outside the alignment module; D3FEND is
+            authoritative), the tests, and the release steps. CHANGELOG.md shows how changes are recorded.
+
+            1. Review. Read the PR (`gh pr view`, `gh pr diff`) and every changed file in full. Run `make test`.
+               Look for:
+               - axioms whose logical consequences are wrong: what a reasoner concludes from domains, ranges,
+                 restrictions, functional properties, disjointness and equivalences, for real data
+               - definitions, labels and scope notes that disagree with the axioms, with D3FEND, or with each other
+               - D3FEND terms redefined or misused; terms that don't exist in the pinned D3FEND release
+               - the release steps: version IRIs, `owl:priorVersion`, `dcterms:modified`, `make data` output, CHANGELOG
+               - CI, scripts and Makefile: bugs, missed cases, anything that breaks the build or the published site
+               - the PR description claiming something the diff doesn't do
+               Post each finding as an inline comment on the line it concerns
+               (`mcp__github_inline_comment__create_inline_comment`, with `confirmed: true`). Then post one summary
+               comment (`gh pr comment`) listing every finding, numbered, each marked "fixing" or "not fixing" with
+               the reason. Say plainly when you found nothing.
+
+            2. Fix. Make every fix you marked "fixing" on this branch, run `make test` until it passes, commit once
+               with a message naming the findings fixed, and push (`git push`). Don't fix what needs the author's
+               decision, such as a modelling choice with more than one defensible answer; mark it "not fixing: the
+               author's call". Never force-push or rewrite existing commits. Change only what your findings need.
+
+            3. Decide. Set `merge` to false only if a problem remains that you couldn't fix and that would leave main
+               wrong in a way the checks can't catch; give the reason. Otherwise set `merge` to true, and as your
+               last action queue the merge: `gh pr merge ${{ github.event.pull_request.number }} --auto --squash`.
+               (It merges once the workflow approves the PR and Build passes.)
+          claude_args: |
+            --model opus
+            --max-turns 120
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(make:*),Bash(git:*),Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh pr merge:*),Bash(python3:*),Bash(java:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(diff:*),mcp__github_inline_comment__create_inline_comment"
+            --json-schema '{"type":"object","properties":{"merge":{"type":"boolean"},"reason":{"type":"string"}},"required":["merge","reason"]}'
+
+      # Claude queues the merge itself, with the Claude App's token: a merge queued with GITHUB_TOKEN wouldn't start
+      # the Build and deploy run on main, and the action revokes the App's token when its step ends. The approval comes
+      # from github-actions (repo setting: Actions may approve PRs).
+      - name: Approve
+        if: ${{ steps.claude.outputs.structured_output != '' && fromJSON(steps.claude.outputs.structured_output).merge }}
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr review "$PR" --approve --body "Claude review: one review and one round of fixes done (see the comments above). Merging when the checks pass."
+
+      - name: Leave it for a human
+        if: ${{ steps.claude.outputs.structured_output != '' && !fromJSON(steps.claude.outputs.structured_output).merge }}
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+          REASON: ${{ fromJSON(steps.claude.outputs.structured_output).reason }}
+        run: |
+          gh pr comment "$PR" --body "Claude review: not approving; this needs a human. $REASON"
+
+      - name: No review ran
+        if: ${{ steps.claude.outputs.structured_output == '' }}
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment "$PR" --body "Claude review didn't run (see the workflow log; a PR that changes claude-review.yml can't be reviewed by it). This PR needs a maintainer."
+          exit 1
