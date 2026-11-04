@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.1 — 2026-11-04
+
+Definitions only: no IRI, class, property or axiom changes.
+
+### Added
+- **Definitions for every term.** The 91 classes and properties that had no definition or comment now have a `skos:definition`, among them `mknd:Username`, `mknd:FileName`, `mknd:Socket`, `mknd:Detection`, `mknd:MACAddress`, `mknd:IPv4`, `mknd:extCategory`, `mknd:extType` and the CVSS metrics and scores. CVSS wording follows FIRST's CVSS v3.1 specification.
+- **Scope notes** (`skos:scopeNote`, newly declared) on 26 terms, saying how a term is used where that isn't obvious from its definition. For example, a file name does not identify a file; a login string is an Observable, not an account's identifier; IP and MAC addresses are associated with what holds them for a period.
+- **Test** `missing-definition`: every MKND class and property has a `skos:definition`, `rdfs:comment` or `d3f:definition`.
+
+### Fixed
+- Typo in `mknd:extThreat`'s comment ("responcible").
+
 ## 0.5.0 — 2026-10-29
 
 Built on **MITRE D3FEND 1.6.0** (was 0.14.0). Some IRIs change; see Changed.
