@@ -229,7 +229,7 @@ d3f:Subroutine rdfs:subClassOf mknd:MekaThing ,
 
 ###  http://d3fend.mitre.org/ontologies/d3fend.owl#UserAccount
 d3f:UserAccount rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty d3f:identified-by ;
+                                  owl:onProperty d3f:associated-with ;
                                   owl:someValuesFrom mknd:Username
                                 ] ;
                 mknd:icon "user-account.svg" .

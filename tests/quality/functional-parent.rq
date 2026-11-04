@@ -1,0 +1,9 @@
+# A functional property with sub-properties: every sub-property's value is also the parent's, so a thing with two
+# different sub-property values (first seen and last seen under MKND 0.5.0's functional mknd:dateTime) is inconsistent.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?property ?sub WHERE {
+  ?property a owl:FunctionalProperty .
+  ?sub rdfs:subPropertyOf ?property .
+  FILTER(?sub != ?property && STRSTARTS(STR(?property), "https://w3id.org/mknd/"))
+}

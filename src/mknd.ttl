@@ -337,8 +337,7 @@ mknd:cvssImpactScore rdf:type owl:DatatypeProperty ;
 
 
 ###  https://w3id.org/mknd/dateTime
-mknd:dateTime rdf:type owl:DatatypeProperty ,
-                       owl:FunctionalProperty ;
+mknd:dateTime rdf:type owl:DatatypeProperty ;
               rdfs:domain mknd:MekaThing ;
               rdfs:range xsd:dateTimeStamp ;
               rdfs:label "has timestamp"@en ;
@@ -347,8 +346,7 @@ mknd:dateTime rdf:type owl:DatatypeProperty ,
 
 
 ###  https://w3id.org/mknd/dateTimeEpoch
-mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
+mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:long ;
                    rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
                    rdfs:label "has epoch"@en ;
@@ -436,13 +434,15 @@ mknd:external-id rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/firstSeen
 mknd:firstSeen rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf mknd:timeSeen ;
-               rdfs:comment "The first time the enity had been observed by the application."@en ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:comment "The first time the observer that records it saw the entity or relationship: the source product, in that product's report, or the application. On an entity or a relationship as a whole, it is the earliest time any source reported it, by the sources' own clocks. It says when the observer first saw it, not when it originated (mknd:timeCreated)."@en ;
                rdfs:label "first seen"@en .
 
 
 ###  https://w3id.org/mknd/firstSeenEpoch
 mknd:firstSeenEpoch rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                    rdf:type owl:FunctionalProperty ;
                     rdfs:label "first seen (epoch)"@en ;
                     skos:definition "The same instant as mknd:firstSeen, as Unix epoch time in seconds: the first time the observer that records it saw the entity."@en ;
                     skos:scopeNote "The observer is the source product or the application. First seen says when that observer first saw the entity, not when it originated (mknd:timeCreatedEpoch)."@en .
@@ -505,13 +505,15 @@ mknd:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/lastSeen
 mknd:lastSeen rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf mknd:timeSeen ;
-              rdfs:comment "The last time the entity had been observed by the application."@en ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:comment "The last time the observer that records it saw the entity or relationship: the source product, in that product's report, or the application. On an entity or a relationship as a whole, it is the latest time any source reported it, by the sources' own clocks. An old last seen does not mean the entity or relationship has ended."@en ;
               rdfs:label "last seen"@en .
 
 
 ###  https://w3id.org/mknd/lastSeenEpoch
 mknd:lastSeenEpoch rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                   rdf:type owl:FunctionalProperty ;
                    rdfs:label "last seen (epoch)"@en ;
                    skos:definition "The same instant as mknd:lastSeen, as Unix epoch time in seconds: the last time the observer that records it saw the entity."@en ;
                    skos:scopeNote "The observer is the source product or the application. An old last seen does not mean the entity or relationship has ended."@en .
@@ -607,6 +609,7 @@ mknd:templateId rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/timeCreated
 mknd:timeCreated rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf mknd:dateTime ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:comment "Time when the entity had been created at the point of origin."@en ;
                  rdfs:label "created at"@en .
 
@@ -614,6 +617,7 @@ mknd:timeCreated rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/timeCreatedEpoch
 mknd:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                      rdf:type owl:FunctionalProperty ;
                       rdfs:comment "Time when the entity had been created at the point of origin."@en ;
                       rdfs:label "created at (epoch)"@en .
 
@@ -1240,7 +1244,7 @@ mknd:HighVulnerability rdf:type owl:Class ;
                                                                                   ]
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty mknd:severityRating ;
-                                                                                    owl:hasValue mknd:CVSS-AvailabilityImpact-High
+                                                                                    owl:hasValue mknd:CVSS-SeverityType-High
                                                                                   ]
                                                                                 )
                                                                   ]
@@ -1346,7 +1350,7 @@ mknd:LowSeverityVulnerability rdf:type owl:Class ;
                                                                                          ]
                                                                                          [ rdf:type owl:Restriction ;
                                                                                            owl:onProperty mknd:severityRating ;
-                                                                                           owl:hasValue mknd:CVSS-AttackComplexity-Low
+                                                                                           owl:hasValue mknd:CVSS-SeverityType-Low
                                                                                          ]
                                                                                        )
                                                                          ]
@@ -1613,31 +1617,16 @@ mknd:Report rdf:type owl:Class ;
                             mknd:MekaThing ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:DomainName
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:FileHash
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:IPAddress
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:URL
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:EmailAddress
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:Hash
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:Socket
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( d3f:DomainName
+                                                                 d3f:FileHash
+                                                                 d3f:IPAddress
+                                                                 d3f:URL
+                                                                 mknd:EmailAddress
+                                                                 mknd:Hash
+                                                                 mknd:Socket
+                                                               )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:produces ;
@@ -1879,31 +1868,16 @@ mknd:Verdict rdf:type owl:Class ;
                              mknd:Proposition ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:DomainName
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:FileHash
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:IPAddress
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:URL
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:EmailAddress
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:Hash
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:Socket
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:unionOf ( d3f:DomainName
+                                                                  d3f:FileHash
+                                                                  d3f:IPAddress
+                                                                  d3f:URL
+                                                                  mknd:EmailAddress
+                                                                  mknd:Hash
+                                                                  mknd:Socket
+                                                                )
+                                                  ]
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:produced-by ;

@@ -2,15 +2,19 @@
 
 ## 0.5.1 — 2026-11-04
 
-Definitions only: no IRI, class, property or axiom changes.
+Definitions for every term, and four axiom fixes. No IRI changes.
 
 ### Added
 - **Definitions for every term.** The 91 classes and properties that had no definition or comment now have a `skos:definition`, among them `mknd:Username`, `mknd:FileName`, `mknd:Socket`, `mknd:Detection`, `mknd:MACAddress`, `mknd:IPv4`, `mknd:extCategory`, `mknd:extType` and the CVSS metrics and scores. CVSS wording follows FIRST's CVSS v3.1 specification.
 - **Scope notes** (`skos:scopeNote`, newly declared) on 26 terms, saying how a term is used where that isn't obvious from its definition. For example, a file name does not identify a file; a login string is an Observable, not an account's identifier; IP and MAC addresses are associated with what holds them for a period.
-- **Test** `missing-definition`: every MKND class and property has a `skos:definition`, `rdfs:comment` or `d3f:definition`.
+- **Tests** `missing-definition` (every MKND class and property has a `skos:definition`, `rdfs:comment` or `d3f:definition`), `hasvalue-out-of-range` (a defined class's `owl:hasValue` lies in the property's range) and `functional-parent` (no functional MKND property has sub-properties). Each fails on 0.5.0.
 
 ### Fixed
-- Typo in `mknd:extThreat`'s comment ("responcible").
+- **Severity classes.** `mknd:HighVulnerability` and `mknd:LowSeverityVulnerability` pointed `mknd:severityRating` at `mknd:CVSS-AvailabilityImpact-High` and `mknd:CVSS-AttackComplexity-Low`, so neither could be inferred from a rating. They now use `mknd:CVSS-SeverityType-High` and `-Low`, as Critical and Medium do.
+- **Timestamps.** `mknd:dateTime` and `mknd:dateTimeEpoch` were functional, so a thing whose first seen differed from its last seen (or from its created time, or a file whose access, change and modification times differed) was inconsistent. They are no longer functional; `mknd:timeCreated`, `mknd:firstSeen`, `mknd:lastSeen` and their epoch twins are functional instead. `mknd:firstSeen` and `mknd:lastSeen` are reworded: they belong to whichever observer records them, a source product or the application, and on an entity or relationship as a whole they are the earliest and latest time any source reported it.
+- **Accounts and login strings.** `d3f:UserAccount` was `d3f:identified-by some mknd:Username`. A login string can be made up and doesn't identify an account; it is now `d3f:associated-with some mknd:Username`.
+- **Verdicts and reports.** `mknd:Verdict` had to evaluate a domain name *and* a file hash *and* an IP address *and* a URL, an email address, a hash and a socket, and `mknd:Report` to analyze all seven. Each now evaluates (analyzes) some one of them.
+- Typos in `mknd:extThreat`'s comment ("responcible") and `mknd:firstSeen`'s ("enity").
 
 ## 0.5.0 — 2026-10-29
 
