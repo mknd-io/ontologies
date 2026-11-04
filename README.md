@@ -6,7 +6,7 @@ MKND is an OWL ontology for cybersecurity knowledge graphs. It covers observable
 
 - **Namespace:** `https://w3id.org/mknd/` (prefix `mknd:`)
 - **Documentation:** <https://mknd-io.github.io/ontologies/>
-- **Current release:** 0.5.0, built on D3FEND 1.6.0. See [CHANGELOG.md](CHANGELOG.md).
+- **Current release:** 0.5.1, built on D3FEND 1.6.0. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Using it
 

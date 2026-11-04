@@ -12,19 +12,19 @@
 @base <https://w3id.org/mknd/> .
 
 <https://w3id.org/mknd/> rdf:type owl:Ontology ;
-                          owl:versionIRI <https://w3id.org/mknd/0.5.0/> ;
+                          owl:versionIRI <https://w3id.org/mknd/0.5.1/> ;
                           owl:imports <https://w3id.org/mknd/alignment/d3fend> ;
                           dcterms:created "2022-04-02"^^xsd:date ;
                           dcterms:creator <https://orcid.org/0000-0001-7399-6740> ;
                           dcterms:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
                           dcterms:license <https://opensource.org/license/mit> ;
-                          dcterms:modified "2026-10-29"^^xsd:date ;
+                          dcterms:modified "2026-11-04"^^xsd:date ;
                           dcterms:title "Mekanoid Ontology (MKND)"@en ;
                           vann:preferredNamespacePrefix "mknd" ;
                           vann:preferredNamespaceUri "https://w3id.org/mknd/"^^xsd:anyURI ;
                           rdfs:comment "Maintained by Anton Goncharov <anton.goncharov@gmail.com>. Released under the MIT License."@en ;
-                          owl:priorVersion <https://w3id.org/mknd/0.4.0/> ;
-                          owl:versionInfo "0.5.0" .
+                          owl:priorVersion <https://w3id.org/mknd/0.5.0/> ;
+                          owl:versionInfo "0.5.1" .
 
 #################################################################
 #    Annotation properties
@@ -66,6 +66,10 @@ skos:definition rdf:type owl:AnnotationProperty .
 skos:example rdf:type owl:AnnotationProperty .
 
 
+###  http://www.w3.org/2004/02/skos/core#scopeNote
+skos:scopeNote rdf:type owl:AnnotationProperty .
+
+
 ###  https://w3id.org/mknd/context
 mknd:context rdf:type owl:AnnotationProperty ;
              rdfs:label "context"@en ;
@@ -97,7 +101,8 @@ d3f:connects owl:inverseOf mknd:connected-by .
 
 ###  https://w3id.org/mknd/analyzed-by
 mknd:analyzed-by rdf:type owl:ObjectProperty ;
-                 rdfs:label "analyzed by"@en .
+                 rdfs:label "analyzed by"@en ;
+                 skos:definition "x analyzed-by y: the entity x is broken down and assessed by y, such as a host scanned by an antivirus scan, or an IP address assessed by an analysis report. Inverse of d3f:analyzes."@en .
 
 
 ###  https://w3id.org/mknd/attackComplexity
@@ -105,7 +110,8 @@ mknd:attackComplexity rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf mknd:hasCVSSMetric ;
                       rdf:type owl:FunctionalProperty ;
                       rdfs:range mknd:CVSS-AttackComplexity ;
-                      rdfs:label "attack complexity" .
+                      rdfs:label "attack complexity" ;
+                      skos:definition "x attack complexity y: y is the CVSS Attack Complexity (AC) value of the vulnerability x: Low or High. In FIRST's words, this metric \"describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability\"."@en .
 
 
 ###  https://w3id.org/mknd/attackVector
@@ -113,7 +119,8 @@ mknd:attackVector rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf mknd:hasCVSSMetric ;
                   rdf:type owl:FunctionalProperty ;
                   rdfs:range mknd:CVSS-AttackVector ;
-                  rdfs:label "attack vector"@en .
+                  rdfs:label "attack vector"@en ;
+                  skos:definition "x attack vector y: y is the CVSS Attack Vector (AV) value of the vulnerability x: Network, Adjacent, Local or Physical. In FIRST's words, this metric \"reflects the context by which vulnerability exploitation is possible\"."@en .
 
 
 ###  https://w3id.org/mknd/availabilityImpact
@@ -121,20 +128,23 @@ mknd:availabilityImpact rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf mknd:hasCVSSMetric ;
                         rdf:type owl:FunctionalProperty ;
                         rdfs:range mknd:CVSS-AvailabilityImpact ;
-                        rdfs:label "availability impact"@en .
+                        rdfs:label "availability impact"@en ;
+                        skos:definition "x availability impact y: y is the CVSS Availability (A) impact value of the vulnerability x: High, Low or None. In FIRST's words, this metric \"measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability\"."@en .
 
 
 ###  https://w3id.org/mknd/confidentialityImpact
 mknd:confidentialityImpact rdf:type owl:ObjectProperty ;
                            rdfs:subPropertyOf mknd:hasCVSSMetric ;
                            rdf:type owl:FunctionalProperty ;
-                           rdfs:label "confidentiality impact"@en .
+                           rdfs:label "confidentiality impact"@en ;
+                           skos:definition "x confidentiality impact y: y is the CVSS Confidentiality (C) impact value of the vulnerability x: High, Low or None. In FIRST's words, this metric \"measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability\"."@en .
 
 
 ###  https://w3id.org/mknd/connected-by
 mknd:connected-by rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf d3f:associated-with ;
-                  rdfs:label "connected by"@en .
+                  rdfs:label "connected by"@en ;
+                  skos:definition "x connected-by y: the system x is joined to other systems by y through communication equipment, such as a host reconnected to the network by an action that releases it from isolation. Inverse of d3f:connects."@en .
 
 
 ###  https://w3id.org/mknd/exploitCodeMaturity
@@ -142,70 +152,81 @@ mknd:exploitCodeMaturity rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf mknd:hasCVSSMetric ;
                          rdf:type owl:FunctionalProperty ;
                          rdfs:range mknd:CVSS-ExploitCodeMaturity ;
-                         rdfs:label "exploit code maturity" .
+                         rdfs:label "exploit code maturity" ;
+                         skos:definition "x exploit code maturity y: y is the CVSS Exploit Code Maturity (E) value of the vulnerability x, a Temporal metric: Not Defined, Unproven, Proof-of-Concept, Functional or High. In FIRST's words, this metric \"measures the likelihood of the vulnerability being attacked\"."@en .
 
 
 ###  https://w3id.org/mknd/hasCVSSMetric
 mknd:hasCVSSMetric rdf:type owl:ObjectProperty ;
                    rdfs:domain d3f:Vulnerability ;
-                   rdfs:label "has CVSS metric" .
+                   rdfs:label "has CVSS metric" ;
+                   skos:definition "x has CVSS metric y: y is a CVSS metric value of the vulnerability x, such as Attack Vector: Network. The parent of the properties for each CVSS metric."@en .
 
 
 ###  https://w3id.org/mknd/indicatedBy
 mknd:indicatedBy rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf mknd:mayBeIndicatedBy ;
                  owl:inverseOf mknd:indicates ;
-                 rdfs:label "indicated by"@en .
+                 rdfs:label "indicated by"@en ;
+                 skos:definition "x indicated-by y: a source has established that y points to the presence or activity of x, such as a malware family and an indicator of compromise listed for it. Inverse of mknd:indicates."@en .
 
 
 ###  https://w3id.org/mknd/indicates
 mknd:indicates rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf mknd:mayIndicate ;
-               rdfs:label "indicates"@en .
+               rdfs:label "indicates"@en ;
+               skos:definition "x indicates y: a source has established that x points to the presence or activity of y, such as an indicator of compromise that a threat-intelligence feed lists for a malware family."@en .
 
 
 ###  https://w3id.org/mknd/integrityImpact
 mknd:integrityImpact rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf mknd:hasCVSSMetric ;
                      rdf:type owl:FunctionalProperty ;
-                     rdfs:label "integrity impact"@en .
+                     rdfs:label "integrity impact"@en ;
+                     skos:definition "x integrity impact y: y is the CVSS Integrity (I) impact value of the vulnerability x: High, Low or None. In FIRST's words, this metric \"measures the impact to integrity of a successfully exploited vulnerability\"."@en .
 
 
 ###  https://w3id.org/mknd/isolated-by
 mknd:isolated-by rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf d3f:associated-with ;
-                 rdfs:label "isolated by"@en .
+                 rdfs:label "isolated by"@en ;
+                 skos:definition "x isolated-by y: the entity x is set apart from other digital artifacts by y, such as a host cut off from the network by an isolation action."@en .
 
 
 ###  https://w3id.org/mknd/mayBeIndicatedBy
 mknd:mayBeIndicatedBy rdf:type owl:ObjectProperty ;
                       owl:inverseOf mknd:mayIndicate ;
-                      rdfs:label "may be indicated by"@en .
+                      rdfs:label "may be indicated by"@en ;
+                      skos:definition "x may be indicated by y: the presence or activity of x, such as malware, can be pointed to by y, such as an IP address, a domain name or a file name, without the link being established. Inverse of mknd:mayIndicate."@en .
 
 
 ###  https://w3id.org/mknd/mayIndicate
 mknd:mayIndicate rdf:type owl:ObjectProperty ;
-                 rdfs:label "may indicate"@en .
+                 rdfs:label "may indicate"@en ;
+                 skos:definition "x may indicate y: x, such as an IP address, a domain name or a file name, can point to the presence or activity of y, such as malware, without the link being established. Inverse of mknd:mayBeIndicatedBy."@en .
 
 
 ###  https://w3id.org/mknd/mkndObjectProperty
 mknd:mkndObjectProperty rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf mknd:supports ;
-                        rdfs:label "MKND object property"@en .
+                        rdfs:label "MKND object property"@en ;
+                        skos:definition "A property labelled as a root for MKND's object properties. MKND declares it a sub-property of mknd:supports, and no MKND term or example uses it."@en .
 
 
 ###  https://w3id.org/mknd/privilegesRequired
 mknd:privilegesRequired rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf mknd:hasCVSSMetric ;
                         rdf:type owl:FunctionalProperty ;
-                        rdfs:label "privileges required"@en .
+                        rdfs:label "privileges required"@en ;
+                        skos:definition "x privileges required y: y is the CVSS Privileges Required (PR) value of the vulnerability x: None, Low or High. In FIRST's words, this metric \"describes the level of privileges an attacker must possess before successfully exploiting the vulnerability\"."@en .
 
 
 ###  https://w3id.org/mknd/provided-by
 mknd:provided-by rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf d3f:associated-with ;
                  owl:inverseOf mknd:provides ;
-                 rdfs:label "provided by"@en .
+                 rdfs:label "provided by"@en ;
+                 skos:definition "x provided-by y: the service or capability x is made available by y, e.g. a network service provided by a socket. Inverse of mknd:provides."@en .
 
 
 ###  https://w3id.org/mknd/provides
@@ -220,7 +241,8 @@ mknd:remediationLevel rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf mknd:hasCVSSMetric ;
                       rdf:type owl:FunctionalProperty ;
                       rdfs:range mknd:CVSS-RemediationLevel ;
-                      rdfs:label "remediation level" .
+                      rdfs:label "remediation level" ;
+                      skos:definition "x remediation level y: y is the CVSS Remediation Level (RL) value of the vulnerability x, a Temporal metric: Not Defined, Official Fix, Temporary Fix, Workaround or Unavailable. In FIRST's words, \"the less official and permanent a fix, the higher the vulnerability score\"."@en .
 
 
 ###  https://w3id.org/mknd/reportConfidence
@@ -228,14 +250,16 @@ mknd:reportConfidence rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf mknd:hasCVSSMetric ;
                       rdf:type owl:FunctionalProperty ;
                       rdfs:range mknd:CVSS-ReportConfidence ;
-                      rdfs:label "report confidence" .
+                      rdfs:label "report confidence" ;
+                      skos:definition "x report confidence y: y is the CVSS Report Confidence (RC) value of the vulnerability x, a Temporal metric: Not Defined, Unknown, Reasonable or Confirmed. In FIRST's words, this metric \"measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details\"."@en .
 
 
 ###  https://w3id.org/mknd/scope
 mknd:scope rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf mknd:hasCVSSMetric ;
            rdf:type owl:FunctionalProperty ;
-           rdfs:label "scope"@en .
+           rdfs:label "scope"@en ;
+           skos:definition "x scope y: y is the CVSS Scope (S) value of the vulnerability x: Unchanged or Changed. In FIRST's words, this metric \"captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope\"."@en .
 
 
 ###  https://w3id.org/mknd/severityRating
@@ -243,26 +267,30 @@ mknd:severityRating rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf mknd:hasCVSSMetric ;
                     rdf:type owl:FunctionalProperty ;
                     rdfs:range mknd:CVSS-SeverityType ;
-                    rdfs:label "severity" .
+                    rdfs:label "severity" ;
+                    skos:definition "x severity y: y is the CVSS qualitative severity rating of the vulnerability x: None, Low, Medium, High or Critical. FIRST maps scores to these ratings: None 0.0, Low 0.1 to 3.9, Medium 4.0 to 6.9, High 7.0 to 8.9 and Critical 9.0 to 10.0."@en .
 
 
 ###  https://w3id.org/mknd/supports
 mknd:supports rdf:type owl:ObjectProperty ;
               rdfs:label "supports"@en ;
+              skos:definition "x supports y: x works with the product or service y, e.g. an Integration or a Connection supports the software product or service it connects to."@en ;
               skos:example "Integration x supports product or service y." .
 
 
 ###  https://w3id.org/mknd/updated-by
 mknd:updated-by rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf d3f:modified-by ;
-                rdfs:label "updated by" .
+                rdfs:label "updated by" ;
+                skos:definition "x updated-by y: the entity x is changed by y to bring it up to date, such as a software component updated by a software update. Inverse of d3f:updates."@en .
 
 
 ###  https://w3id.org/mknd/userInteraction
 mknd:userInteraction rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf mknd:hasCVSSMetric ;
                      rdf:type owl:FunctionalProperty ;
-                     rdfs:label "user interaction"@en .
+                     rdfs:label "user interaction"@en ;
+                     skos:definition "x user interaction y: y is the CVSS User Interaction (UI) value of the vulnerability x: None or Required. In FIRST's words, this metric \"captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component\"."@en .
 
 
 #################################################################
@@ -274,6 +302,7 @@ mknd:cpe rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf d3f:identifier ;
          rdfs:range xsd:string ;
          rdfs:label "CPE" ;
+         skos:definition "A Common Platform Enumeration (CPE) name that identifies the software, operating system or hardware product the entity is, such as cpe:2.3:o:google:android:-:*:*:*:*:*:*:*."@en ;
          skos:example "cpe:2.3:a:apple:icloud:1.0:*:*:*:*:macos:*:*" .
 
 
@@ -283,7 +312,8 @@ mknd:cvssBaseScore rdf:type owl:DatatypeProperty ;
                    rdf:type owl:FunctionalProperty ;
                    rdfs:domain d3f:Vulnerability ;
                    rdfs:range xsd:decimal ;
-                   rdfs:label "base score" .
+                   rdfs:label "base score" ;
+                   skos:definition "The CVSS Base Score of a vulnerability, from 0.0 to 10.0. In FIRST's words, it \"reflects the severity of a vulnerability according to its intrinsic characteristics which are constant over time and assumes the reasonable worst case impact across different deployed environments\"."@en .
 
 
 ###  https://w3id.org/mknd/cvssExploitabilityScore
@@ -292,7 +322,8 @@ mknd:cvssExploitabilityScore rdf:type owl:DatatypeProperty ;
                              rdf:type owl:FunctionalProperty ;
                              rdfs:domain d3f:Vulnerability ;
                              rdfs:range xsd:decimal ;
-                             rdfs:label "exploitability score" .
+                             rdfs:label "exploitability score" ;
+                             skos:definition "The CVSS Exploitability sub-score of a vulnerability, which FIRST's Base equation computes from the Exploitability metrics: Attack Vector, Attack Complexity, Privileges Required and User Interaction."@en .
 
 
 ###  https://w3id.org/mknd/cvssImpactScore
@@ -301,12 +332,12 @@ mknd:cvssImpactScore rdf:type owl:DatatypeProperty ;
                      rdf:type owl:FunctionalProperty ;
                      rdfs:domain d3f:Vulnerability ;
                      rdfs:range xsd:decimal ;
-                     rdfs:label "impact score" .
+                     rdfs:label "impact score" ;
+                     skos:definition "The CVSS Impact sub-score of a vulnerability, which FIRST's Base equation computes from the Impact metrics (Confidentiality, Integrity and Availability) and Scope."@en .
 
 
 ###  https://w3id.org/mknd/dateTime
-mknd:dateTime rdf:type owl:DatatypeProperty ,
-                       owl:FunctionalProperty ;
+mknd:dateTime rdf:type owl:DatatypeProperty ;
               rdfs:domain mknd:MekaThing ;
               rdfs:range xsd:dateTimeStamp ;
               rdfs:label "has timestamp"@en ;
@@ -315,8 +346,7 @@ mknd:dateTime rdf:type owl:DatatypeProperty ,
 
 
 ###  https://w3id.org/mknd/dateTimeEpoch
-mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
+mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ;
                    rdfs:range xsd:long ;
                    rdfs:comment "A Unix epoch timestamp associated with the entity"@en ;
                    rdfs:label "has epoch"@en ;
@@ -327,7 +357,9 @@ mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ,
 ###  https://w3id.org/mknd/extCategory
 mknd:extCategory rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf mknd:vendorProperty ;
-                 rdfs:label "category" .
+                 rdfs:label "category" ;
+                 skos:definition "The category a third-party vendor gives the entity, as the vendor's own string, such as the category of an alert."@en ;
+                 skos:scopeNote "Holds the vendor's own category string unchanged, even when a normalised category is recorded too."@en .
 
 
 ###  https://w3id.org/mknd/extClassification
@@ -370,14 +402,16 @@ mknd:extStatus rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/extThreat
 mknd:extThreat rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf mknd:extClassification ;
-               rdfs:comment "Threat Level as defined by the 3rd party vendor responcible for creating the Artifact."@en ;
+               rdfs:comment "Threat Level as defined by the 3rd party vendor responsible for creating the Artifact."@en ;
                rdfs:label "Threat Level"@en .
 
 
 ###  https://w3id.org/mknd/extType
 mknd:extType rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf mknd:vendorProperty ;
-             rdfs:label "type" .
+             rdfs:label "type" ;
+             skos:definition "The type a third-party vendor gives the entity, as the vendor's own string, such as the type of an alert or event."@en ;
+             skos:scopeNote "Holds the vendor's own type string unchanged. What the entity is goes in its class; this keeps the vendor's word for it."@en .
 
 
 ###  https://w3id.org/mknd/extUrgency
@@ -400,14 +434,18 @@ mknd:external-id rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/firstSeen
 mknd:firstSeen rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf mknd:timeSeen ;
-               rdfs:comment "The first time the enity had been observed by the application."@en ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:comment "The first time the observer that records it saw the entity or relationship: the source product, in that product's report, or the application. On an entity or a relationship as a whole, it is the earliest time any source reported it, by the sources' own clocks. It says when the observer first saw it, not when it originated (mknd:timeCreated)."@en ;
                rdfs:label "first seen"@en .
 
 
 ###  https://w3id.org/mknd/firstSeenEpoch
 mknd:firstSeenEpoch rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf mknd:dateTimeEpoch ;
-                    rdfs:label "first seen (epoch)"@en .
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:label "first seen (epoch)"@en ;
+                    skos:definition "The same instant as mknd:firstSeen, as Unix epoch time in seconds: the first time the observer that records it saw the entity."@en ;
+                    skos:scopeNote "The observer is the source product or the application. First seen says when that observer first saw the entity, not when it originated (mknd:timeCreatedEpoch)."@en .
 
 
 ###  https://w3id.org/mknd/hasURL
@@ -416,7 +454,8 @@ mknd:hasURL rdf:type owl:DatatypeProperty ;
             rdfs:domain d3f:File ,
                         mknd:Report ;
             rdfs:range xsd:anyURI ;
-            rdfs:label "has URL"@en .
+            rdfs:label "has URL"@en ;
+            skos:definition "A URL at which the entity, or more about it, can be found, such as the web page of an advisory or an online analysis report."@en .
 
 
 ###  https://w3id.org/mknd/id
@@ -428,7 +467,8 @@ mknd:id rdf:type owl:DatatypeProperty ;
 
 ###  https://w3id.org/mknd/importBucketName
 mknd:importBucketName rdf:type owl:DatatypeProperty ;
-                      rdfs:label "S3 bucket name"@en .
+                      rdfs:label "S3 bucket name"@en ;
+                      skos:definition "The name of the object-storage bucket, such as an Amazon S3 bucket, in which the application keeps the data imported by a Task Run."@en .
 
 
 ###  https://w3id.org/mknd/importBucketUrl
@@ -436,64 +476,76 @@ mknd:importBucketUrl rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf mknd:hasURL ;
                      rdf:type owl:FunctionalProperty ;
                      rdfs:range xsd:anyURI ;
-                     rdfs:label "S3 bucket URL"@en .
+                     rdfs:label "S3 bucket URL"@en ;
+                     skos:definition "The URL of the location in object storage, such as s3://bucket/path/files/, where the application keeps the files imported by a Task Run."@en .
 
 
 ###  https://w3id.org/mknd/importFileName
 mknd:importFileName rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf owl:topDataProperty ;
                     rdfs:range xsd:anyURI ;
-                    rdfs:label "filename"@en .
+                    rdfs:label "filename"@en ;
+                    skos:definition "The name of the file whose contents the application imported, such as the saved output of a Task Run or an uploaded log file like conn.log."@en .
 
 
 ###  https://w3id.org/mknd/importId
 mknd:importId rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf d3f:identifier ;
-              rdfs:label "import ID"@en .
+              rdfs:label "import ID"@en ;
+              skos:definition "The identifier the application gives one import of data, such as the output of one Task Run or one uploaded file. It links a Task Run to the data it imported."@en .
 
 
 ###  https://w3id.org/mknd/lastAccessedEpoch
 mknd:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf mknd:dateTimeEpoch ;
-                       rdfs:label "last accessed"@en .
+                       rdfs:label "last accessed"@en ;
+                       skos:definition "The time the entity was last accessed, as Unix epoch time in seconds, by the clock of the system that records the access, such as a file's last access time (atime) on the file system that holds it."@en .
 
 
 ###  https://w3id.org/mknd/lastSeen
 mknd:lastSeen rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf mknd:timeSeen ;
-              rdfs:comment "The last time the entity had been observed by the application."@en ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:comment "The last time the observer that records it saw the entity or relationship: the source product, in that product's report, or the application. On an entity or a relationship as a whole, it is the latest time any source reported it, by the sources' own clocks. An old last seen does not mean the entity or relationship has ended."@en ;
               rdfs:label "last seen"@en .
 
 
 ###  https://w3id.org/mknd/lastSeenEpoch
 mknd:lastSeenEpoch rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf mknd:dateTimeEpoch ;
-                   rdfs:label "last seen (epoch)"@en .
+                   rdf:type owl:FunctionalProperty ;
+                   rdfs:label "last seen (epoch)"@en ;
+                   skos:definition "The same instant as mknd:lastSeen, as Unix epoch time in seconds: the last time the observer that records it saw the entity."@en ;
+                   skos:scopeNote "The observer is the source product or the application. An old last seen does not mean the entity or relationship has ended."@en .
 
 
 ###  https://w3id.org/mknd/lastStatusChangeEpoch
 mknd:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
                            rdfs:subPropertyOf mknd:dateTimeEpoch ;
-                           rdfs:label "last status change"@en .
+                           rdfs:label "last status change"@en ;
+                           skos:definition "The time the entity's status last changed, as Unix epoch time in seconds, by the clock of the system that records it, such as a file's inode change time (ctime) on the file system that holds it."@en .
 
 
 ###  https://w3id.org/mknd/lastUpdated
 mknd:lastUpdated rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf mknd:updated ;
                  rdfs:label "last updated at" ;
-                 skos:altLabel "last modified at" .
+                 skos:altLabel "last modified at" ;
+                 skos:definition "The most recent time the entity was changed, as reported by the source that holds it, such as a product's last-update time for a record it keeps."@en .
 
 
 ###  https://w3id.org/mknd/lastUpdatedEpoch
 mknd:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf mknd:dateTimeEpoch ;
-                      rdfs:label "last modified"@en .
+                      rdfs:label "last modified"@en ;
+                      skos:definition "The time the entity was last modified, as Unix epoch time in seconds, by the clock of the system that holds it, such as a file's modification time (mtime) on its host. The same instant mknd:lastUpdated records as a date and time."@en .
 
 
 ###  https://w3id.org/mknd/last_modified
 mknd:last_modified rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf mknd:updated ;
-                   rdfs:label "last modified" .
+                   rdfs:label "last modified" ;
+                   skos:definition "The most recent time the entity was modified, as reported by the source that holds it. Means the same as mknd:lastUpdated."@en .
 
 
 ###  https://w3id.org/mknd/operating-system
@@ -507,7 +559,8 @@ mknd:operating-system rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/reference
 mknd:reference rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
-               rdfs:label "has reference" .
+               rdfs:label "has reference" ;
+               skos:definition "A reference for the entity, such as a URL or document identifier that points to more information about it. The parent of mknd:hasURL."@en .
 
 
 ###  https://w3id.org/mknd/required-privileges
@@ -523,7 +576,8 @@ mknd:size rdf:type owl:DatatypeProperty ,
                    owl:FunctionalProperty ;
           rdfs:domain d3f:File ;
           rdfs:range xsd:byte ;
-          rdfs:label "has size"@en .
+          rdfs:label "has size"@en ;
+          skos:definition "The size of a file in bytes."@en .
 
 
 ###  https://w3id.org/mknd/stringValue
@@ -539,19 +593,23 @@ mknd:teamId rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf d3f:identifier ;
             rdf:type owl:FunctionalProperty ;
             owl:propertyDisjointWith mknd:userId ;
-            rdfs:label "team ID"@en .
+            rdfs:label "team ID"@en ;
+            skos:definition "The identifier the application gives a Tenant (called a team in earlier versions of the application). Objects the application creates for a Tenant, such as Task Runs, carry it to show which Tenant they belong to."@en ;
+            skos:scopeNote "An identifier the application issues itself. An ID a vendor issued goes in mknd:external-id instead."@en .
 
 
 ###  https://w3id.org/mknd/templateId
 mknd:templateId rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf d3f:identifier ;
                 rdf:type owl:FunctionalProperty ;
-                rdfs:label "template ID"@en .
+                rdfs:label "template ID"@en ;
+                skos:definition "The identifier the application gives a template, such as the Task Template of a Task or the Data Template a Task Run's output was mapped with."@en .
 
 
 ###  https://w3id.org/mknd/timeCreated
 mknd:timeCreated rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf mknd:dateTime ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:comment "Time when the entity had been created at the point of origin."@en ;
                  rdfs:label "created at"@en .
 
@@ -559,6 +617,7 @@ mknd:timeCreated rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/timeCreatedEpoch
 mknd:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf mknd:dateTimeEpoch ;
+                      rdf:type owl:FunctionalProperty ;
                       rdfs:comment "Time when the entity had been created at the point of origin."@en ;
                       rdfs:label "created at (epoch)"@en .
 
@@ -575,7 +634,9 @@ mknd:updated rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf mknd:dateTime ;
              rdfs:label "modified at" ,
                         "updated at" ;
-             skos:altLabel "modified at" .
+             skos:altLabel "modified at" ;
+             skos:definition "A time at which the entity was changed, by the clock of the source that holds it, such as the product that keeps a record. The parent of mknd:lastUpdated and mknd:last_modified."@en ;
+             skos:scopeNote "Says when the change happened at its source, not when the application learned of it."@en .
 
 
 ###  https://w3id.org/mknd/use-case
@@ -590,7 +651,9 @@ mknd:use-case rdf:type owl:DatatypeProperty ;
 mknd:userId rdf:type owl:DatatypeProperty ;
             rdfs:subPropertyOf d3f:identifier ;
             rdf:type owl:FunctionalProperty ;
-            rdfs:label "user ID"@en .
+            rdfs:label "user ID"@en ;
+            skos:definition "The identifier the application gives one of its users (an AppUser). Objects a user creates or starts, such as Task Runs, carry it to show who did so."@en ;
+            skos:scopeNote "An identifier the application issues itself. An ID a vendor issued goes in mknd:external-id instead."@en .
 
 
 ###  https://w3id.org/mknd/usesNetworkPort
@@ -613,12 +676,15 @@ mknd:vectorString rdf:type owl:DatatypeProperty ;
                   rdf:type owl:FunctionalProperty ;
                   rdfs:domain d3f:Vulnerability ;
                   rdfs:range xsd:string ;
-                  rdfs:label "vector" .
+                  rdfs:label "vector" ;
+                  skos:definition "The CVSS vector string of a vulnerability: in FIRST's words, \"a text representation of a set of CVSS metrics\", such as CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:N."@en .
 
 
 ###  https://w3id.org/mknd/vendorProperty
 mknd:vendorProperty rdf:type owl:DatatypeProperty ;
-                    rdfs:label "vendor property" .
+                    rdfs:label "vendor property" ;
+                    skos:definition "The parent of properties that hold a value as a third-party vendor stated it, such as the vendor's own category, type, classification, status or ID for the entity."@en ;
+                    skos:scopeNote "Values stay exactly as the vendor gave them. A normalised value, where there is one, goes on its own property beside the vendor's."@en .
 
 
 ###  https://w3id.org/mknd/version
@@ -626,7 +692,8 @@ mknd:version rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdf:type owl:FunctionalProperty ;
              rdfs:range xsd:decimal ;
-             rdfs:label "CVSS version" .
+             rdfs:label "CVSS version" ;
+             skos:definition "The version of the CVSS specification that a vulnerability's CVSS metrics and scores follow, such as 3.1."@en .
 
 
 #################################################################
@@ -702,7 +769,8 @@ mknd:AppUser rdf:type owl:Class ;
 ###  https://w3id.org/mknd/ApplicationUserAccount
 mknd:ApplicationUserAccount rdf:type owl:Class ;
                             rdfs:subClassOf d3f:UserAccount ;
-                            rdfs:label "Application User Account" .
+                            rdfs:label "Application User Account" ;
+                            skos:definition "A user account in an application, with which a person signs in to that application and acts in it, as distinct from an operating-system or directory account."@en .
 
 
 ###  https://w3id.org/mknd/Assessment
@@ -721,13 +789,15 @@ mknd:AutomatedTaskRun rdf:type owl:Class ;
                                         owl:onProperty d3f:invoked-by ;
                                         owl:allValuesFrom mknd:TaskPattern
                                       ] ;
-                      rdfs:label "Automated Task Run" .
+                      rdfs:label "Automated Task Run" ;
+                      skos:definition "A Task Run that a Task Pattern started, rather than a person."@en .
 
 
 ###  https://w3id.org/mknd/CVSS
 mknd:CVSS rdf:type owl:Class ;
           rdfs:isDefinedBy "https://www.first.org/cvss/v3.1/specification-document"^^xsd:anyURI ;
-          rdfs:label "CVSS Metric" .
+          rdfs:label "CVSS Metric" ;
+          skos:definition "A metric of the Common Vulnerability Scoring System (CVSS), FIRST's open framework that, in FIRST's words, \"captures the principal technical characteristics of software, hardware and firmware vulnerabilities\". Each subclass is one metric, and its instances are the metric's values."@en .
 
 
 ###  https://w3id.org/mknd/CVSS-AttackComplexity
@@ -949,7 +1019,8 @@ mknd:CommunicationProtocol rdf:type owl:Class ;
                                              owl:someValuesFrom d3f:NetworkSession
                                            ] ;
                            rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Communication_protocol" ;
-                           rdfs:label "Communication Protocol"@en .
+                           rdfs:label "Communication Protocol"@en ;
+                           skos:definition "A network- or transport-layer protocol that network packets, sessions and network services use: one of ICMP, TCP and UDP."@en .
 
 
 ###  https://w3id.org/mknd/Connection
@@ -972,13 +1043,16 @@ mknd:Connection rdf:type owl:Class ;
                                   owl:allValuesFrom mknd:Integration
                                 ] ;
                 rdfs:label "Connection"@en ;
+                skos:definition "One configured instance of a third-party product or service that the application can reach, with the credentials it needs, such as one workspace or one account of that product. It enables an Integration, and that Integration's Tasks, for that instance."@en ;
+                skos:scopeNote "Its credentials, such as access tokens, must be protected. A Tenant can hold several Connections to one product, and every Task Run goes through exactly one Connection."@en ;
                 mknd:icon "connection.svg"^^xsd:anyURI .
 
 
 ###  https://w3id.org/mknd/Control
 mknd:Control rdf:type owl:Class ;
              rdfs:subClassOf mknd:MekaThing ;
-             rdfs:label "Control"@en .
+             rdfs:label "Control"@en ;
+             skos:definition "A safeguard or countermeasure that protects an organization's systems and information, such as a security policy that systems are checked against."@en .
 
 
 ###  https://w3id.org/mknd/CriticalVulnerability
@@ -1016,7 +1090,8 @@ mknd:CriticalVulnerability rdf:type owl:Class ;
                                                  rdf:type owl:Class
                                                ] ;
                            rdfs:subClassOf d3f:Vulnerability ;
-                           rdfs:label "Critical Severity Vulnerability" .
+                           rdfs:label "Critical Severity Vulnerability" ;
+                           skos:definition "A vulnerability whose CVSS base score is between 9.0 and 10.0, or whose CVSS severity rating is Critical. 9.0 to 10.0 is the Critical range of FIRST's qualitative severity rating scale."@en .
 
 
 ###  https://w3id.org/mknd/DataTemplate
@@ -1035,6 +1110,7 @@ mknd:DataTemplate rdf:type owl:Class ;
                                     owl:someValuesFrom mknd:Task
                                   ] ;
                   rdfs:label "Data Template" ;
+                  skos:definition "A mapping that turns the output of a Task Run, such as an API response, into knowledge-graph statements about the digital artifacts it describes."@en ;
                   mknd:icon "file.svg" .
 
 
@@ -1053,6 +1129,8 @@ mknd:Detection rdf:type owl:Class ;
                skos:altLabel "Alert"@en ,
                              "Detection"@en ,
                              "Signal"@en ;
+               skos:definition "MKND's Finding: a digital event in which a detection rule found activity or content that may need attention, such as an alert or signal a security product raised. A Detection Rule creates it, and it produces an Actionable Item, such as an incident or a ticket."@en ;
+               skos:scopeNote "It is a point-in-time result: a different result is a new Finding, never a change to an existing one. A vendor's own malware family name that it reports stays a plain string on it; it is not an Observable."@en ;
                mknd:icon "signal.svg" .
 
 
@@ -1064,6 +1142,8 @@ mknd:DetectionRule rdf:type owl:Class ;
                                      owl:someValuesFrom mknd:Detection
                                    ] ;
                    rdfs:label "Detection Rule"@en ;
+                   skos:definition "A rule that a security product applies to the data it processes to find activity or content of interest. Each match creates a Finding (mknd:Detection)."@en ;
+                   skos:scopeNote "A rule or signature that its vendor names globally is identified by the vendor together with the name."@en ;
                    mknd:icon "rule.svg" .
 
 
@@ -1087,7 +1167,9 @@ mknd:EmailSenderString rdf:type owl:Class ;
 mknd:EmailSubjectString rdf:type owl:Class ;
                         rdfs:subClassOf mknd:Observable ;
                         rdfs:label "Email Subject"@en ;
-                        skos:example "Fwd: Fwd: Re: RE: RE: LOL" .
+                        skos:definition "The subject line of an email message, as its sender wrote it."@en ;
+                        skos:example "Fwd: Fwd: Re: RE: RE: LOL" ;
+                        skos:scopeNote "One instance per subject string. The sender chooses it, so it can link messages but never identifies one."@en .
 
 
 ###  https://w3id.org/mknd/FileName
@@ -1097,7 +1179,9 @@ mknd:FileName rdf:type owl:Class ;
                                 owl:onProperty d3f:used-by ;
                                 owl:someValuesFrom d3f:File
                               ] ;
-              rdfs:label "File Name"@en .
+              rdfs:label "File Name"@en ;
+              skos:definition "The name of a file, without its directory, as a source reports it, such as invoice.pdf."@en ;
+              skos:scopeNote "One instance per name string, so the same name meets across alerts and threat feeds. A file name does not identify a file: a file reported with neither a hash nor a host is recorded only as a File Name, with its mknd:Path when given, never as a File."@en .
 
 
 ###  https://w3id.org/mknd/Filter
@@ -1160,7 +1244,7 @@ mknd:HighVulnerability rdf:type owl:Class ;
                                                                                   ]
                                                                                   [ rdf:type owl:Restriction ;
                                                                                     owl:onProperty mknd:severityRating ;
-                                                                                    owl:hasValue mknd:CVSS-AvailabilityImpact-High
+                                                                                    owl:hasValue mknd:CVSS-SeverityType-High
                                                                                   ]
                                                                                 )
                                                                   ]
@@ -1168,25 +1252,31 @@ mknd:HighVulnerability rdf:type owl:Class ;
                                              rdf:type owl:Class
                                            ] ;
                        rdfs:subClassOf d3f:Vulnerability ;
-                       rdfs:label "High Severity Vulnerability" .
+                       rdfs:label "High Severity Vulnerability" ;
+                       skos:definition "A vulnerability whose CVSS base score is at least 7.0 and below 9.0, or whose CVSS severity rating is High. 7.0 to 8.9 is the High range of FIRST's qualitative severity rating scale."@en .
 
 
 ###  https://w3id.org/mknd/IOCRule
 mknd:IOCRule rdf:type owl:Class ;
              rdfs:subClassOf mknd:DetectionRule ;
-             rdfs:label "IOC" .
+             rdfs:label "IOC" ;
+             skos:definition "A Detection Rule that matches an indicator of compromise: an observable value judged malicious, such as a file hash, an IP address or a domain name."@en .
 
 
 ###  https://w3id.org/mknd/IPv4
 mknd:IPv4 rdf:type owl:Class ;
           rdfs:subClassOf d3f:IPAddress ;
-          rdfs:label "IP Address v4"@en .
+          rdfs:label "IP Address v4"@en ;
+          skos:definition "An address in version 4 of the Internet Protocol: a 32-bit number, written in dotted-decimal form such as 10.1.12.1."@en ;
+          skos:scopeNote "One instance per address string, in dotted-decimal form. An address is associated with a host, NAT router or gateway for a period, so two hosts that held the same address share one instance and are not thereby the same host."@en .
 
 
 ###  https://w3id.org/mknd/IPv6
 mknd:IPv6 rdf:type owl:Class ;
           rdfs:subClassOf d3f:IPAddress ;
-          rdfs:label "IP Address v6"@en .
+          rdfs:label "IP Address v6"@en ;
+          skos:definition "An address in version 6 of the Internet Protocol: a 128-bit number, written in groups of hexadecimal digits such as 2001:db8::1."@en ;
+          skos:scopeNote "One instance per address string, in RFC 5952 text form without a zone. An IPv4-mapped address such as ::ffff:203.0.113.5 is recorded as the plain IPv4 address. Like an IPv4 address, it is associated with hosts for periods."@en .
 
 
 ###  https://w3id.org/mknd/Incident
@@ -1228,7 +1318,9 @@ mknd:Integration rdf:type owl:Class ;
                                    owl:onProperty d3f:implements ;
                                    owl:someValuesFrom d3f:DefensiveTechnique
                                  ] ;
-                 rdfs:label "Integration"@en .
+                 rdfs:label "Integration"@en ;
+                 skos:definition "The application's support for one third-party product or service: the Tasks it can run on that product, which implement defensive techniques, and the Connections that enable them."@en ;
+                 skos:scopeNote "One Integration covers a product across all its API versions and is the same for every Tenant. A configured instance of the product, with its credentials, is a mknd:Connection."@en .
 
 
 ###  https://w3id.org/mknd/LowSeverityVulnerability
@@ -1258,7 +1350,7 @@ mknd:LowSeverityVulnerability rdf:type owl:Class ;
                                                                                          ]
                                                                                          [ rdf:type owl:Restriction ;
                                                                                            owl:onProperty mknd:severityRating ;
-                                                                                           owl:hasValue mknd:CVSS-AttackComplexity-Low
+                                                                                           owl:hasValue mknd:CVSS-SeverityType-Low
                                                                                          ]
                                                                                        )
                                                                          ]
@@ -1266,7 +1358,8 @@ mknd:LowSeverityVulnerability rdf:type owl:Class ;
                                                     rdf:type owl:Class
                                                   ] ;
                               rdfs:subClassOf d3f:Vulnerability ;
-                              rdfs:label "Low Severity Vulnerability" .
+                              rdfs:label "Low Severity Vulnerability" ;
+                              skos:definition "A vulnerability whose CVSS base score is above 0.0 and below 4.0, or whose CVSS severity rating is Low. 0.1 to 3.9 is the Low range of FIRST's qualitative severity rating scale."@en .
 
 
 ###  https://w3id.org/mknd/MACAddress
@@ -1274,8 +1367,10 @@ mknd:MACAddress rdf:type owl:Class ;
                 rdfs:subClassOf d3f:Identifier ,
                                 mknd:Observable ;
                 rdfs:label "MAC Address"@en ;
+                skos:definition "A media access control (MAC) address: the address of a network interface on a network segment, such as 00:1b:63:84:45:e6."@en ;
                 skos:example "00-1B-63-84-45-E6" ,
-                             "00:1b:63:84:45:e6" .
+                             "00:1b:63:84:45:e6" ;
+                skos:scopeNote "One instance per address, written as lowercase pairs separated by colons. It is associated with a host's network interface for a period, as an IP address is with a host."@en .
 
 
 ###  https://w3id.org/mknd/MD5
@@ -1339,7 +1434,9 @@ mknd:Malware rdf:type owl:Class ;
                                owl:someValuesFrom mknd:FileName
                              ] ;
              rdfs:label "Malicious Software" ;
-             skos:altLabel "Malware" .
+             skos:altLabel "Malware" ;
+             skos:definition "Software that implements an offensive technique. MKND defines malicious software this way, so any software known to implement one is malware."@en ;
+             skos:scopeNote "A sample is a file, identified by its hashes, which a Finding associates with its malware. A malware family is identified by a real family ID from a malware catalogue; a vendor's own family name is not an Observable and stays a plain string on the Finding that reports it."@en .
 
 
 ###  https://w3id.org/mknd/ManualTaskRun
@@ -1350,7 +1447,8 @@ mknd:ManualTaskRun rdf:type owl:Class ;
                                      owl:onProperty d3f:invoked-by ;
                                      owl:allValuesFrom mknd:AppUser
                                    ] ;
-                   rdfs:label "Manual Task Run" .
+                   rdfs:label "Manual Task Run" ;
+                   skos:definition "A Task Run that a user of the application started by hand."@en .
 
 
 ###  https://w3id.org/mknd/MediumSeverityVulnerability
@@ -1388,7 +1486,8 @@ mknd:MediumSeverityVulnerability rdf:type owl:Class ;
                                                        rdf:type owl:Class
                                                      ] ;
                                  rdfs:subClassOf d3f:Vulnerability ;
-                                 rdfs:label "Medium Severity Vulnerability" .
+                                 rdfs:label "Medium Severity Vulnerability" ;
+                                 skos:definition "A vulnerability whose CVSS base score is at least 4.0 and below 7.0, or whose CVSS severity rating is Medium. 4.0 to 6.9 is the Medium range of FIRST's qualitative severity rating scale."@en .
 
 
 ###  https://w3id.org/mknd/MekaThing
@@ -1419,6 +1518,7 @@ mknd:MekaThing rdf:type owl:Class ;
                                ] ;
                rdfs:label "Mekanoid Thing"@en ;
                skos:altLabel "Mekanoid Ontology Item" ;
+               skos:definition "The root of MKND's own classes: a thing the application keeps records about, with timestamps from MKND's date and time properties. Each one has been seen at least once (mknd:timeSeen) and has at most one created time, one first seen and one last seen."@en ;
                mknd:icon "mekanoid.svg"^^xsd:anyURI .
 
 
@@ -1426,14 +1526,17 @@ mknd:MekaThing rdf:type owl:Class ;
 mknd:NPMPackage rdf:type owl:Class ;
                 rdfs:subClassOf d3f:SoftwarePackage ,
                                 mknd:MekaThing ;
-                rdfs:label "NPM Package" .
+                rdfs:label "NPM Package" ;
+                skos:definition "A software package published to the npm registry, such as @keep-network/tbtc-v2."@en ;
+                skos:scopeNote "Its registry name is recorded as mknd:external-id."@en .
 
 
 ###  https://w3id.org/mknd/NetworkServiceProtocol
 mknd:NetworkServiceProtocol rdf:type owl:Class ;
                             rdfs:subClassOf mknd:MekaThing ;
                             rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Application_layer#Protocols" ;
-                            rdfs:label "Network Service" .
+                            rdfs:label "Network Service" ;
+                            skos:definition "An application-layer network service, such as DNS, HTTP or SSH, that a socket provides."@en .
 
 
 ###  https://w3id.org/mknd/Observable
@@ -1457,6 +1560,8 @@ mknd:Observable rdf:type owl:Class ;
 mknd:Operation rdf:type owl:Class ;
                rdfs:subClassOf mknd:MekaThing ;
                rdfs:label "Operation"@en ;
+               skos:definition "An action at the level of the operating system, such as Process Access or Process Read, that any of several API functions can carry out, in the sense of SpecterOps' \"On Detection: Tactical to Functional\" series. Operations combined to reach a technical objective make up a procedure."@en ;
+               skos:scopeNote "Not a vendor API endpoint or a call to one."@en ;
                mknd:context "https://posts.specterops.io/on-detection-tactical-to-function-810c14798f63"^^xsd:anyURI .
 
 
@@ -1470,7 +1575,8 @@ mknd:Path rdf:type owl:Class ;
 ###  https://w3id.org/mknd/Payload
 mknd:Payload rdf:type owl:Class ;
              rdfs:subClassOf mknd:MekaThing ;
-             rdfs:label "Payload"@en .
+             rdfs:label "Payload"@en ;
+             skos:definition "The body of a document that a source delivered, such as the JSON of an API response or of a pushed event, apart from its headers and other delivery metadata."@en .
 
 
 ###  https://w3id.org/mknd/PrivateIPAddress
@@ -1478,8 +1584,10 @@ mknd:PrivateIPAddress rdf:type owl:Class ;
                       rdfs:subClassOf d3f:IPAddress ;
                       rdfs:isDefinedBy "https://en.wikipedia.org/wiki/IP_address#Private_addresses"^^xsd:anyURI ;
                       rdfs:label "Private IP Address"@en ;
+                      skos:definition "An IP address from a range reserved for private networks, such as 10.0.0.0/8 or 192.168.0.0/16 (RFC 1918) or IPv6 unique local addresses (RFC 4193), which is not routed on the public Internet."@en ;
                       skos:example "10.0.0.1" ,
                                    "192.168.0.1" ;
+                      skos:scopeNote "Being private does not change how an address is recorded: one instance per address string, associated with whatever held it, and when."@en ;
                       mknd:icon "ip.svg" .
 
 
@@ -1509,31 +1617,16 @@ mknd:Report rdf:type owl:Class ;
                             mknd:MekaThing ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:DomainName
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:FileHash
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:IPAddress
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom d3f:URL
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:EmailAddress
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:Hash
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty d3f:analyzes ;
-                              owl:someValuesFrom mknd:Socket
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( d3f:DomainName
+                                                                 d3f:FileHash
+                                                                 d3f:IPAddress
+                                                                 d3f:URL
+                                                                 mknd:EmailAddress
+                                                                 mknd:Hash
+                                                                 mknd:Socket
+                                                               )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:produces ;
@@ -1561,7 +1654,8 @@ mknd:SHA256 rdf:type owl:Class ;
 ###  https://w3id.org/mknd/SHA512
 mknd:SHA512 rdf:type owl:Class ;
             rdfs:subClassOf mknd:Hash ;
-            rdfs:label "SHA-512 Hash"@en .
+            rdfs:label "SHA-512 Hash"@en ;
+            skos:definition "SHA-512 cryptographic hash value: a 512-bit hash, written as 128 hexadecimal digits."@en .
 
 
 ###  https://w3id.org/mknd/SecurityPolicy
@@ -1569,6 +1663,7 @@ mknd:SecurityPolicy rdf:type owl:Class ;
                     rdfs:subClassOf d3f:ApplicationRule ,
                                     mknd:Control ;
                     rdfs:label "Security Policy" ;
+                    skos:definition "A Control written as a rule that an application checks systems against, to tell whether each meets a security requirement, such as a device-management policy that asks whether disk encryption is on."@en ;
                     mknd:icon "cube.svg"^^xsd:anyURI .
 
 
@@ -1580,13 +1675,15 @@ mknd:Sigma rdf:type owl:Class ;
                              owl:someValuesFrom d3f:ConfigurationFile
                            ] ;
            rdfs:label "Sigma Rule"@en ;
+           skos:definition "A Detection Rule written in Sigma, an open, generic signature format for describing log events, and kept in a rule file."@en ;
            mknd:icon "rule-sigma.svg" .
 
 
 ###  https://w3id.org/mknd/Signature
 mknd:Signature rdf:type owl:Class ;
                rdfs:subClassOf mknd:DetectionRule ;
-               rdfs:label "Signature"@en .
+               rdfs:label "Signature"@en ;
+               skos:definition "A Detection Rule that a security product names and matches against the behaviour or content it analyses, such as a sandbox's named signature for a behaviour seen in a sample."@en .
 
 
 ###  https://w3id.org/mknd/Socket
@@ -1606,7 +1703,9 @@ mknd:Socket rdf:type owl:Class ;
                               owl:someValuesFrom xsd:positiveInteger
                             ] ;
             rdfs:label "Network Socket"@en ;
+            skos:definition "A network endpoint written as an IP address and a port, such as 10.1.12.1:53. It uses that IP address, a port number and a communication protocol."@en ;
             skos:example "51.89.163.40:443" ;
+            skos:scopeNote "One instance per ip:port string, carried as mknd:value. It uses its IP address and its protocol (d3f:uses), its port (mknd:usesNetworkPort), and may provide a network service (mknd:provides)."@en ;
             mknd:icon "network.svg" .
 
 
@@ -1672,6 +1771,8 @@ mknd:TaskPattern rdf:type owl:Class ;
                                    owl:someValuesFrom mknd:AutomatedTaskRun
                                  ] ;
                  rdfs:label "Task Pattern" ;
+                 skos:definition "An automation rule made of a Filter and the Tasks to run for what the Filter matches. When its Filter matches, it starts Automated Task Runs."@en ;
+                 skos:scopeNote "A Task Pattern has no trigger of its own: the application checks it again whenever data arrives that creates or changes something it records."@en ;
                  mknd:icon "flow.svg"^^xsd:anyURI .
 
 
@@ -1696,6 +1797,8 @@ mknd:TaskRun rdf:type owl:Class ;
                                owl:someValuesFrom mknd:TaskTemplate
                              ] ;
              rdfs:label "Task Run" ;
+             skos:definition "One run of a Task: a single event in which the application executes a Task with concrete input values, using a Task Template to make the request and a Data Template to map the output."@en ;
+             skos:scopeNote "A person starts a mknd:ManualTaskRun; a Task Pattern starts a mknd:AutomatedTaskRun. Every Task Run goes through exactly one Connection."@en ;
              mknd:icon "task.svg"^^xsd:anyURI .
 
 
@@ -1708,6 +1811,7 @@ mknd:TaskRunLog rdf:type owl:Class ;
                                   owl:someValuesFrom mknd:TaskRun
                                 ] ;
                 rdfs:label "Task Run Log" ;
+                skos:definition "The event log a Task Run creates, recording what happened while it ran, such as the requests it made and any errors."@en ;
                 mknd:icon "log.svg"^^xsd:anyURI .
 
 
@@ -1719,6 +1823,7 @@ mknd:TaskTemplate rdf:type owl:Class ;
                                     owl:allValuesFrom xsd:string
                                   ] ;
                   rdfs:label "Task Template" ;
+                  skos:definition "The configuration of a Task for one product: the API request the Task makes, such as one endpoint, and the parameters it takes."@en ;
                   mknd:icon "file.svg"^^xsd:anyURI .
 
 
@@ -1744,13 +1849,17 @@ mknd:Ticket rdf:type owl:Class ;
             rdfs:label "Ticket"@en ;
             skos:altLabel "Issue"@en ,
                           "Task"@en ;
+            skos:definition "An Actionable Item tracked as a ticket or issue in a ticketing or issue-tracking system, such as a work request assigned to a person."@en ;
+            skos:scopeNote "Use mknd:Incident for a ticket or case about a security incident."@en ;
             mknd:icon "ticket.svg" .
 
 
 ###  https://w3id.org/mknd/Username
 mknd:Username rdf:type owl:Class ;
               rdfs:subClassOf mknd:Observable ;
-              rdfs:label "Username"@en .
+              rdfs:label "Username"@en ;
+              skos:definition "A user name or login string as a source reports it, such as administrator, domain\\user or user@example.com."@en ;
+              skos:scopeNote "One instance per login string, kept whole as reported. A login string can be made up, as in failed sign-ins to accounts that do not exist, so on its own it does not mean the account exists; a product that manages identities can associate it with an account it holds."@en .
 
 
 ###  https://w3id.org/mknd/Verdict
@@ -1759,31 +1868,16 @@ mknd:Verdict rdf:type owl:Class ;
                              mknd:Proposition ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:DomainName
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:FileHash
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:IPAddress
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom d3f:URL
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:EmailAddress
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:Hash
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty d3f:evaluates ;
-                               owl:someValuesFrom mknd:Socket
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:unionOf ( d3f:DomainName
+                                                                  d3f:FileHash
+                                                                  d3f:IPAddress
+                                                                  d3f:URL
+                                                                  mknd:EmailAddress
+                                                                  mknd:Hash
+                                                                  mknd:Socket
+                                                                )
+                                                  ]
                              ] ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty d3f:produced-by ;
@@ -1802,6 +1896,7 @@ mknd:Verdict rdf:type owl:Class ;
 mknd:Yara rdf:type owl:Class ;
           rdfs:subClassOf mknd:DetectionRule ;
           rdfs:label "YARA Rule"@en ;
+          skos:definition "A Detection Rule written in the YARA language, which describes malware families or other files by textual or binary patterns."@en ;
           mknd:icon "rule-yara.svg" .
 
 

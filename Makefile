@@ -97,7 +97,7 @@ test-seam: $(ROBOT_JAR) $(D3FEND_TTL)
 	@$(ASSERT_EMPTY) $(REPORTS)/seam-undeclared-d3f.tsv "every D3FEND term used exists in D3FEND $(D3FEND_VERSION)"
 
 QUALITY := undeclared-mknd-term property-type-clash class-used-as-value class-used-as-predicate \
-           ontology-metadata duplicate-labels missing-label
+           ontology-metadata duplicate-labels missing-label missing-definition hasvalue-out-of-range functional-parent
 
 # examples import core, which imports the alignment: one closure covers all three modules
 test-quality: $(ROBOT_JAR) $(D3FEND_TTL)

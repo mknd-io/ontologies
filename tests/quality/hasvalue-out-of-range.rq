@@ -1,0 +1,11 @@
+# A defined class's owl:hasValue names an individual outside the property's rdfs:range, so the class can never be
+# inferred from a value of that property (MKND 0.5.0's High and Low severity classes named CVSS metric values).
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?restriction ?property ?value ?range WHERE {
+  ?restriction owl:onProperty ?property ; owl:hasValue ?value .
+  ?property rdfs:range ?range .
+  FILTER(isIRI(?value) && isIRI(?range) && STRSTARTS(STR(?property), "https://w3id.org/mknd/"))
+  FILTER NOT EXISTS { ?value rdf:type/rdfs:subClassOf* ?range }
+}
