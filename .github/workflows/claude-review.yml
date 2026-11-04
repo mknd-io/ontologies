@@ -4,7 +4,8 @@
 #
 # Runs once per PR: when it's opened, or when a draft is marked ready. Later pushes (including Claude's own fix commit)
 # don't start another review. Needs the Claude GitHub App on this repo and the CLAUDE_CODE_OAUTH_TOKEN secret
-# (`claude setup-token`).
+# (`claude setup-token`). The App only issues its token when this file matches the one on main, so a PR that changes
+# this file gets no Claude review and waits for a maintainer.
 name: Claude review
 
 on:
@@ -85,30 +86,40 @@ jobs:
                author's call". Never force-push or rewrite existing commits. Change only what your findings need.
 
             3. Decide. Set `merge` to false only if a problem remains that you couldn't fix and that would leave main
-               wrong in a way the checks can't catch; give the reason. Otherwise set `merge` to true.
+               wrong in a way the checks can't catch; give the reason. Otherwise set `merge` to true, and as your
+               last action queue the merge: `gh pr merge ${{ github.event.pull_request.number }} --auto --squash`.
+               (It merges once the workflow approves the PR and Build passes.)
           claude_args: |
             --model opus
             --max-turns 120
-            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(make:*),Bash(git:*),Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(python3:*),Bash(java:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(diff:*),mcp__github_inline_comment__create_inline_comment"
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(make:*),Bash(git:*),Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh pr merge:*),Bash(python3:*),Bash(java:*),Bash(ls:*),Bash(cat:*),Bash(head:*),Bash(tail:*),Bash(diff:*),mcp__github_inline_comment__create_inline_comment"
             --json-schema '{"type":"object","properties":{"merge":{"type":"boolean"},"reason":{"type":"string"}},"required":["merge","reason"]}'
 
-      # The approval comes from github-actions (repo setting: Actions may approve PRs). Auto-merge is queued with the
-      # Claude App's token, because a merge queued with GITHUB_TOKEN wouldn't start the Build and deploy run on main.
-      - name: Approve and queue the merge
-        if: ${{ fromJSON(steps.claude.outputs.structured_output).merge }}
+      # Claude queues the merge itself, with the Claude App's token: a merge queued with GITHUB_TOKEN wouldn't start
+      # the Build and deploy run on main, and the action revokes the App's token when its step ends. The approval comes
+      # from github-actions (repo setting: Actions may approve PRs).
+      - name: Approve
+        if: ${{ steps.claude.outputs.structured_output != '' && fromJSON(steps.claude.outputs.structured_output).merge }}
         env:
           PR: ${{ github.event.pull_request.number }}
           GH_TOKEN: ${{ github.token }}
-          APP_TOKEN: ${{ steps.claude.outputs.github_token }}
         run: |
           gh pr review "$PR" --approve --body "Claude review: one review and one round of fixes done (see the comments above). Merging when the checks pass."
-          GH_TOKEN="$APP_TOKEN" gh pr merge "$PR" --auto --squash
 
       - name: Leave it for a human
-        if: ${{ !fromJSON(steps.claude.outputs.structured_output).merge }}
+        if: ${{ steps.claude.outputs.structured_output != '' && !fromJSON(steps.claude.outputs.structured_output).merge }}
         env:
           PR: ${{ github.event.pull_request.number }}
           GH_TOKEN: ${{ github.token }}
           REASON: ${{ fromJSON(steps.claude.outputs.structured_output).reason }}
         run: |
           gh pr comment "$PR" --body "Claude review: not approving; this needs a human. $REASON"
+
+      - name: No review ran
+        if: ${{ steps.claude.outputs.structured_output == '' }}
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment "$PR" --body "Claude review didn't run (see the workflow log; a PR that changes claude-review.yml can't be reviewed by it). This PR needs a maintainer."
+          exit 1
