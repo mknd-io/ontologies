@@ -1,0 +1,14 @@
+# A class says its members P some A and P only B, where A is a named class outside B. A reasoner then concludes that
+# every such A is a B (MKND 0.5.1's mknd:Socket: uses some d3f:IPAddress, uses only mknd:CommunicationProtocol, so a
+# socket's IP address was one of ICMP, TCP or UDP). Unions in the only-restriction count when A is one of their members.
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?class ?property ?some ?only WHERE {
+  ?class rdfs:subClassOf ?r1, ?r2 .
+  ?r1 owl:onProperty ?property ; owl:someValuesFrom ?some .
+  ?r2 owl:onProperty ?property ; owl:allValuesFrom ?only .
+  FILTER(isIRI(?some) && STRSTARTS(STR(?class), "https://w3id.org/mknd/"))
+  FILTER NOT EXISTS { ?some rdfs:subClassOf* ?only }
+  FILTER NOT EXISTS { ?only owl:unionOf/rdf:rest*/rdf:first ?member . ?some rdfs:subClassOf* ?member }
+}

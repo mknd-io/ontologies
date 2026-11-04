@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- **"Only" restrictions that contradicted a "some" on the same property.** Each made a reasoner conclude something false about every value of the "some":
+  - `mknd:Socket` used some `d3f:IPAddress` and used only `mknd:CommunicationProtocol` (one of ICMP, TCP or UDP), so a socket's IP address was concluded to be one of those protocols. It now uses only IP addresses and protocols.
+  - `mknd:Task` used some `mknd:DataTemplate` and used only `mknd:TaskTemplate`, so every data template was concluded to be a task template. It now uses only task and data templates.
+  - `mknd:Connection` enabled some `mknd:Task` and enabled only `mknd:Integration`, so every such task was concluded to be an integration. It now enables only integrations and tasks.
+
+### Added
+- **Test** `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes above.
+
 ## 0.5.1 — 2026-11-04
 
 Definitions for every term, and four axiom fixes. No IRI changes.

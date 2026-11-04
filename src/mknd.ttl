@@ -1040,7 +1040,11 @@ mknd:Connection rdf:type owl:Class ;
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty d3f:enables ;
-                                  owl:allValuesFrom mknd:Integration
+                                  owl:allValuesFrom [ rdf:type owl:Class ;
+                                                      owl:unionOf ( mknd:Integration
+                                                                    mknd:Task
+                                                                  )
+                                                    ]
                                 ] ;
                 rdfs:label "Connection"@en ;
                 skos:definition "One configured instance of a third-party product or service that the application can reach, with the credentials it needs, such as one workspace or one account of that product. It enables an Integration, and that Integration's Tasks, for that instance."@en ;
@@ -1696,7 +1700,11 @@ mknd:Socket rdf:type owl:Class ;
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty d3f:uses ;
-                              owl:allValuesFrom mknd:CommunicationProtocol
+                              owl:allValuesFrom [ rdf:type owl:Class ;
+                                                  owl:unionOf ( d3f:IPAddress
+                                                                mknd:CommunicationProtocol
+                                                              )
+                                                ]
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty mknd:usesNetworkPort ;
@@ -1751,7 +1759,11 @@ mknd:Task rdf:type owl:Class ;
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty d3f:uses ;
-                            owl:allValuesFrom mknd:TaskTemplate
+                            owl:allValuesFrom [ rdf:type owl:Class ;
+                                                owl:unionOf ( mknd:DataTemplate
+                                                              mknd:TaskTemplate
+                                                            )
+                                              ]
                           ] ;
           rdfs:comment "An abstract concept. Something to be done." ;
           rdfs:label "Task"@en ;
