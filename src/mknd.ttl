@@ -1120,21 +1120,17 @@ mknd:DataTemplate rdf:type owl:Class ;
 
 ###  https://w3id.org/mknd/Detection
 mknd:Detection rdf:type owl:Class ;
-               rdfs:subClassOf d3f:DigitalEvent ,
+               rdfs:subClassOf d3f:DetectionEvent ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty d3f:produces ;
                                  owl:someValuesFrom mknd:ActionableItem
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty d3f:created-by ;
-                                 owl:allValuesFrom mknd:DetectionRule
                                ] ;
                rdfs:label "Finding" ;
                skos:altLabel "Alert"@en ,
                              "Detection"@en ,
                              "Signal"@en ;
-               skos:definition "MKND's Finding: a digital event in which a detection rule found activity or content that may need attention, such as an alert or signal a security product raised. A Detection Rule creates it, and it produces an Actionable Item, such as an incident or a ticket."@en ;
-               skos:scopeNote "It is a point-in-time result: a different result is a new Finding, never a change to an existing one. A vendor's own malware family name that it reports stays a plain string on it; it is not an Observable."@en ;
+               skos:definition "MKND's Finding: a detection event in which a detection rule, a scan or other analysis, or an analyst found activity or content that may need attention, such as an alert or signal a security product raised. It produces an Actionable Item, such as an incident or a ticket."@en ;
+               skos:scopeNote "It is a point-in-time result: a different result is a new Finding, never a change to an existing one. What found it (a detection rule, a scan, an analysis, an analyst) is linked with d3f:created-by. A vendor's own malware family name that it reports stays a plain string on it; it is not an Observable."@en ;
                mknd:icon "signal.svg" .
 
 
@@ -1142,7 +1138,7 @@ mknd:Detection rdf:type owl:Class ;
 mknd:DetectionRule rdf:type owl:Class ;
                    rdfs:subClassOf d3f:ApplicationRule ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty d3f:creates ;
+                                     owl:onProperty d3f:may-create ;
                                      owl:someValuesFrom mknd:Detection
                                    ] ;
                    rdfs:label "Detection Rule"@en ;
