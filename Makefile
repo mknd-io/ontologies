@@ -167,7 +167,7 @@ data-report: $(ROBOT_JAR) $(D3FEND_TTL)
 # escapes them (cad:\-copy0_..., the same IRI) and says so. Other export bugs would need their own fix here.
 CAD            := $(wildcard examples/d3fend-cad/*.ttl)
 CAD_QUERIES    := $(DATA_GRAPH_QUERIES) tests/quality/class-used-as-value.rq
-build/cad/%.ttl: examples/d3fend-cad/%.ttl
+build/cad/%.ttl: examples/d3fend-cad/%.ttl src/mknd-d3fend.ttl
 	@mkdir -p $(@D)
 	@! grep -q 'cad:-' $< || echo "note $<: not valid Turtle (local name starts with '-'); checking an escaped copy"
 	@{ echo '<https://w3id.org/mknd/examples/d3fend-cad/$*> a <http://www.w3.org/2002/07/owl#Ontology> ;'; \
