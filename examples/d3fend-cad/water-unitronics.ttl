@@ -1,0 +1,116 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_14513792185353713 a d3f:T0814; rdfs:label "Denial of Service - ATTACK ICS".
+
+cad:0_16914122111896013
+    a d3f:InboundTrafficFiltering;
+    d3f:filters cad:0_5780008198656925;
+    rdfs:label "Inbound Traffic Filtering".
+cad:0_192845757230931
+    a d3f:T1061;
+    d3f:modifies cad:0_7825454923347829;
+    d3f:precedes
+        cad:0_14513792185353713, cad:0_6147792287957258, cad:0_6468203354623692,
+        cad:0_8538417646860983;
+    rdfs:label "Modify Graphical User Interface".
+cad:0_2007297748557304
+    a d3f:PhysicalLinkMapping;
+    d3f:inventories cad:0_6755856246277552;
+    rdfs:label "Physical Link Mapping".
+cad:0_3171334039703656
+    a cad:Note;
+    rdfs:comment
+        """In November & December of 2023, IRGC affiliated threat actors the CyberAv3ngers 
+gained access to Unitronics PLC's in water and wastewater systems across the US.
+
+The Unitronics Vision Series PLC's came with a built in HMI screen, once accessed
+the malicious actors displayed threatening messages on the screens.
+
+
+Unitronics Vision Series PLC's at the time came with the default password "1111"
+which was also searchable through the user manual.
+
+The malicious actors gained access using these valid credentials to PLC's openly
+connected using the commonly used TCP port 20256 to the public internet.""";
+    rdfs:label "Summary".
+cad:0_37743039298227
+    a d3f:T0883;
+    d3f:accesses cad:6-copy0_5886764125981018;
+    d3f:precedes cad:0_40650362627317105;
+    rdfs:label "Internet Accessible Device - ATTACK ICS".
+cad:0_3845912364353623
+    a d3f:ChangeDefaultPassword;
+    d3f:hardens cad:6-copy0_5886764125981018;
+    rdfs:label "Change Default Password".
+cad:0_39516866065691836
+    a d3f:SoftwareUpdate;
+    d3f:updates cad:6-copy0_5886764125981018;
+    rdfs:label "Update Firmware".
+cad:0_40650362627317105
+    a d3f:T0812;
+    d3f:precedes cad:0_192845757230931;
+    d3f:uses cad:0_4084614497339575;
+    rdfs:label "Default Credentials - ATTACK ICS".
+cad:0_4084614497339575
+    a d3f:Credential;
+    d3f:authenticates cad:0_9855342982545295;
+    rdfs:label "Credential".
+cad:0_5780008198656925
+    a d3f:InboundInternetNetworkTraffic;
+    d3f:connects cad:0_6755856246277552;
+    rdfs:label "Inbound Internet Network Traffic".
+cad:0_6145728682980451
+    a d3f:IntranetNetwork;
+    d3f:connects cad:0_6755856246277552;
+    rdfs:label "Intranet Network".
+cad:0_6147792287957258 a d3f:T0829; rdfs:label "Loss of View - ATTACK ICS".
+
+cad:0_6468203354623692
+a d3f:T0828; rdfs:label "Loss of Productivity and Revenue - ATTACK ICS".
+cad:0_6755856246277552 a d3f:Firewall; rdfs:label "Firewall".
+
+cad:0_6780212302939491
+    a d3f:DirectionalNetworkLink;
+    d3f:filters cad:0_6755856246277552;
+    rdfs:label "Directional Network Link".
+cad:0_7825454923347829
+a d3f:OTHumanMachineInterface; rdfs:label "OT Human Machine Interface".
+cad:0_8538417646860983 a d3f:T0826; rdfs:label "Loss of Availability - ATTACK ICS".
+
+cad:0_8749927731144768
+    a d3f:LogicalLinkMapping;
+    d3f:inventories cad:0_6755856246277552;
+    rdfs:label "Logical Link Mapping".
+cad:0_9537100995341854
+a d3f:InternetBasedAttacker; rdfs:label "Internet Based Attacker".
+cad:0_9855342982545295
+    a d3f:DefaultUserAccount;
+    d3f:authenticates cad:6-copy0_5886764125981018;
+    rdfs:label "Default User Account".
+cad:6-copy0_5886764125981018
+    a d3f:OTController;
+    cad:comment
+        "Israeli-made Unitronics Vision Series programmable logic controllers (PLCs)";
+    d3f:connects cad:0_6145728682980451;
+    d3f:contains cad:0_7825454923347829;
+    rdfs:label "Unitronics Vision Series PLC".
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge-0.15521938200145535__0.9537100995341854source-0.37743039298227target
+# [WARN]: Unknown property agent-in
+# {
+#   "d3f_property": "agent-in",
+#   "label": "agent-in"
+# }
+

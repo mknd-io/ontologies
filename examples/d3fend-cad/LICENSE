@@ -1,0 +1,24 @@
+The graphs in this directory are D3FEND CAD example models published by The MITRE Corporation at
+https://d3fend.mitre.org/cad/ and https://d3fend.mitre.org/domain/ot/. They are copied here unchanged.
+They are not covered by this repository's MIT licence. Their terms are D3FEND's Terms of Use
+(https://d3fend.mitre.org/tou/), reproduced below as that page requires.
+
+Copyright 2022 The MITRE Corporation. D3FEND™ and the D3FEND logo are trademarks of The MITRE Corporation.
+
+LICENSE
+
+The MITRE Corporation (MITRE) hereby grants you a non-exclusive, royalty-free license to use D3FEND for
+research, development, and commercial purposes. Any copy you make for such purposes is authorized provided
+that you reproduce MITRE's copyright designation and this license in any such copy.
+
+DISCLAIMERS
+
+ALL DOCUMENTS AND THE INFORMATION CONTAINED THEREIN ARE PROVIDED ON AN "AS IS" BASIS AND THE CONTRIBUTOR,
+THE ORGANIZATION HE/SHE REPRESENTS OR IS SPONSORED BY (IF ANY), THE MITRE CORPORATION, ITS BOARD OF
+TRUSTEES, OFFICERS, AGENTS, AND EMPLOYEES, DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION THEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+The graphs use MITRE ATT&CK® technique classes. MITRE ATT&CK® and ATT&CK® are registered trademarks of
+The MITRE Corporation; ATT&CK content is subject to the ATT&CK terms of use
+(https://attack.mitre.org/resources/legal-and-branding/terms-of-use/).
