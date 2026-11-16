@@ -5,6 +5,7 @@
 #   make drift D3FEND_NEXT=1.6.0   which D3FEND terms MKND uses that a newer release lacks
 #   make data                      regenerate data/*.ttl from the upstream revisions in scripts/data/sources.json
 #   make data-report               non-blocking quality report for data/*.ttl
+#   make cad-report                non-blocking quality report for examples/d3fend-cad/*.ttl
 #   make test-w3id                 check w3id/.htaccess redirects on a local Apache
 #
 # Needs: java 17+, python3, curl. Tools are downloaded into bin/ and .venv/.
@@ -123,7 +124,7 @@ test-w3id:
 	@tests/w3id/run.sh 2>&1 | grep -v AH00558
 
 # ---------------------------------------------------------------------------- reports
-.PHONY: drift data-report
+.PHONY: drift data-report cad-report
 D3FEND_NEXT ?= $(D3FEND_VERSION)
 drift: $(ROBOT_JAR) build/imports/d3fend-$(D3FEND_NEXT).ttl
 	@mkdir -p $(REPORTS)
@@ -155,6 +156,32 @@ data-report: $(ROBOT_JAR) $(D3FEND_TTL)
 	      $(REPORTS)/data-$$n-$$(basename $$q .rq).tsv > /dev/null 2>&1; \
 	  done; \
 	  for r in $(REPORTS)/data-$$n-*.tsv; do $(ASSERT_EMPTY) $$r "$$(basename $$r .tsv)" --report; done; \
+	done
+
+# Non-blocking report for D3FEND's CAD example graphs (examples/d3fend-cad/, kept as published).
+# The graphs have no ontology header, so each is checked through a build-time copy that declares a module
+# IRI under https://w3id.org/mknd/examples/d3fend-cad/ and imports the pinned D3FEND: the queries then see
+# it as they see data/*.ttl, with D3FEND's declarations in their own graph. ROBOT's output goes to
+# build/reports/cad-<graph>.log.
+# ponytail: CAD writes local names that start with "-" (cad:-copy0_...), which Turtle forbids; the copy
+# escapes them (cad:\-copy0_..., the same IRI) and says so. Other export bugs would need their own fix here.
+CAD            := $(wildcard examples/d3fend-cad/*.ttl)
+CAD_QUERIES    := $(DATA_GRAPH_QUERIES) tests/quality/class-used-as-value.rq
+build/cad/%.ttl: examples/d3fend-cad/%.ttl
+	@mkdir -p $(@D)
+	@! grep -q 'cad:-' $< || echo "note $<: not valid Turtle (local name starts with '-'); checking an escaped copy"
+	@{ echo '<https://w3id.org/mknd/examples/d3fend-cad/$*> a <http://www.w3.org/2002/07/owl#Ontology> ;'; \
+	   echo '  <http://www.w3.org/2002/07/owl#imports> <http://d3fend.mitre.org/ontologies/d3fend/$(D3FEND_VERSION)/d3fend.owl> .'; \
+	   sed 's/cad:-/cad:\\-/g' $<; } > $@
+cad-report: $(ROBOT_JAR) $(D3FEND_TTL) $(CAD:examples/d3fend-cad/%=build/cad/%)
+	@mkdir -p $(REPORTS)
+	@for f in $(CAD); do n=$$(basename $$f .ttl); r=$(REPORTS)/cad-$$n; rm -f $$r-*.tsv; \
+	  { $(ROBOT) query $(CATALOG) -i build/cad/$$n.ttl --query tests/seam/third-party-subject.rq $$r-third-party-subject.tsv \
+	    && $(ROBOT) query $(CATALOG) --use-graphs true -i build/cad/$$n.ttl \
+	         $(foreach q,$(CAD_QUERIES),--query $(q) $$r-$(basename $(notdir $(q))).tsv); \
+	  } > $$r.log 2>&1 || echo "FAIL ROBOT on $$f, see $$r.log"; \
+	  for t in third-party-subject $(basename $(notdir $(CAD_QUERIES))); do \
+	    if [[ -f $$r-$$t.tsv ]]; then $(ASSERT_EMPTY) $$r-$$t.tsv cad-$$n-$$t --report; fi; done; \
 	done
 
 # ---------------------------------------------------------------------------- site
