@@ -1,0 +1,270 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_03985242391400046 a d3f:ReadFile; rdfs:label "Read File".
+
+cad:0_053700727263669146
+    a d3f:Condition;
+    d3f:has-participant cad:0_7402934005334603;
+    rdfs:comment "A list of object names in a VMD is compiled";
+    rdfs:label "Object Enumeration".
+cad:0_07894569933568141 a d3f:CreateFile; rdfs:label "Create File".
+
+cad:0_08371140777764075
+a d3f:NetworkInterfaceCard; rdfs:label "Network Interface Card".
+cad:0_11811761572366364
+    a d3f:OffensiveTechnique;
+    d3f:monitors cad:0_7402934005334603;
+    d3f:precedes cad:0_2782298131754103, cad:0_2995263893349739;
+    d3f:produces cad:0_7898840769797227;
+    rdfs:label "Monitor Process State".
+cad:0_1692883086913225 a d3f:WriteFile; rdfs:label "Write File".
+
+cad:0_19901370043875177
+    a d3f:OffensiveTechnique;
+    d3f:blocks cad:0_44491825680514274;
+    d3f:precedes cad:0_913716886595504;
+    rdfs:label "Block Serial COM".
+cad:0_23405033386501906
+    a d3f:ExecutableBinary;
+    d3f:contains
+        cad:0_4668062821330595, cad:0_5269787563174069, cad:0_6325122575642712,
+        cad:0_7037934784226011;
+    rdfs:label "Industroyer Malware Framework".
+cad:0_24979480113369423
+    a d3f:NetworkPacket;
+    cad:protocol-1 "Connection Oriented Transport Protocol";
+    cad:protocol-2 "MMS";
+    rdfs:label "Connection Request Packets".
+cad:0_2508963408637135
+    a d3f:NetworkTrafficFiltering;
+    d3f:filters cad:0_7898840769797227;
+    rdfs:label "Network Traffic Filtering".
+cad:0_2774032603039117 a d3f:OTModeSwitch; rdfs:label "OT Mode Switch".
+
+cad:0_2782298131754103
+    a d3f:OffensiveTechnique;
+    d3f:instructs cad:0_7402934005334603;
+    rdfs:label "Unauthorized Command Message".
+cad:0_2995263893349739
+    a d3f:OffensiveTechnique;
+    d3f:detects cad:0_7402934005334603;
+    d3f:precedes cad:0_6134907481601887;
+    d3f:produces cad:0_7898840769797227;
+    rdfs:label "Remote System Information Discovery".
+cad:0_3268892012478041
+    a d3f:InputDevice;
+    d3f:communicates-with cad:0_3351077594466916;
+    rdfs:label "COM Port 1".
+cad:0_33321514182761447 a d3f:Process; rdfs:label "Specified Victim Process".
+
+cad:0_3351077594466916
+    a d3f:OTController;
+    d3f:modifies cad:0_9025502540699027;
+    rdfs:label "Remote Terminal Unit".
+cad:0_3617234117866518
+    a d3f:Condition;
+    cad:comment
+        """Adversary is able to directly control switches
+and circuit breakers at power grid substations""",
+        "IEC-101, -104, -61850, and OPC DA have similar physical impact";
+    d3f:has-participant cad:0_2774032603039117;
+    rdfs:label "Physical Impact -  Toggling States".
+cad:0_3793515095831853
+    a cad:Thing;
+    cad:comment
+        """IEC-61850 has an alternative version consisting 
+of an EXE payload instead of DLL""";
+    cad:objective
+        "Enumerate control points from devices, ultimately modifying those control points";
+    d3f:instructs cad:0_5269787563174069;
+    rdfs:label "IEC-61850 Payload Execution".
+cad:0_40220906207033713
+    a d3f:SharedLibraryFile;
+    cad:comment
+        """OPC DA Payload attempts to change the state of 
+discovered OPC items. Not modeled for brevity""";
+    rdfs:label "OPC DA Payload";
+    rdfs:subClassOf cad:0_4668062821330595 .
+cad:0_4049416896511314
+    a d3f:Condition;
+    cad:comment
+        """Adversary is able to directly control switches
+and circuit breakers at power grid substations""",
+        "IEC-101, -104, -61850, and OPC DA have similar physical impact";
+    d3f:has-participant cad:0_9116525570426061;
+    rdfs:label "Physical Impact -  Toggling States".
+cad:0_42034145780241916
+    a d3f:SharedLibraryFile;
+    cad:config-parameter-1 "process name";
+    cad:config-parameter-2 "Windows device names (COM ports)";
+    cad:config-parameter-3 "IOA ranges";
+    rdfs:label "IEC-101 Payload";
+    rdfs:subClassOf cad:0_4668062821330595 .
+cad:0_4446183179826636
+    a d3f:Condition;
+    d3f:causes cad:0_9009293180954207;
+    rdfs:label "Payload connects to a target host on port 102".
+cad:0_44491825680514274 a d3f:InputDevice; rdfs:label "COM Port 2 & 3".
+
+cad:0_4518593548171519 a d3f:IPAddress; rdfs:label "IP Address".
+
+cad:0_4668062821330595
+    a d3f:SharedLibraryFile;
+    d3f:reads cad:0_6325122575642712;
+    rdfs:label "ICS Protocol-Specific Payload".
+cad:0_46958372076793986
+    a d3f:OTProtocolMessage;
+    d3f:has-sender cad:0_3268892012478041;
+    rdfs:label "\"Select and Execute\" Packet".
+cad:0_5206234009711816
+    a d3f:SystemCallAnalysis;
+    d3f:analyzes cad:0_03985242391400046;
+    rdfs:label "System Call Analysis".
+cad:0_5269787563174069
+    a d3f:ExecutableBinary;
+    d3f:loads cad:0_4668062821330595;
+    rdfs:label "Industroyer Launcher".
+cad:0_5723215970930189
+    a d3f:T1543;
+    d3f:creates cad:0_675719777099792;
+    d3f:precedes cad:0_19901370043875177;
+    d3f:terminates cad:0_33321514182761447;
+    rdfs:label "Create or Modify System Process".
+cad:0_6134907481601887
+    a d3f:OffensiveTechnique;
+    d3f:causes cad:0_913489205773763;
+    d3f:precedes cad:0_7629578115275059;
+    d3f:produces cad:0_7898840769797227;
+    rdfs:label "Remote System Discovery".
+cad:0_6325122575642712 a d3f:ConfigurationFile; rdfs:label "Configuration File".
+
+cad:0_6751401835686202
+    a d3f:Condition;
+    d3f:causes cad:0_053700727263669146;
+    rdfs:label "COTP and MMS Packets are valid and received".
+cad:0_675719777099792
+    a d3f:Process;
+    d3f:creates cad:0_46958372076793986;
+    d3f:invokes
+    cad:0_03985242391400046, cad:0_07894569933568141, cad:0_1692883086913225;
+    d3f:uses cad:0_3268892012478041;
+    rdfs:label "Malicious Process".
+cad:0_6920363920824525 a d3f:RemoteAttacker; rdfs:label "Sandworm Team (G0034)".
+
+cad:0_7037934784226011 a d3f:SharedLibraryFile; rdfs:label "Wiper Payload".
+
+cad:0_7402934005334603
+    a d3f:OTController;
+    d3f:modifies cad:0_2774032603039117;
+    rdfs:label "OT Controller".
+cad:0_7629578115275059
+    a d3f:OffensiveTechnique;
+    d3f:enumerates cad:0_08371140777764075;
+    d3f:precedes cad:0_3793515095831853;
+    rdfs:label "Network Connection Enumeration".
+cad:0_7898840769797227
+    a d3f:NetworkTraffic;
+    d3f:contains cad:0_24979480113369423;
+    rdfs:label "Network Traffic".
+cad:0_7936686910705991
+    a d3f:Condition;
+    cad:comment
+        """Adversary is able to directly control switches
+and circuit breakers at power grid substations""",
+        "IEC-101, -104, -61850, and OPC DA have similar physical impact";
+    d3f:has-participant cad:0_40220906207033713;
+    rdfs:label "Physical Impact -  Toggling States".
+cad:0_8105170499191925
+    a d3f:ProcessSpawnAnalysis;
+    d3f:analyzes cad:0_675719777099792;
+    rdfs:label "Process Spawn Analysis".
+cad:0_8605403147049002
+    a d3f:NetworkTrafficSignatureAnalysis;
+    d3f:analyzes cad:0_7898840769797227;
+    rdfs:label "Network Traffic Signature Analysis".
+cad:0_8988070649813273
+    a d3f:SharedLibraryFile;
+    rdfs:label "IEC-61850 Payload";
+    rdfs:subClassOf cad:0_4668062821330595 .
+cad:0_9009293180954207
+    a d3f:NetworkConnectionOpenEvent;
+    cad:if-conditional cad:0_6751401835686202;
+    d3f:has-participant cad:0_24979480113369423;
+    rdfs:comment
+        """Payload sends a COTP packet, 
+then several MMS packets""";
+    rdfs:label "Network Connection Open Event".
+cad:0_9025502540699027
+    a d3f:OTLogicVariable;
+    d3f:addresses cad:0_9577529265388484;
+    rdfs:label "Information Object Address ".
+cad:0_9111950702664015
+    a d3f:T0867;
+    d3f:injects cad:0_23405033386501906;
+    rdfs:label "Lateral Tool Transfer - ATTACK ICS".
+cad:0_9116525570426061
+    a d3f:SharedLibraryFile;
+    cad:comment
+        """IEC-104 is fairly similar to IEC-101 payload, 
+except communications take place over TCP/IP, 
+and the method of iterating through IOAs may vary.""";
+    rdfs:label "IEC-104 Payload";
+    rdfs:subClassOf cad:0_4668062821330595 .
+cad:0_913489205773763
+    a d3f:NetworkConnectionEvent;
+    cad:if-conditional cad:0_4446183179826636;
+    d3f:has-participant cad:0_4518593548171519, cad:0_7898840769797227;
+    rdfs:label "Network Connection Event".
+cad:0_913716886595504
+    a d3f:OffensiveTechnique;
+    d3f:has-participant cad:0_46958372076793986;
+    d3f:instructs cad:0_3351077594466916;
+    rdfs:label "Unauthorized Command Message".
+cad:0_9299148987946101
+    a cad:Thing;
+    cad:objective "Change the state of IOAs";
+    d3f:instructs cad:0_5269787563174069;
+    d3f:precedes cad:0_5723215970930189;
+    rdfs:label "IEC-101 Payload Execution".
+cad:0_9472434662464855
+    a d3f:Condition;
+    cad:comment
+        """Adversary is able to directly control switches
+and circuit breakers at power grid substations""",
+        "IEC-101, -104, -61850, and OPC DA have similar physical impact";
+    d3f:has-participant cad:0_9577529265388484;
+    rdfs:label "Physical Impact -  Toggling States".
+cad:0_9577529265388484 a d3f:OTModeSwitch; rdfs:label "OT Mode Switch".
+
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+cad:config-parameter-1 a owl:AnnotationProperty; rdfs:label "config_parameter1".
+
+cad:config-parameter-2 a owl:AnnotationProperty; rdfs:label "config_parameter2".
+
+cad:config-parameter-3 a owl:AnnotationProperty; rdfs:label "config_parameter3".
+
+cad:objective a owl:AnnotationProperty; rdfs:label "Objective".
+
+cad:protocol-1 a owl:AnnotationProperty; rdfs:label "Protocol1".
+
+cad:protocol-2 a owl:AnnotationProperty; rdfs:label "Protocol2".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge-0.49571127364202205__0.6920363920824525source-0.9111950702664015target
+# [WARN]: Unknown property agent-in
+# {
+#   "d3f_property": "agent-in",
+#   "label": "agent-in"
+# }
+

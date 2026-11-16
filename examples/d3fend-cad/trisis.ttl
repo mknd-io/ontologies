@@ -1,0 +1,230 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_024711527482739304
+    a d3f:T0822;
+    d3f:has-participant cad:0_39487716268271933;
+    d3f:precedes cad:0_33707778069957517;
+    rdfs:label "External Remote Services - ATTACK ICS".
+cad:0_065868612383433
+    a d3f:OffensiveTechnique;
+    cad:impact "Malware executes to communicate w/ OT Controller";
+    d3f:executes cad:0_6103103020386329;
+    rdfs:label "Scripting".
+cad:0_08230518208082183
+    a d3f:DisableRemoteAccess;
+    d3f:isolates cad:0_5961669008539066;
+    rdfs:label "Disable Remote Access".
+cad:0_09618390410713129 a d3f:OTController; rdfs:label "DCS Controller".
+
+cad:0_14847618240977256
+    a d3f:RawMemoryAccessFunction;
+    d3f:executes cad:0_2309221553313865;
+    rdfs:label "TS Protocol Handler".
+cad:0_1881410178509455
+    a d3f:NetworkTrafficSignatureAnalysis;
+    d3f:analyzes cad:0_9251124217624167;
+    rdfs:label "Network Traffic Signature Analysis".
+cad:0_21702657653160573 a d3f:RemoteSession; rdfs:label "Remote Session".
+
+cad:0_2309221553313865
+    a d3f:OTControlProgram;
+    d3f:has-recipient cad:0_38740668355447794;
+    d3f:modifies cad:0_38740668355447794;
+    rdfs:label "imain.bin (reads/writes to controller memory)".
+cad:0_26061000611811913
+    a d3f:CWE-119;
+    cad:cve-id "CVE-2018-8872";
+    rdfs:label
+    "Improper Restriction of Operations within the Bounds of a Memory Buffer".
+cad:0_2665263374847948
+    a d3f:OTEngineeringWorkstation;
+    d3f:connects cad:0_09618390410713129;
+    d3f:produces cad:0_9251124217624167;
+    rdfs:label "OT Engineering Workstation".
+cad:0_2668545611138101
+    a d3f:Network;
+    d3f:contains cad:0_09618390410713129;
+    rdfs:label "Distributed Control System (DCS)".
+cad:0_27578894513923147
+    a d3f:OffensiveTechnique;
+    d3f:loads cad:0_3672949271105257;
+    d3f:precedes cad:0_9241933539741692;
+    rdfs:label "Program Download".
+cad:0_33707778069957517
+    a d3f:T0853;
+    d3f:has-participant cad:0_39487716268271933;
+    d3f:precedes cad:0_7681260130997116;
+    rdfs:label "Scripting - ATTACK ICS".
+cad:0_3672949271105257
+    a d3f:OTControlProgram;
+    d3f:has-recipient cad:0_38740668355447794;
+    d3f:modifies cad:0_14847618240977256;
+    rdfs:label "inject.bin (protocol message generator)".
+cad:0_38740668355447794
+    a d3f:OTController;
+    d3f:contains cad:0_14847618240977256, cad:0_4738879752120957;
+    rdfs:label "Triconex Controller".
+cad:0_39487716268271933
+    a d3f:OTEngineeringWorkstation;
+    d3f:may-create cad:0_21702657653160573;
+    d3f:produces cad:0_9251124217624167;
+    d3f:runs cad:0_6196393415263066;
+    rdfs:label "SIS Engineering Workstation".
+cad:0_44950453835229565 a d3f:Vulnerability; rdfs:label "Misconfigured Firewall".
+
+cad:0_4738879752120957
+    a d3f:Firmware;
+    d3f:has-weakness cad:0_26061000611811913;
+    rdfs:label "Tricon MP3008 Firmware v10.0-10.4".
+cad:0_49734702163661537
+    a d3f:OffensiveTechnique;
+    d3f:may-modify cad:0_5907520906576414;
+    d3f:precedes cad:0_7337213179425279;
+    rdfs:label "System Firmware".
+cad:0_5342803697414016
+    a d3f:RemoteTerminalSessionDetection;
+    d3f:detects cad:0_21702657653160573;
+    rdfs:label "Remote Terminal Session Detection".
+cad:0_5577074182756666
+    a d3f:ArchiveFile;
+    d3f:contains cad:0_6103103020386329;
+    d3f:has-recipient cad:0_39487716268271933;
+    rdfs:label "library.zip".
+cad:0_5841100026074451
+    a d3f:OffensiveTechnique;
+    d3f:obfuscates cad:0_6103103020386329;
+    d3f:precedes cad:0_065868612383433;
+    rdfs:label "Masquerading".
+cad:0_5907520906576414
+    a d3f:Condition;
+    cad:comment
+        "A threat actor may read and write memory on the safety controller and execute code at an arbitrary address within the firmware";
+    rdfs:label "Impact".
+cad:0_5961669008539066
+    a d3f:Firewall;
+    d3f:connects cad:0_2665263374847948, cad:0_39487716268271933;
+    d3f:filters cad:0_9251124217624167;
+    d3f:has-weakness cad:0_44950453835229565;
+    rdfs:label "Firewall".
+cad:0_6103103020386329
+    a d3f:ExecutableBinary;
+    cad:contains "Py2EXE compiled python script";
+    cad:note
+        """Masquerades as legit Triconex
+application""";
+    cad:parameter
+        """IP Address of target Triconex
+Device""";
+    d3f:communicates-with cad:0_38740668355447794;
+    d3f:contained-by cad:0_39487716268271933;
+    d3f:creates
+        cad:0_2309221553313865, cad:0_3672949271105257, cad:0_7004603388058153,
+        cad:0_8894161113792598;
+    d3f:decodes cad:0_6196393415263066;
+    d3f:synonym "TRITON, HatMan";
+    rdfs:label "trilog.exe (TRISIS Malware)".
+cad:0_6196393415263066
+a d3f:OTEngineeringSoftware; rdfs:label "OT Engineering Software".
+cad:0_6866635098216262
+    a d3f:OffensiveTechnique;
+    d3f:abuses cad:0_26061000611811913;
+    d3f:precedes cad:0_49734702163661537;
+    rdfs:label "Exploitation for Privilege Escalation".
+cad:0_7004603388058153
+    a d3f:OTControlProgram;
+    d3f:has-recipient cad:0_38740668355447794;
+    d3f:modifies cad:0_38740668355447794;
+    rdfs:label "PresetStatus".
+cad:0_7337213179425279 a d3f:OffensiveTechnique; rdfs:label "Loss of Safety".
+
+cad:0_7681260130997116
+    a d3f:OffensiveTechnique;
+    d3f:precedes cad:0_5841100026074451;
+    rdfs:label "Program Download".
+cad:0_7727563780195316
+    a cad:Note;
+    rdfs:comment
+        """Triton Safety Instrumented System Attack was a campaign employed by TEMP.Veles 
+which leveraged the Triton malware framework against a petrochemical organization.
+The malware and techniques used within this campaign targeted specific 
+Triconex Safety Controllers within the environment. The incident was eventually 
+discovered due to a safety trip that occurred as a result of an issue in the malware.""";
+    rdfs:label "Overview".
+cad:0_8069256921019861
+    a d3f:Condition;
+    rdfs:comment
+        """Upon connection, checks if 
+the controller is a running 
+state""";
+    rdfs:label "OT Controller State Check".
+cad:0_8894161113792598
+    a d3f:OTProtocolMessage;
+    d3f:has-recipient cad:0_38740668355447794;
+    rdfs:label "TS Protocol Message (via UDP 1502)".
+cad:0_9241933539741692
+    a d3f:OffensiveTechnique;
+    d3f:executes cad:0_3672949271105257;
+    d3f:precedes cad:0_6866635098216262;
+    rdfs:label "Scripting".
+cad:0_9251124217624167 a d3f:NetworkTraffic; rdfs:label "Network Traffic".
+
+cad:0_9280595315192374
+    a d3f:RemoteAttacker;
+    d3f:initiates cad:0_024711527482739304;
+    rdfs:label "TEMP.Veles (G0088)".
+cad:0_9396364348614832
+    a d3f:DirectionalNetworkLink;
+    cad:note "Should have prevented this attack.";
+    d3f:isolates cad:0_5961669008539066;
+    rdfs:label "Directional Network Link".
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+cad:contains a owl:AnnotationProperty; rdfs:label "contains".
+
+cad:cve-id a owl:AnnotationProperty; rdfs:label "CVE-ID".
+
+cad:impact a owl:AnnotationProperty; rdfs:label "impact".
+
+cad:note a owl:AnnotationProperty; rdfs:label "note".
+
+cad:parameter a owl:AnnotationProperty; rdfs:label "Parameter".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge-0.5452331914191003__0.7681260130997116source-0.5577074182756666target
+# [WARN]: Unknown property downloads
+# {
+#   "d3f_property": "downloads",
+#   "label": "downloads"
+# }
+#
+# Edge ID: xy-edge-0.8201436619064971__0.065868612383433source-0.8069256921019861target
+# [WARN]: Unknown property if
+# {
+#   "d3f_property": "if",
+#   "label": "if"
+# }
+#
+# Edge ID: xy-edge-0.734177014146042__0.8069256921019861source-0.27578894513923147target
+# [WARN]: Unknown property then
+# {
+#   "d3f_property": "then",
+#   "label": "then"
+# }
+#
+# Edge ID: xy-edge-0.9525573222079143__0.3672949271105257source-0.26061000611811913target
+# [WARN]: Unknown property exploits
+# {
+#   "d3f_property": "exploits",
+#   "label": "exploits"
+# }
+

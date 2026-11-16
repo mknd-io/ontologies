@@ -1,0 +1,180 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_03979030054819055
+    a cad:InlinePowerShellScript, d3f:Artifact;
+    d3f:creates cad:0_9366371466114469;
+    rdfs:label "Inline Power Shell Script".
+cad:0_04249325034853346
+    a d3f:DocumentFile;
+    cad:deceives cad:0_6074354245521373;
+    rdfs:label "DOCX Document File".
+cad:0_10426293338922998
+    a d3f:InboundInternetMailTraffic;
+    d3f:contains cad:0_6071601385874087;
+    rdfs:label "Inbound Internet Mail Traffic".
+cad:0_13256944195839404
+    a d3f:FileSystemLink;
+    d3f:executes cad:0_7792835143423777;
+    rdfs:label ".LNK File \"office doc\"".
+cad:0_2111806389572204
+    a d3f:T1059.001;
+    d3f:implemented-by cad:0_03979030054819055;
+    d3f:precedes cad:0_921380612603658;
+    rdfs:label "Execution: PowerShell".
+cad:0_21872006297325297
+    a d3f:ExecutableBinary;
+    d3f:invokes cad:0_03979030054819055;
+    rdfs:label "powershell.exe".
+cad:0_25835674899524097
+    a cad:InlinePowerShellScript, d3f:Artifact;
+    d3f:creates cad:0_04249325034853346, cad:0_3108464738831057;
+    rdfs:label "Inline Power Shell Script".
+cad:0_2898381946203664
+    a d3f:OutboundInternetWebTraffic;
+    d3f:contains cad:0_552059671457854;
+    rdfs:label "Outbound Internet Web Traffic".
+cad:0_2898381946203664-copy0_13536047675435314
+a d3f:OutboundInternetWebTraffic; rdfs:label "Outbound Internet Web Traffic".
+cad:0_30898977256836024
+    a d3f:PlatformHardening;
+    d3f:disables cad:0_7792835143423777;
+    rdfs:label "Disable PowerShell".
+cad:0_3108464738831057
+    a d3f:SharedLibraryFile;
+    cad:downloads cad:0_552059671457854;
+    d3f:invokes cad:0_21872006297325297;
+    rdfs:label "DLL .NET Loader ".
+cad:0_3294135325329819
+    a d3f:T1036.008;
+    d3f:implemented-by cad:0_13256944195839404;
+    d3f:precedes cad:0_9674498279207843;
+    rdfs:label "Defense Evasion: Masquerade File Type".
+cad:0_34778388263272275
+    a d3f:T1106;
+    d3f:implemented-by cad:0_3108464738831057;
+    d3f:precedes cad:0_2111806389572204;
+    rdfs:label "Execution: Native API".
+cad:0_4032013612667408
+    a d3f:EmailFiltering;
+    d3f:blocks
+    cad:0_13256944195839404, cad:0_42705486882231847, cad:0_7535326980747047;
+    rdfs:label "Email Filtering".
+cad:0_42705486882231847
+    a d3f:EmailAttachment;
+    d3f:contains cad:0_7535326980747047;
+    rdfs:label "Email Attachment".
+cad:0_4413793232667994
+    a d3f:T1566.001;
+    d3f:precedes cad:0_4798872031112791;
+    rdfs:label "Initial Access: Spearphishing Attachment".
+cad:0_4798872031112791
+    a d3f:T1204.002;
+    d3f:implemented-by cad:0_13256944195839404;
+    d3f:precedes cad:0_3294135325329819;
+    rdfs:label "Execution: Malicious File".
+cad:0_48477799583965264
+    a d3f:FileContentAnalysis;
+    cad:comment "broad recommendation";
+    rdfs:label "General Antivirus file scanning (all files)".
+cad:0_5307585939533781
+    a cad:Note;
+    cad:has-note cad:0_10426293338922998;
+    rdfs:comment
+        """The artifact execution chain
+describes all the artifacts which
+are involved in a scenario and
+the sequence of their involvement.""";
+    rdfs:label "D3FEND Execution Chain".
+cad:0_552059671457854 a d3f:DigitalInformationBearer; rdfs:label "Steno PNG File".
+
+cad:0_581653696636286
+    a d3f:Agent;
+    d3f:initiates cad:0_4413793232667994;
+    rdfs:label "Shadowcat Attacker".
+cad:0_5848797624184087
+    a d3f:NetworkTrafficAnalysis;
+    d3f:analyzes
+    cad:0_2898381946203664, cad:0_2898381946203664-copy0_13536047675435314;
+    rdfs:label "Network Traffic Analysis".
+cad:0_6071601385874087
+a d3f:Email; d3f:contains cad:0_42705486882231847; rdfs:label "Email".
+cad:0_6074354245521373 a d3f:Agent; rdfs:label "Victim User".
+
+cad:0_6553811899665475
+    a d3f:FileContentRules;
+    d3f:analyzes cad:0_9366371466114469;
+    rdfs:label "Yara Rule".
+cad:0_6835359685533496
+    a d3f:T1059.001;
+    d3f:implemented-by cad:0_25835674899524097;
+    d3f:precedes cad:0_34778388263272275;
+    rdfs:label "Execution: PowerShell".
+cad:0_7535326980747047
+a d3f:ArchiveFile; d3f:contains cad:0_13256944195839404; rdfs:label "Zip File".
+cad:0_7716786725845816
+    a cad:Note;
+    cad:has-note cad:0_4032013612667408;
+    d3f:consider cad:0_8731411193589528;
+    rdfs:comment
+        """We recommend these additional countermeasures
+to deal with an attack like this earlier in the execution chain.""";
+    rdfs:label "Additional D3FEND Recommendations".
+cad:0_7792835143423777
+    a d3f:ExecutableBinary;
+    d3f:invokes cad:0_25835674899524097;
+    rdfs:label "powershell.exe".
+cad:0_7984230369581443
+    a d3f:T1071.001;
+    d3f:implemented-by cad:0_9366371466114469;
+    rdfs:label "C2: Web Protocols".
+cad:0_8210470873059882
+    a cad:Note;
+    rdfs:comment
+        """A parallel set of events are required
+to depict the full set of things available
+to monitor as the attack occurs. This
+initial diagram is kept simple and excludes
+that event chain, future examples will
+demonstrate this concept.""";
+    rdfs:label "Note on Events".
+cad:0_8731411193589528
+    a d3f:DynamicAnalysis;
+    d3f:analyzes cad:0_42705486882231847;
+    rdfs:label "Dynamic Analysis".
+cad:0_921380612603658
+    a d3f:T1055.004;
+    d3f:implemented-by cad:0_3108464738831057;
+    d3f:precedes cad:0_7984230369581443;
+    rdfs:label "Defense Evasion: Asynchronous Procedure Call".
+cad:0_9366371466114469
+    a d3f:ExecutableBinary;
+    d3f:creates cad:0_2898381946203664-copy0_13536047675435314;
+    rdfs:label "Go RAT".
+cad:0_9621202021427397
+    a d3f:ExecutableAllowlisting;
+    d3f:blocks cad:0_3108464738831057;
+    rdfs:label "Executable Allowlisting".
+cad:0_9674498279207843
+    a d3f:T1070.004;
+    d3f:implemented-by cad:0_13256944195839404;
+    d3f:precedes cad:0_6835359685533496;
+    rdfs:label "Defense Evasion: File Deletion".
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge__0.4413793232667994source-0.6071601385874087target
+# [WARN]: Unknown property sends
+# {
+#   "label": "sends"
+# }
+

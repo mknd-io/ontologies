@@ -24,6 +24,7 @@ Every IRI resolves through [w3id.org](https://w3id.org/mknd/). Browsers get the 
 | D3FEND alignment | `https://w3id.org/mknd/alignment/d3fend` | [`src/mknd-d3fend.ttl`](src/mknd-d3fend.ttl) | Every statement MKND makes about a D3FEND term; imports D3FEND by version IRI |
 | Examples | `https://w3id.org/mknd/examples` | [`examples/mknd-examples.ttl`](examples/mknd-examples.ttl) | Illustrative individuals (hosts, sockets, sessions, CVEs, vendors). Not imported by core |
 | Datasets | `https://w3id.org/mknd/data/{gtfobins,lolbas}` | [`data/`](data) | [GTFOBins](https://gtfobins.github.io) and [LOLBAS](https://lolbas-project.github.io) binaries and commands as individuals |
+| D3FEND CAD examples | none (not published) | [`examples/d3fend-cad/`](examples/d3fend-cad) | D3FEND's own CAD models of ten incidents and systems, unchanged, as reference data for the checks. MITRE's terms, not MIT |
 
 ## How MKND extends D3FEND
 
@@ -39,7 +40,7 @@ MKND treats D3FEND as a read-only dependency:
 
 ```
 src/          ontology sources: core, D3FEND alignment, Protégé catalog, Widoco config
-examples/     example individuals (imports core)
+examples/     example individuals (imports core); d3fend-cad/ holds D3FEND's CAD example graphs
 data/         GTFOBins / LOLBAS datasets (import core)
 assets/icons  SVG icons referenced by mknd:icon
 tests/        SPARQL checks run by ROBOT, and the w3id redirect test
@@ -79,6 +80,7 @@ Edit in Protégé by opening `src/mknd.ttl`. `src/catalog-v001.xml` resolves the
 ```sh
 make data          # regenerate both from the pinned upstream revisions (needs network on first run)
 make data-report   # quality report for the datasets (does not fail the build)
+make cad-report    # the same checks on D3FEND's CAD examples; see examples/d3fend-cad/README.md
 ```
 
 [`scripts/data/generate.py`](scripts/data/generate.py) reads the GTFOBins and LOLBAS revisions pinned in [`scripts/data/sources.json`](scripts/data/sources.json) and writes each one into its file header as `dcterms:source`. It takes the version and `dcterms:modified` from `src/mknd.ttl`. ATT&CK technique IDs are resolved against the pinned D3FEND release, and a deprecated technique is replaced by its successor. So run `make data` after changing the MKND version or the D3FEND pin. The output is deterministic. To move to newer upstream data, change the revision and date in `sources.json` and run `make data`. The generator reads the GTFOBins page format used until December 2025 (`_gtfobins/*.md`). Newer GTFOBins revisions use a different format and need generator changes.
@@ -116,4 +118,4 @@ Anton Goncharov ([@ag0x00](https://github.com/ag0x00), <anton.goncharov@gmail.co
 
 ## License
 
-[MIT](LICENSE). D3FEND is © The MITRE Corporation and is subject to its [terms of use](https://d3fend.mitre.org/about/).
+[MIT](LICENSE), except [`examples/d3fend-cad/`](examples/d3fend-cad), which is D3FEND content under MITRE's [terms](examples/d3fend-cad/LICENSE). D3FEND is © The MITRE Corporation and is subject to its [terms of use](https://d3fend.mitre.org/about/).

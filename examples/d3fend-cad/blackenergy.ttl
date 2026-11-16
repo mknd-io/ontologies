@@ -1,0 +1,707 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_011728648395267549
+    a d3f:T1018;
+    d3f:precedes cad:0_7742748425561905;
+    rdfs:label "Remote System Discovery".
+cad:0_01670515038839715
+    a d3f:T0816;
+    d3f:precedes
+    cad:0_1358982961406645, cad:0_3875874264147139, cad:0_5341773394097591;
+    rdfs:label "Device Restart/Shutdown - ATTACK ICS".
+cad:0_045851287544759534
+    a d3f:ExecutableFile;
+    cad:location
+        """C:\\Documents and Settings\\useradm\\Start Menu\\Programs\\Startup\\{C323A392-5BB0-
+47D5-9518-E60202A85B5C}.lnk""";
+    d3f:executes cad:0_04958757673902181;
+    rdfs:label ".lnk File".
+cad:0_04947914531164699 a d3f:LogFile; rdfs:label "NTUSER.log".
+
+cad:0_04958757673902181
+    a d3f:ShellCommand;
+    d3f:deletes cad:0_3351622642049875;
+    d3f:executes cad:0_8277973094426098, cad:0_9844329293844988;
+    rdfs:label "Shell Command".
+cad:0_0643423040651191 a d3f:UserAccount; rdfs:label "User Account".
+
+cad:0_07085459554738938
+    a d3f:DynamicAnalysis;
+    d3f:analyzes cad:0_3329939593593305;
+    rdfs:label "Dynamic Analysis".
+cad:0_08118173891641955
+    a d3f:EmailFiltering;
+    d3f:filters cad:0_7599959354353573;
+    rdfs:label "Email Filtering".
+cad:0_08172191998758183 a d3f:T1040; rdfs:label "Network Sniffing".
+
+cad:0_0889268490667886
+    a d3f:ExecutableBinary;
+    d3f:executes cad:0_3220058651804134;
+    rdfs:label "BE - svchost.exe".
+cad:0_1014696392992066
+    a d3f:Server;
+    d3f:abuses cad:0_9710385375946635;
+    d3f:communicates-with cad:0_39585572900099764;
+    d3f:connects cad:0_8187242791947613;
+    rdfs:label "Attacker Command and Control (CC, C2)  Server".
+cad:0_11504030654078301
+a d3f:ClientApplication; rdfs:label "DMS Client Application".
+cad:0_1358982961406645 a d3f:T0826; rdfs:label "Loss of Availability - ATTACK ICS".
+
+cad:0_1502251638972949 a d3f:T1485; rdfs:label "Data Destruction".
+
+cad:0_17151055411474148 a d3f:OfficeApplication; rdfs:label "Team Viewer".
+
+cad:0_17777871364984332
+    a d3f:OTPowerSupply;
+    d3f:powers cad:0_4196609223425932;
+    rdfs:label "Uninteruptable Power Supply ".
+cad:0_18036963483971324
+    a d3f:T1059;
+    d3f:precedes cad:0_6942688663102967;
+    rdfs:label "Command and Scripting Interpreter".
+cad:0_1954103299919423
+    a d3f:DirectionalNetworkLink;
+    d3f:filters cad:0_600382625605067;
+    rdfs:label "Directional Network Link".
+cad:0_21401633802995235
+    a d3f:ClientComputer;
+    d3f:connects cad:0_7155602773893314;
+    rdfs:label "Victim Host 3".
+cad:0_2142670145219997
+a d3f:VPNServer; d3f:connects cad:0_7158605943438818; rdfs:label "VPN Server".
+cad:0_22517512941865891
+    a d3f:LocalFilePermissions;
+    d3f:restricts cad:0_3329939593593305;
+    rdfs:label "Local File Permissions".
+cad:0_2418324566543839
+    a d3f:OperatingModeRestriction;
+    d3f:restricts cad:0_4196609223425932;
+    rdfs:label "Operating Mode Restriction".
+cad:0_24669684598977915 a d3f:File; rdfs:label "desktop.ini".
+
+cad:0_25291247109928094
+a d3f:T1204; d3f:precedes cad:0_42229799036770566; rdfs:label "User Execution".
+cad:0_2647207868322584
+    a d3f:T0814;
+    d3f:precedes cad:0_01670515038839715;
+    rdfs:label "Denial of Service - ATTACK ICS".
+cad:0_2728087555582611
+    a d3f:T0855;
+    d3f:precedes cad:0_01670515038839715, cad:0_9130050857233772;
+    rdfs:label "Unauthorized Command Message - ATTACK ICS".
+cad:0_28923080501843235
+    a d3f:ExecutableBinary;
+    cad:bs-dll "Queries of system hardware, BIOS, and Windows information";
+    cad:dc-dll "Identifies Windows accounts";
+    cad:dstr-dll
+        "At a specified time, the plugin rewrites files with specific extensions with random data, deletes itself, and deletes the first 11 sectors of system drive, then rewrites all remaining data";
+    cad:fs-dll
+    "Gathers documents and private keys by search for specific file extensions";
+    cad:jn-dll
+        """Fixes checksum values in PE headers, fixes CRC32
+Nullsoft value, and deletes digital signatures to avoid invalidation""";
+    cad:ki-dll "Keystroke logger";
+    cad:ps-dll "Searches for user credentials";
+    cad:rd-dll "Pseudo RDP server";
+    cad:scan-dll "Network scanner";
+    cad:si-dll "Searches for specific configuration and operational data";
+    cad:ss-dll "Captures screenshots";
+    cad:tv-dll
+    "Searches for TeamViewer versions 6-8. then sets and additional password";
+    cad:up-dll "Updates malware";
+    cad:user-property
+    "These plugins are the most likley to be used after infection";
+    cad:vs-dll
+        "Contains PsExec.exe, scans the network to find credentials and establish remote sessions";
+    d3f:creates cad:0_8187242791947613;
+    d3f:detects cad:0_9463781430858794;
+    d3f:identifies cad:0_0643423040651191;
+    d3f:may-modify cad:0_5941923237470765;
+    d3f:modifies cad:0_17151055411474148;
+    d3f:queries cad:0_5120198873978444;
+    d3f:reads cad:0_9593965475759824;
+    d3f:records cad:0_9185122800291781;
+    d3f:updates cad:0_9844329293844988;
+    rdfs:label "BE Plugins".
+cad:0_2996481954669147
+    a cad:Note;
+    rdfs:comment
+        """BlackEnergy is a malware toolkit that has been used by both criminal and APT actors. It dates back to at least 2007 
+and was originally designed to create botnets for use in conducting Distributed Denial of Service (DDoS) attacks, 
+but its use has evolved to support various plug-ins. It is well known for being used during the confrontation between 
+Georgia and Russia in 2008, as well as in targeting Ukrainian institutions. Variants include BlackEnergy 2 and 
+
+BlackEnergy 3.""";
+    rdfs:label "Overview".
+cad:0_3077258795517196
+    a d3f:Server;
+    d3f:creates cad:0_8187242791947613;
+    rdfs:label "DROPBEAR.EXE (SSH Server)".
+cad:0_31054568234252977
+    a d3f:LogicalLinkMapping;
+    d3f:maps cad:0_2142670145219997;
+    rdfs:label "Logical Link Mapping".
+cad:0_3220058651804134
+a d3f:Browser; rdfs:label "Internet Explorer - iexplore.exe".
+cad:0_3329939593593305
+    a d3f:EmailAttachment;
+    d3f:contains cad:0_3351622642049875;
+    rdfs:label "Malicious Attachment".
+cad:0_3351622642049875
+    a d3f:ExecutableScript;
+    d3f:initiates cad:0_787918744484113;
+    d3f:installs
+        cad:0_045851287544759534, cad:0_04947914531164699,
+        cad:0_24669684598977915, cad:0_8277973094426098, cad:0_9844329293844988;
+    d3f:modifies cad:0_5078964369336832;
+    rdfs:label "vba_macro.exe".
+cad:0_3875874264147139 a d3f:T0827; rdfs:label "Loss of Control - ATTACK ICS".
+
+cad:0_3912902970979779
+    a d3f:DatabaseServer;
+    d3f:connects cad:0_7155602773893314;
+    rdfs:label "Telephone Server".
+cad:0_39585572900099764
+    a d3f:ClientComputer;
+    d3f:connects cad:0_7155602773893314, cad:0_9185122800291781;
+    d3f:contains
+        cad:0_3220058651804134, cad:0_5078964369336832, cad:0_5120198873978444,
+        cad:0_9593965475759824;
+    d3f:receives cad:0_7599959354353573;
+    rdfs:label "Victim Host 1 ".
+cad:0_409309122660914
+    a d3f:VariableTypeValidation;
+    d3f:validates cad:0_8411582645429899, cad:0_8933745017302182;
+    rdfs:label "Variable Type Validation".
+cad:0_41296826358099703
+    a cad:Note;
+    rdfs:comment
+        """For brevity, not all ATT&CK techniques used are included. 
+
+
+This model is based on the BlackEnergy3 version of the malware, 
+there are various different execution pathways and multiple versions
+of this malware, this is based on one of the samples by Boose Allen.""";
+    rdfs:label "Note".
+cad:0_4134765032643656 a d3f:T1112; rdfs:label "Modify Registry".
+
+cad:0_4189527421918452
+    a d3f:ExecutableScript;
+    d3f:creates cad:0_8860388885635958;
+    d3f:has-sender cad:0_1014696392992066;
+    rdfs:label "1.1 (KillDisk)".
+cad:0_4196609223425932
+    a d3f:OTController;
+    d3f:communicates-with cad:0_5465972815780351;
+    d3f:connects cad:0_7158605943438818;
+    rdfs:label "Remote Terminal Unit - ABB RTU560 CMU-02".
+cad:0_42229799036770566
+    a d3f:T1218;
+    d3f:precedes cad:0_1502251638972949;
+    rdfs:label "System Binary Proxy Execution".
+cad:0_4404989856519185
+    a d3f:T0813;
+    d3f:precedes cad:0_01670515038839715;
+    rdfs:label "Denial of Control - ATTACK ICS".
+cad:0_4593986742766114
+    a d3f:InternetBasedAttacker;
+    d3f:produces cad:0_8489789250194129;
+    rdfs:label "Sandworm Team".
+cad:0_4857816044668042 a d3f:IntranetNetwork; rdfs:label "Intranet Network".
+
+cad:0_4963970192064989 a d3f:T1056.001; rdfs:label "Keylogging".
+
+cad:0_5078964369336832
+    a d3f:WindowsRegistry;
+    cad:modifies
+        """HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\
+Internet Settings\\ZoneMap\\ProxyBypass (to 1)
+
+
+HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\
+Internet Settings\\ZoneMap\\IntranetName (to 1)
+
+
+HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\
+Internet Settings\\ZoneMap\\UNCAsIntranet (to 1)""";
+    rdfs:label "Windows Registry".
+cad:0_5120198873978444
+    a d3f:FileSystem;
+    d3f:contains cad:0_5941923237470765;
+    d3f:may-contain cad:0_17151055411474148;
+    rdfs:label "File System".
+cad:0_5252528952558972
+    a d3f:ExecutableScript;
+    cad:executes
+        "Launches the Dropbear SSH server from directory C:\\\\WINDOWS\\TEMP\\DROPBEAR\\,and sets the server to listen on port 6789.";
+    cad:masquerades "Looks like a Microsoft word document.";
+    d3f:executes cad:0_3077258795517196;
+    rdfs:label "DropbearRun.vbs".
+cad:0_5341773394097591
+a d3f:T0828; rdfs:label "Loss of Productivity and Revenue - ATTACK ICS".
+cad:0_5420274788972035 a d3f:T1562; rdfs:label "Impair Defenses".
+
+cad:0_5465972815780351
+    a d3f:OTActuator;
+    d3f:controls cad:0_6348875988593375;
+    rdfs:label "Converters - Moxa UC 7408-LX-Plus, 59 IRZRUH2 3G".
+cad:0_5903859515928248 a d3f:T1055; rdfs:label "Process Injection".
+
+cad:0_5941923237470765 a d3f:File; rdfs:label "PE File Checksums & CR32 Nullsoft".
+
+cad:0_5949102176416416
+    a d3f:ClientComputer;
+    d3f:connects cad:0_7155602773893314;
+    rdfs:label "Victim Host 2".
+cad:0_600382625605067
+    a d3f:Firewall;
+    d3f:connects cad:0_4857816044668042, cad:0_7158605943438818;
+    rdfs:label "Firewall".
+cad:0_631996990894295 a d3f:HardDiskFirmware; rdfs:label "Hard Disk Firmware".
+
+cad:0_6348875988593375 a d3f:OTActuator; rdfs:label "Substation Breakers".
+
+cad:0_6450033473289898
+    a d3f:Server;
+    d3f:connects cad:0_7155602773893314;
+    d3f:contains cad:0_631996990894295;
+    d3f:receives cad:0_4189527421918452;
+    rdfs:label "Domain Control Server".
+cad:0_6839518618404276
+    a d3f:T1078;
+    d3f:accesses cad:0_2142670145219997;
+    d3f:precedes
+        cad:0_7074637887875866, cad:0_7287669718764404, cad:0_8022377019602617,
+        cad:0_831701402526766;
+    rdfs:label "Valid Accounts".
+cad:0_6925916663168369
+    a d3f:DisableRemoteAccess;
+    d3f:validates cad:0_8411582645429899, cad:0_8933745017302182;
+    rdfs:label "Disable Remote Access".
+cad:0_6935254604075999 a d3f:T1070; rdfs:label "Indicator Removal".
+
+cad:0_6942688663102967
+    a d3f:T0869;
+    d3f:has-participant cad:0_1014696392992066;
+    d3f:precedes cad:0_9749786149876639;
+    rdfs:label "Standard Application Layer Protocol - ATTACK ICS".
+cad:0_7074637887875866 a d3f:T0885; rdfs:label "Commonly Used Port - ATTACK ICS".
+
+cad:0_7155602773893314 a d3f:IntranetNetwork; rdfs:label "Corporate Network".
+
+cad:0_7157342860017536
+    a d3f:IntegerRangeValidation;
+    d3f:validates cad:0_8411582645429899, cad:0_8933745017302182;
+    rdfs:label "Integer Range Validation".
+cad:0_7158605943438818
+    a d3f:InternetNetwork;
+    d3f:contains cad:0_9298335684724964;
+    rdfs:label "OT Network".
+cad:0_7287669718764404
+    a d3f:T0884;
+    d3f:precedes cad:0_2647207868322584, cad:0_8011413351869864;
+    rdfs:label "Connection Proxy - ATTACK ICS".
+cad:0_7538421252385891
+    a d3f:T1133;
+    d3f:creates cad:0_3077258795517196;
+    d3f:precedes cad:0_6935254604075999;
+    rdfs:label "External Remote Services".
+cad:0_7599959354353573
+a d3f:Email; d3f:contains cad:0_3329939593593305; rdfs:label "Email".
+cad:0_7718788434430688
+    a cad:Note;
+    rdfs:comment
+        """Threat actors use native remote access services and valid credentials to open breakers and 
+disrupt power distribution to over 225,000 customers within three distribution areas for 6 hours.
+
+
+After opening the breakers, threat actors deliver malicious firmware update to serial-to-Ethernet 
+communications devices. The malicious updates render the converters inoperable, and sever 
+connections between the control center and the substations.""";
+    rdfs:label "Dissruption of Control".
+cad:0_7731797695452911 a d3f:T1136; rdfs:label "Create Account".
+
+cad:0_7742748425561905
+    a d3f:T0867;
+    d3f:precedes
+    cad:0_25291247109928094, cad:0_42229799036770566, cad:0_8353327187645735;
+    rdfs:label "Lateral Tool Transfer - ATTACK ICS".
+cad:0_787918744484113
+    a d3f:HTTPPostEvent;
+    d3f:connects cad:0_1014696392992066;
+    rdfs:label "HTTP POST Event".
+cad:0_7985582744539538
+    a d3f:ExecutableDenylisting;
+    d3f:blocks cad:0_9844329293844988;
+    rdfs:label "Executable Denylisting".
+cad:0_8011413351869864
+    a d3f:T0857;
+    d3f:precedes cad:0_2728087555582611, cad:0_4404989856519185;
+    rdfs:label "System Firmware - ATTACK ICS".
+cad:0_8022377019602617
+a d3f:T0803; rdfs:label "Block Command Message - ATTACK ICS".
+cad:0_8156773879895086
+    a d3f:DynamicAnalysis;
+    d3f:analyzes cad:0_9844329293844988;
+    rdfs:label "Dynamic Analysis".
+cad:0_8172925161059889
+    a d3f:Hardware-basedWriteProtection;
+    d3f:hardens cad:0_4196609223425932;
+    rdfs:label "Hardware-based Write Protection".
+cad:0_8187242791947613 a d3f:RDPSession; rdfs:label "RDP Session".
+
+cad:0_8277973094426098 a d3f:ExecutableBinary; rdfs:label "rundll32.exe".
+
+cad:0_831701402526766
+a d3f:T0804; rdfs:label "Block Reporting Message - ATTACK ICS".
+cad:0_8330376454761025
+    a d3f:Firewall;
+    d3f:connects cad:0_4857816044668042, cad:0_7155602773893314;
+    rdfs:label "Firewall".
+cad:0_8353327187645735
+    a d3f:T0822;
+    d3f:abuses cad:0_2142670145219997;
+    d3f:precedes cad:0_6839518618404276;
+    rdfs:label "External Remote Services - ATTACK ICS".
+cad:0_8411582645429899
+    a d3f:OTEngineeringWorkstation;
+    d3f:communicates-with cad:0_4196609223425932;
+    d3f:connects cad:0_7158605943438818, cad:0_9298335684724964;
+    rdfs:label "OT Engineering Workstation".
+cad:0_8489789250194129
+    a d3f:T1566.001;
+    d3f:precedes cad:0_18036963483971324;
+    d3f:produces cad:0_7599959354353573;
+    rdfs:label "Spearphishing Attachment".
+cad:0_8595449356275514
+a d3f:User; d3f:participates-in cad:0_5252528952558972; rdfs:label "User".
+cad:0_8747138790190211
+    a d3f:DatabaseServer;
+    d3f:connects cad:0_7155602773893314;
+    rdfs:label "Database Server".
+cad:0_8813555138609537
+    a d3f:OTPowerSupply;
+    d3f:powers cad:0_3912902970979779;
+    rdfs:label "Uninteruptable Power Supply ".
+cad:0_8860388885635958
+    a d3f:ExecutableBinary;
+    d3f:modifies cad:0_631996990894295;
+    rdfs:label "BE - svchost.exe".
+cad:0_8933745017302182
+    a d3f:OTHumanMachineInterface;
+    d3f:connects cad:0_7158605943438818, cad:0_9298335684724964;
+    d3f:controls cad:0_4196609223425932;
+    rdfs:label "OT Human Machine Interface".
+cad:0_9130050857233772
+    a d3f:T0831;
+    d3f:precedes cad:0_01670515038839715;
+    rdfs:label "Manipulation of Control - ATTACK ICS".
+cad:0_9185122800291781
+a d3f:KeyboardInputDevice; rdfs:label "Keyboard Input Device".
+cad:0_9298335684724964
+a d3f:Server; d3f:contains cad:0_11504030654078301; rdfs:label "DMS Server".
+cad:0_9463781430858794
+    a d3f:Credential;
+    d3f:authenticates cad:0_0643423040651191;
+    rdfs:label "Credential".
+cad:0_958632195650318
+    a d3f:SoftwareUpdate;
+    d3f:updates cad:0_17151055411474148;
+    rdfs:label "Software Update".
+cad:0_9593965475759824
+a d3f:GraphicalUserInterface; rdfs:label "Graphical User Interface".
+cad:0_9710385375946635
+    a d3f:UserAccount;
+    d3f:authenticates cad:0_2142670145219997;
+    rdfs:label "User Account".
+cad:0_9749786149876639
+    a d3f:T1105;
+    d3f:has-participant cad:0_1014696392992066;
+    d3f:has-recipient cad:0_28923080501843235;
+    d3f:precedes
+        cad:0_011728648395267549, cad:0_08172191998758183,
+        cad:0_4963970192064989, cad:0_7538421252385891, cad:0_7731797695452911;
+    rdfs:label "Ingress Tool Transfer".
+cad:0_9788135857682663
+    a d3f:OTPowerSupply;
+    d3f:powers cad:0_8747138790190211;
+    rdfs:label "Uninteruptable Power Supply ".
+cad:0_9844329293844988
+    a d3f:ExecutableBinary;
+    cad:location
+        "C:\\Documents and Settings\\useradm\\Local Settings\\Application Data\\FONTCACHE.DAT";
+    d3f:loads cad:0_0889268490667886;
+    d3f:modifies cad:0_3220058651804134;
+    rdfs:label "FONTCACHE.DAT".
+cad:bs-dll a owl:AnnotationProperty; rdfs:label "BS.dll".
+
+cad:dc-dll a owl:AnnotationProperty; rdfs:label "DC.dll".
+
+cad:dstr-dll a owl:AnnotationProperty; rdfs:label "DSTR.dll".
+
+cad:executes a owl:AnnotationProperty; rdfs:label "executes".
+
+cad:fs-dll a owl:AnnotationProperty; rdfs:label "FS.dll".
+
+cad:jn-dll a owl:AnnotationProperty; rdfs:label "JN.dll".
+
+cad:ki-dll a owl:AnnotationProperty; rdfs:label "KI.dll".
+
+cad:location a owl:AnnotationProperty; rdfs:label "location".
+
+cad:masquerades a owl:AnnotationProperty; rdfs:label "masquerades".
+
+cad:modifies a owl:AnnotationProperty; rdfs:label "modifies".
+
+cad:ps-dll a owl:AnnotationProperty; rdfs:label "* PS.dll".
+
+cad:rd-dll a owl:AnnotationProperty; rdfs:label "RD.dll".
+
+cad:scan-dll a owl:AnnotationProperty; rdfs:label "SCAN.dll".
+
+cad:si-dll a owl:AnnotationProperty; rdfs:label "* SI.dll".
+
+cad:ss-dll a owl:AnnotationProperty; rdfs:label "SS.dll".
+
+cad:tv-dll a owl:AnnotationProperty; rdfs:label "TV.dll".
+
+cad:up-dll a owl:AnnotationProperty; rdfs:label "UP.dll".
+
+cad:user-property a owl:AnnotationProperty; rdfs:label "*".
+
+cad:vs-dll a owl:AnnotationProperty; rdfs:label "VS.dll".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge-0.3228805968374584__0.1358982961406645source-0.3875874264147139target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.0031991813443046357__0.3875874264147139source-0.5341773394097591target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7340329085033832__0.28923080501843235source-0.39585572900099764target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.13801928824439091__0.39585572900099764source-0.0643423040651191target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7054235976633513__0.18036963483971324source-0.3351622642049875target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.2822151020485716__0.9749786149876639source-0.5903859515928248target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.9365200727947094__0.9749786149876639source-0.4134765032643656target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7836065132852175__0.9749786149876639source-0.5420274788972035target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.12491889799869516__0.8011413351869864source-0.5465972815780351target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.21936120240218404__0.2728087555582611source-0.6348875988593375target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7403548466035583__0.6935254604075999source-0.9844329293844988target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.4087960866215954__0.6935254604075999source-0.4189527421918452target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.2676596653711215__0.7742748425561905source-0.1014696392992066target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.23063315016017538__0.25291247109928094source-0.5252528952558972target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.9742211861191057__0.42229799036770566source-0.3077258795517196target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7900703066206887__0.42229799036770566source-0.8860388885635958target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.09778130065990887__0.7287669718764404source-0.7158605943438818target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.11802472314165502__0.7074637887875866source-0.7158605943438818target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.015408256222671612__0.8022377019602617source-0.4196609223425932target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.7869172096040775__0.831701402526766source-0.4196609223425932target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.43412140559838475__0.2647207868322584source-0.4196609223425932target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.6548765124090425__0.4404989856519185source-0.5465972815780351target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.3068918563774393__0.9130050857233772source-0.6348875988593375target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.5069610509641358__0.01670515038839715source-0.6348875988593375target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.73216140046714__0.1502251638972949source-0.6450033473289898target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.11402471294585659__0.2647207868322584source-0.8747138790190211target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+#
+# Edge ID: xy-edge-0.11402471294585659__0.2647207868322584source-0.3912902970979779target
+# [WARN]: Unknown property undefined
+# {
+#   "d3f_property": "undefined",
+#   "label": "undefined",
+#   "auto_created": true
+# }
+
+#
+# Data/Annotation property messages:
+# Node: 0.3077258795517196 type: artifact-node has  = Includes two backdoors, a hardcoded public keyuthentication process, and a hardcoded username and password.
+# [WARN]: Empty name or value in user_properties
+

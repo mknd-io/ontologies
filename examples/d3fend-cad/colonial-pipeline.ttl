@@ -1,0 +1,263 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_003405035676624868
+    a d3f:OTController;
+    d3f:connects cad:0_7523504021924062;
+    d3f:controls cad:0_4721990413299503;
+    d3f:monitors cad:0_09336171647148872;
+    rdfs:label "OT Controller".
+cad:0_055661913098443594
+    a cad:Note;
+    rdfs:comment
+        """While the mainlines remained down CPC operated
+some lateral lines.
+
+During this they learned that there was not enough
+written documentation of manual or low tech operating
+procedures and were reliant on older employees
+who had operated prior to heavy automation for
+section operation.""";
+    rdfs:label "Activity During Shutdown".
+cad:0_09336171647148872 a d3f:OTSensor; rdfs:label "OT Sensor".
+
+cad:0_14335716839394552
+a d3f:VPNServer; d3f:accesses cad:0_5094563823244651; rdfs:label "VPN".
+cad:0_1516481331298123
+    a d3f:DirectionalNetworkLink;
+    d3f:isolates cad:0_7523504021924062;
+    rdfs:label "Directional Network Link".
+cad:0_1739115285623688
+    a cad:Note;
+    rdfs:comment
+        """Malicious cyber actors acquired employee user credentials 
+for a VPN service externally.The employee had used the
+
+credentials for an external service from where they are
+suspected to have gotten.
+
+The MCAs then gained access to the IT network through
+the VPN service, which was thought to be out of service
+and not properly monitored.
+
+
+
+Once in the system the MCAs deployed DarkSide ransomware
+and locked down the corporate IT system.""";
+    rdfs:label "Initial Access".
+cad:0_17531406169946395
+    a d3f:T1076;
+    d3f:accesses cad:0_2120769573167678;
+    d3f:precedes cad:0_236280242006908;
+    d3f:produces cad:0_7929612903544426;
+    rdfs:label "Remote Desktop Protocol".
+cad:0_1948295648634747
+    a d3f:T1078;
+    d3f:has-participant cad:0_9516510933936051;
+    d3f:precedes cad:0_7988050018338918;
+    rdfs:label "User Password Compromise".
+cad:0_209383019093357
+    a d3f:AccountLocking;
+    d3f:disables cad:0_9516510933936051;
+    rdfs:label "Account Locking".
+cad:0_2120769573167678
+    a d3f:ClientComputer;
+    d3f:connects cad:0_5094563823244651;
+    d3f:runs cad:0_5017706016798443;
+    rdfs:label "Client Computer".
+cad:0_236280242006908
+    a d3f:T1204.002;
+    d3f:installs cad:0_7869411718156432;
+    d3f:precedes cad:0_39505519354093166;
+    rdfs:label "Malicious File".
+cad:0_2859589026457129 a d3f:T0826; rdfs:label "Loss of Availability - ATTACK ICS".
+
+cad:0_29606403815714977
+    a d3f:Event;
+    d3f:has-participant cad:0_7523504021924062;
+    rdfs:label "Managment Shuts Down OT Network ".
+cad:0_30010607401447664
+    a d3f:NetworkNodeInventory;
+    d3f:inventories cad:0_14335716839394552;
+    rdfs:label "Network Node Inventory".
+cad:0_3146395740655382
+    a d3f:ChangeDefaultPassword;
+    d3f:strengthens cad:0_7710303279513804;
+    rdfs:label "Change Default Password".
+cad:0_39314758805415684
+    a d3f:OperationsCenterComputer;
+    d3f:connects cad:0_7523504021924062;
+    rdfs:label "Operations Center Computer".
+cad:0_39505519354093166
+    a d3f:T1486;
+    d3f:encrypts cad:0_2120769573167678;
+    d3f:precedes
+    cad:0_2859589026457129, cad:0_29606403815714977, cad:0_7163670666053513;
+    rdfs:label "Data Encrypted for Impact".
+cad:0_40027622918795625
+    a d3f:Kernel-basedProcessIsolation;
+    cad:comment
+        """Some EDR and EPPs
+run untrusted execs in a local 
+sandbox preventing full filesystem
+access.""";
+    d3f:isolates cad:0_5017706016798443;
+    rdfs:label "Kernel-based Process Isolation".
+cad:0_43020776454953813
+    a d3f:PasswordRotation;
+    d3f:regenerates cad:0_7710303279513804;
+    rdfs:label "Password Rotation".
+cad:0_45095151035943726
+    a cad:Note;
+    rdfs:comment
+        """On may 7th 2021 the Colonial Pipeline Company (CPC) 
+learned they were victims of a ransomware cyber attack.
+
+In response CPC "proactively took certain systems offline"
+halting pipeline activity.""";
+    rdfs:label "Pipeline Shutdown ".
+cad:0_4721990413299503 a d3f:OTActuator; rdfs:label "OT Actuator".
+
+cad:0_5017706016798443
+    a d3f:Process;
+    d3f:process-image-path cad:0_7869411718156432;
+    rdfs:label "Process".
+cad:0_5094563823244651 a d3f:Network; rdfs:label "IT Network".
+
+cad:0_5178255401698788
+    a d3f:IOPortRestriction;
+    d3f:hardens cad:0_7523504021924062;
+    rdfs:label "IO Port Restriction".
+cad:0_546179278682514 a d3f:Agent; rdfs:label "Malicious Cyber Actor".
+
+cad:0_5856610394212666
+    a d3f:T1589;
+    d3f:accesses cad:0_7710303279513804;
+    d3f:precedes cad:0_1948295648634747;
+    rdfs:label "Gather Victim Identity Information:Credentials".
+cad:0_601359170494683
+    a cad:Note;
+    rdfs:comment
+        """CPS paid the ransom and eventually were able
+
+to initiate restart on may11th, fully restarting
+
+operations on may 12th.
+
+
+
+Despite paying for the key CPC stated that it
+did not fully undo what had been done and they
+continued to work on their systems and reevaluate
+
+some policies.
+
+
+CPC cooperated with the authorities during this
+
+incident aside from when they went out of contact
+in advance of paying the ransom against FBI
+
+recommendation.""";
+    rdfs:label "Pipeline Restart".
+cad:0_7163670666053513
+a d3f:T0828; rdfs:label "Loss of Productivity and Revenue - ATTACK ICS".
+cad:0_7523504021924062
+a d3f:OTNetwork; d3f:connects cad:0_5094563823244651; rdfs:label "OT Network".
+cad:0_7710303279513804
+    a d3f:Credential;
+    d3f:authenticates cad:0_9516510933936051;
+    rdfs:label "Credential".
+cad:0_7753711733062997
+    a d3f:ExecutableAllowlisting;
+    d3f:blocks cad:0_7869411718156432;
+    rdfs:label "Executable Allowlisting".
+cad:0_7869411718156432 a d3f:ExecutableFile; rdfs:label "Executable File".
+
+cad:0_7929612903544426
+a d3f:AdministrativeNetworkTraffic; rdfs:label "Administrative Network Traffic".
+cad:0_7988050018338918
+a d3f:T1090; d3f:precedes cad:0_9040423561991142; rdfs:label "Multi-hop Proxy".
+cad:0_8813009457572031
+    a d3f:NetworkNodeInventory;
+    d3f:inventories cad:0_14335716839394552;
+    rdfs:label "Network Node Inventory".
+cad:0_8928485744223281
+    a cad:Note;
+    rdfs:comment "Additional Countermeasures";
+    rdfs:label "Improvements".
+cad:0_9040423561991142
+    a d3f:T1133;
+    d3f:has-participant cad:0_14335716839394552;
+    d3f:precedes cad:0_17531406169946395;
+    rdfs:label "External Remote Services".
+cad:0_9288234179400698
+    a d3f:AdministrativeNetworkActivityAnalysis;
+    d3f:analyzes cad:0_7929612903544426;
+    rdfs:label "Administrative Network Activity Analysis".
+cad:0_9516510933936051
+    a d3f:UserAccount;
+    d3f:authenticates cad:0_14335716839394552;
+    rdfs:label "User Account".
+cad:0_9876456337150709
+    a d3f:Multi-factorAuthentication;
+    d3f:authenticates cad:0_9516510933936051;
+    rdfs:label "Multi-factor Authentication".
+cad:0_9973213435648643
+    a cad:Note;
+    rdfs:comment "Key additional countermeasures";
+    rdfs:label "Improvements".
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge__0.546179278682514source-0.5856610394212666target
+# [WARN]: Unknown property agent-in
+# {
+#   "label": "agent-in",
+#   "d3f_property": "agent-in"
+# }
+#
+# Edge ID: xy-edge-0.3111389971142601__0.9973213435648643source-0.40027622918795625target
+# [WARN]: Unknown property note
+# {
+#   "d3f_property": "note",
+#   "label": "note"
+# }
+#
+# Edge ID: xy-edge-0.017846420809600083__0.8928485744223281source-0.3146395740655382target
+# [WARN]: Unknown property note
+# {
+#   "d3f_property": "note",
+#   "label": "note"
+# }
+#
+# Edge ID: xy-edge-0.43773474827381265__0.8928485744223281source-0.43020776454953813target
+# [WARN]: Unknown property note
+# {
+#   "d3f_property": "note",
+#   "label": "note"
+# }
+#
+# Edge ID: xy-edge-0.5868120129327794__0.9973213435648643source-0.7929612903544426target
+# [WARN]: Unknown property note
+# {
+#   "d3f_property": "note",
+#   "label": "note"
+# }
+#
+# Edge ID: xy-edge-0.443905594383719__0.45095151035943726source-0.29606403815714977target
+# [WARN]: Unknown property note
+# {
+#   "d3f_property": "note",
+#   "label": "note"
+# }
+

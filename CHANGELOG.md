@@ -14,6 +14,8 @@
   - `mknd:Connection` enabled some `mknd:Task` and enabled only `mknd:Integration`, so every such task was concluded to be an integration. It now enables only integrations and tasks.
 
 ### Added
+- **D3FEND CAD examples** in `examples/d3fend-cad/`: D3FEND's ten published CAD graphs (BlackEnergy, BUSHWALK, Colonial Pipeline, Industroyer attack and malware, NotPetya, Purdue model, SHADOWCAT, TRISIS, Unitronics water attacks), unchanged, with their source URLs and MITRE's terms of use. They are reference data, not part of MKND.
+- **`make cad-report`** runs the data-graph checks on them, as `make data-report` does for the datasets. It finds `d3f:consider` in SHADOWCAT, a term D3FEND 1.6.0 doesn't have, and finds that `purdue.ttl` is not valid Turtle. The checks needed no changes. The report and triage are in `examples/d3fend-cad/README.md`.
 - **Test** `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes above.
 
 ## 0.5.1 — 2026-11-04

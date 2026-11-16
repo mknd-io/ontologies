@@ -1,0 +1,246 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_01278217741474641
+    a d3f:File;
+    d3f:contains cad:0_9773145593794748;
+    d3f:updates cad:0_9292666648326057;
+    rdfs:label "Malicious Update File".
+cad:0_018251047995078373
+    a d3f:EncryptedCredential;
+    d3f:authenticates cad:0_3317532199472272;
+    rdfs:label "Encrypted Credential".
+cad:0_04831461225758582
+    a cad:Note;
+    rdfs:comment
+        """On June 27, 2017 the malicious actors executed a
+series of malware attacks to render the computer 
+systems used by Ukrainian organizations inoperable, 
+including banks, newspapers, and electricity companies. 
+The "NotPetya" malware was used to target the electric 
+sector. The NotPetya malware spread to connected 
+networks belonging to other victim computer systems 
+belonging to victims in other countries, including in 
+the United States.""";
+    rdfs:label "Overview".
+cad:0_05972175545555691
+    a d3f:T1588.001;
+    d3f:has-participant cad:0_9773145593794748;
+    d3f:precedes cad:0_9660649614397346;
+    rdfs:label "NotPetya (Malware)".
+cad:0_15422429466339493
+    a d3f:T1070;
+    d3f:modifies cad:0_8737180814228267;
+    d3f:precedes cad:0_8514890036414315;
+    rdfs:label "Indicator Removal".
+cad:0_18381856051083867
+    a d3f:InternetBasedAttacker;
+    cad:id "G0034";
+    d3f:forges cad:0_7457266398012145;
+    rdfs:label "Sandworm Team".
+cad:0_19702299391879774
+    a d3f:T1486;
+    d3f:encrypts cad:0_8737180814228267;
+    d3f:precedes cad:0_15422429466339493;
+    rdfs:label "Data Encrypted for Impact".
+cad:0_2138741497677159
+    a d3f:FirmwareBehaviorAnalysis;
+    d3f:analyzes cad:0_9292666648326057;
+    rdfs:label "Firmware Behavior Analysis".
+cad:0_22242357522951883
+    a d3f:T1003;
+    d3f:has-participant cad:0_22281715606018038;
+    d3f:precedes cad:0_28930606609294585;
+    rdfs:label "OS Credential Dumping".
+cad:0_22281715606018038
+    a d3f:ExecutableScript;
+    d3f:accesses cad:0_018251047995078373;
+    rdfs:label "Mimikatz".
+cad:0_28930606609294585
+a d3f:T1078; d3f:precedes cad:0_36342952676934703; rdfs:label "Valid Accounts".
+cad:0_3117411736163519
+    a d3f:NetworkTrafficPolicyMapping;
+    d3f:queries cad:0_9292666648326057;
+    rdfs:label "Network Traffic Policy Mapping".
+cad:0_32771572103853874
+    a d3f:NetworkTrafficAnalysis;
+    d3f:analyzes cad:0_8347060952766463;
+    rdfs:label "Network Traffic Analysis".
+cad:0_3317532199472272
+    a d3f:UserAccount;
+    d3f:authenticates cad:0_8737180814228267;
+    rdfs:label "User Account".
+cad:0_3369991153590147 a d3f:ExecutableBinary; rdfs:label "Rundll32.exe".
+
+cad:0_33932496812831425
+    a d3f:T0866;
+    d3f:has-participant cad:0_7873974302947881;
+    d3f:precedes cad:0_9969855862061655;
+    rdfs:label "Exploitation of Remote Services".
+cad:0_36342952676934703
+a d3f:T1569; d3f:precedes cad:0_5458580378110247; rdfs:label "System Services".
+cad:0_3744300000385338
+    a d3f:T1518;
+    d3f:precedes cad:0_5504704652612123;
+    d3f:reads cad:0_8737180814228267;
+    rdfs:label "Software Discovery".
+cad:0_38088141592749836 a d3f:EventLog; rdfs:label "Event Log".
+
+cad:0_3970121684545658
+    a d3f:OTController;
+    d3f:connects cad:0_5757940635776652;
+    rdfs:label "OT Controller".
+cad:0_41028024123962625
+    a d3f:ExecutableFile;
+    d3f:executes cad:0_7070327154603478;
+    rdfs:label "PsExec (dllhost.dat)".
+cad:0_44262177219473575
+    a d3f:T1061;
+    d3f:modifies cad:0_8737180814228267;
+    rdfs:label "Graphical User Interface".
+cad:0_4553044720546603 a d3f:KernelProcessTable; rdfs:label "Kernel Process Table".
+
+cad:0_45738875810404733
+    a d3f:T1036;
+    d3f:has-agent cad:0_18381856051083867;
+    d3f:has-participant cad:0_7457266398012145;
+    d3f:precedes cad:0_05972175545555691;
+    rdfs:label "Masquerading".
+cad:0_49553262774732554
+    a d3f:T0828;
+    d3f:disables cad:0_3970121684545658;
+    rdfs:label "Loss of Productivity and Revenue".
+cad:0_5159456796669242
+    a d3f:DynamicAnalysis;
+    d3f:analyzes cad:0_9773145593794748;
+    rdfs:label "Dynamic Analysis".
+cad:0_5458580378110247
+    a d3f:T1218;
+    d3f:has-participant cad:0_3369991153590147;
+    d3f:precedes cad:0_33932496812831425;
+    rdfs:label "System Binary Proxy Execution".
+cad:0_5482337410734508
+    a d3f:EncryptedTunnels;
+    d3f:isolates cad:0_5757940635776652;
+    rdfs:label "Encrypted Tunnels".
+cad:0_5496571802180681
+    a d3f:T1053;
+    d3f:modifies cad:0_8737180814228267;
+    d3f:precedes cad:0_19702299391879774;
+    rdfs:label "Scheduled Task/Job".
+cad:0_5504704652612123
+    a d3f:T1083;
+    d3f:enumerates cad:0_8737180814228267;
+    d3f:precedes cad:0_5496571802180681;
+    rdfs:label "File and Directory Discovery".
+cad:0_5658579582621988 a d3f:DiskImage; rdfs:label "Disk Image".
+
+cad:0_5757940635776652
+    a d3f:IntranetNetwork;
+    d3f:connects cad:0_9353837082599213;
+    rdfs:label "OT Network".
+cad:0_615158318248406 a d3f:FileSystem; rdfs:label "File System".
+
+cad:0_6470264647389301 a d3f:JobSchedule; rdfs:label "Job Schedule".
+
+cad:0_7037803432617004
+    a cad:Note;
+    rdfs:comment
+        """The NotPetya malware was disseminated initially using a popular Ukrainian accounting 
+software called M.E.Doc. The software was periodically updated through an update 
+server (the "Update Server"). The attackers rerouted internet traffic from the Update Server 
+to their France-based server which delivered the malware to the victim computers. The 
+attackers surreptitiously add malicious functionality to the files containing the software 
+updates (the "Update Files") and computers receiving M.E.Doc software updates downloaded 
+these Update Files, which at some point included the NotPetya malware.""";
+    rdfs:label "Initial Access".
+cad:0_7070327154603478
+    a d3f:RemoteCommand;
+    d3f:controls cad:0_8737180814228267;
+    rdfs:label "Remote Command".
+cad:0_7457266398012145
+    a d3f:Server;
+    d3f:contains cad:0_01278217741474641;
+    rdfs:label "Malicious Update Server".
+cad:0_7873974302947881
+a d3f:ExecutableFile; rdfs:label "EternalBlue / EternalRomance".
+cad:0_794949288920951
+    a d3f:RoutingAccessMediation;
+    d3f:isolates cad:0_5757940635776652;
+    rdfs:label "Routing Access Mediation".
+cad:0_8270553388032771
+    a d3f:ExecutableAllowlisting;
+    d3f:may-isolate cad:0_5458580378110247;
+    rdfs:label "Executable Allowlisting".
+cad:0_8347060952766463
+    a d3f:ClientComputer;
+    d3f:connects cad:0_9353837082599213;
+    rdfs:label "Windows Computer".
+cad:0_8514890036414315
+    a d3f:T1529;
+    d3f:powers cad:0_8737180814228267;
+    d3f:precedes cad:0_44262177219473575;
+    rdfs:label "System Shutdown/Reboot".
+cad:0_8737180814228267
+    a d3f:ClientComputer;
+    d3f:connects cad:0_9353837082599213;
+    d3f:contains
+        cad:0_38088141592749836, cad:0_4553044720546603, cad:0_5658579582621988,
+        cad:0_615158318248406, cad:0_6470264647389301, cad:0_8863677430970017,
+        cad:0_9292666648326057;
+    rdfs:label "Windows  Computer".
+cad:0_880155684175424
+    a d3f:NetworkVulnerabilityAssessment;
+    d3f:evaluates cad:0_9353837082599213;
+    rdfs:label "Network Vulnerability Assessment".
+cad:0_8863677430970017 a d3f:Directory; rdfs:label "Directory".
+
+cad:0_9020084036717232
+    a d3f:LogicalLinkMapping;
+    d3f:maps cad:0_8347060952766463;
+    rdfs:label "Logical Link Mapping".
+cad:0_9292666648326057
+a d3f:Software; d3f:connects cad:0_7457266398012145; rdfs:label "M.E. Doc".
+cad:0_9353837082599213
+    a d3f:IntranetNetwork;
+    d3f:connects cad:0_5757940635776652;
+    rdfs:label "IT Network".
+cad:0_9478252589759577
+    a d3f:ServiceBinaryVerification;
+    d3f:verifies cad:0_9292666648326057;
+    rdfs:label "Service Binary Verification".
+cad:0_9652918487922116
+    a d3f:SoftwareUpdate;
+    d3f:hardens cad:0_8347060952766463, cad:0_8737180814228267;
+    rdfs:label "Software Update".
+cad:0_9660649614397346
+    a d3f:T1021;
+    d3f:has-participant cad:0_41028024123962625;
+    d3f:precedes cad:0_3744300000385338;
+    rdfs:label "Remote Services".
+cad:0_9773145593794748
+    a d3f:ExecutableFile;
+    d3f:contains
+        cad:0_22281715606018038, cad:0_3369991153590147,
+        cad:0_41028024123962625, cad:0_7873974302947881;
+    rdfs:label "NotPetya Malware".
+cad:0_987991995828896
+    a cad:Note;
+    rdfs:comment
+        """Once the malware was downloaded onto a computer, it attempted to escalate its privileges and determine whether antivirus processes were running.
+The malware then attempted to identify other computers on the same network. The malware would attempt to extract and execute a credential stealing 
+program and/or escalate its privileges to achieve lateral movement to other computers on the network. If execution failed, the malware spread itself to 
+other victim computers using either the exploit EtemalBlue or EternalRomance for SMBv1 to connect to other network nodes without credentials, then 
+copy itself to those nodes and attempt to execute. After attempting lateral movement within the compromised computer's network, the malware searched
+ for files ending with dozens of different file extensions and began encrypting those files on the compromised computer. Once the files were encrypted,
+ the malware created a text file containing the ransom note inside every folder that contained encrypted files.""";
+    rdfs:label "Local Execution & Spread".
+cad:0_9969855862061655
+    a d3f:T0867;
+    d3f:has-participant cad:0_3970121684545658, cad:0_8347060952766463;
+    d3f:precedes cad:0_49553262774732554;
+    rdfs:label "Lateral Tool Transfer".
+cad:id a owl:AnnotationProperty; rdfs:label "ID".
+

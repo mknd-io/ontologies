@@ -1,0 +1,142 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>.
+@prefix cad: <http://d3fend.mitre.org/ontologies/cad/instances#>.
+
+cad:0_026668828190339
+    a d3f:Agent;
+    cad:group "UNC5325";
+    d3f:participates-in cad:0_09193859368571666, cad:0_8011947706675827;
+    rdfs:label "attacker".
+cad:0_08600091218423167 a d3f:ServiceApplication; rdfs:label "Service Application".
+
+cad:0_09193859368571666
+    a d3f:T1554;
+    d3f:uses cad:0_2991290665885308;
+    rdfs:label "Compromise Host Software Binary".
+cad:0_16777283558886358
+    a d3f:FileIntegrityMonitoring;
+    d3f:analyzes cad:0_8386658673435847;
+    rdfs:label "File Integrity Monitoring".
+cad:0_1803005710496245
+    a d3f:SystemCallAnalysis;
+    d3f:analyzes cad:0_9734359398205206;
+    rdfs:label "System Call Analysis".
+cad:0_23244452472671295
+    a cad:WebApplication, d3f:Artifact;
+    d3f:contains cad:0_8386658673435847;
+    d3f:instructs cad:0_2926946173985914;
+    rdfs:label "Web Application";
+    rdfs:subClassOf cad:0_08600091218423167 .
+cad:0_25308669626129376
+    a cad:Note;
+    rdfs:comment
+        """This countermeasure only applies because
+this is an operating system file, highlighting
+the need for deep taxonomies.
+
+If this were a user file, you could not apply
+this technique due to false positives.""";
+    rdfs:label "Note on File Integrity Monitoring ".
+cad:0_27672783406130097
+    a d3f:LocalFilePermissions;
+    d3f:restricts cad:0_8386658673435847;
+    rdfs:label "Local File Permissions".
+cad:0_28745244020819394
+    a d3f:OSAPIWriteFile;
+    d3f:invokes cad:0_9734359398205206;
+    rdfs:label "OS API Write File".
+cad:0_2926946173985914
+    a d3f:WebServerApplication;
+    d3f:instructs cad:0_6059102509318336;
+    rdfs:label "Web Server Application".
+cad:0_2991290665885308
+    a d3f:Subroutine;
+    cad:comment "perl logic";
+    d3f:invokes cad:0_28745244020819394;
+    rdfs:label "BUSHWALK Injected Subroutine".
+cad:0_3180850673915423
+    a d3f:FileAnalysis;
+    d3f:monitors cad:0_7438529946288932;
+    rdfs:label "File Analysis".
+cad:0_3615545411229423
+    a d3f:FileIntegrityMonitoring;
+    cad:has-note cad:0_25308669626129376;
+    d3f:monitors cad:0_7438529946288932;
+    rdfs:label "File Integrity Monitoring".
+cad:0_6059102509318336
+    a cad:WebServerApplicationProcess, d3f:Artifact;
+    d3f:injects cad:0_8386658673435847;
+    rdfs:label "Web Server Application Process".
+cad:0_6395594717773364
+a d3f:SystemCallFiltering; rdfs:label "System Call Filtering".
+cad:0_7438529946288932
+a d3f:OperatingSystemExecutableFile; rdfs:label "OS Executable File".
+cad:0_8011947706675827
+    a d3f:T1190;
+    cad:has-payload cad:0_2991290665885308;
+    d3f:injects cad:0_6059102509318336;
+    rdfs:label "Exploit Public-Facing Application".
+cad:0_8386658673435847
+    a d3f:ExecutableScript;
+    cad:name "querymanifest.cgi";
+    d3f:contains cad:0_2991290665885308;
+    rdfs:label "CGI Executable Script".
+cad:0_8541813101494801
+    a cad:Note;
+    rdfs:comment
+        """This CAD diagram shows you how to propose and submit new classes
+and properties to the upstream D3FEND ontology, accessible here:
+
+    https://github.com/d3fend/d3fend-ontology
+
+
+This syntax:
+
+    :WebApplication
+
+indicates that we are adding a new class to the ontology. Note the colon
+character and lack of spaces. Also, this proposal fits :WebApplication
+into the existing ontology as a subclass of d3f:ServiceApplication.
+
+
+Thus, the Node will be interpreted as a class instead of an instance.
+
+The same works for properties as well, note the
+:has-payload property.
+
+
+
+You can click "Save As" > "D3FEND Extension" and submit the file to the
+D3FEND team for consideration.""";
+    rdfs:label "Proposed Additions to D3FEND".
+cad:0_9734359398205206
+    a d3f:WriteFile;
+    d3f:filters cad:0_6395594717773364;
+    rdfs:label "Write File Syscall".
+cad:comment a owl:AnnotationProperty; rdfs:label "comment".
+
+cad:group a owl:AnnotationProperty; rdfs:label "group".
+
+cad:name a owl:AnnotationProperty; rdfs:label "name".
+
+
+
+########################################################################
+# Diagnostics for CAD->Save As Turtle...                               #
+########################################################################
+#
+# Object property messages:
+#
+# Edge ID: xy-edge__0.9734359398205206source-0.7438529946288932target
+# [WARN]: Unknown property overwrites
+# {
+#   "label": "overwrites"
+# }
+#
+# Edge ID: xy-edge__0.8541813101494801source-0.23244452472671295target
+# [WARN]: Unknown property note
+# {
+#   "label": "note"
+# }
+
