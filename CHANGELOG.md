@@ -2,7 +2,12 @@
 
 ## Unreleased
 
+### Changed
+- **`mknd:Detection` (Finding) is a `d3f:DetectionEvent`** (was a direct `d3f:DigitalEvent`). D3FEND 1.6.0's Detection Event is "an event capturing the identification of a potential security issue" and points to OCSF's Findings category; MKND's Finding is the same kind of event, narrowed to one that produces an Actionable Item. A query for Detection Events now finds every Finding. A Finding inherits D3FEND's Security Event axiom, caused by some Defensive Action, and can be the Detection Event that D3FEND says precedes every Eviction Event. Subclass, not equivalence: equivalence would put MKND's axioms on every D3FEND Detection Event.
+
 ### Fixed
+- **Who creates a Finding.** `mknd:Detection` was created by only Detection Rules, so anything linked to a Finding with `d3f:created-by` was concluded to be a Detection Rule: a scan, an analysis, an analyst, or the decoy a canary alert came from. The restriction is gone; the definition and scope note say a rule, a scan or other analysis, or an analyst can find it, linked with `d3f:created-by`.
+- **Rules that never matched.** `mknd:DetectionRule` creates some Finding, so every rule was concluded to have created one, including a rule that never matched. It now `d3f:may-create` some Finding, D3FEND's way of stating a possibility.
 - **"Only" restrictions that contradicted a "some" on the same property.** Each made a reasoner conclude something false about every value of the "some":
   - `mknd:Socket` used some `d3f:IPAddress` and used only `mknd:CommunicationProtocol` (one of ICMP, TCP or UDP), so a socket's IP address was concluded to be one of those protocols. It now uses only IP addresses and protocols.
   - `mknd:Task` used some `mknd:DataTemplate` and used only `mknd:TaskTemplate`, so every data template was concluded to be a task template. It now uses only task and data templates.
