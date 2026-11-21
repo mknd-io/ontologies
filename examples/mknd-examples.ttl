@@ -268,7 +268,7 @@ mknd:zeek rdf:type owl:NamedIndividual ,
                                     mknd:lastLogged "2026-11-02T14:25:00Z"^^xsd:dateTimeStamp ;
                                     mknd:timeSeen "2026-11-02T14:03:11.204Z"^^xsd:dateTimeStamp ;
                                     mknd:value "10.1.12.101" ;
-                                    rdfs:comment "Seen at is the one time conn.log gives for this address. First and last logged are when the application received the two records that report it, conn.log and a later DNS log." .
+                                    rdfs:comment "Seen at is the one time conn.log gives for this address. First and last logged are when the application received the first and the latest record that reports it: conn.log, and a later record not shown here." .
 
 
 ###  https://w3id.org/mknd/10.1.12.1:53

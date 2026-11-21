@@ -371,8 +371,8 @@ mknd:endTime rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf mknd:dateTime ;
              rdfs:label "end time"@en ;
              skos:altLabel "ended at"@en ;
-             skos:definition "The time an activity, session or relationship ended, as reported by the source or as worked out from the reports."@en ;
-             skos:scopeNote "OCSF's end_time. A reported end ends what it applies to; an old last seen (mknd:lastSeen) does not. Two sources may report different ends; each value is that source's report."@en .
+             skos:definition "The time an activity, session or relationship ended, as reported by the source; or, for a period an application works out from several reports, when that period ended."@en ;
+             skos:scopeNote "OCSF's end_time. A reported end ends what it applies to. An old last seen (mknd:lastSeen) alone never ends anything, so a worked-out period ends only on evidence of an end, such as a reported end or a newer value that replaces it. Two sources may report different ends; each value is that source's report."@en .
 
 
 ###  https://w3id.org/mknd/extCategory
@@ -600,7 +600,7 @@ mknd:loggedTime rdf:type owl:DatatypeProperty ;
                 rdfs:label "logged time"@en ;
                 skos:altLabel "received at"@en ;
                 skos:definition "A time at which the application that keeps the data received a record, by that application's own clock: on a record, when it arrived; on an entity or relationship, when a record that reports it arrived."@en ;
-                skos:scopeNote "OCSF's metadata.logged_time, \"when the event reached its final destination\". It is the receiving application's clock, never a source's, so it says nothing about when the thing happened or was seen, and it is never a seen-at time (mknd:timeSeen). Records of old activity received in a batch have recent logged times."@en .
+                skos:scopeNote "OCSF's metadata.logged_time, \"when the event reached its final destination\". It is the receiving application's clock, never a source's, so it says nothing about when the thing happened or was seen. The property never sits under seen at (mknd:timeSeen), so a query on seen at does not return logged times through the property hierarchy. Records of old activity received in a batch have recent logged times."@en .
 
 
 ###  https://w3id.org/mknd/operating-system
@@ -702,7 +702,7 @@ mknd:timeSeen rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf mknd:dateTime ;
               rdfs:comment "A time at which the observer that records it saw the entity, event or relationship: the source product, in that product's report, or the application. A report that gives one time for what it saw records it as seen at, an instant that says nothing about when the thing began or ended."@en ;
               rdfs:label "seen at"@en ;
-              skos:scopeNote "First seen and last seen are seen-at times that bound a span the observer reports; a single time is never written as a first and last seen at the same instant. When an event happened is mknd:timeOccurred, and when the application received a record is mknd:loggedTime, which is never a seen-at time. A record that carries no time at all may be dated by its logged time, recorded as its seen at."@en .
+              skos:scopeNote "First seen and last seen are seen-at times that bound a span the observer reports; a single time is never written as a first and last seen at the same instant. When an event happened is mknd:timeOccurred, and when the application received a record is mknd:loggedTime; neither property sits under seen at. A record that carries no time at all may still be dated by its logged time, recorded as its seen at; the application that does so should say which records it dated that way, so a reader can tell its clock from the source's."@en .
 
 
 ###  https://w3id.org/mknd/updated
