@@ -1,0 +1,11 @@
+# Two clocks stay apart. mknd:loggedTime and its sub-properties are the receiving application's own clock: when it
+# received a record, and the first and last time it received a record about something. mknd:timeSeen and its
+# sub-properties are an observer's clock: when the source product (or the application) saw the thing. A property in
+# both families would make a query for seen times return receipt times, so a backfill of old data would look new.
+PREFIX mknd: <https://w3id.org/mknd/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?property WHERE {
+  ?property rdfs:subPropertyOf* mknd:loggedTime .
+  ?property rdfs:subPropertyOf* mknd:timeSeen .
+}
+ORDER BY ?property

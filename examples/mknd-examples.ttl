@@ -72,7 +72,9 @@ mknd:CtVKme2wtPfUO03gW8 rdf:type owl:NamedIndividual ,
                                      <https://w3id.org/mknd/10.1.12.101> ,
                                      <https://w3id.org/mknd/10.1.12.1:53> ;
                         d3f:recorded-in mknd:file_377694aa1125aad7b09bbaafc3b6587d ;
+                        mknd:endTime "2026-11-02T14:03:11.391Z"^^xsd:dateTimeStamp ;
                         mknd:external-id "CtVKme2wtPfUO03gW8" ;
+                        mknd:startTime "2026-11-02T14:03:11.204Z"^^xsd:dateTimeStamp ;
                         rdfs:label "CtVKme2wtPfUO03gW8" .
 
 
@@ -116,6 +118,13 @@ mknd:chrome rdf:type owl:NamedIndividual ,
                      mknd:SoftwareProduct .
 
 
+###  https://w3id.org/mknd/dns_query_CtVKme2wtPfUO03gW8
+mknd:dns_query_CtVKme2wtPfUO03gW8 rdf:type owl:NamedIndividual ,
+                                           d3f:DNSQueryEvent ;
+                                  mknd:timeOccurred "2026-11-02T14:03:11.204Z"^^xsd:dateTimeStamp ;
+                                  rdfs:label "DNS query in session CtVKme2wtPfUO03gW8" .
+
+
 ###  https://w3id.org/mknd/docker
 mknd:docker rdf:type owl:NamedIndividual ,
                      d3f:ProductDeveloper ;
@@ -134,7 +143,9 @@ mknd:file_377694aa1125aad7b09bbaafc3b6587d rdf:type owl:NamedIndividual ,
                                            d3f:records mknd:CtVKme2wtPfUO03gW8 ,
                                                        mknd:CxRSbB3QLImGRarD51 ,
                                                        mknd:Cy9RQD31jwWTNsvafg ;
+                                           mknd:reported-by mknd:zeek ;
                                            mknd:importFileName "conn.log"^^xsd:anyURI ;
+                                           mknd:loggedTime "2026-11-02T14:10:00Z"^^xsd:dateTimeStamp ;
                                            rdfs:label "conn.log" .
 
 
@@ -220,6 +231,14 @@ mknd:wiresharkfoundation rdf:type owl:NamedIndividual ,
                          rdfs:label "Wireshark Foundation" .
 
 
+###  https://w3id.org/mknd/zeek
+mknd:zeek rdf:type owl:NamedIndividual ,
+                   d3f:NetworkTrafficAnalysisSoftware ,
+                   mknd:SoftwareProduct ;
+          d3f:has-link "https://zeek.org/"^^xsd:anyURI ;
+          rdfs:label "Zeek" .
+
+
 ###  https://w3id.org/mknd/.net_framework
 <https://w3id.org/mknd/.net_framework> rdf:type owl:NamedIndividual ,
                                                 mknd:SoftwareProduct ;
@@ -245,7 +264,11 @@ mknd:wiresharkfoundation rdf:type owl:NamedIndividual ,
 <https://w3id.org/mknd/10.1.12.101> rdf:type owl:NamedIndividual ,
                                              mknd:IPv4 ,
                                              mknd:PrivateIPAddress ;
-                                    mknd:value "10.1.12.101" .
+                                    mknd:firstLogged "2026-11-02T14:10:00Z"^^xsd:dateTimeStamp ;
+                                    mknd:lastLogged "2026-11-02T14:25:00Z"^^xsd:dateTimeStamp ;
+                                    mknd:timeSeen "2026-11-02T14:03:11.204Z"^^xsd:dateTimeStamp ;
+                                    mknd:value "10.1.12.101" ;
+                                    rdfs:comment "Seen at is the one time conn.log gives for this address. First and last logged are when the application received the two records that report it, conn.log and a later DNS log." .
 
 
 ###  https://w3id.org/mknd/10.1.12.1:53

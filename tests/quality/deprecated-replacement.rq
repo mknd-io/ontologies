@@ -1,0 +1,11 @@
+# A deprecated MKND term names the term that replaces it (dcterms:isReplacedBy), and that term is current.
+# Without it, data written with the old term has no way forward, and a chain of replacements ends on a dead term.
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT DISTINCT ?term ?replacement WHERE {
+  ?term owl:deprecated true .
+  FILTER(STRSTARTS(STR(?term), "https://w3id.org/mknd/"))
+  OPTIONAL { ?term dcterms:isReplacedBy ?replacement }
+  FILTER(!BOUND(?replacement) || EXISTS { ?replacement owl:deprecated true })
+}
+ORDER BY ?term
