@@ -1,9 +1,31 @@
 # Changelog
 
-## Unreleased
+## 0.6.0 — 2026-11-21
+
+Time terms that name whose clock each time is, Finding as a D3FEND Detection Event, and three axiom fixes. Two IRIs are deprecated; none is removed.
+
+### Added
+- **Time terms.** Each one says whose clock it uses: a source's, or the clock of the application that keeps the data.
+  - `mknd:loggedTime` (logged time): when the receiving application got a record, by its own clock (OCSF `metadata.logged_time`). Under it, `mknd:firstLogged` and `mknd:lastLogged` (first and last logged; functional): the earliest and latest logged time of the records that report an entity or relationship. They sit outside seen at, so a query for seen times never returns the receiving clock, and a batch of old records looks old, not new.
+  - `mknd:startTime` and `mknd:endTime` (start time, end time): when an activity, session or relationship began and ended, as reported (OCSF `start_time`, `end_time`). Not functional, because two sources may report different starts, and each is that source's report.
+  - `mknd:timeOccurred` (occurred at): when a point-in-time event happened at its source (OCSF `time` on an event). It sits beside seen at, not under it, because a source can report when something occurred without having seen it then. D3FEND 1.6.0 has no such property: its `d3f:date` and children are catalogue dates.
+  - `mknd:reported-by` (reported by), under `d3f:created-by`: the product or application that made a report or record, whose clock the seen-at, first-seen and last-seen times on it use (OCSF `metadata.product`). No domain or range, so naming an observer types nothing.
+- **Tests:**
+  - `clock-separation`: no logged-time property sits under seen at. Shown to fail on an injected violation.
+  - `deprecated-replacement`: a deprecated MKND term names a replacement that is current. Shown to fail on an injected violation.
+  - `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes under Fixed.
+- **Examples:** a Zeek connection log with its logged time and observer, a session's start and end, an address's seen at and first and last logged, and a DNS query's occurred at.
 
 ### Changed
+- **`mknd:timeSeen` (seen at)** is reworded. The observer can be a source product or the application, not only the application. A report that gives one time for what it saw records it as seen at, never as a first and last seen at the same instant. The new scope note separates it from occurred at and logged time.
+- **`mknd:timeCreated` (created at) is a sub-property of `d3f:created`,** so a query for D3FEND's creation dates finds it.
+- **`mknd:lastUpdated` is labelled "last modified at"** (was "last updated at", now an alternative label). It sits under `d3f:modified` and `mknd:dateTime` (was under `mknd:updated`). It is defined like last seen: on a report, the product's last-modified time when it reported; on the entity as a whole, the latest one any source reported. A history of individual changes is recorded as update events, each with its occurred at.
 - **`mknd:Detection` (Finding) is a `d3f:DetectionEvent`** (was a direct `d3f:DigitalEvent`). D3FEND 1.6.0's Detection Event is "an event capturing the identification of a potential security issue" and points to OCSF's Findings category; MKND's Finding is the same kind of event, narrowed to one that produces an Actionable Item. A query for Detection Events now finds every Finding. A Finding inherits D3FEND's Security Event axiom, caused by some Defensive Action, and can be the Detection Event that D3FEND says precedes every Eviction Event. Subclass, not equivalence: equivalence would put MKND's axioms on every D3FEND Detection Event.
+
+### Deprecated
+- **`mknd:updated` and `mknd:last_modified`,** both replaced by `mknd:lastUpdated` (`owl:deprecated`, `dcterms:isReplacedBy`).
+  - Every change time a source reports is a last-modified time; OCSF 1.9.0 defines every `modified_time` that way. So a separate "a time it changed" term had no source, and invited two choices for one field.
+  - `mknd:last_modified` already said it "means the same as mknd:lastUpdated".
 
 ### Fixed
 - **Who creates a Finding.** `mknd:Detection` was created by only Detection Rules, so anything linked to a Finding with `d3f:created-by` was concluded to be a Detection Rule: a scan, an analysis, an analyst, or the decoy a canary alert came from. The restriction is gone; the definition and scope note say a rule, a scan or other analysis, or an analyst can find it, linked with `d3f:created-by`.
@@ -12,9 +34,6 @@
   - `mknd:Socket` used some `d3f:IPAddress` and used only `mknd:CommunicationProtocol` (one of ICMP, TCP or UDP), so a socket's IP address was concluded to be one of those protocols. It now uses only IP addresses and protocols.
   - `mknd:Task` used some `mknd:DataTemplate` and used only `mknd:TaskTemplate`, so every data template was concluded to be a task template. It now uses only task and data templates.
   - `mknd:Connection` enabled some `mknd:Task` and enabled only `mknd:Integration`, so every such task was concluded to be an integration. It now enables only integrations and tasks.
-
-### Added
-- **Test** `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes above.
 
 ## 0.5.1 — 2026-11-04
 
