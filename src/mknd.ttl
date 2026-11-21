@@ -263,7 +263,7 @@ mknd:reported-by rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf d3f:created-by ;
                  rdfs:label "reported by"@en ;
                  skos:definition "x reported-by y: the report or record x was made by y, the product or application that observed what x states."@en ;
-                 skos:scopeNote "Names the observer whose clock the seen-at, first-seen and last-seen times on x use, unless x carried no time and was dated by its logged time. OCSF's metadata.product, \"The product that reported the event\". It has no domain or range: any report or record can name its observer, and naming one types nothing."@en .
+                 skos:scopeNote "Names the observer whose clock the seen-at, first-seen and last-seen times on x use, unless x carried no time and was dated by its logged time. OCSF's metadata.product, \"The product that reported the event\". It has no domain or range of its own, so any report or record can name its observer; as a sub-property of d3f:created-by, the observer is concluded to create x (d3f:creates), and restrictions on d3f:created-by still apply."@en .
 
 
 ###  https://w3id.org/mknd/scope
