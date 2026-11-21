@@ -307,7 +307,7 @@ def core_metadata(core_ttl):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("datasets", nargs="*", default=sorted(DATASETS), choices=sorted(DATASETS))
+    ap.add_argument("datasets", nargs="*", choices=sorted(DATASETS), help="default: all")
     ap.add_argument("--d3fend", required=True, help="pinned D3FEND release (Turtle)")
     ap.add_argument("--core", default=ROOT / "src/mknd.ttl")
     ap.add_argument("--sources", default=ROOT / "scripts/data/sources.json")
@@ -318,7 +318,7 @@ def main():
     sources = json.loads(Path(args.sources).read_text())
     core = core_metadata(args.core)
     techniques = Techniques(args.d3fend)
-    for name in args.datasets:
+    for name in args.datasets or sorted(DATASETS):
         ds = Dataset(name, sources[name], core)
         {"gtfobins": gtfobins, "lolbas": lolbas}[name](fetch(sources[name], args.cache), ds, techniques)
         ds.write(args.out / f"{name}.ttl")

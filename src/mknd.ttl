@@ -12,19 +12,19 @@
 @base <https://w3id.org/mknd/> .
 
 <https://w3id.org/mknd/> rdf:type owl:Ontology ;
-                          owl:versionIRI <https://w3id.org/mknd/0.5.1/> ;
+                          owl:versionIRI <https://w3id.org/mknd/0.6.0/> ;
                           owl:imports <https://w3id.org/mknd/alignment/d3fend> ;
                           dcterms:created "2022-04-02"^^xsd:date ;
                           dcterms:creator <https://orcid.org/0000-0001-7399-6740> ;
                           dcterms:description "Mekanoid Ontology (MKND) is a public ontology for semantic knowledge graph applications. It is defined with a purpose to make trusted and autonomous cybersecurity prevention and response possible. It is a superset of the MITRE D3FEND ontology, and is designed to be used in conjunction with it. Mekanoid is a work in progress, and is subject to change."@en ;
                           dcterms:license <https://opensource.org/license/mit> ;
-                          dcterms:modified "2026-11-04"^^xsd:date ;
+                          dcterms:modified "2026-11-21"^^xsd:date ;
                           dcterms:title "Mekanoid Ontology (MKND)"@en ;
                           vann:preferredNamespacePrefix "mknd" ;
                           vann:preferredNamespaceUri "https://w3id.org/mknd/"^^xsd:anyURI ;
                           rdfs:comment "Maintained by Anton Goncharov <anton.goncharov@gmail.com>. Released under the MIT License."@en ;
-                          owl:priorVersion <https://w3id.org/mknd/0.5.0/> ;
-                          owl:versionInfo "0.5.1" .
+                          owl:priorVersion <https://w3id.org/mknd/0.5.1/> ;
+                          owl:versionInfo "0.6.0" .
 
 #################################################################
 #    Annotation properties
@@ -36,6 +36,10 @@ dcterms:created rdf:type owl:AnnotationProperty .
 
 ###  http://purl.org/dc/terms/description
 dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/isReplacedBy
+dcterms:isReplacedBy rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/modified
@@ -254,6 +258,14 @@ mknd:reportConfidence rdf:type owl:ObjectProperty ;
                       skos:definition "x report confidence y: y is the CVSS Report Confidence (RC) value of the vulnerability x, a Temporal metric: Not Defined, Unknown, Reasonable or Confirmed. In FIRST's words, this metric \"measures the degree of confidence in the existence of the vulnerability and the credibility of the known technical details\"."@en .
 
 
+###  https://w3id.org/mknd/reported-by
+mknd:reported-by rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf d3f:created-by ;
+                 rdfs:label "reported by"@en ;
+                 skos:definition "x reported-by y: the report or record x was made by y, the product or application that observed what x states."@en ;
+                 skos:scopeNote "Names the observer whose clock the seen-at, first-seen and last-seen times on x use, unless x carried no time and was dated by its logged time. OCSF's metadata.product, \"The product that reported the event\". It has no domain or range of its own, so any report or record can name its observer; as a sub-property of d3f:created-by, the observer is concluded to create x (d3f:creates), and restrictions on d3f:created-by still apply."@en .
+
+
 ###  https://w3id.org/mknd/scope
 mknd:scope rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf mknd:hasCVSSMetric ;
@@ -354,6 +366,15 @@ mknd:dateTimeEpoch rdf:type owl:DatatypeProperty ;
                    skos:example "990577200"^^xsd:long .
 
 
+###  https://w3id.org/mknd/endTime
+mknd:endTime rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf mknd:dateTime ;
+             rdfs:label "end time"@en ;
+             skos:altLabel "ended at"@en ;
+             skos:definition "The time an activity, session or relationship ended, as reported by the source; or, for a period an application works out from several reports, when that period ended."@en ;
+             skos:scopeNote "OCSF's end_time. A reported end ends what it applies to. An old last seen (mknd:lastSeen) alone never ends anything, so a worked-out period ends only on evidence of an end, such as a reported end or a newer value that replaces it. Two sources may report different ends; each value is that source's report."@en .
+
+
 ###  https://w3id.org/mknd/extCategory
 mknd:extCategory rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf mknd:vendorProperty ;
@@ -431,6 +452,16 @@ mknd:external-id rdf:type owl:DatatypeProperty ;
                  skos:definition "Mekanoid data property that represents an identifier assigned by an external system or vendor. It is applicable to entities such as hosts and user accounts, providing a unique string-based identifier that aligns with external records or systems. This property facilitates the integration and mapping of internal entities with external references, enhancing cross-system data coherence and identification." .
 
 
+###  https://w3id.org/mknd/firstLogged
+mknd:firstLogged rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf mknd:loggedTime ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:label "first logged"@en ;
+                 skos:altLabel "first received"@en ;
+                 skos:definition "The earliest logged time of the records that report the entity or relationship: when the application first received word of it."@en ;
+                 skos:scopeNote "Kept apart from mknd:firstSeen, the earliest time a source saw it, by the sources' clocks. For records of old activity received late, first logged is recent while first seen is old."@en .
+
+
 ###  https://w3id.org/mknd/firstSeen
 mknd:firstSeen rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf mknd:timeSeen ;
@@ -502,6 +533,16 @@ mknd:lastAccessedEpoch rdf:type owl:DatatypeProperty ;
                        skos:definition "The time the entity was last accessed, as Unix epoch time in seconds, by the clock of the system that records the access, such as a file's last access time (atime) on the file system that holds it."@en .
 
 
+###  https://w3id.org/mknd/lastLogged
+mknd:lastLogged rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf mknd:loggedTime ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:label "last logged"@en ;
+                skos:altLabel "last received"@en ;
+                skos:definition "The latest logged time of the records that report the entity or relationship: when the application last received word of it."@en ;
+                skos:scopeNote "Kept apart from mknd:lastSeen, the latest time a source saw it, by the sources' clocks."@en .
+
+
 ###  https://w3id.org/mknd/lastSeen
 mknd:lastSeen rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf mknd:timeSeen ;
@@ -528,10 +569,12 @@ mknd:lastStatusChangeEpoch rdf:type owl:DatatypeProperty ;
 
 ###  https://w3id.org/mknd/lastUpdated
 mknd:lastUpdated rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf mknd:updated ;
-                 rdfs:label "last updated at" ;
-                 skos:altLabel "last modified at" ;
-                 skos:definition "The most recent time the entity was changed, as reported by the source that holds it, such as a product's last-update time for a record it keeps."@en .
+                 rdfs:subPropertyOf d3f:modified ,
+                                    mknd:dateTime ;
+                 rdfs:label "last modified at"@en ;
+                 skos:altLabel "last updated at"@en ;
+                 skos:definition "The most recent time the entity was changed, by the clock of the source that holds it, as known to the observer that records it: on a product's report, that product's last-modified time when it reported; on the entity as a whole, the latest such time any source reported."@en ;
+                 skos:scopeNote "OCSF's modified_time. Says when the change happened at its source, not when the application learned of it. An entity changed several times, such as a ticket that gains comments, gets a later value with each report. A history of individual changes is recorded as update events, each with its own mknd:timeOccurred."@en .
 
 
 ###  https://w3id.org/mknd/lastUpdatedEpoch
@@ -544,8 +587,20 @@ mknd:lastUpdatedEpoch rdf:type owl:DatatypeProperty ;
 ###  https://w3id.org/mknd/last_modified
 mknd:last_modified rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf mknd:updated ;
+                   dcterms:isReplacedBy mknd:lastUpdated ;
                    rdfs:label "last modified" ;
-                   skos:definition "The most recent time the entity was modified, as reported by the source that holds it. Means the same as mknd:lastUpdated."@en .
+                   owl:deprecated "true"^^xsd:boolean ;
+                   skos:definition "The most recent time the entity was modified, as reported by the source that holds it. Means the same as mknd:lastUpdated."@en ;
+                   skos:scopeNote "Deprecated: a duplicate of mknd:lastUpdated, which replaces it."@en .
+
+
+###  https://w3id.org/mknd/loggedTime
+mknd:loggedTime rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf mknd:dateTime ;
+                rdfs:label "logged time"@en ;
+                skos:altLabel "received at"@en ;
+                skos:definition "A time at which the application that keeps the data received a record, by that application's own clock: on a record, when it arrived; on an entity or relationship, when a record that reports it arrived."@en ;
+                skos:scopeNote "OCSF's metadata.logged_time, \"when the event reached its final destination\". It is the receiving application's clock, never a source's, so it says nothing about when the thing happened or was seen. The property never sits under seen at (mknd:timeSeen), so a query on seen at does not return logged times through the property hierarchy. Records of old activity received in a batch have recent logged times."@en .
 
 
 ###  https://w3id.org/mknd/operating-system
@@ -580,6 +635,15 @@ mknd:size rdf:type owl:DatatypeProperty ,
           skos:definition "The size of a file in bytes."@en .
 
 
+###  https://w3id.org/mknd/startTime
+mknd:startTime rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf mknd:dateTime ;
+               rdfs:label "start time"@en ;
+               skos:altLabel "started at"@en ;
+               skos:definition "The time an activity, session or relationship began, as reported by the source."@en ;
+               skos:scopeNote "OCSF's start_time. A reported start can come before the first time any observer saw the thing, and is then the earliest evidence that it held. Two sources may report different starts for the same thing; each value is that source's report, not a contradiction."@en .
+
+
 ###  https://w3id.org/mknd/stringValue
 mknd:stringValue rdf:type owl:DatatypeProperty ;
                  rdfs:domain mknd:Observable ;
@@ -608,10 +672,12 @@ mknd:templateId rdf:type owl:DatatypeProperty ;
 
 ###  https://w3id.org/mknd/timeCreated
 mknd:timeCreated rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf mknd:dateTime ;
+                 rdfs:subPropertyOf d3f:created ,
+                                    mknd:dateTime ;
                  rdf:type owl:FunctionalProperty ;
                  rdfs:comment "Time when the entity had been created at the point of origin."@en ;
-                 rdfs:label "created at"@en .
+                 rdfs:label "created at"@en ;
+                 skos:scopeNote "OCSF's created_time. Says when the entity originated, not when an observer first saw it (mknd:firstSeen)."@en .
 
 
 ###  https://w3id.org/mknd/timeCreatedEpoch
@@ -622,21 +688,33 @@ mknd:timeCreatedEpoch rdf:type owl:DatatypeProperty ;
                       rdfs:label "created at (epoch)"@en .
 
 
+###  https://w3id.org/mknd/timeOccurred
+mknd:timeOccurred rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf mknd:dateTime ;
+                  rdfs:label "occurred at"@en ;
+                  skos:altLabel "event time"@en ;
+                  skos:definition "The time a point-in-time event happened at its source."@en ;
+                  skos:scopeNote "OCSF's time on an event, \"when the activity actually occurred at the source\". It is not a seen-at time: a source can report when something occurred without having seen it then. An event with a duration uses mknd:startTime and mknd:endTime. A finding's own time is when it was created (mknd:timeCreated)."@en .
+
+
 ###  https://w3id.org/mknd/timeSeen
 mknd:timeSeen rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf mknd:dateTime ;
-              rdfs:comment "A timestamp associated with a point in time when the entity had been observed by the application in some way."@en ;
-              rdfs:label "seen at"@en .
+              rdfs:comment "A time at which the observer that records it saw the entity, event or relationship: the source product, in that product's report, or the application. A report that gives one time for what it saw records it as seen at, an instant that says nothing about when the thing began or ended."@en ;
+              rdfs:label "seen at"@en ;
+              skos:scopeNote "First seen and last seen are seen-at times that bound a span the observer reports; a single time is never written as a first and last seen at the same instant. When an event happened is mknd:timeOccurred, and when the application received a record is mknd:loggedTime; neither property sits under seen at. A record that carries no time at all may still be dated by its logged time, recorded as its seen at; the application that does so should say which records it dated that way, so a reader can tell its clock from the source's."@en .
 
 
 ###  https://w3id.org/mknd/updated
 mknd:updated rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf mknd:dateTime ;
+             dcterms:isReplacedBy mknd:lastUpdated ;
              rdfs:label "modified at" ,
                         "updated at" ;
+             owl:deprecated "true"^^xsd:boolean ;
              skos:altLabel "modified at" ;
-             skos:definition "A time at which the entity was changed, by the clock of the source that holds it, such as the product that keeps a record. The parent of mknd:lastUpdated and mknd:last_modified."@en ;
-             skos:scopeNote "Says when the change happened at its source, not when the application learned of it."@en .
+             skos:definition "A time at which the entity was changed, by the clock of the source that holds it, such as the product that keeps a record."@en ;
+             skos:scopeNote "Deprecated: the change times sources report are last-modified times, so use mknd:lastUpdated. A history of individual changes is recorded as update events, each with its own mknd:timeOccurred."@en .
 
 
 ###  https://w3id.org/mknd/use-case

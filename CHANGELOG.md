@@ -1,20 +1,40 @@
 # Changelog
 
-## Unreleased
+## 0.6.0 — 2026-11-21
+
+Time terms that name whose clock each time is, Finding as a D3FEND Detection Event, and three axiom fixes. Two IRIs are deprecated; none is removed.
+
+### Added
+- **Time terms.** Each one says whose clock it uses: a source's, or the clock of the application that keeps the data.
+  - `mknd:loggedTime` (logged time): when the receiving application got a record, by its own clock (OCSF `metadata.logged_time`). Under it, `mknd:firstLogged` and `mknd:lastLogged` (first and last logged; functional): the earliest and latest logged time of the records that report an entity or relationship. They sit outside seen at, so a query on seen at never returns logged times through the property hierarchy, and a batch of old records received late still reads as old.
+  - `mknd:startTime` and `mknd:endTime` (start time, end time): when an activity, session or relationship began and ended, as reported (OCSF `start_time`, `end_time`). End time also closes a period an application works out from several reports; an old last seen alone never ends one. Not functional, because two sources may report different starts, and each is that source's report.
+  - `mknd:timeOccurred` (occurred at): when a point-in-time event happened at its source (OCSF `time` on an event). It sits beside seen at, not under it, because a source can report when something occurred without having seen it then. D3FEND 1.6.0 has no occurrence-time property: `d3f:date` and its children are dates in a resource's lifecycle, such as creation, modification and validity.
+  - `mknd:reported-by` (reported by), under `d3f:created-by`: the product or application that made a report or record, whose clock the seen-at, first-seen and last-seen times on it use (OCSF `metadata.product`). No domain or range of its own; as a sub-property of `d3f:created-by`, the observer is concluded to create the report (`d3f:creates`), and restrictions on `d3f:created-by` still apply.
+- **Tests:**
+  - `clock-separation`: no logged-time property sits under seen at. Shown to fail on an injected violation.
+  - `deprecated-replacement`: a deprecated MKND term names a replacement that is current. Shown to fail on an injected violation.
+  - `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes under Fixed.
+- **Examples:** a Zeek connection log with its logged time and observer, a session's start and end, an address's seen at and first and last logged, and a DNS query's occurred at.
 
 ### Changed
+- **`mknd:timeSeen` (seen at)** is reworded. The observer can be a source product or the application, not only the application. A report that gives one time for what it saw records it as seen at, never as a first and last seen at the same instant. The new scope note separates it from occurred at and logged time, and says that a record with no time at all may still be dated by its logged time, recorded as its seen at, if the application says which records it dated that way.
+- **`mknd:timeCreated` (created at) is a sub-property of `d3f:created`,** so a query for D3FEND's creation dates finds it.
+- **`mknd:lastUpdated` is labelled "last modified at"** (was "last updated at", now an alternative label). It sits under `d3f:modified` and `mknd:dateTime` (was under `mknd:updated`). It is defined like last seen: on a report, the product's last-modified time when it reported; on the entity as a whole, the latest one any source reported. A history of individual changes is recorded as update events, each with its occurred at.
 - **`mknd:Detection` (Finding) is a `d3f:DetectionEvent`** (was a direct `d3f:DigitalEvent`). D3FEND 1.6.0's Detection Event is "an event capturing the identification of a potential security issue" and points to OCSF's Findings category; MKND's Finding is the same kind of event, narrowed to one that produces an Actionable Item. A query for Detection Events now finds every Finding. A Finding inherits D3FEND's Security Event axiom, caused by some Defensive Action, and can be the Detection Event that D3FEND says precedes every Eviction Event. Subclass, not equivalence: equivalence would put MKND's axioms on every D3FEND Detection Event.
 
+### Deprecated
+- **`mknd:updated` and `mknd:last_modified`,** both replaced by `mknd:lastUpdated` (`owl:deprecated`, `dcterms:isReplacedBy`).
+  - Every change time a source reports is a last-modified time; OCSF 1.9.0 defines every `modified_time` that way. So a separate "a time it changed" term had no source, and invited two choices for one field.
+  - `mknd:last_modified` already said it "means the same as mknd:lastUpdated".
+
 ### Fixed
+- **`make data` on Python 3.12.** `scripts/data/generate.py` gave its list of datasets as the default of an argument with choices, which Python 3.12 rejects, so `make data` without arguments failed. With no argument it now generates every dataset.
 - **Who creates a Finding.** `mknd:Detection` was created by only Detection Rules, so anything linked to a Finding with `d3f:created-by` was concluded to be a Detection Rule: a scan, an analysis, an analyst, or the decoy a canary alert came from. The restriction is gone; the definition and scope note say a rule, a scan or other analysis, or an analyst can find it, linked with `d3f:created-by`.
 - **Rules that never matched.** `mknd:DetectionRule` creates some Finding, so every rule was concluded to have created one, including a rule that never matched. It now `d3f:may-create` some Finding, D3FEND's way of stating a possibility.
 - **"Only" restrictions that contradicted a "some" on the same property.** Each made a reasoner conclude something false about every value of the "some":
   - `mknd:Socket` used some `d3f:IPAddress` and used only `mknd:CommunicationProtocol` (one of ICMP, TCP or UDP), so a socket's IP address was concluded to be one of those protocols. It now uses only IP addresses and protocols.
   - `mknd:Task` used some `mknd:DataTemplate` and used only `mknd:TaskTemplate`, so every data template was concluded to be a task template. It now uses only task and data templates.
   - `mknd:Connection` enabled some `mknd:Task` and enabled only `mknd:Integration`, so every such task was concluded to be an integration. It now enables only integrations and tasks.
-
-### Added
-- **Test** `some-outside-only`: no MKND class has `P some A` and `P only B` with `A` outside `B`. It fails on 0.5.1 with the three classes above.
 
 ## 0.5.1 — 2026-11-04
 
